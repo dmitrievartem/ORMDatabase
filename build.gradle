@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.10'
+}
+
+group 'orm'
+version '1.0-SNAPSHOT'
+description = 'ORMDatabase'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        url = uri('https://m2.objectdb.com')
+    }
+}
+
+dependencies {
+    implementation 'com.objectdb:objectdb:2.8.1'
+}
+
+application {
+    mainClass = 'ormdatabase.Main'
+}
+
+javafx {
+    version = '11.0.2'
+    modules = ['javafx.controls', 'javafx.fxml']
+}
