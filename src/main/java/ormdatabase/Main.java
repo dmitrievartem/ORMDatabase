@@ -3,13 +3,15 @@ package ormdatabase;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import ormdatabase.model.FullRecord;
+import ormdatabase.model.Record;
+import ormdatabase.model.ShimStack;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import java.io.IOException;
+import java.util.List;
 
 public class Main extends javafx.application.Application {
     @Override
@@ -24,28 +26,39 @@ public class Main extends javafx.application.Application {
     }
 
     public static void main(String[] args) {
-        launch();
 
-        // Open a database connection
-        // (create a new database if it doesn't exist yet):
+        System.setProperty("objectdb.home", "./src/main/resources/odb/");
+
+        /*System.setProperty("objectdb.home", "./src/main/resources/odb/");
+
         EntityManagerFactory emf =
-                Persistence.createEntityManagerFactory("$objectdb/db/points.odb");
+                Persistence.createEntityManagerFactory("$objectdb/db/shimstack.odb");
         EntityManager em = emf.createEntityManager();
 
-        // Store 1000 Point objects in the database:
-        em.getTransaction().begin();
-        for (int i = 0; i < 1000; i++) {
-            FullRecord fullRecord = new FullRecord();
-            em.persist(fullRecord);
-        }
-        em.getTransaction().commit();
 
-        // Find the number of Point objects in the database:
-        Query q1 = em.createQuery("SELECT COUNT(fullRecord) FROM FullRecord fullRecord");
-        System.out.println("Total Points: " + q1.getSingleResult());
+        // Store objects in the database:
+        Record record = new Record();
+        record.setName("Имя");
+        record.setCar("Машина");
+
+
+
+        Query backupQuery = em.createQuery("objectdb backup");
+        backupQuery.setParameter("target", new java.io.File("c:\\backup"));
+        backupQuery.getSingleResult();
+
+
+        System.out.println(results.get(0).getName());
+        System.out.println(results.get(0).getName());
+        List<ShimStack> shimStackList = results.get(0).getShimStackList();
+        ShimStack shimStack = shimStackList.get(0);
+        System.out.println("0000000000000000000000000000");
+        System.out.println(shimStack);
 
         // Close the database connection:
         em.close();
-        emf.close();
+        emf.close();*/
+
+        launch();
     }
 }

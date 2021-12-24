@@ -5,7 +5,7 @@
 }
 
 .search-input-label {
-    -fx-min-width: 75;
+    -fx-min-width: 100;
     -fx-padding: 0 10 0 30;
 	-fx-text-fill: #6d7986;
 	-fx-font-size: 14;
@@ -13,7 +13,6 @@
 
 .search-input-text-field-name {
     -fx-padding: 0 10 0 10;
-    -fx-min-width: 200;
     -fx-pref-width: 300;
     -fx-max-width: 300;
     -fx-min-height: 28;
@@ -31,7 +30,6 @@
 
 .search-input-text-field-car {
     -fx-padding: 0 10 0 10;
-    -fx-min-width: 200;
     -fx-max-width: 200;
     -fx-min-height: 28;
     -fx-max-height: 28;
