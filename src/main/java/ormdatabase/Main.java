@@ -1,28 +1,14 @@
 package ormdatabase;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
-import ormdatabase.model.Record;
-import ormdatabase.model.ShimStack;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
 import java.io.IOException;
-import java.util.List;
 
 public class Main extends javafx.application.Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getClassLoader().getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("ORM Database");
-        stage.setMaximized(true);
-        stage.setScene(scene);
-        stage.show();
+        SceneSwitcher sceneSwitcher = new SceneSwitcher();
+        sceneSwitcher.start(stage);
     }
 
     public static void main(String[] args) {

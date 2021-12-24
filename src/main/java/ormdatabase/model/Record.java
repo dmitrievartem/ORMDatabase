@@ -11,34 +11,38 @@ import java.util.List;
 public class Record implements Serializable {
     @Id @GeneratedValue
     private Long id;
-
     private String name;
     private String car;
     private Date date;
-    private String phoneNumber;
+    private String phone;
     private String city;
-    private String comment;
-    private List<ShimStack> shimStackList;
+    private String type;
+    private List<ShimStackSet> shimStackSetList;
 
     public Record() {
     }
 
-    public Record(String name, String car, Date date, String phobeNumber, String city) {
+    public Record(String name, String car, Date date, String phone, String city, String type, List<ShimStackSet> shimStackSetList) {
         this.name = name;
         this.car = car;
         this.date = date;
-        this.phoneNumber = phobeNumber;
+        this.phone = phone;
+        this.city = city;
+        this.type = type;
+        this.shimStackSetList = shimStackSetList;
+    }
+
+    public Record(String name, String car, Date date, String phone, String city) {
+        this.name = name;
+        this.car = car;
+        this.date = date;
+        this.phone = phone;
         this.city = city;
     }
 
     public Long getId() {
         return id;
     }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
 
     public String getName() {
         return name;
@@ -56,22 +60,6 @@ public class Record implements Serializable {
         this.car = car;
     }
 
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
     public Date getDate() {
         return date;
     }
@@ -80,19 +68,35 @@ public class Record implements Serializable {
         this.date = date;
     }
 
-    public String getComment() {
-        return comment;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    public List<ShimStack> getShimStackList() {
-        return shimStackList;
+    public String getCity() {
+        return city;
     }
 
-    public void setShimStackList(List<ShimStack> shimStackList) {
-        this.shimStackList = shimStackList;
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public List<ShimStackSet> getShimStackSetList() {
+        return shimStackSetList;
+    }
+
+    public void setShimStackSetList(List<ShimStackSet> shimStackSetList) {
+        this.shimStackSetList = shimStackSetList;
     }
 }

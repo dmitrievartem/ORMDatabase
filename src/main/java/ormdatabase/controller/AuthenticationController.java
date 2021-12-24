@@ -1,17 +1,14 @@
 package ormdatabase.controller;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.control.PasswordField;
+import ormdatabase.SceneSwitcher;
 
-import java.io.IOException;
 import java.net.URL;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class AuthenticationController {
+public class AuthenticationController extends SceneSwitcher {
 
     @FXML
     private ResourceBundle resources;
@@ -27,12 +24,7 @@ public class AuthenticationController {
         passwordField.setOnAction(event -> {
 //            if (passwordField.getText().equals("1234")) {
             if (true) {
-                try {
-                    Parent newPage = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("search-view.fxml")));
-                    ((Node) event.getSource()).getScene().setRoot(newPage);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                switchScene(((Node) event.getSource()).getScene(), "search-view.fxml");
                 System.out.println("Правильный пароль");
             } else {
                 System.out.println("НЕПРАВИЛЬНО!!! НЕПРАВИЛЬНО!!!");

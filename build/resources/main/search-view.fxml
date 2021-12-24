@@ -18,7 +18,7 @@
    <left>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0" styleClass="vbox" stylesheets="@css/menu.css" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="search" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" stylesheets="@css/menu.css" text="Поиск" wrapText="true">
+            <Button fx:id="search" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchScene" prefHeight="40.0" prefWidth="200.0" styleClass="menu-button" stylesheets="@css/menu.css" text="Поиск" wrapText="true">
                <cursor>
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
@@ -26,27 +26,27 @@
                   <Insets />
                </VBox.margin>
             </Button>
-            <Button fx:id="view" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" stylesheets="@css/menu.css" text="Просмотр" wrapText="true">
+            <Button fx:id="view" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchScene" prefHeight="40.0" prefWidth="200.0" styleClass="menu-button" stylesheets="@css/menu.css" text="Просмотр" wrapText="true">
                <cursor>
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </Button>
-            <Button fx:id="edit" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" stylesheets="@css/menu.css" text="Редактирование" wrapText="true">
+            <Button fx:id="edit" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchScene" prefHeight="40.0" prefWidth="200.0" styleClass="menu-button" stylesheets="@css/menu.css" text="Редактирование" wrapText="true">
                <cursor>
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </Button>
-            <Button fx:id="add" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" stylesheets="@css/menu.css" text="Добавление" wrapText="true">
+            <Button fx:id="add" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchScene" prefHeight="40.0" prefWidth="200.0" styleClass="menu-button" stylesheets="@css/menu.css" text="Добавление" wrapText="true">
                <cursor>
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </Button>
-            <Button fx:id="favorites" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" stylesheets="@css/menu.css" text="Избранное" wrapText="true">
+            <Button fx:id="favorites" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchScene" prefHeight="40.0" prefWidth="200.0" styleClass="menu-button" stylesheets="@css/menu.css" text="Избранное" wrapText="true">
                <cursor>
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </Button>
-            <Button fx:id="settings" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" stylesheets="@css/menu.css" text="Настройки" wrapText="true">
+            <Button fx:id="settings" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchScene" prefHeight="40.0" prefWidth="200.0" styleClass="menu-button" stylesheets="@css/menu.css" text="Настройки" wrapText="true">
                <cursor>
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
