@@ -155,7 +155,6 @@
             </VBox>
             <VBox alignment="CENTER" styleClass="shim-stack-vbox">
                <children>
-                  <Label text="ПЛ" />
                   <TableView fx:id="reboundTable1" stylesheets="@css/record.css">
                     <columns>
                       <TableColumn fx:id="rt1numberColumn" prefWidth="75.0" text="К" />
@@ -175,99 +174,6 @@
                       <TableColumn fx:id="ct1diameterColumn" prefWidth="75.0" text="Д" />
                         <TableColumn fx:id="ct1thicknessColumn" prefWidth="75.0" text="Т" />
                     </columns>
-                     <VBox.margin>
-                        <Insets bottom="25.0" />
-                     </VBox.margin>
-                     <columnResizePolicy>
-                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                     </columnResizePolicy>
-                  </TableView>
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" styleClass="shim-stack-vbox">
-               <children>
-                  <Label text="ПП" />
-                  <TableView fx:id="reboundTable2">
-                     <columns>
-                        <TableColumn fx:id="rt2numberColumn" prefWidth="75.0" text="К" />
-                        <TableColumn fx:id="rt2diameterColumn" prefWidth="76.0" text="Д" />
-                        <TableColumn fx:id="rt2thicknessColumn" prefWidth="76.0" text="Т" />
-                     </columns>
-                     <VBox.margin>
-                        <Insets bottom="25.0" />
-                     </VBox.margin>
-                     <columnResizePolicy>
-                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                     </columnResizePolicy>
-                  </TableView>
-                  <TableView fx:id="compressionTable2">
-                     <columns>
-                        <TableColumn fx:id="ct2numberColumn" prefWidth="75.0" text="К" />
-                        <TableColumn fx:id="ct2diameterColumn" prefWidth="75.0" text="Д" />
-                        <TableColumn fx:id="ct2thicknessColumn" prefWidth="75.0" text="Т" />
-                     </columns>
-                     <VBox.margin>
-                        <Insets bottom="25.0" />
-                     </VBox.margin>
-                     <columnResizePolicy>
-                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                     </columnResizePolicy>
-                  </TableView>
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" styleClass="shim-stack-vbox">
-               <children>
-                  <Label text="ЗЛ" />
-                  <TableView fx:id="reboundTable3">
-                     <columns>
-                        <TableColumn fx:id="rt3numberColumn" prefWidth="75.0" text="К" />
-                        <TableColumn fx:id="rt3diameterColumn" prefWidth="76.0" text="Д" />
-                        <TableColumn fx:id="rt3thicknessColumn" prefWidth="76.0" text="Т" />
-                     </columns>
-                     <VBox.margin>
-                        <Insets bottom="25.0" />
-                     </VBox.margin>
-                     <columnResizePolicy>
-                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                     </columnResizePolicy>
-                  </TableView>
-                  <TableView fx:id="compressionTable3">
-                     <columns>
-                        <TableColumn fx:id="ct3numberColumn" prefWidth="75.0" text="К" />
-                        <TableColumn fx:id="ct3diameterColumn" prefWidth="75.0" text="Д" />
-                        <TableColumn fx:id="ct3thicknessColumn" prefWidth="75.0" text="Т" />
-                     </columns>
-                     <VBox.margin>
-                        <Insets bottom="25.0" />
-                     </VBox.margin>
-                     <columnResizePolicy>
-                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                     </columnResizePolicy>
-                  </TableView>
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" styleClass="shim-stack-vbox">
-               <children>
-                  <Label text="ЗП" />
-                  <TableView fx:id="reboundTable4">
-                     <columns>
-                        <TableColumn fx:id="rt4numberColumn" prefWidth="75.0" text="К" />
-                        <TableColumn fx:id="rt4diameterColumn" prefWidth="76.0" text="Д" />
-                        <TableColumn fx:id="rt4thicknessColumn" prefWidth="76.0" text="Т" />
-                     </columns>
-                     <VBox.margin>
-                        <Insets bottom="25.0" />
-                     </VBox.margin>
-                     <columnResizePolicy>
-                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                     </columnResizePolicy>
-                  </TableView>
-                  <TableView fx:id="compressionTable4">
-                     <columns>
-                        <TableColumn fx:id="ct4numberColumn" prefWidth="75.0" text="К" />
-                        <TableColumn fx:id="ct4diameterColumn" prefWidth="75.0" text="Д" />
-                        <TableColumn fx:id="ct4thicknessColumn" prefWidth="75.0" text="Т" />
-                     </columns>
                      <VBox.margin>
                         <Insets bottom="25.0" />
                      </VBox.margin>

@@ -12,12 +12,13 @@ public class DataSource {
             Persistence.createEntityManagerFactory("$objectdb/db/shimstack.odb");
     public EntityManager em = emf.createEntityManager();
 
-    public List<Record> select(String name, String car) {
+    public List<Record> select(String id, String name, String car) {
         String queryString;
-        if (name.equals("") && car.equals("")) {
+        if (id.equals("") && name.equals("") && car.equals("")) {
             queryString = "SELECT r FROM Record r";
         } else {
-            queryString = String.format("SELECT r FROM Record r WHERE r.name = '%s' OR r.car = '%s'", name, car);
+            queryString = String.format("SELECT r FROM Record r WHERE r.id = %d OR r.name = '%s' OR r.car = '%s'",
+                    Long.parseLong(id), name, car);
         }
         TypedQuery<Record> selectQuery = em.createQuery(queryString, Record.class);
         return selectQuery.getResultList();

@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="border-pane" stylesheets="@css/menu.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ormdatabase.controller.SearchController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" styleClass="border-pane" stylesheets="@css/menu.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ormdatabase.controller.SearchController">
    <cursor>
       <Cursor fx:constant="DEFAULT" />
    </cursor>
@@ -65,6 +65,8 @@
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0">
                <children>
+                  <Label minWidth="46.0" prefHeight="20.0" prefWidth="46.0" styleClass="search-input-label" stylesheets="@css/search.css" text="ID" />
+                  <TextField fx:id="idTextField" styleClass="search-input-text-field-id" stylesheets="@css/search.css" />
                   <Label styleClass="search-input-label" stylesheets="@css/search.css" text="Имя" />
                   <TextField fx:id="nameTextField" styleClass="search-input-text-field-name" stylesheets="@css/search.css" />
                   <Label styleClass="search-input-label" stylesheets="@css/search.css" text="Машина" />
@@ -78,8 +80,9 @@
             </HBox>
             <TableView fx:id="searchTable" minWidth="100.0" stylesheets="@css/search.css">
               <columns>
-                <TableColumn fx:id="nameColumn" prefWidth="67.19993436336517" text="ФИО" />
-                <TableColumn fx:id="carColumn" prefWidth="91.20001983642578" text="Машина" />
+                  <TableColumn fx:id="idColumn" prefWidth="65.60005033016205" text="ID" />
+                <TableColumn fx:id="nameColumn" prefWidth="232.00000762939453" text="ФИО" />
+                <TableColumn fx:id="carColumn" minWidth="0.0" prefWidth="0.0" text="Машина" />
                   <TableColumn fx:id="dateColumn" prefWidth="75.0" text="Дата" />
                   <TableColumn fx:id="phoneNumberColumn" prefWidth="75.0" text="Телефон" />
                   <TableColumn fx:id="cityColumn" prefWidth="75.0" text="Город" />

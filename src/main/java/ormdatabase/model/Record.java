@@ -3,6 +3,7 @@ package ormdatabase.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.criteria.CriteriaBuilder;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
@@ -30,14 +31,6 @@ public class Record implements Serializable {
         this.city = city;
         this.type = type;
         this.shimStackSetList = shimStackSetList;
-    }
-
-    public Record(String name, String car, Date date, String phone, String city) {
-        this.name = name;
-        this.car = car;
-        this.date = date;
-        this.phone = phone;
-        this.city = city;
     }
 
     public Long getId() {
@@ -90,6 +83,18 @@ public class Record implements Serializable {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public int getTypeNumber() {
+        switch (type) {
+            case "4 одинаковых":
+                return 1;
+            case "перед-зад":
+                return 2;
+            case "4 разных":
+            default:
+                return 4;
+        }
     }
 
     public List<ShimStackSet> getShimStackSetList() {

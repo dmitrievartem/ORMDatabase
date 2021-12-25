@@ -5,14 +5,19 @@
 }
 
 .search-input-label {
+    -fx-alignment: center-right;
     -fx-min-width: 100;
-    -fx-padding: 0 10 0 30;
+    -fx-padding: 0 10 0 0;
 	-fx-text-fill: #6d7986;
 	-fx-font-size: 14;
 }
 
+.search-input-text-field-id {
+
+}
+
 .search-input-text-field-name {
-    -fx-padding: 0 10 0 10;
+    -fx-padding: 0 20 0 20;
     -fx-pref-width: 300;
     -fx-max-width: 300;
     -fx-min-height: 28;
@@ -29,7 +34,7 @@
 }
 
 .search-input-text-field-car {
-    -fx-padding: 0 10 0 10;
+    -fx-padding: 0 20 0 20;
     -fx-max-width: 200;
     -fx-min-height: 28;
     -fx-max-height: 28;
@@ -61,6 +66,10 @@
 
 .search-button:hover {
     -fx-background-color: edeff1;
+}
+
+.table-view .table-column {
+  -fx-alignment: center;
 }
 
 .table-view .corner {

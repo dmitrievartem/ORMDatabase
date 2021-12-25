@@ -67,10 +67,10 @@
          <children>
             <VBox alignment="TOP_CENTER" prefWidth="350.0">
                <children>
-                  <GridPane maxHeight="550.0" stylesheets="@css/record.css">
+                  <GridPane maxHeight="650.0" stylesheets="@css/record.css">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" minWidth="10.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="300.0" />
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints maxHeight="-Infinity" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
@@ -80,22 +80,23 @@
                         <RowConstraints maxHeight="-Infinity" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="-Infinity" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="-Infinity" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="40.0" valignment="TOP" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="-Infinity" minHeight="40.0" prefHeight="40.0" valignment="CENTER" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="40.0" prefHeight="40.0" valignment="CENTER" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="40.0" valignment="TOP" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="-Infinity" minHeight="40.0" prefHeight="40.0" valignment="CENTER" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
                         <Label text="Id" />
                         <Label text="Имя" GridPane.rowIndex="1" />
                         <Label text="Машина" GridPane.rowIndex="2" />
-                        <Label text="Дата" GridPane.rowIndex="3" />
+                        <Label text="Дата создания" GridPane.rowIndex="3" />
                         <Label text="Телефон" GridPane.rowIndex="4" />
                         <Label text="Город" GridPane.rowIndex="5">
                            <GridPane.margin>
                               <Insets />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="TOP_LEFT" contentDisplay="CENTER" styleClass="last-label" text="Комментарий" GridPane.rowIndex="7">
+                        <Label alignment="TOP_LEFT" contentDisplay="CENTER" styleClass="last-label" text="Комментарий" GridPane.rowIndex="9">
                            <GridPane.margin>
                               <Insets />
                            </GridPane.margin>
@@ -106,24 +107,26 @@
                         <Label fx:id="dateLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <Label fx:id="phoneLabel" text="88005553535" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                         <Label fx:id="cityLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <Label styleClass="last-label" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                        <Label text="Версия" GridPane.rowIndex="8" />
-                        <Label fx:id="versionLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                        <Label styleClass="last-label" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                        <Label text="Версия" GridPane.rowIndex="7" />
+                        <Label fx:id="versionLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                         <Label text="Тип настройки" GridPane.rowIndex="6" />
                         <Label fx:id="typeLabel" text="4 разные" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                        <Label text="Автор" GridPane.rowIndex="9" />
-                        <Label fx:id="authorLabel" text="Версия" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                        <Label fx:id="commentLabel" alignment="TOP_LEFT" contentDisplay="CENTER" styleClass="last-label" text="Комментарий Комментарий Комментарий Комментарий Комментарий Комментарий Комментарий Комментарий Комментарий Комментарий Комментарий Комментарий Комментарий Комментарий Комментарий " wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <Label text="Автор" GridPane.rowIndex="10" />
+                        <Label fx:id="authorLabel" text="Версия" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                        <Label fx:id="commentLabel" alignment="TOP_LEFT" contentDisplay="CENTER" styleClass="last-label" text="Комментарий Комментарий Комментарий Комментарий Комментарий Комментарий Комментарий Комментарий Комментарий Комментарий Комментарий Комментарий Комментарий Комментарий Комментарий " wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                        <Label text="Дата версии" GridPane.rowIndex="8" />
+                        <Label fx:id="versionDateLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                      </children>
                   </GridPane>
                   <HBox alignment="CENTER">
                      <children>
-                        <Button fx:id="nextVersionButton" mnemonicParsing="false" styleClass="switch-version-button" text="Предыдущая" textAlignment="CENTER" wrapText="true">
+                        <Button fx:id="nextVersionButton" mnemonicParsing="false" onAction="#setPreviousVersion" styleClass="switch-version-button" text="Предыдущая" textAlignment="CENTER" wrapText="true">
                            <HBox.margin>
                               <Insets left="20.0" right="20.0" />
                            </HBox.margin>
                         </Button>
-                        <Button fx:id="previousVersionButton" mnemonicParsing="false" styleClass="switch-version-button" text="Следующая" textAlignment="CENTER" wrapText="true">
+                        <Button fx:id="previousVersionButton" mnemonicParsing="false" onAction="#setNextVersion" styleClass="switch-version-button" text="Следующая" textAlignment="CENTER" wrapText="true">
                            <HBox.margin>
                               <Insets left="20.0" right="20.0" />
                            </HBox.margin>
@@ -133,7 +136,7 @@
                         <Insets bottom="20.0" top="20.0" />
                      </VBox.margin>
                   </HBox>
-                  <Button fx:id="addVersionButton" mnemonicParsing="false" styleClass="add-version-button" text="Добавить версию" textAlignment="CENTER" wrapText="true" />
+                  <Button fx:id="addVersionButton" mnemonicParsing="false" styleClass="add-version-button" text="Редактировать" textAlignment="CENTER" wrapText="true" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefWidth="100.0">
@@ -153,11 +156,11 @@
             <VBox alignment="CENTER" styleClass="shim-stack-vbox">
                <children>
                   <Label text="ПЛ" />
-                  <TableView fx:id="reboundTable1">
+                  <TableView fx:id="reboundTable1" stylesheets="@css/record.css">
                     <columns>
-                      <TableColumn fx:id="ct1numberColumn" prefWidth="75.0" text="К" />
-                      <TableColumn fx:id="ct1diameterColumn" prefWidth="76.0" text="Д" />
-                        <TableColumn fx:id="ct1thicknessColumn" prefWidth="76.0" text="Т" />
+                      <TableColumn fx:id="rt1numberColumn" prefWidth="75.0" text="К" />
+                      <TableColumn fx:id="rt1diameterColumn" prefWidth="76.0" text="Д" />
+                        <TableColumn fx:id="rt1thicknessColumn" prefWidth="76.0" text="Т" />
                     </columns>
                      <VBox.margin>
                         <Insets bottom="25.0" />
@@ -168,9 +171,9 @@
                   </TableView>
                   <TableView fx:id="compressionTable1">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="К" />
-                      <TableColumn prefWidth="75.0" text="Д" />
-                        <TableColumn prefWidth="75.0" text="Т" />
+                      <TableColumn fx:id="ct1numberColumn" prefWidth="75.0" text="К" />
+                      <TableColumn fx:id="ct1diameterColumn" prefWidth="75.0" text="Д" />
+                        <TableColumn fx:id="ct1thicknessColumn" prefWidth="75.0" text="Т" />
                     </columns>
                      <VBox.margin>
                         <Insets bottom="25.0" />
@@ -186,9 +189,9 @@
                   <Label text="ПП" />
                   <TableView fx:id="reboundTable2">
                      <columns>
-                        <TableColumn prefWidth="75.0" text="К" />
-                        <TableColumn prefWidth="76.0" text="Д" />
-                        <TableColumn prefWidth="76.0" text="Т" />
+                        <TableColumn fx:id="rt2numberColumn" prefWidth="75.0" text="К" />
+                        <TableColumn fx:id="rt2diameterColumn" prefWidth="76.0" text="Д" />
+                        <TableColumn fx:id="rt2thicknessColumn" prefWidth="76.0" text="Т" />
                      </columns>
                      <VBox.margin>
                         <Insets bottom="25.0" />
@@ -199,9 +202,9 @@
                   </TableView>
                   <TableView fx:id="compressionTable2">
                      <columns>
-                        <TableColumn prefWidth="75.0" text="К" />
-                        <TableColumn prefWidth="75.0" text="Д" />
-                        <TableColumn prefWidth="75.0" text="Т" />
+                        <TableColumn fx:id="ct2numberColumn" prefWidth="75.0" text="К" />
+                        <TableColumn fx:id="ct2diameterColumn" prefWidth="75.0" text="Д" />
+                        <TableColumn fx:id="ct2thicknessColumn" prefWidth="75.0" text="Т" />
                      </columns>
                      <VBox.margin>
                         <Insets bottom="25.0" />
@@ -217,9 +220,9 @@
                   <Label text="ЗЛ" />
                   <TableView fx:id="reboundTable3">
                      <columns>
-                        <TableColumn prefWidth="75.0" text="К" />
-                        <TableColumn prefWidth="76.0" text="Д" />
-                        <TableColumn prefWidth="76.0" text="Т" />
+                        <TableColumn fx:id="rt3numberColumn" prefWidth="75.0" text="К" />
+                        <TableColumn fx:id="rt3diameterColumn" prefWidth="76.0" text="Д" />
+                        <TableColumn fx:id="rt3thicknessColumn" prefWidth="76.0" text="Т" />
                      </columns>
                      <VBox.margin>
                         <Insets bottom="25.0" />
@@ -230,9 +233,9 @@
                   </TableView>
                   <TableView fx:id="compressionTable3">
                      <columns>
-                        <TableColumn prefWidth="75.0" text="К" />
-                        <TableColumn prefWidth="75.0" text="Д" />
-                        <TableColumn prefWidth="75.0" text="Т" />
+                        <TableColumn fx:id="ct3numberColumn" prefWidth="75.0" text="К" />
+                        <TableColumn fx:id="ct3diameterColumn" prefWidth="75.0" text="Д" />
+                        <TableColumn fx:id="ct3thicknessColumn" prefWidth="75.0" text="Т" />
                      </columns>
                      <VBox.margin>
                         <Insets bottom="25.0" />
@@ -248,9 +251,9 @@
                   <Label text="ЗП" />
                   <TableView fx:id="reboundTable4">
                      <columns>
-                        <TableColumn prefWidth="75.0" text="К" />
-                        <TableColumn prefWidth="76.0" text="Д" />
-                        <TableColumn prefWidth="76.0" text="Т" />
+                        <TableColumn fx:id="rt4numberColumn" prefWidth="75.0" text="К" />
+                        <TableColumn fx:id="rt4diameterColumn" prefWidth="76.0" text="Д" />
+                        <TableColumn fx:id="rt4thicknessColumn" prefWidth="76.0" text="Т" />
                      </columns>
                      <VBox.margin>
                         <Insets bottom="25.0" />
@@ -261,9 +264,9 @@
                   </TableView>
                   <TableView fx:id="compressionTable4">
                      <columns>
-                        <TableColumn prefWidth="75.0" text="К" />
-                        <TableColumn prefWidth="75.0" text="Д" />
-                        <TableColumn prefWidth="75.0" text="Т" />
+                        <TableColumn fx:id="ct4numberColumn" prefWidth="75.0" text="К" />
+                        <TableColumn fx:id="ct4diameterColumn" prefWidth="75.0" text="Д" />
+                        <TableColumn fx:id="ct4thicknessColumn" prefWidth="75.0" text="Т" />
                      </columns>
                      <VBox.margin>
                         <Insets bottom="25.0" />

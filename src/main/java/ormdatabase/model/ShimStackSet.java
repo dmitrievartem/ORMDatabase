@@ -1,7 +1,5 @@
 package ormdatabase.model;
 
-import javafx.util.Pair;
-
 import javax.persistence.Embeddable;
 import java.util.Date;
 import java.util.List;
