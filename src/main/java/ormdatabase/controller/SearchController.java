@@ -4,11 +4,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import ormdatabase.SceneSwitcher;
@@ -113,6 +111,7 @@ public class SearchController extends SceneSwitcher {
 
         System.out.println(recordList.size());
 
+        searchTable.setEditable(true);
         searchTable.setItems(recordList);
     }
 
@@ -123,7 +122,8 @@ public class SearchController extends SceneSwitcher {
         CompressionStack compressionStack = new CompressionStack();
         ReboundStack reboundStack = new ReboundStack();
 
-        Shim shim = new Shim(1f, 0.34f, 0.2f);
+//        Shim shim = new Shim(1f, 0.34f, 0.2f);
+        Shim shim = new Shim("1", "0.34", "0.2");
         List<Shim> shimList = new ArrayList<>();
         shimList.add(shim);
         shimList.add(shim);

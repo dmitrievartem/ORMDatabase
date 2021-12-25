@@ -4,40 +4,40 @@ import javax.persistence.Embeddable;
 
 @Embeddable
 public class Shim {
-    private Float number;
-    private Float diameter;
-    private Float thickness;
+    private String number;
+    private String diameter;
+    private String thickness;
 
     public Shim() {
     }
 
-    public Shim(Float number, Float diameter, Float thickness) {
+    public Shim(String number, String diameter, String thickness) {
         this.number = number;
         this.diameter = diameter;
         this.thickness = thickness;
     }
 
-    public Float getNumber() {
+    public String getNumber() {
         return number;
     }
 
-    public void setNumber(Float number) {
+    public void setNumber(String number) {
         this.number = number;
     }
 
-    public Float getDiameter() {
+    public String getDiameter() {
         return diameter;
     }
 
-    public void setDiameter(Float diameter) {
+    public void setDiameter(String diameter) {
         this.diameter = diameter;
     }
 
-    public Float getThickness() {
+    public String getThickness() {
         return thickness;
     }
 
-    public void setThickness(Float thickness) {
+    public void setThickness(String thickness) {
         this.thickness = thickness;
     }
 }

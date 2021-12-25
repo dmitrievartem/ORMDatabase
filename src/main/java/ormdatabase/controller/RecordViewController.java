@@ -1,11 +1,12 @@
 package ormdatabase.controller;
 
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Pair;
 import ormdatabase.SceneSwitcher;
@@ -44,6 +45,54 @@ public class RecordViewController extends SceneSwitcher {
 
     @FXML
     private Label commentLabel;
+
+    @FXML
+    private TableView<Shim> reboundTable1;
+
+    @FXML
+    private TableColumn<Shim, Float> rt1numberColumn;
+
+    @FXML
+    private TableColumn<Shim, Float> rt1diameterColumn;
+
+    @FXML
+    private TableColumn<Shim, Float> rt1thicknessColumn;
+
+    @FXML
+    private TableView<Shim> reboundTable2;
+
+    @FXML
+    private TableColumn<Shim, Float> rt2numberColumn;
+
+    @FXML
+    private TableColumn<Shim, Float> rt2diameterColumn;
+
+    @FXML
+    private TableColumn<Shim, Float> rt2thicknessColumn;
+
+    @FXML
+    private TableView<Shim> reboundTable3;
+
+    @FXML
+    private TableColumn<Shim, Float> rt3numberColumn;
+
+    @FXML
+    private TableColumn<Shim, Float> rt3diameterColumn;
+
+    @FXML
+    private TableColumn<Shim, Float> rt3thicknessColumn;
+
+    @FXML
+    private TableView<Shim> reboundTable4;
+
+    @FXML
+    private TableColumn<Shim, Float> rt4numberColumn;
+
+    @FXML
+    private TableColumn<Shim, Float> rt4diameterColumn;
+
+    @FXML
+    private TableColumn<Shim, Float> rt4thicknessColumn;
 
     @FXML
     private TableView<Shim> compressionTable1;
@@ -118,54 +167,6 @@ public class RecordViewController extends SceneSwitcher {
     private Button previousVersionButton;
 
     @FXML
-    private TableView<Shim> reboundTable1;
-
-    @FXML
-    private TableColumn<Shim, Float> rt1numberColumn;
-
-    @FXML
-    private TableColumn<Shim, Float> rt1diameterColumn;
-
-    @FXML
-    private TableColumn<Shim, Float> rt1thicknessColumn;
-
-    @FXML
-    private TableView<Shim> reboundTable2;
-
-    @FXML
-    private TableColumn<Shim, Float> rt2numberColumn;
-
-    @FXML
-    private TableColumn<Shim, Float> rt2diameterColumn;
-
-    @FXML
-    private TableColumn<Shim, Float> rt2thicknessColumn;
-
-    @FXML
-    private TableView<Shim> reboundTable3;
-
-    @FXML
-    private TableColumn<Shim, Float> rt3numberColumn;
-
-    @FXML
-    private TableColumn<Shim, Float> rt3diameterColumn;
-
-    @FXML
-    private TableColumn<Shim, Float> rt3thicknessColumn;
-
-    @FXML
-    private TableView<Shim> reboundTable4;
-
-    @FXML
-    private TableColumn<Shim, Float> rt4numberColumn;
-
-    @FXML
-    private TableColumn<Shim, Float> rt4diameterColumn;
-
-    @FXML
-    private TableColumn<Shim, Float> rt4thicknessColumn;
-
-    @FXML
     private Button search;
 
     @FXML
@@ -219,19 +220,19 @@ public class RecordViewController extends SceneSwitcher {
 
 //        ScrollBar scrollBar = (ScrollBar) reboundTable1.lookup(".scroll-bar:vertical");
 //        scrollBar.setVisible(false);
-        reboundTable1.setRowFactory(param -> {
-            final TableRow row = new TableRow();
-            row.setRotate(180);
-            return row;
-        });
-        reboundTable1.setRotate(180);
-        Platform.runLater(()-> {
-            for (Node n: reboundTable1.lookupAll(".column-header > .label")) {
-                if (n instanceof Label) {
-                    n.setRotate(180);
-                }
-            }
-        });
+//        reboundTable1.setRowFactory(param -> {
+//            final TableRow row = new TableRow();
+//            row.setRotate(180);
+//            return row;
+//        });
+//        reboundTable1.setRotate(180);
+//        Platform.runLater(()-> {
+//            for (Node n: reboundTable1.lookupAll(".column-header > .label")) {
+//                if (n instanceof Label) {
+//                    n.setRotate(180);
+//                }
+//            }
+//        });
 //        reboundTable1.lookup("")
 
 

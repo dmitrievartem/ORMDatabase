@@ -77,6 +77,9 @@ public class SceneSwitcher {
             case "view":
                 targetView = "record-4diff-view.fxml";
                 break;
+            case "add":
+                targetView = "add-view.fxml";
+                break;
         }
         switchScene(scene, targetView);
     }
