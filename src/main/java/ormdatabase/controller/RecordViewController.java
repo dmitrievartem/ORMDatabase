@@ -19,7 +19,6 @@ import java.util.ResourceBundle;
 
 public class RecordViewController extends SceneSwitcher {
 
-    private ObservableList<Shim> shimList = FXCollections.observableArrayList();
     private int currentVersion = observableRecord.getShimStackSetList().size() - 1;
 
     @FXML
@@ -213,28 +212,6 @@ public class RecordViewController extends SceneSwitcher {
         rt4numberColumn.setCellValueFactory(new PropertyValueFactory<>("number"));
         rt4diameterColumn.setCellValueFactory(new PropertyValueFactory<>("diameter"));
         rt4thicknessColumn.setCellValueFactory(new PropertyValueFactory<>("thickness"));
-
-//        reboundTable1.setRotate(180);
-
-
-
-//        ScrollBar scrollBar = (ScrollBar) reboundTable1.lookup(".scroll-bar:vertical");
-//        scrollBar.setVisible(false);
-//        reboundTable1.setRowFactory(param -> {
-//            final TableRow row = new TableRow();
-//            row.setRotate(180);
-//            return row;
-//        });
-//        reboundTable1.setRotate(180);
-//        Platform.runLater(()-> {
-//            for (Node n: reboundTable1.lookupAll(".column-header > .label")) {
-//                if (n instanceof Label) {
-//                    n.setRotate(180);
-//                }
-//            }
-//        });
-//        reboundTable1.lookup("")
-
 
         setValues();
     }

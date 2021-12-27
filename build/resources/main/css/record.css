@@ -56,7 +56,8 @@
 
 .shim-stack-vbox {
     -fx-padding: 0 10 0 10;
-    -fx-max-width: 150;
+    -fx-max-width: 175;
+    -fx-max-height: 750;
 }
 
 .table-view .table-column {
@@ -67,12 +68,5 @@
 .table-view .scroll-bar:horizontal .decrement-arrow,
 .table-view .scroll-bar:horizontal .increment-button,
 .table-view .scroll-bar:horizontal .decrement-button {
-    -fx-padding:0;
-}
-
-.table-view .scroll-bar:vertical .increment-arrow,
-.table-view .scroll-bar:vertical .decrement-arrow,
-.table-view .scroll-bar:vertical .increment-button,
-.table-view .scroll-bar:vertical .decrement-button {
     -fx-padding:0;
 }

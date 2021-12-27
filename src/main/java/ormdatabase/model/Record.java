@@ -3,22 +3,23 @@ package ormdatabase.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.criteria.CriteriaBuilder;
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class Record implements Serializable {
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     private Long id;
     private String name;
     private String car;
     private Date date;
     private String phone;
     private String city;
-    private String type;
-    private List<ShimStackSet> shimStackSetList;
+    private String type = "4 разных";
+    private List<ShimStackSet> shimStackSetList = new ArrayList<>();
 
     public Record() {
     }
@@ -87,11 +88,11 @@ public class Record implements Serializable {
 
     public int getTypeNumber() {
         switch (type) {
-            case "4 одинаковых":
+            case "4 одинаковые":
                 return 1;
             case "перед-зад":
                 return 2;
-            case "4 разных":
+            case "4 разные":
             default:
                 return 4;
         }
@@ -103,5 +104,9 @@ public class Record implements Serializable {
 
     public void setShimStackSetList(List<ShimStackSet> shimStackSetList) {
         this.shimStackSetList = shimStackSetList;
+    }
+
+    public void addShimStackSet(ShimStackSet shimStackSet) {
+        this.shimStackSetList.add(shimStackSet);
     }
 }

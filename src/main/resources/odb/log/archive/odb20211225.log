@@ -3341,3 +3341,32 @@ Type ormdatabase.model.CompressionStack is not enhanced.
 [2021-12-25 18:55:24 #9 type] 
 Type ormdatabase.model.Shim is not enhanced.
 
+------------------------------------------------------------------------------------------------------------------------
+
+[2021-12-25 19:02:46 #1 store] 
+Database 'D:\Java\Projects\ORMDatabase\src\main\resources\odb\db\shimstack.odb' has been recovered (tr. 37-37)
+
+[2021-12-25 19:02:46 #2 store] 
+Database 'D:\Java\Projects\ORMDatabase\src\main\resources\odb\db\shimstack.odb' is opened by 2032@DmitrievAS
+
+[2021-12-25 19:02:46 #3 store] 
+Configuration path: ?
+
+[2021-12-25 19:02:46 #4 type] 
+Type ormdatabase.model.Record is not enhanced.
+
+[2021-12-25 19:02:46 #5 type] 
+Type ormdatabase.model.ShimStackSet is not enhanced.
+
+[2021-12-25 19:02:46 #6 type] 
+Type ormdatabase.model.StackPair is not enhanced.
+
+[2021-12-25 19:02:46 #7 type] 
+Type ormdatabase.model.ReboundStack is not enhanced.
+
+[2021-12-25 19:02:46 #8 type] 
+Type ormdatabase.model.CompressionStack is not enhanced.
+
+[2021-12-25 19:02:46 #9 type] 
+Type ormdatabase.model.Shim is not enhanced.
+
