@@ -18,19 +18,17 @@ public class Record implements Serializable {
     private Date date;
     private String phone;
     private String city;
-    private String type = "4 разных";
     private List<ShimStackSet> shimStackSetList = new ArrayList<>();
 
     public Record() {
     }
 
-    public Record(String name, String car, Date date, String phone, String city, String type, List<ShimStackSet> shimStackSetList) {
+    public Record(String name, String car, Date date, String phone, String city, List<ShimStackSet> shimStackSetList) {
         this.name = name;
         this.car = car;
         this.date = date;
         this.phone = phone;
         this.city = city;
-        this.type = type;
         this.shimStackSetList = shimStackSetList;
     }
 
@@ -78,26 +76,6 @@ public class Record implements Serializable {
         this.city = city;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public int getTypeNumber() {
-        switch (type) {
-            case "4 одинаковые":
-                return 1;
-            case "перед-зад":
-                return 2;
-            case "4 разные":
-            default:
-                return 4;
-        }
-    }
-
     public List<ShimStackSet> getShimStackSetList() {
         return shimStackSetList;
     }
@@ -106,7 +84,15 @@ public class Record implements Serializable {
         this.shimStackSetList = shimStackSetList;
     }
 
-    public void addShimStackSet(ShimStackSet shimStackSet) {
+    public void setVersion(int index, ShimStackSet shimStackSet) {
+        this.shimStackSetList.set(index, shimStackSet);
+    }
+
+    public void addVersion(ShimStackSet shimStackSet) {
         this.shimStackSetList.add(shimStackSet);
+    }
+
+    public void deleteVersion(int shimStackSetNumber) {
+        this.shimStackSetList.remove(shimStackSetNumber);
     }
 }

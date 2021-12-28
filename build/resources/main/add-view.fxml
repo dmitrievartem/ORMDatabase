@@ -81,8 +81,8 @@
                         <RowConstraints maxHeight="-Infinity" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="-Infinity" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="-Infinity" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="-Infinity" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="-Infinity" minHeight="40.0" prefHeight="40.0" valignment="CENTER" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="-Infinity" minHeight="40.0" prefHeight="40.0" valignment="CENTER" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="40.0" valignment="CENTER" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="-Infinity" minHeight="40.0" prefHeight="40.0" valignment="CENTER" vgrow="SOMETIMES" />
@@ -98,9 +98,9 @@
                            </GridPane.margin>
                         </Label>
                         <Label styleClass="last-label" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                        <Label text="Версия" GridPane.rowIndex="6" />
-                        <Label fx:id="versionLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                        <Label text="Тип настройки" GridPane.rowIndex="5" />
+                        <Label text="Версия" GridPane.rowIndex="5" />
+                        <Label fx:id="versionLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Label text="Тип настройки" GridPane.rowIndex="6" />
                         <Label text="Автор" GridPane.rowIndex="9" />
                         <Label text="Дата версии" GridPane.rowIndex="7" />
                         <TextField fx:id="nameField" GridPane.columnIndex="1" />
@@ -110,7 +110,7 @@
                         <TextField fx:id="commentField" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                         <TextField fx:id="authorField" GridPane.columnIndex="1" GridPane.rowIndex="9" />
                         <DatePicker fx:id="dateField" prefHeight="30.0" prefWidth="336.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <ComboBox fx:id="typeField" onAction="#setType" prefHeight="30.0" prefWidth="313.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <ComboBox fx:id="versionTypeField" onAction="#setTypeFromEvent" prefHeight="30.0" prefWidth="313.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                         <Label layoutX="10.0" layoutY="300.0" text="Комментарий" GridPane.rowIndex="8" />
                         <DatePicker fx:id="versionDateField" prefHeight="30.0" prefWidth="336.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                      </children>
@@ -131,12 +131,12 @@
                       <RowConstraints minHeight="60.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button mnemonicParsing="false" styleClass="version-button" stylesheets="@css/add.css" text="Удалить версию" GridPane.rowIndex="1" />
+                        <Button mnemonicParsing="false" onAction="#deleteVersion" styleClass="version-button" stylesheets="@css/add.css" text="Удалить версию" GridPane.rowIndex="1" />
                         <Button mnemonicParsing="false" onAction="#addVersion" styleClass="version-button" stylesheets="@css/add.css" text="Добавить версию" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Button mnemonicParsing="false" onAction="#resetTables" styleClass="version-button" stylesheets="@css/add.css" text="Сброс" GridPane.rowIndex="2" />
-                        <Button mnemonicParsing="false" styleClass="version-button" stylesheets="@css/add.css" text="Сохранить" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Button mnemonicParsing="false" styleClass="version-button" stylesheets="@css/add.css" text="Предыдущая версия" />
-                        <Button mnemonicParsing="false" styleClass="version-button" stylesheets="@css/add.css" text="Следующая версия" GridPane.columnIndex="1" />
+                        <Button mnemonicParsing="false" onAction="#printStacks" styleClass="version-button" stylesheets="@css/add.css" text="Сохранить" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Button mnemonicParsing="false" onAction="#viewPreviousVersion" styleClass="version-button" stylesheets="@css/add.css" text="Предыдущая версия" />
+                        <Button mnemonicParsing="false" onAction="#viewNextVersion" styleClass="version-button" stylesheets="@css/add.css" text="Следующая версия" GridPane.columnIndex="1" />
                      </children>
                   </GridPane>
                </children>

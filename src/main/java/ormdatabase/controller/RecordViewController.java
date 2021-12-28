@@ -223,7 +223,7 @@ public class RecordViewController extends SceneSwitcher {
         dateLabel.setText(String.valueOf(observableRecord.getDate()));
         phoneLabel.setText(observableRecord.getPhone());
         cityLabel.setText(observableRecord.getCity());
-        typeLabel.setText(observableRecord.getType());
+        typeLabel.setText(observableRecord.getShimStackSetList().get(currentVersion - 1).getType());
         setVersion(currentVersion);
     }
 
@@ -237,7 +237,6 @@ public class RecordViewController extends SceneSwitcher {
         currentVersion = targetVersion;
     }
 
-    @FXML
     void setNextVersion() {
         int versionAmount = observableRecord.getShimStackSetList().size();
         if (currentVersion + 1 <= versionAmount) {
@@ -246,7 +245,6 @@ public class RecordViewController extends SceneSwitcher {
         }
     }
 
-    @FXML
     void setPreviousVersion() {
         if (currentVersion - 1 > 0) {
             int targetVersion = currentVersion - 1;
@@ -263,7 +261,7 @@ public class RecordViewController extends SceneSwitcher {
                 );
         List<Shim> reboundList;
         List<Shim> compressionList;
-        for(int i = 0; i < observableRecord.getTypeNumber(); i++) {
+        for(int i = 0; i < observableRecord.getShimStackSetList().get(currentVersion - 1).getTypeNumber(); i++) {
             reboundList = observableRecord.getShimStackSetList().get(targetVersion - 1).getShimStackList().get(0).getReboundStack().getStack();
             compressionList = observableRecord.getShimStackSetList().get(targetVersion - 1).getShimStackList().get(0).getCompressionStack().getStack();
 

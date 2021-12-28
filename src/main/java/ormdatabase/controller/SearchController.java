@@ -150,17 +150,17 @@ public class SearchController extends SceneSwitcher {
         shimStackList.add(stackPair);
         shimStackList.add(stackPair);
 
-        ShimStackSet shimStackSet1 = new ShimStackSet( 1, new Date(2021, 12, 20), "comment", "tester", true,
+        ShimStackSet shimStackSet1 = new ShimStackSet( 1, "4 разных", new Date(2021, 12, 20), "comment", "tester", true,
                 shimStackList);
 
-        ShimStackSet shimStackSet2 = new ShimStackSet( 2, new Date(1999, 1, 5), "comment2", "tester2", false,
+        ShimStackSet shimStackSet2 = new ShimStackSet( 2, "4 разных", new Date(1999, 1, 5), "comment2", "tester2", false,
                 shimStackList);
 
         List<ShimStackSet> shimStackSetList = new ArrayList<>();
         shimStackSetList.add(shimStackSet1);
         shimStackSetList.add(shimStackSet2);
 
-        Record record = new Record("перед-зад", "CAR", new Date(1933, 2, 2), "PHONE", "CITY", "перед-зад", shimStackSetList);
+        Record record = new Record("перед-зад", "CAR", new Date(1933, 2, 2), "PHONE", "CITY", shimStackSetList);
         dataSource.insert(record);
     }
 }
