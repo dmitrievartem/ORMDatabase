@@ -1622,3 +1622,431 @@ Type ormdatabase.model.CompressionStack is not enhanced.
 [2021-12-28 21:05:14 #9 type] 
 Type ormdatabase.model.Shim is not enhanced.
 
+------------------------------------------------------------------------------------------------------------------------
+
+[2021-12-28 21:15:31 #1 store] 
+Database 'D:\Java\Projects\ORMDatabase\src\main\resources\odb\db\shimstack.odb' has been recovered (tr. 178-179)
+
+[2021-12-28 21:15:31 #2 store] 
+Database 'D:\Java\Projects\ORMDatabase\src\main\resources\odb\db\shimstack.odb' is opened by 4240@DmitrievAS
+
+[2021-12-28 21:15:31 #3 store] 
+Configuration path: ?
+
+[2021-12-28 21:15:31 #4 type] 
+Type ormdatabase.model.Record is not enhanced.
+
+[2021-12-28 21:15:31 #5 type] 
+Type ormdatabase.model.ShimStackSet is not enhanced.
+
+[2021-12-28 21:15:31 #6 type] 
+Type ormdatabase.model.StackPair is not enhanced.
+
+[2021-12-28 21:15:31 #7 type] 
+Type ormdatabase.model.ReboundStack is not enhanced.
+
+[2021-12-28 21:15:31 #8 type] 
+Type ormdatabase.model.CompressionStack is not enhanced.
+
+[2021-12-28 21:15:31 #9 type] 
+Type ormdatabase.model.Shim is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2021-12-28 21:17:46 #1 store] 
+Database 'D:\Java\Projects\ORMDatabase\src\main\resources\odb\db\shimstack.odb' is opened by 2564@DmitrievAS
+
+[2021-12-28 21:17:46 #2 store] 
+Configuration path: ?
+
+[2021-12-28 21:17:46 #3 type.registry] 
+New type ormdatabase.model.Record
+
+[2021-12-28 21:17:46 #4 type] 
+Type ormdatabase.model.Record is not enhanced.
+
+[2021-12-28 21:17:46 #5 type.registry] 
+New type ormdatabase.model.ShimStackSet
+
+[2021-12-28 21:17:46 #6 type] 
+Type ormdatabase.model.ShimStackSet is not enhanced.
+
+[2021-12-28 21:17:46 #7 type.registry] 
+New type ormdatabase.model.StackPair
+
+[2021-12-28 21:17:46 #8 type] 
+Type ormdatabase.model.StackPair is not enhanced.
+
+[2021-12-28 21:17:46 #9 type.registry] 
+New type ormdatabase.model.ReboundStack
+
+[2021-12-28 21:17:46 #10 type.registry] 
+New type ormdatabase.model.CompressionStack
+
+[2021-12-28 21:17:46 #11 type] 
+Type ormdatabase.model.ReboundStack is not enhanced.
+
+[2021-12-28 21:17:46 #12 type.registry] 
+New type ormdatabase.model.Shim
+
+[2021-12-28 21:17:46 #13 type] 
+Type ormdatabase.model.CompressionStack is not enhanced.
+
+[2021-12-28 21:17:46 #14 type] 
+Type ormdatabase.model.Shim is not enhanced.
+
+[2021-12-28 21:17:46 #15 type.registry] 
+New type java.util.ArrayList<java.lang.Object>
+
+[2021-12-28 21:17:46 #16 type.registry] 
+New type java.util.ArrayList<ormdatabase.model.ShimStackSet>
+
+[2021-12-28 21:17:46 #17 type.registry] 
+New type java.util.ArrayList<ormdatabase.model.StackPair>
+
+[2021-12-28 21:17:46 #18 type.registry] 
+New type java.util.ArrayList<ormdatabase.model.Shim>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2021-12-28 21:21:16 #1 store] 
+Database 'D:\Java\Projects\ORMDatabase\src\main\resources\odb\db\shimstack.odb' has been recovered (tr. 1-9)
+
+[2021-12-28 21:21:16 #2 store] 
+Database 'D:\Java\Projects\ORMDatabase\src\main\resources\odb\db\shimstack.odb' is opened by 12152@DmitrievAS
+
+[2021-12-28 21:21:16 #3 store] 
+Configuration path: ?
+
+[2021-12-28 21:21:16 #4 type] 
+Type ormdatabase.model.Record is not enhanced.
+
+[2021-12-28 21:21:16 #5 type] 
+Type ormdatabase.model.ShimStackSet is not enhanced.
+
+[2021-12-28 21:21:16 #6 type] 
+Type ormdatabase.model.StackPair is not enhanced.
+
+[2021-12-28 21:21:16 #7 type] 
+Type ormdatabase.model.ReboundStack is not enhanced.
+
+[2021-12-28 21:21:16 #8 type] 
+Type ormdatabase.model.CompressionStack is not enhanced.
+
+[2021-12-28 21:21:16 #9 type] 
+Type ormdatabase.model.Shim is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2021-12-28 21:21:42 #1 store] 
+Database 'D:\Java\Projects\ORMDatabase\src\main\resources\odb\db\shimstack.odb' has been recovered (tr. 10-13)
+
+[2021-12-28 21:21:42 #2 store] 
+Database 'D:\Java\Projects\ORMDatabase\src\main\resources\odb\db\shimstack.odb' is opened by 8936@DmitrievAS
+
+[2021-12-28 21:21:42 #3 store] 
+Configuration path: ?
+
+[2021-12-28 21:21:42 #4 type] 
+Type ormdatabase.model.Record is not enhanced.
+
+[2021-12-28 21:21:42 #5 type] 
+Type ormdatabase.model.ShimStackSet is not enhanced.
+
+[2021-12-28 21:21:42 #6 type] 
+Type ormdatabase.model.StackPair is not enhanced.
+
+[2021-12-28 21:21:42 #7 type] 
+Type ormdatabase.model.ReboundStack is not enhanced.
+
+[2021-12-28 21:21:42 #8 type] 
+Type ormdatabase.model.CompressionStack is not enhanced.
+
+[2021-12-28 21:21:42 #9 type] 
+Type ormdatabase.model.Shim is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2021-12-28 21:26:20 #1 store] 
+Database 'D:\Java\Projects\ORMDatabase\src\main\resources\odb\db\shimstack.odb' has been recovered (tr. 14-14)
+
+[2021-12-28 21:26:20 #2 store] 
+Database 'D:\Java\Projects\ORMDatabase\src\main\resources\odb\db\shimstack.odb' is opened by 13820@DmitrievAS
+
+[2021-12-28 21:26:20 #3 store] 
+Configuration path: ?
+
+[2021-12-28 21:26:20 #4 type] 
+Type ormdatabase.model.Record is not enhanced.
+
+[2021-12-28 21:26:20 #5 type] 
+Type ormdatabase.model.ShimStackSet is not enhanced.
+
+[2021-12-28 21:26:20 #6 type] 
+Type ormdatabase.model.StackPair is not enhanced.
+
+[2021-12-28 21:26:20 #7 type] 
+Type ormdatabase.model.ReboundStack is not enhanced.
+
+[2021-12-28 21:26:20 #8 type] 
+Type ormdatabase.model.CompressionStack is not enhanced.
+
+[2021-12-28 21:26:20 #9 type] 
+Type ormdatabase.model.Shim is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2021-12-28 21:34:47 #1 store] 
+Database 'D:\Java\Projects\ORMDatabase\src\main\resources\odb\db\shimstack.odb' has been recovered (tr. 15-15)
+
+[2021-12-28 21:34:47 #2 store] 
+Database 'D:\Java\Projects\ORMDatabase\src\main\resources\odb\db\shimstack.odb' is opened by 13708@DmitrievAS
+
+[2021-12-28 21:34:47 #3 store] 
+Configuration path: ?
+
+[2021-12-28 21:34:48 #4 type] 
+Type ormdatabase.model.Record is not enhanced.
+
+[2021-12-28 21:34:48 #5 type] 
+Type ormdatabase.model.ShimStackSet is not enhanced.
+
+[2021-12-28 21:34:48 #6 type] 
+Type ormdatabase.model.StackPair is not enhanced.
+
+[2021-12-28 21:34:48 #7 type] 
+Type ormdatabase.model.ReboundStack is not enhanced.
+
+[2021-12-28 21:34:48 #8 type] 
+Type ormdatabase.model.CompressionStack is not enhanced.
+
+[2021-12-28 21:34:48 #9 type] 
+Type ormdatabase.model.Shim is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2021-12-28 21:46:44 #1 store] 
+Database 'D:\Java\Projects\ORMDatabase\src\main\resources\odb\db\shimstack.odb' has been recovered (tr. 16-16)
+
+[2021-12-28 21:46:44 #2 store] 
+Database 'D:\Java\Projects\ORMDatabase\src\main\resources\odb\db\shimstack.odb' is opened by 8812@DmitrievAS
+
+[2021-12-28 21:46:44 #3 store] 
+Configuration path: ?
+
+[2021-12-28 21:46:44 #4 type] 
+Type ormdatabase.model.Record is not enhanced.
+
+[2021-12-28 21:46:44 #5 type] 
+Type ormdatabase.model.ShimStackSet is not enhanced.
+
+[2021-12-28 21:46:44 #6 type] 
+Type ormdatabase.model.StackPair is not enhanced.
+
+[2021-12-28 21:46:44 #7 type] 
+Type ormdatabase.model.ReboundStack is not enhanced.
+
+[2021-12-28 21:46:44 #8 type] 
+Type ormdatabase.model.CompressionStack is not enhanced.
+
+[2021-12-28 21:46:44 #9 type] 
+Type ormdatabase.model.Shim is not enhanced.
+
+[2021-12-28 21:46:44 #10 type.registry] 
+New type javafx.beans.Observable
+
+[2021-12-28 21:46:44 #11 type.registry] 
+New type javafx.beans.value.ObservableValue
+
+[2021-12-28 21:46:44 #12 type.registry] 
+New type javafx.beans.value.ObservableObjectValue
+
+[2021-12-28 21:46:44 #13 type.registry] 
+New type javafx.beans.value.ObservableStringValue
+
+[2021-12-28 21:46:44 #14 type.registry] 
+New type javafx.beans.binding.StringExpression
+
+[2021-12-28 21:46:44 #15 type.registry] 
+New type javafx.beans.property.ReadOnlyProperty
+
+[2021-12-28 21:46:44 #16 type.registry] 
+New type javafx.beans.property.ReadOnlyStringProperty
+
+[2021-12-28 21:46:44 #17 type.registry] 
+New type javafx.beans.value.WritableValue
+
+[2021-12-28 21:46:44 #18 type.registry] 
+New type javafx.beans.property.Property
+
+[2021-12-28 21:46:44 #19 type.registry] 
+New type javafx.beans.value.WritableObjectValue
+
+[2021-12-28 21:46:44 #20 type.registry] 
+New type javafx.beans.value.WritableStringValue
+
+[2021-12-28 21:46:44 #21 type.registry] 
+New type javafx.beans.property.StringProperty
+
+[2021-12-28 21:46:44 #22 type.registry] 
+New type javafx.beans.property.StringPropertyBase
+
+[2021-12-28 21:46:44 #23 type.registry] 
+New type javafx.beans.property.SimpleStringProperty
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2021-12-28 21:47:31 #1 store] 
+Database 'D:\Java\Projects\ORMDatabase\src\main\resources\odb\db\shimstack.odb' is opened by 4592@DmitrievAS
+
+[2021-12-28 21:47:31 #2 store] 
+Configuration path: ?
+
+[2021-12-28 21:47:31 #3 type.registry] 
+New type ormdatabase.model.Record
+
+[2021-12-28 21:47:31 #4 type] 
+Type ormdatabase.model.Record is not enhanced.
+
+[2021-12-28 21:47:31 #5 type.registry] 
+New type ormdatabase.model.ShimStackSet
+
+[2021-12-28 21:47:31 #6 type] 
+Type ormdatabase.model.ShimStackSet is not enhanced.
+
+[2021-12-28 21:47:31 #7 type.registry] 
+New type ormdatabase.model.StackPair
+
+[2021-12-28 21:47:31 #8 type] 
+Type ormdatabase.model.StackPair is not enhanced.
+
+[2021-12-28 21:47:31 #9 type.registry] 
+New type ormdatabase.model.ReboundStack
+
+[2021-12-28 21:47:31 #10 type.registry] 
+New type ormdatabase.model.CompressionStack
+
+[2021-12-28 21:47:31 #11 type] 
+Type ormdatabase.model.ReboundStack is not enhanced.
+
+[2021-12-28 21:47:31 #12 type.registry] 
+New type ormdatabase.model.Shim
+
+[2021-12-28 21:47:31 #13 type] 
+Type ormdatabase.model.CompressionStack is not enhanced.
+
+[2021-12-28 21:47:31 #14 type] 
+Type ormdatabase.model.Shim is not enhanced.
+
+[2021-12-28 21:47:31 #15 type.registry] 
+New type javafx.beans.Observable
+
+[2021-12-28 21:47:31 #16 type.registry] 
+New type javafx.beans.value.ObservableValue
+
+[2021-12-28 21:47:31 #17 type.registry] 
+New type java.util.ArrayList<java.lang.Object>
+
+[2021-12-28 21:47:31 #18 type.registry] 
+New type java.util.ArrayList<ormdatabase.model.ShimStackSet>
+
+[2021-12-28 21:47:31 #19 type.registry] 
+New type java.util.ArrayList<ormdatabase.model.StackPair>
+
+[2021-12-28 21:47:31 #20 type.registry] 
+New type java.util.ArrayList<ormdatabase.model.Shim>
+
+[2021-12-28 21:47:31 #21 type.registry] 
+New type javafx.beans.value.ObservableObjectValue
+
+[2021-12-28 21:47:31 #22 type.registry] 
+New type javafx.beans.value.ObservableStringValue
+
+[2021-12-28 21:47:31 #23 type.registry] 
+New type javafx.beans.binding.StringExpression
+
+[2021-12-28 21:47:31 #24 type.registry] 
+New type javafx.beans.property.ReadOnlyProperty
+
+[2021-12-28 21:47:31 #25 type.registry] 
+New type javafx.beans.property.ReadOnlyStringProperty
+
+[2021-12-28 21:47:31 #26 type.registry] 
+New type javafx.beans.value.WritableValue
+
+[2021-12-28 21:47:31 #27 type.registry] 
+New type javafx.beans.property.Property
+
+[2021-12-28 21:47:31 #28 type.registry] 
+New type javafx.beans.value.WritableObjectValue
+
+[2021-12-28 21:47:31 #29 type.registry] 
+New type javafx.beans.value.WritableStringValue
+
+[2021-12-28 21:47:31 #30 type.registry] 
+New type javafx.beans.property.StringProperty
+
+[2021-12-28 21:47:31 #31 type.registry] 
+New type javafx.beans.property.StringPropertyBase
+
+[2021-12-28 21:47:31 #32 type.registry] 
+New type javafx.beans.property.SimpleStringProperty
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2021-12-28 21:49:15 #1 store] 
+Database 'D:\Java\Projects\ORMDatabase\src\main\resources\odb\db\shimstack.odb' has been recovered (tr. 1-8)
+
+[2021-12-28 21:49:15 #2 store] 
+Database 'D:\Java\Projects\ORMDatabase\src\main\resources\odb\db\shimstack.odb' is opened by 10472@DmitrievAS
+
+[2021-12-28 21:49:15 #3 store] 
+Configuration path: ?
+
+[2021-12-28 21:49:16 #4 type] 
+Type ormdatabase.model.Record is not enhanced.
+
+[2021-12-28 21:49:16 #5 type] 
+Type ormdatabase.model.ShimStackSet is not enhanced.
+
+[2021-12-28 21:49:16 #6 type] 
+Type ormdatabase.model.StackPair is not enhanced.
+
+[2021-12-28 21:49:16 #7 type] 
+Type ormdatabase.model.ReboundStack is not enhanced.
+
+[2021-12-28 21:49:16 #8 type] 
+Type ormdatabase.model.CompressionStack is not enhanced.
+
+[2021-12-28 21:49:16 #9 type] 
+Type ormdatabase.model.Shim is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2021-12-28 21:59:17 #1 store] 
+Database 'D:\Java\Projects\ORMDatabase\src\main\resources\odb\db\shimstack.odb' has been recovered (tr. 9-10)
+
+[2021-12-28 21:59:17 #2 store] 
+Database 'D:\Java\Projects\ORMDatabase\src\main\resources\odb\db\shimstack.odb' is opened by 5720@DmitrievAS
+
+[2021-12-28 21:59:17 #3 store] 
+Configuration path: ?
+
+[2021-12-28 21:59:17 #4 type] 
+Type ormdatabase.model.Record is not enhanced.
+
+[2021-12-28 21:59:17 #5 type] 
+Type ormdatabase.model.ShimStackSet is not enhanced.
+
+[2021-12-28 21:59:17 #6 type] 
+Type ormdatabase.model.StackPair is not enhanced.
+
+[2021-12-28 21:59:17 #7 type] 
+Type ormdatabase.model.ReboundStack is not enhanced.
+
+[2021-12-28 21:59:17 #8 type] 
+Type ormdatabase.model.CompressionStack is not enhanced.
+
+[2021-12-28 21:59:17 #9 type] 
+Type ormdatabase.model.Shim is not enhanced.
+

@@ -237,7 +237,7 @@ public class RecordViewController extends SceneSwitcher {
         currentVersion = targetVersion;
     }
 
-    void setNextVersion() {
+    public void setNextVersion() {
         int versionAmount = observableRecord.getShimStackSetList().size();
         if (currentVersion + 1 <= versionAmount) {
             int targetVersion = currentVersion + 1;
@@ -245,7 +245,7 @@ public class RecordViewController extends SceneSwitcher {
         }
     }
 
-    void setPreviousVersion() {
+    public void setPreviousVersion() {
         if (currentVersion - 1 > 0) {
             int targetVersion = currentVersion - 1;
             setVersion(targetVersion);
