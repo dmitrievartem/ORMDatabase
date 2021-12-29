@@ -198,11 +198,37 @@ public class AddViewController extends SceneSwitcher {
 
     @FXML
     void initialize() {
+        List<TextField> onlyTextFields = List.of(nameField, carField, cityField, authorField);
+        for (TextField textField : onlyTextFields) {
+            textField.textProperty().addListener((observable, oldValue, newValue) -> {
+                if (!newValue.matches("[(][)]\\s\\p{L}*")) {
+                    textField.setText(newValue.replaceAll("[^[(][)]\\s\\p{L}*]", ""));
+                }
+                if (newValue.length() > 50) {
+                    textField.setText(newValue.substring(0, 50));
+                }
+            });
+        }
+        phoneField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                phoneField.setText(newValue.replaceAll("[^\\d]", ""));
+            }
+            if (newValue.length() > 11) {
+                phoneField.setText(newValue.substring(0, 11));
+            }
+        });
+        commentField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.length() > 500) {
+                commentField.setText(newValue.substring(0, 500));
+            }
+        });
+
         List<String> typeList = FXCollections.observableArrayList(List.of("4 одинаковые", "4 разные", "перед-зад"));
         versionTypeField.setItems(FXCollections.observableArrayList(typeList));
         versionTypeField.getSelectionModel().select("4 разные");
 
         versionDateField.setValue(LocalDate.now());
+        dateField.setValue(LocalDate.now());
 
         frontLeftLabel.setText("ПЛ");
         frontRightLabel.setText("ПП");
