@@ -63,7 +63,6 @@ public class SceneSwitcher {
         }
     }
 
-    @FXML
     public void switchScene(ActionEvent event) {
         Button btn = (Button) event.getSource();
         Scene scene = btn.getScene();

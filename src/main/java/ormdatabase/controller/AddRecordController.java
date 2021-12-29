@@ -17,7 +17,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.*;
 
-public class AddViewController extends SceneSwitcher {
+public class AddRecordController extends SceneSwitcher {
 
     private Record newRecord;
     private int currentVersion;
@@ -75,6 +75,16 @@ public class AddViewController extends SceneSwitcher {
 
     @FXML
     private TextField authorField;
+
+    private final Label frontLeftLabel = new Label();
+    private final Label frontRightLabel = new Label();
+    private final Label rearLeftLabel = new Label();
+    private final Label rearRightLabel = new Label();
+
+    private final Label frontLabel = new Label();
+    private final Label rearLabel = new Label();
+
+    private final Label emptyLabel = new Label();
 
     @FXML
     private VBox vBox1;
@@ -184,16 +194,6 @@ public class AddViewController extends SceneSwitcher {
     @FXML
     private TableColumn<Shim, String> ct4thicknessColumn;
 
-    private final Label frontLeftLabel = new Label();
-    private final Label frontRightLabel = new Label();
-    private final Label rearLeftLabel = new Label();
-    private final Label rearRightLabel = new Label();
-
-    private final Label frontLabel = new Label();
-    private final Label rearLabel = new Label();
-
-    private final Label emptyLabel = new Label();
-
     @FXML
     void initialize() {
         List<TextField> onlyTextFields = List.of(nameField, carField, cityField, authorField);
@@ -293,8 +293,6 @@ public class AddViewController extends SceneSwitcher {
     public void resetNewRecord() {
         newRecord = new Record();
         newRecord.addVersion(new ShimStackSet());
-        
-        
         currentVersion = 1;
         viewVersion(currentVersion);
     }
@@ -439,15 +437,12 @@ public class AddViewController extends SceneSwitcher {
 
     public List<StackPair> getCurrentShimStackPairList(List<TableView<Shim>> tableViewList) {
         List<StackPair> stackPairList = new ArrayList<>();
-        StackPair stackPair = new StackPair();
-        ReboundStack reboundStack = new ReboundStack();
-        CompressionStack compressionStack = new CompressionStack();
         for (int i = 0; i < tableViewList.size(); i += 2) {
-            reboundStack.setStack(new ArrayList<>(tableViewList.get(i).getItems()));
-            compressionStack.setStack(new ArrayList<>(tableViewList.get(i + 1).getItems()));
-            stackPair.setReboundStack(reboundStack);
-            stackPair.setCompressionStack(compressionStack);
-            stackPairList.add(stackPair);
+            stackPairList.add(
+                    new StackPair(
+                            new ReboundStack(new ArrayList<>(tableViewList.get(i).getItems())),
+                            new CompressionStack(new ArrayList<>(tableViewList.get(i + 1).getItems())))
+            );
         }
         return stackPairList;
     }

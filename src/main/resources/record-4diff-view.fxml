@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" styleClass="border-pane" stylesheets="@css/menu.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="ormdatabase.controller.RecordViewController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" styleClass="border-pane" stylesheets="@css/menu.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ormdatabase.controller.ViewRecordController">
    <cursor>
       <Cursor fx:constant="DEFAULT" />
    </cursor>
@@ -121,12 +121,12 @@
                   </GridPane>
                   <HBox alignment="CENTER">
                      <children>
-                        <Button fx:id="nextVersionButton" mnemonicParsing="false" onAction="#setPreviousVersion" styleClass="switch-version-button" text="Предыдущая" textAlignment="CENTER" wrapText="true">
+                        <Button fx:id="nextVersionButton" mnemonicParsing="false" onAction="#viewPreviousVersion" styleClass="switch-version-button" text="Предыдущая" textAlignment="CENTER" wrapText="true">
                            <HBox.margin>
                               <Insets left="20.0" right="20.0" />
                            </HBox.margin>
                         </Button>
-                        <Button fx:id="previousVersionButton" mnemonicParsing="false" onAction="#setNextVersion" styleClass="switch-version-button" text="Следующая" textAlignment="CENTER" wrapText="true">
+                        <Button fx:id="previousVersionButton" mnemonicParsing="false" onAction="#viewNextVersion" styleClass="switch-version-button" text="Следующая" textAlignment="CENTER" wrapText="true">
                            <HBox.margin>
                               <Insets left="20.0" right="20.0" />
                            </HBox.margin>
@@ -153,9 +153,8 @@
                   </Label>
                </children>
             </VBox>
-            <VBox alignment="CENTER" styleClass="shim-stack-vbox">
+            <VBox fx:id="vBox1" alignment="CENTER" styleClass="shim-stack-vbox">
                <children>
-                  <Label text="ПЛ" />
                   <TableView fx:id="reboundTable1" stylesheets="@css/record.css">
                     <columns>
                       <TableColumn fx:id="rt1numberColumn" prefWidth="75.0" text="К" />
@@ -184,9 +183,8 @@
                   </TableView>
                </children>
             </VBox>
-            <VBox alignment="CENTER" styleClass="shim-stack-vbox">
+            <VBox fx:id="vBox2" alignment="CENTER" styleClass="shim-stack-vbox">
                <children>
-                  <Label text="ПП" />
                   <TableView fx:id="reboundTable2">
                      <columns>
                         <TableColumn fx:id="rt2numberColumn" prefWidth="75.0" text="К" />
@@ -215,9 +213,8 @@
                   </TableView>
                </children>
             </VBox>
-            <VBox alignment="CENTER" styleClass="shim-stack-vbox">
+            <VBox fx:id="vBox3" alignment="CENTER" styleClass="shim-stack-vbox">
                <children>
-                  <Label text="ЗЛ" />
                   <TableView fx:id="reboundTable3">
                      <columns>
                         <TableColumn fx:id="rt3numberColumn" prefWidth="75.0" text="К" />
@@ -246,9 +243,8 @@
                   </TableView>
                </children>
             </VBox>
-            <VBox alignment="CENTER" styleClass="shim-stack-vbox">
+            <VBox fx:id="vBox4" alignment="CENTER" styleClass="shim-stack-vbox">
                <children>
-                  <Label text="ЗП" />
                   <TableView fx:id="reboundTable4">
                      <columns>
                         <TableColumn fx:id="rt4numberColumn" prefWidth="75.0" text="К" />

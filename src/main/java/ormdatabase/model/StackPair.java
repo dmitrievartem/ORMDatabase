@@ -13,7 +13,7 @@ public class StackPair {
     public StackPair() {
     }
 
-    public StackPair(CompressionStack compressionStack, ReboundStack reboundStack) {
+    public StackPair(ReboundStack reboundStack, CompressionStack compressionStack) {
         this.compressionStack = compressionStack;
         this.reboundStack = reboundStack;
     }

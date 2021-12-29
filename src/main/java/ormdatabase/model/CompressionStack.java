@@ -7,6 +7,13 @@ import java.util.List;
 public class CompressionStack {
     List<Shim> stack;
 
+    public CompressionStack() {
+    }
+
+    public CompressionStack(List<Shim> stack) {
+        this.stack = stack;
+    }
+
     public List<Shim> getStack() {
         return stack;
     }
