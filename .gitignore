@@ -1,4 +1,4 @@
-src/main/java/ormdatabase/.idea
+.idea
 .gradle
 build
 src/main/resources/odb/db
