@@ -1,1 +1,4 @@
+.gradle
+build
 src/main/resources/odb/db
+src/main/resources/odb/log
