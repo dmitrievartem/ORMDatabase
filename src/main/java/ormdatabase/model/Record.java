@@ -4,8 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.io.Serializable;
-import java.util.Date;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -15,6 +15,8 @@ public class Record implements Serializable {
     private Long id;
     private String name;
     private String car;
+    private String uppercaseName;
+    private String uppercaseCar;
     private Date date;
     private String phone;
     private String city;
@@ -50,6 +52,22 @@ public class Record implements Serializable {
 
     public void setCar(String car) {
         this.car = car;
+    }
+
+    public String getUppercaseName() {
+        return uppercaseName;
+    }
+
+    public void setUppercaseName(String uppercaseName) {
+        this.uppercaseName = uppercaseName;
+    }
+
+    public String getUppercaseCar() {
+        return uppercaseCar;
+    }
+
+    public void setUppercaseCar(String uppercaseCar) {
+        this.uppercaseCar = uppercaseCar;
     }
 
     public Date getDate() {

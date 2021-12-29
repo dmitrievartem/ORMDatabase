@@ -25,9 +25,9 @@ public class AuthenticationController extends SceneSwitcher {
 //            if (passwordField.getText().equals("1234")) {
             if (true) {
                 switchScene(((Node) event.getSource()).getScene(), "search-view.fxml");
-                System.out.println("Правильный пароль");
+                
             } else {
-                System.out.println("НЕПРАВИЛЬНО!!! НЕПРАВИЛЬНО!!!");
+                
             }
         });
     }

@@ -293,8 +293,8 @@ public class AddViewController extends SceneSwitcher {
     public void resetNewRecord() {
         newRecord = new Record();
         newRecord.addVersion(new ShimStackSet());
-        System.out.println("resetNewRecord----------------");
-        System.out.println(newRecord.getShimStackSetList().size());
+        
+        
         currentVersion = 1;
         viewVersion(currentVersion);
     }
@@ -552,19 +552,16 @@ public class AddViewController extends SceneSwitcher {
         if (isTablesValid() && !nameField.getText().isEmpty()) {
             saveVersion();
             newRecord.setName(nameField.getText());
+            newRecord.setUppercaseName(nameField.getText().toUpperCase(Locale.ROOT));
             newRecord.setCar(carField.getText());
+            newRecord.setUppercaseCar(carField.getText().toUpperCase(Locale.ROOT));
             Date date = Date.from(dateField.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
             newRecord.setDate(date);
             newRecord.setPhone(phoneField.getText());
             newRecord.setCity(cityField.getText());
             DataSource dataSource = new DataSource();
             dataSource.insert(newRecord);
-
-            System.out.println("saveNewRecord----------------");
-            System.out.println(newRecord.getShimStackSetList().size());
-
             resetNewRecord();
-            System.out.println("saveNewRecord-----------");
         }
     }
 }

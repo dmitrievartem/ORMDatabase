@@ -93,7 +93,7 @@ public class SearchController extends SceneSwitcher {
                 if(mouseEvent.getButton().equals(MouseButton.PRIMARY)){
                     if(mouseEvent.getClickCount() == 2){
                         if (searchTable.getSelectionModel().getSelectedItem() != null) {
-                            System.out.println("You clicked on " + searchTable.getSelectionModel().getSelectedItem().getId());
+                            
                             switchScene(searchTable.getScene(), "record-4diff-view.fxml", searchTable.getSelectionModel().getSelectedItem());
                         }
                     }
@@ -109,7 +109,7 @@ public class SearchController extends SceneSwitcher {
         List<Record> queryResults = dataSource.select(idTextField.getText(), nameTextField.getText(), carTextField.getText());
         recordList = FXCollections.observableArrayList(queryResults);
 
-        System.out.println(recordList.size());
+        
 
 //        searchTable.setEditable(true);
         searchTable.setItems(recordList);

@@ -34,12 +34,12 @@ public class Main extends javafx.application.Application {
         backupQuery.getSingleResult();
 
 
-        System.out.println(results.get(0).getName());
-        System.out.println(results.get(0).getName());
+        
+        
         List<ShimStack> shimStackList = results.get(0).getShimStackList();
         ShimStack shimStack = shimStackList.get(0);
-        System.out.println("0000000000000000000000000000");
-        System.out.println(shimStack);
+        
+        
 
         // Close the database connection:
         em.close();

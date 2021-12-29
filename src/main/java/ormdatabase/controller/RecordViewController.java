@@ -184,8 +184,8 @@ public class RecordViewController extends SceneSwitcher {
 
     @FXML
     void initialize() {
-        System.out.println("--------------------------");
-        System.out.println(currentVersion);
+        
+        
 
         ct1numberColumn.setCellValueFactory(new PropertyValueFactory<>("number"));
         ct1diameterColumn.setCellValueFactory(new PropertyValueFactory<>("diameter"));
