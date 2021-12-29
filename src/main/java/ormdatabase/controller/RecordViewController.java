@@ -1,7 +1,6 @@
 package ormdatabase.controller;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -261,7 +260,7 @@ public class RecordViewController extends SceneSwitcher {
                 );
         List<Shim> reboundList;
         List<Shim> compressionList;
-        for(int i = 0; i < observableRecord.getShimStackSetList().get(currentVersion - 1).getTypeNumber(); i++) {
+        for (int i = 0; i < observableRecord.getShimStackSetList().get(currentVersion - 1).getTypeNumber(); i++) {
             reboundList = observableRecord.getShimStackSetList().get(targetVersion - 1).getShimStackList().get(0).getReboundStack().getStack();
             compressionList = observableRecord.getShimStackSetList().get(targetVersion - 1).getShimStackList().get(0).getCompressionStack().getStack();
 

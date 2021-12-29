@@ -20,8 +20,6 @@ import java.util.*;
 public class AddViewController extends SceneSwitcher {
 
     private Record newRecord;
-//    private List<ShimStackSet> shimStackSetList;
-//    private ShimStackSet currentShimStackSet;
     private int currentVersion;
 
     @FXML
@@ -297,10 +295,6 @@ public class AddViewController extends SceneSwitcher {
         newRecord.addVersion(new ShimStackSet());
         System.out.println("resetNewRecord----------------");
         System.out.println(newRecord.getShimStackSetList().size());
-//        shimStackSetList = new ArrayList<>();
-//        currentShimStackSet = new ShimStackSet();
-//        shimStackSetList.add(currentShimStackSet);
-//        newRecord.setShimStackSetList(shimStackSetList);
         currentVersion = 1;
         viewVersion(currentVersion);
     }
