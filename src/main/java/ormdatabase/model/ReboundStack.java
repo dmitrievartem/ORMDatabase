@@ -18,7 +18,4 @@ public class ReboundStack {
         return stack;
     }
 
-    public void setStack(List<Shim> stack) {
-        this.stack = stack;
-    }
 }

@@ -444,9 +444,7 @@ public class AddRecordController extends SceneSwitcher {
             } else {
                 targetVersion = currentVersion - 1;
             }
-            List<ShimStackSet> shimStackSetList = newRecord.getShimStackSetList();
-            shimStackSetList.remove(currentVersion - 1);
-            newRecord.setShimStackSetList(shimStackSetList);
+            newRecord.deleteVersion(currentVersion - 1);
             viewVersion(targetVersion);
         }
     }

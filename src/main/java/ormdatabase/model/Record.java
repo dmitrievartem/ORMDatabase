@@ -54,16 +54,8 @@ public class Record implements Serializable {
         this.car = car;
     }
 
-    public String getUppercaseName() {
-        return uppercaseName;
-    }
-
     public void setUppercaseName(String uppercaseName) {
         this.uppercaseName = uppercaseName;
-    }
-
-    public String getUppercaseCar() {
-        return uppercaseCar;
     }
 
     public void setUppercaseCar(String uppercaseCar) {
