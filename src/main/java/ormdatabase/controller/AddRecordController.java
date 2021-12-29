@@ -12,7 +12,6 @@ import javafx.util.Pair;
 import ormdatabase.SceneSwitcher;
 import ormdatabase.model.*;
 
-import java.net.URL;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.*;
@@ -21,30 +20,6 @@ public class AddRecordController extends SceneSwitcher {
 
     private Record newRecord;
     private int currentVersion;
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
-    private Button add;
-
-    @FXML
-    private Button edit;
-
-    @FXML
-    private Button favorites;
-
-    @FXML
-    private Button search;
-
-    @FXML
-    private Button settings;
-
-    @FXML
-    private Button view;
 
     @FXML
     private TextField nameField;
@@ -425,7 +400,6 @@ public class AddRecordController extends SceneSwitcher {
 
     public ShimStackSet getCurrentShimStackSet() {
         ShimStackSet shimStackSet = new ShimStackSet();
-        shimStackSet.setVersion(newRecord.getShimStackSetList().size());
         shimStackSet.setType(versionTypeField.getSelectionModel().getSelectedItem());
         Date date = Date.from(versionDateField.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
         shimStackSet.setDate(date);

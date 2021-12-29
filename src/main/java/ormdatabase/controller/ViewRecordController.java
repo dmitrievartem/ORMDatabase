@@ -2,38 +2,20 @@ package ormdatabase.controller;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.util.Pair;
 import ormdatabase.SceneSwitcher;
 import ormdatabase.model.Shim;
-import ormdatabase.model.ShimStackSet;
-import ormdatabase.model.StackPair;
 
-import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
-import java.util.ResourceBundle;
 
 public class ViewRecordController extends SceneSwitcher {
 
     int currentVersion = observableRecord.getShimStackSetList().size();
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
-    private Button add;
-
-    @FXML
-    private Button addVersionButton;
 
     @FXML
     private Label authorLabel;
@@ -73,106 +55,28 @@ public class ViewRecordController extends SceneSwitcher {
     private TableView<Shim> reboundTable1;
 
     @FXML
-    private TableColumn<Shim, Float> rt1numberColumn;
-
-    @FXML
-    private TableColumn<Shim, Float> rt1diameterColumn;
-
-    @FXML
-    private TableColumn<Shim, Float> rt1thicknessColumn;
-
-    @FXML
     private TableView<Shim> reboundTable2;
-
-    @FXML
-    private TableColumn<Shim, Float> rt2numberColumn;
-
-    @FXML
-    private TableColumn<Shim, Float> rt2diameterColumn;
-
-    @FXML
-    private TableColumn<Shim, Float> rt2thicknessColumn;
 
     @FXML
     private TableView<Shim> reboundTable3;
 
     @FXML
-    private TableColumn<Shim, Float> rt3numberColumn;
-
-    @FXML
-    private TableColumn<Shim, Float> rt3diameterColumn;
-
-    @FXML
-    private TableColumn<Shim, Float> rt3thicknessColumn;
-
-    @FXML
     private TableView<Shim> reboundTable4;
-
-    @FXML
-    private TableColumn<Shim, Float> rt4numberColumn;
-
-    @FXML
-    private TableColumn<Shim, Float> rt4diameterColumn;
-
-    @FXML
-    private TableColumn<Shim, Float> rt4thicknessColumn;
 
     @FXML
     private TableView<Shim> compressionTable1;
 
     @FXML
-    private TableColumn<Shim, Float> ct1numberColumn;
-
-    @FXML
-    private TableColumn<Shim, Float> ct1diameterColumn;
-
-    @FXML
-    private TableColumn<Shim, Float> ct1thicknessColumn;
-
-    @FXML
     private TableView<Shim> compressionTable2;
-
-    @FXML
-    private TableColumn<Shim, Float> ct2numberColumn;
-
-    @FXML
-    private TableColumn<Shim, Float> ct2diameterColumn;
-
-    @FXML
-    private TableColumn<Shim, Float> ct2thicknessColumn;
 
     @FXML
     private TableView<Shim> compressionTable3;
 
     @FXML
-    private TableColumn<Shim, Float> ct3numberColumn;
-
-    @FXML
-    private TableColumn<Shim, Float> ct3diameterColumn;
-
-    @FXML
-    private TableColumn<Shim, Float> ct3thicknessColumn;
-
-    @FXML
     private TableView<Shim> compressionTable4;
 
     @FXML
-    private TableColumn<Shim, Float> ct4numberColumn;
-
-    @FXML
-    private TableColumn<Shim, Float> ct4diameterColumn;
-
-    @FXML
-    private TableColumn<Shim, Float> ct4thicknessColumn;
-
-    @FXML
     private Label dateLabel;
-
-    @FXML
-    private Button edit;
-
-    @FXML
-    private Button favorites;
 
     @FXML
     private Label idLabel;
@@ -181,19 +85,7 @@ public class ViewRecordController extends SceneSwitcher {
     private Label nameLabel;
 
     @FXML
-    private Button nextVersionButton;
-
-    @FXML
     private Label phoneLabel;
-
-    @FXML
-    private Button previousVersionButton;
-
-    @FXML
-    private Button search;
-
-    @FXML
-    private Button settings;
 
     @FXML
     private Label typeLabel;
@@ -203,9 +95,6 @@ public class ViewRecordController extends SceneSwitcher {
 
     @FXML
     private Label versionDateLabel;
-
-    @FXML
-    private Button view;
 
     @FXML
     void initialize() {

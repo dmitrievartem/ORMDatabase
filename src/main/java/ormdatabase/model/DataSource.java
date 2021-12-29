@@ -42,7 +42,5 @@ public class DataSource {
         em.getTransaction().begin();
         em.persist(record);
         em.getTransaction().commit();
-        
-        
     }
 }

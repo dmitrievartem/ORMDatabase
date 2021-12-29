@@ -7,7 +7,6 @@ import java.util.List;
 
 @Embeddable
 public class ShimStackSet {
-    Integer version;
     String type = "4 разные";
     Date date = new Date();
     String comment;
@@ -18,23 +17,14 @@ public class ShimStackSet {
     public ShimStackSet() {
     }
 
-    public ShimStackSet(Integer version, String type, Date date, String comment, String author, Boolean favorites,
+    public ShimStackSet(String type, Date date, String comment, String author, Boolean favorites,
                         List<StackPair> shimStackList) {
-        this.version = version;
         this.type = type;
         this.date = date;
         this.comment = comment;
         this.author = author;
         this.favorites = favorites;
         this.shimStackList = shimStackList;
-    }
-
-    public Integer getVersion() {
-        return version;
-    }
-
-    public void setVersion(Integer version) {
-        this.version = version;
     }
 
     public String getType() {
