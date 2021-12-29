@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1000.0" styleClass="border-pane" stylesheets="@css/menu.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="ormdatabase.controller.AddViewController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1000.0" styleClass="border-pane" stylesheets="@css/menu.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ormdatabase.controller.AddViewController">
    <cursor>
       <Cursor fx:constant="DEFAULT" />
    </cursor>
@@ -134,7 +134,7 @@
                         <Button mnemonicParsing="false" onAction="#deleteVersion" styleClass="version-button" stylesheets="@css/add.css" text="Удалить версию" GridPane.rowIndex="1" />
                         <Button mnemonicParsing="false" onAction="#addVersion" styleClass="version-button" stylesheets="@css/add.css" text="Добавить версию" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Button mnemonicParsing="false" onAction="#resetTables" styleClass="version-button" stylesheets="@css/add.css" text="Сброс" GridPane.rowIndex="2" />
-                        <Button mnemonicParsing="false" styleClass="version-button" stylesheets="@css/add.css" text="Сохранить" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Button mnemonicParsing="false" onAction="#saveNewRecord" styleClass="version-button" stylesheets="@css/add.css" text="Сохранить" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <Button mnemonicParsing="false" onAction="#viewPreviousVersion" styleClass="version-button" stylesheets="@css/add.css" text="Предыдущая версия" />
                         <Button mnemonicParsing="false" onAction="#viewNextVersion" styleClass="version-button" stylesheets="@css/add.css" text="Следующая версия" GridPane.columnIndex="1" />
                      </children>

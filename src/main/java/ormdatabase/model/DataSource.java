@@ -16,6 +16,9 @@ public class DataSource {
         String queryString;
         if (id.equals("") && name.equals("") && car.equals("")) {
             queryString = "SELECT r FROM Record r";
+        } else if (id.equals("")) {
+            queryString = String.format("SELECT r FROM Record r WHERE r.name = '%s' OR r.car = '%s'",
+                    name, car);
         } else {
             queryString = String.format("SELECT r FROM Record r WHERE r.id = %d OR r.name = '%s' OR r.car = '%s'",
                     Long.parseLong(id), name, car);
@@ -28,5 +31,7 @@ public class DataSource {
         em.getTransaction().begin();
         em.persist(record);
         em.getTransaction().commit();
+        System.out.println("insert-------------");
+        System.out.println(record.getName());
     }
 }

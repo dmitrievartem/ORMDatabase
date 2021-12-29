@@ -19,10 +19,10 @@ import java.util.*;
 
 public class AddViewController extends SceneSwitcher {
 
-    Record record = new Record();
-    List<ShimStackSet> shimStackSetList = new ArrayList<>();
-    ShimStackSet currentShimStackSet = new ShimStackSet();
-    int currentVersion = 1;
+    private Record newRecord;
+//    private List<ShimStackSet> shimStackSetList;
+//    private ShimStackSet currentShimStackSet;
+    private int currentVersion;
 
     @FXML
     private ResourceBundle resources;
@@ -245,30 +245,18 @@ public class AddViewController extends SceneSwitcher {
         vBox3.getChildren().add(0, rearLeftLabel);
         vBox4.getChildren().add(0, rearRightLabel);
 
-        rt1numberColumn.setCellValueFactory(new PropertyValueFactory<>("number"));
-        rt1diameterColumn.setCellValueFactory(new PropertyValueFactory<>("diameter"));
-        rt1thicknessColumn.setCellValueFactory(new PropertyValueFactory<>("thickness"));
-        rt2numberColumn.setCellValueFactory(new PropertyValueFactory<>("number"));
-        rt2diameterColumn.setCellValueFactory(new PropertyValueFactory<>("diameter"));
-        rt2thicknessColumn.setCellValueFactory(new PropertyValueFactory<>("thickness"));
-        rt3numberColumn.setCellValueFactory(new PropertyValueFactory<>("number"));
-        rt3diameterColumn.setCellValueFactory(new PropertyValueFactory<>("diameter"));
-        rt3thicknessColumn.setCellValueFactory(new PropertyValueFactory<>("thickness"));
-        rt4numberColumn.setCellValueFactory(new PropertyValueFactory<>("number"));
-        rt4diameterColumn.setCellValueFactory(new PropertyValueFactory<>("diameter"));
-        rt4thicknessColumn.setCellValueFactory(new PropertyValueFactory<>("thickness"));
-        ct1numberColumn.setCellValueFactory(new PropertyValueFactory<>("number"));
-        ct1diameterColumn.setCellValueFactory(new PropertyValueFactory<>("diameter"));
-        ct1thicknessColumn.setCellValueFactory(new PropertyValueFactory<>("thickness"));
-        ct2numberColumn.setCellValueFactory(new PropertyValueFactory<>("number"));
-        ct2diameterColumn.setCellValueFactory(new PropertyValueFactory<>("diameter"));
-        ct2thicknessColumn.setCellValueFactory(new PropertyValueFactory<>("thickness"));
-        ct3numberColumn.setCellValueFactory(new PropertyValueFactory<>("number"));
-        ct3diameterColumn.setCellValueFactory(new PropertyValueFactory<>("diameter"));
-        ct3thicknessColumn.setCellValueFactory(new PropertyValueFactory<>("thickness"));
-        ct4numberColumn.setCellValueFactory(new PropertyValueFactory<>("number"));
-        ct4diameterColumn.setCellValueFactory(new PropertyValueFactory<>("diameter"));
-        ct4thicknessColumn.setCellValueFactory(new PropertyValueFactory<>("thickness"));
+        List<TableView<Shim>> tableViewList = List.of(
+                reboundTable1, compressionTable1,
+                reboundTable2, compressionTable2,
+                reboundTable3, compressionTable3,
+                reboundTable4, compressionTable4
+        );
+
+        for (TableView<Shim> tableView : tableViewList) {
+            tableView.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("number"));
+            tableView.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("diameter"));
+            tableView.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("thickness"));
+        }
 
         List<TableColumn<Shim, String>> columnList = List.of(
                 rt1numberColumn, rt1diameterColumn, rt1thicknessColumn,
@@ -301,15 +289,26 @@ public class AddViewController extends SceneSwitcher {
             );
         }
 
-        shimStackSetList.add(currentShimStackSet);
-        record.setShimStackSetList(shimStackSetList);
-        viewVersion(1);
+        resetNewRecord();
+    }
+
+    public void resetNewRecord() {
+        newRecord = new Record();
+        newRecord.addVersion(new ShimStackSet());
+        System.out.println("resetNewRecord----------------");
+        System.out.println(newRecord.getShimStackSetList().size());
+//        shimStackSetList = new ArrayList<>();
+//        currentShimStackSet = new ShimStackSet();
+//        shimStackSetList.add(currentShimStackSet);
+//        newRecord.setShimStackSetList(shimStackSetList);
+        currentVersion = 1;
+        viewVersion(currentVersion);
     }
 
     void viewVersion(int targetVersion) {
         currentVersion = targetVersion;
-        ShimStackSet targetShimStackSet = record.getShimStackSetList().get(targetVersion - 1);
-        String versionAmount = String.valueOf(record.getShimStackSetList().size());
+        ShimStackSet targetShimStackSet = newRecord.getShimStackSetList().get(targetVersion - 1);
+        String versionAmount = String.valueOf(newRecord.getShimStackSetList().size());
         versionLabel.setText(String.valueOf(targetVersion).concat("/").concat(versionAmount));
         versionTypeField.getSelectionModel().select(targetShimStackSet.getType());
         setType(targetShimStackSet.getType());
@@ -327,11 +326,11 @@ public class AddViewController extends SceneSwitcher {
                         new Pair<>(reboundTable3, compressionTable3),
                         new Pair<>(reboundTable4, compressionTable4)
                 );
-        ShimStackSet targetShimStackSet = record.getShimStackSetList().get(targetVersion - 1);
+        ShimStackSet targetShimStackSet = newRecord.getShimStackSetList().get(targetVersion - 1);
         if (targetShimStackSet.getShimStackList().size() > 0) {
             List<Shim> reboundList;
             List<Shim> compressionList;
-            for (int i = 0; i < record.getShimStackSetList().get(targetVersion - 1).getTypeNumber(); i++) {
+            for (int i = 0; i < newRecord.getShimStackSetList().get(targetVersion - 1).getTypeNumber(); i++) {
                 reboundList = targetShimStackSet.getShimStackList().get(i).getReboundStack().getStack();
                 compressionList = targetShimStackSet.getShimStackList().get(i).getCompressionStack().getStack();
                 tableList.get(i).getKey().setItems(FXCollections.observableArrayList(reboundList));
@@ -347,11 +346,11 @@ public class AddViewController extends SceneSwitcher {
     }
 
     public void setType(String selectedType) {
-        List<ShimStackSet> shimStackSetList = record.getShimStackSetList();
+        List<ShimStackSet> shimStackSetList = newRecord.getShimStackSetList();
         ShimStackSet shimStackSet = shimStackSetList.get(currentVersion - 1);
         shimStackSet.setType(selectedType);
         shimStackSetList.set(currentVersion - 1, shimStackSet);
-        record.setShimStackSetList(shimStackSetList);
+        newRecord.setShimStackSetList(shimStackSetList);
 
         switch (selectedType) {
             case "4 одинаковые":
@@ -384,6 +383,123 @@ public class AddViewController extends SceneSwitcher {
                 vBox3.setDisable(false);
                 vBox4.setDisable(false);
                 break;
+        }
+    }
+
+    public void viewPreviousVersion() {
+        if (currentVersion - 1 > 0 && isTablesValid()) {
+            saveVersion();
+            int targetVersion = currentVersion - 1;
+            viewVersion(targetVersion);
+        }
+    }
+
+    public void viewNextVersion() {
+        int versionAmount = newRecord.getShimStackSetList().size();
+        if (currentVersion + 1 <= versionAmount && isTablesValid()) {
+            saveVersion();
+            int targetVersion = currentVersion + 1;
+            viewVersion(targetVersion);
+        }
+    }
+
+    public boolean isTablesValid() {
+
+        for (TableView<Shim> table : getActualTables()) {
+            if (table.getItems().isEmpty()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public List<TableView<Shim>> getActualTables() {
+        List<TableView<Shim>> tableList = List.of(
+                reboundTable1, compressionTable1,
+                reboundTable2, compressionTable2,
+                reboundTable3, compressionTable3,
+                reboundTable4, compressionTable4
+        );
+        List<TableView<Shim>> actualTableList = new ArrayList<>();
+        for (int i = 0; i < (getTypeNumber() * 2); i++) {
+            actualTableList.add(tableList.get(i));
+        }
+        return actualTableList;
+    }
+
+    public void saveVersion() {
+        newRecord.setVersion(currentVersion - 1, getCurrentShimStackSet());
+    }
+
+    public ShimStackSet getCurrentShimStackSet() {
+        ShimStackSet shimStackSet = new ShimStackSet();
+        shimStackSet.setVersion(newRecord.getShimStackSetList().size());
+        shimStackSet.setType(versionTypeField.getSelectionModel().getSelectedItem());
+        Date date = Date.from(versionDateField.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
+        shimStackSet.setDate(date);
+        shimStackSet.setComment(commentField.getText());
+        shimStackSet.setAuthor(authorField.getText());
+        shimStackSet.setShimStackList(getCurrentShimStackPairList(getActualTables()));
+        return shimStackSet;
+    }
+
+    public List<StackPair> getCurrentShimStackPairList(List<TableView<Shim>> tableViewList) {
+        List<StackPair> stackPairList = new ArrayList<>();
+        StackPair stackPair = new StackPair();
+        ReboundStack reboundStack = new ReboundStack();
+        CompressionStack compressionStack = new CompressionStack();
+        for (int i = 0; i < tableViewList.size(); i += 2) {
+            reboundStack.setStack(new ArrayList<>(tableViewList.get(i).getItems()));
+            compressionStack.setStack(new ArrayList<>(tableViewList.get(i + 1).getItems()));
+            stackPair.setReboundStack(reboundStack);
+            stackPair.setCompressionStack(compressionStack);
+            stackPairList.add(stackPair);
+        }
+        return stackPairList;
+    }
+
+    public int getTypeNumber() {
+        switch (versionTypeField.getSelectionModel().getSelectedItem()) {
+            case "4 одинаковые":
+                return 1;
+            case "перед-зад":
+                return 2;
+            case "4 разные":
+            default:
+                return 4;
+        }
+    }
+
+    public void deleteVersion() {
+        int versionAmount = newRecord.getShimStackSetList().size();
+        int targetVersion;
+        if (versionAmount > 1) {
+            if (currentVersion == 1) {
+                targetVersion = 1;
+            } else if (currentVersion == versionAmount) {
+                targetVersion = versionAmount - 1;
+            } else {
+                targetVersion = currentVersion - 1;
+            }
+            List<ShimStackSet> shimStackSetList = newRecord.getShimStackSetList();
+            shimStackSetList.remove(currentVersion - 1);
+            newRecord.setShimStackSetList(shimStackSetList);
+            viewVersion(targetVersion);
+        }
+    }
+
+    public void addVersion() {
+        if (isTablesValid()) {
+            newRecord.setVersion(currentVersion - 1, getCurrentShimStackSet());
+            newRecord.addVersion(new ShimStackSet());
+            viewVersion(newRecord.getShimStackSetList().size());
+            resetTables();
+        }
+    }
+
+    public void resetTables() {
+        for (TableView<Shim> table : getActualTables()) {
+            table.getItems().clear();
         }
     }
 
@@ -438,120 +554,23 @@ public class AddViewController extends SceneSwitcher {
         targetTable.setItems(shims);
     }
 
-    public boolean isTablesValid() {
-
-        for (TableView<Shim> table : getActualTables()) {
-            if (table.getItems().isEmpty()) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public void resetTables() {
-        for (TableView<Shim> table : getActualTables()) {
-            table.getItems().clear();
-        }
-    }
-
-    public void viewPreviousVersion() {
-        if (currentVersion - 1 > 0 && isTablesValid()) {
+    public void saveNewRecord() {
+        if (isTablesValid() && !nameField.getText().isEmpty()) {
             saveVersion();
-            int targetVersion = currentVersion - 1;
-            viewVersion(targetVersion);
-        }
-    }
+            newRecord.setName(nameField.getText());
+            newRecord.setCar(carField.getText());
+            Date date = Date.from(dateField.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
+            newRecord.setDate(date);
+            newRecord.setPhone(phoneField.getText());
+            newRecord.setCity(cityField.getText());
+            DataSource dataSource = new DataSource();
+            dataSource.insert(newRecord);
 
-    public void viewNextVersion() {
-        int versionAmount = record.getShimStackSetList().size();
-        if (currentVersion + 1 <= versionAmount && isTablesValid()) {
-            saveVersion();
-            int targetVersion = currentVersion + 1;
-            viewVersion(targetVersion);
-        }
-    }
+            System.out.println("saveNewRecord----------------");
+            System.out.println(newRecord.getShimStackSetList().size());
 
-    public void addVersion() {
-        if (isTablesValid()) {
-            record.setVersion(currentVersion - 1, getCurrentShimStackSet());
-            record.addVersion(new ShimStackSet());
-            viewVersion(record.getShimStackSetList().size());
-            resetTables();
-        }
-    }
-
-    public void deleteVersion() {
-        int versionAmount = record.getShimStackSetList().size();
-        int targetVersion;
-        if (versionAmount > 1) {
-            if (currentVersion == 1) {
-                targetVersion = 1;
-            } else if (currentVersion == versionAmount) {
-                targetVersion = versionAmount - 1;
-            } else {
-                targetVersion = currentVersion - 1;
-            }
-            List<ShimStackSet> shimStackSetList = record.getShimStackSetList();
-            shimStackSetList.remove(currentVersion - 1);
-            record.setShimStackSetList(shimStackSetList);
-            viewVersion(targetVersion);
-        }
-    }
-
-    public void saveVersion() {
-        record.setVersion(currentVersion - 1, getCurrentShimStackSet());
-    }
-
-    public ShimStackSet getCurrentShimStackSet() {
-        ShimStackSet shimStackSet = new ShimStackSet();
-        shimStackSet.setVersion(record.getShimStackSetList().size());
-        shimStackSet.setType(versionTypeField.getSelectionModel().getSelectedItem());
-        Date date = Date.from(versionDateField.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
-        shimStackSet.setDate(date);
-        shimStackSet.setComment(commentField.getText());
-        shimStackSet.setAuthor(authorField.getText());
-        shimStackSet.setShimStackList(getCurrentShimStackPairList(getActualTables()));
-        return shimStackSet;
-    }
-
-    public List<TableView<Shim>> getActualTables() {
-        List<TableView<Shim>> tableList = List.of(
-                reboundTable1, compressionTable1,
-                reboundTable2, compressionTable2,
-                reboundTable3, compressionTable3,
-                reboundTable4, compressionTable4
-        );
-        List<TableView<Shim>> actualTableList = new ArrayList<>();
-        for (int i = 0; i < (getTypeNumber() * 2); i++) {
-            actualTableList.add(tableList.get(i));
-        }
-        return actualTableList;
-    }
-
-    public List<StackPair> getCurrentShimStackPairList(List<TableView<Shim>> tableViewList) {
-        List<StackPair> stackPairList = new ArrayList<>();
-        StackPair stackPair = new StackPair();
-        ReboundStack reboundStack = new ReboundStack();
-        CompressionStack compressionStack = new CompressionStack();
-        for (int i = 0; i < tableViewList.size(); i += 2) {
-            reboundStack.setStack(new ArrayList<>(tableViewList.get(i).getItems()));
-            compressionStack.setStack(new ArrayList<>(tableViewList.get(i + 1).getItems()));
-            stackPair.setReboundStack(reboundStack);
-            stackPair.setCompressionStack(compressionStack);
-            stackPairList.add(stackPair);
-        }
-        return stackPairList;
-    }
-
-    public int getTypeNumber() {
-        switch (versionTypeField.getSelectionModel().getSelectedItem()) {
-            case "4 одинаковые":
-                return 1;
-            case "перед-зад":
-                return 2;
-            case "4 разные":
-            default:
-                return 4;
+            resetNewRecord();
+            System.out.println("saveNewRecord-----------");
         }
     }
 }

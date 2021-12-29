@@ -69,7 +69,7 @@ public class SearchController extends SceneSwitcher {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         carColumn.setCellValueFactory(new PropertyValueFactory<>("car"));
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
-        phoneNumberColumn.setCellValueFactory(new PropertyValueFactory<>("number"));
+        phoneNumberColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
         cityColumn.setCellValueFactory(new PropertyValueFactory<>("city"));
 
         idColumn.setMinWidth(65);
@@ -111,7 +111,7 @@ public class SearchController extends SceneSwitcher {
 
         System.out.println(recordList.size());
 
-        searchTable.setEditable(true);
+//        searchTable.setEditable(true);
         searchTable.setItems(recordList);
     }
 

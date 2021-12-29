@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
 
 public class RecordViewController extends SceneSwitcher {
 
-    private int currentVersion = observableRecord.getShimStackSetList().size() - 1;
+    private int currentVersion = observableRecord.getShimStackSetList().size();
 
     @FXML
     private ResourceBundle resources;

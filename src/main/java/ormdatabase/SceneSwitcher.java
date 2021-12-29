@@ -54,7 +54,7 @@ public class SceneSwitcher {
     }
 
     public void switchScene(Scene scene, String view, Record record) {
-        this.observableRecord = record;
+        observableRecord = record;
         try {
             Parent newPage = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource(view)));
             scene.setRoot(newPage);
