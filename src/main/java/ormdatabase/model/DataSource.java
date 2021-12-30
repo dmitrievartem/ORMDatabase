@@ -13,27 +13,13 @@ public class DataSource {
             Persistence.createEntityManagerFactory("$objectdb/db/shimstack.odb");
     public EntityManager em = emf.createEntityManager();
 
-    public List<Record> select(String... param) {
-        String queryString = "SELECT r FROM Record r";
-        String paramString = "";
-        if (!param[0].isBlank()) {
-            paramString = paramString.concat(String.format(" r.id = %d", Long.parseLong(param[0])));
-        }
-        if (!param[1].isBlank()) {
-            if (!paramString.isBlank()) {
-                paramString = paramString.concat(" OR");
-            }
-            paramString = paramString.concat(" r.uppercaseName LIKE '%" + param[1].toUpperCase(Locale.ROOT) + "%'");
-        }
-        if (!param[2].isBlank()) {
-            if (!paramString.isBlank()) {
-                paramString = paramString.concat(" OR");
-            }
-            paramString = paramString.concat(" r.uppercaseCar LIKE '%" + param[2].toUpperCase(Locale.ROOT) + "%'");
-        }
-        if (!paramString.isBlank()) {
-            queryString = queryString.concat(" WHERE").concat(paramString);
-        }
+    public List<Record> select(Boolean favorites, String... param) {
+        String queryString = "SELECT r FROM Record r WHERE r.id > 0"
+                .concat(param[0].isBlank() ? "" : String.format(" AND r.id = %d", Long.parseLong(param[0])))
+                .concat(param[1].isBlank() ? "" : " AND r.uppercaseName LIKE '%".concat(param[1].toUpperCase(Locale.ROOT)).concat("%'"))
+                .concat(param[2].isBlank() ? "" : " AND r.uppercaseCar LIKE '%".concat(param[2].toUpperCase(Locale.ROOT)).concat("%'"))
+                .concat(favorites ? " AND r.favorites = true" : "");
+
         TypedQuery<Record> selectQuery = em.createQuery(queryString, Record.class);
         return selectQuery.getResultList();
     }
@@ -54,6 +40,7 @@ public class DataSource {
         record.setDate(editedRecord.getDate());
         record.setPhone(editedRecord.getPhone());
         record.setCity(editedRecord.getCity());
+        record.setFavorites(editedRecord.isFavorites());
         record.setShimStackSetList(editedRecord.getShimStackSetList());
         em.getTransaction().commit();
     }

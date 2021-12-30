@@ -3,6 +3,7 @@ package ormdatabase.controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -25,6 +26,9 @@ public class SearchController extends SceneSwitcher {
 
     @FXML
     private TextField carTextField;
+
+    @FXML
+    private CheckBox favoritesCheckBox;
 
     @FXML
     private TableView<Record> searchTable;
@@ -85,7 +89,7 @@ public class SearchController extends SceneSwitcher {
 
     public void search() {
         DataSource dataSource = new DataSource();
-        List<Record> queryResults = dataSource.select(idTextField.getText(), nameTextField.getText(), carTextField.getText());
+        List<Record> queryResults = dataSource.select(favoritesCheckBox.isSelected(), idTextField.getText(), nameTextField.getText(), carTextField.getText());
         ObservableList<Record> recordList = FXCollections.observableArrayList(queryResults);
         searchTable.setItems(recordList);
     }

@@ -37,6 +37,9 @@ public class AddRecordController extends SceneSwitcher {
     private TextField cityField;
 
     @FXML
+    private CheckBox favoritesCheckBox;
+
+    @FXML
     private ComboBox<String> versionTypeField;
 
     @FXML
@@ -526,6 +529,7 @@ public class AddRecordController extends SceneSwitcher {
             newRecord.setDate(date);
             newRecord.setPhone(phoneField.getText());
             newRecord.setCity(cityField.getText());
+            newRecord.setFavorites(favoritesCheckBox.isSelected());
             DataSource dataSource = new DataSource();
             dataSource.insert(newRecord);
             resetNewRecord();

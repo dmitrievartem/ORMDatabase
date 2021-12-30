@@ -2,6 +2,7 @@ package ormdatabase.controller;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -25,6 +26,9 @@ public class ViewRecordController extends SceneSwitcher {
 
     @FXML
     private Label cityLabel;
+
+    @FXML
+    private CheckBox favoritesCheckBox;
 
     @FXML
     private Label commentLabel;
@@ -98,6 +102,8 @@ public class ViewRecordController extends SceneSwitcher {
 
     @FXML
     void initialize() {
+        favoritesCheckBox.setDisable(true);
+
         frontLeftLabel.setText("ПЛ");
         frontRightLabel.setText("ПП");
         rearLeftLabel.setText("ЗЛ");
@@ -136,6 +142,7 @@ public class ViewRecordController extends SceneSwitcher {
         dateLabel.setText(String.valueOf(observableRecord.getDate()));
         phoneLabel.setText(observableRecord.getPhone());
         cityLabel.setText(observableRecord.getCity());
+        favoritesCheckBox.setSelected(observableRecord.isFavorites());
         viewVersion(currentVersion);
     }
 

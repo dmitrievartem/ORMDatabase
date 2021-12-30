@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -67,7 +68,7 @@
          <children>
             <VBox alignment="TOP_CENTER" prefWidth="350.0">
                <children>
-                  <GridPane maxHeight="650.0" stylesheets="@css/record.css">
+                  <GridPane maxHeight="700.0" stylesheets="@css/record.css">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" />
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="300.0" />
@@ -76,6 +77,7 @@
                       <RowConstraints maxHeight="-Infinity" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
                       <RowConstraints maxHeight="-Infinity" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
                       <RowConstraints maxHeight="-Infinity" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="-Infinity" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="-Infinity" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="-Infinity" minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
@@ -96,7 +98,7 @@
                               <Insets />
                            </GridPane.margin>
                         </Label>
-                        <Label alignment="TOP_LEFT" contentDisplay="CENTER" styleClass="last-label" text="Комментарий" GridPane.rowIndex="9">
+                        <Label alignment="TOP_LEFT" contentDisplay="CENTER" styleClass="last-label" text="Комментарий" GridPane.rowIndex="10">
                            <GridPane.margin>
                               <Insets />
                            </GridPane.margin>
@@ -107,16 +109,18 @@
                         <Label fx:id="dateLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <Label fx:id="phoneLabel" text="88005553535" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                         <Label fx:id="cityLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <Label styleClass="last-label" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                        <Label text="Версия" GridPane.rowIndex="7" />
-                        <Label fx:id="versionLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                        <Label text="Тип настройки" GridPane.rowIndex="6" />
-                        <Label fx:id="typeLabel" text="4 разные" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                        <Label text="Автор" GridPane.rowIndex="10" />
-                        <Label fx:id="authorLabel" text="Версия" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-                        <Label fx:id="commentLabel" alignment="TOP_LEFT" contentDisplay="CENTER" styleClass="last-label" text="Комментарий Комментарий Комментарий Комментарий Комментарий Комментарий Комментарий Комментарий Комментарий Комментарий Комментарий Комментарий Комментарий Комментарий Комментарий " wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                        <Label text="Дата версии" GridPane.rowIndex="8" />
-                        <Label fx:id="versionDateLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                        <Label styleClass="last-label" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                        <Label text="Версия" GridPane.rowIndex="8" />
+                        <Label fx:id="versionLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                        <Label text="Тип настройки" GridPane.rowIndex="7" />
+                        <Label fx:id="typeLabel" text="4 разные" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <Label text="Автор" GridPane.rowIndex="11" />
+                        <Label fx:id="authorLabel" text="Версия" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                        <Label fx:id="commentLabel" alignment="TOP_LEFT" contentDisplay="CENTER" styleClass="last-label" text="Комментарий Комментарий Комментарий Комментарий Комментарий Комментарий Комментарий Комментарий Комментарий Комментарий Комментарий Комментарий Комментарий Комментарий Комментарий " wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                        <Label text="Дата версии" GridPane.rowIndex="9" />
+                        <Label fx:id="versionDateLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                        <Label text="Избранное" GridPane.rowIndex="6" />
+                        <CheckBox fx:id="favoritesCheckBox" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                      </children>
                   </GridPane>
                   <HBox alignment="CENTER">

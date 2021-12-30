@@ -13,6 +13,7 @@ public class Record implements Serializable {
     @Id
     @GeneratedValue
     private Long id;
+    private boolean favorites = false;
     private String name;
     private String car;
     private String uppercaseName;
@@ -36,6 +37,14 @@ public class Record implements Serializable {
 
     public Long getId() {
         return id;
+    }
+
+    public boolean isFavorites() {
+        return favorites;
+    }
+
+    public void setFavorites(boolean favorites) {
+        this.favorites = favorites;
     }
 
     public String getName() {

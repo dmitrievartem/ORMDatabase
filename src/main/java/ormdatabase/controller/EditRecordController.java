@@ -37,6 +37,9 @@ public class EditRecordController extends SceneSwitcher {
     private TextField cityField;
 
     @FXML
+    private CheckBox favoritesCheckBox;
+
+    @FXML
     private ComboBox<String> versionTypeField;
 
     @FXML
@@ -174,24 +177,24 @@ public class EditRecordController extends SceneSwitcher {
         List<TextField> onlyTextFields = List.of(nameField, carField, cityField, authorField);
         for (TextField textField : onlyTextFields) {
             textField.textProperty().addListener((observable, oldValue, newValue) -> {
-                if (!newValue.matches("[(][)]\\s\\p{L}*")) {
+                if (Objects.nonNull(newValue) && !newValue.matches("[(][)]\\s\\p{L}*")) {
                     textField.setText(newValue.replaceAll("[^[(][)]\\s\\p{L}*]", ""));
                 }
-                if (newValue.length() > 50) {
+                if (Objects.nonNull(newValue) && newValue.length() > 50) {
                     textField.setText(newValue.substring(0, 50));
                 }
             });
         }
         phoneField.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.matches("\\d*")) {
+            if (Objects.nonNull(newValue) && !newValue.matches("\\d*")) {
                 phoneField.setText(newValue.replaceAll("[^\\d]", ""));
             }
-            if (newValue.length() > 11) {
+            if (Objects.nonNull(newValue) && newValue.length() > 11) {
                 phoneField.setText(newValue.substring(0, 11));
             }
         });
         commentField.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue.length() > 500) {
+            if (Objects.nonNull(newValue) && newValue.length() > 500) {
                 commentField.setText(newValue.substring(0, 500));
             }
         });
@@ -262,7 +265,6 @@ public class EditRecordController extends SceneSwitcher {
             );
         }
 
-//        dataSource.startTransaction();
         viewEditableRecord();
     }
 
@@ -273,6 +275,7 @@ public class EditRecordController extends SceneSwitcher {
         dateField.setValue(date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
         phoneField.setText(observableRecord.getPhone());
         cityField.setText(observableRecord.getCity());
+        favoritesCheckBox.setSelected(observableRecord.isFavorites());
         viewVersion(currentVersion);
     }
 
@@ -530,10 +533,8 @@ public class EditRecordController extends SceneSwitcher {
             observableRecord.setDate(date);
             observableRecord.setPhone(phoneField.getText());
             observableRecord.setCity(cityField.getText());
-
+            observableRecord.setFavorites(favoritesCheckBox.isSelected());
             dataSource.update(observableRecord, observableRecord.getId());
-//            dataSource.commitTransaction();
-            System.out.println("saveNewRecord-------------");
         }
     }
 }
