@@ -33,15 +33,7 @@ public class DataSource {
     public void update(Record editedRecord, Long id) {
         Record record = em.find(Record.class, id);
         em.getTransaction().begin();
-        record.setName(editedRecord.getName());
-        record.setUppercaseName(editedRecord.getName().toUpperCase(Locale.ROOT));
-        record.setCar(editedRecord.getCar());
-        record.setUppercaseCar(editedRecord.getCar().toUpperCase(Locale.ROOT));
-        record.setDate(editedRecord.getDate());
-        record.setPhone(editedRecord.getPhone());
-        record.setCity(editedRecord.getCity());
-        record.setFavorites(editedRecord.isFavorites());
-        record.setShimStackSetList(editedRecord.getShimStackSetList());
+        record.clone(editedRecord);
         em.getTransaction().commit();
     }
 }

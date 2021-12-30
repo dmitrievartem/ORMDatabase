@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 @Entity
 public class Record implements Serializable {
@@ -113,5 +114,17 @@ public class Record implements Serializable {
 
     public void deleteVersion(int shimStackSetNumber) {
         this.shimStackSetList.remove(shimStackSetNumber);
+    }
+
+    public void clone(Record record) {
+        this.name = record.getName();
+        this.uppercaseName = record.getName().toUpperCase(Locale.ROOT);
+        this.car = record.getCar();
+        this.uppercaseCar = record.getCar().toUpperCase(Locale.ROOT);
+        this.date = record.getDate();
+        this.phone = record.getPhone();
+        this.city = record.getCity();
+        this.favorites = record.isFavorites();
+        this.shimStackSetList = record.getShimStackSetList();
     }
 }
