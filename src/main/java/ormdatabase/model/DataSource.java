@@ -43,4 +43,18 @@ public class DataSource {
         em.persist(record);
         em.getTransaction().commit();
     }
+
+    public void update(Record editedRecord, Long id) {
+        Record record = em.find(Record.class, id);
+        em.getTransaction().begin();
+        record.setName(editedRecord.getName());
+        record.setUppercaseName(editedRecord.getName().toUpperCase(Locale.ROOT));
+        record.setCar(editedRecord.getCar());
+        record.setUppercaseCar(editedRecord.getCar().toUpperCase(Locale.ROOT));
+        record.setDate(editedRecord.getDate());
+        record.setPhone(editedRecord.getPhone());
+        record.setCity(editedRecord.getCity());
+        record.setShimStackSetList(editedRecord.getShimStackSetList());
+        em.getTransaction().commit();
+    }
 }
