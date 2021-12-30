@@ -12,6 +12,6 @@ public class AuthenticationController extends SceneSwitcher {
 
     @FXML
     void initialize() {
-        passwordField.setOnAction(event -> switchScene(((Node) event.getSource()).getScene(), "search-view.fxml"));
+        passwordField.setOnAction(event -> switchScene(((Node) event.getSource()).getScene(), "search.fxml"));
     }
 }

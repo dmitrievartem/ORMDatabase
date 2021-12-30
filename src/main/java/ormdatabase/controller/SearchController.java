@@ -75,7 +75,7 @@ public class SearchController extends SceneSwitcher {
             if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
                 if (mouseEvent.getClickCount() == 2) {
                     if (searchTable.getSelectionModel().getSelectedItem() != null) {
-                        switchScene(searchTable.getScene(), "record-4diff-view.fxml", searchTable.getSelectionModel().getSelectedItem());
+                        switchScene(searchTable.getScene(), "view.fxml", searchTable.getSelectionModel().getSelectedItem());
                     }
                 }
             }

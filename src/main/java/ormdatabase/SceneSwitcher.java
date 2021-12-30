@@ -36,7 +36,7 @@ public class SceneSwitcher {
 
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getClassLoader().getResource("hello-view.fxml"));
+        fxmlLoader.setLocation(getClass().getClassLoader().getResource("hello.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("ORM Database");
         stage.setMaximized(true);
@@ -71,13 +71,13 @@ public class SceneSwitcher {
         switch (id) {
             default:
             case "search":
-                targetView = "search-view.fxml";
+                targetView = "search.fxml";
                 break;
             case "view":
-                targetView = "record-4diff-view.fxml";
+                targetView = "view.fxml";
                 break;
             case "add":
-                targetView = "add-view.fxml";
+                targetView = "add.fxml";
                 break;
         }
         switchScene(scene, targetView);
