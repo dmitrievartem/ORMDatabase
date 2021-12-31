@@ -82,6 +82,9 @@ public class SceneSwitcher {
             case "edit":
                 targetView = "edit.fxml";
                 break;
+            case "visualization":
+                targetView = "visualization.fxml";
+                break;
         }
         switchScene(scene, targetView);
     }

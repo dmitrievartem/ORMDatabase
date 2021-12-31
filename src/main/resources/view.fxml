@@ -44,7 +44,7 @@
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </Button>
-            <Button fx:id="favorites" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchScene" prefHeight="40.0" prefWidth="200.0" styleClass="menu-button" stylesheets="@css/menu.css" text="Избранное" wrapText="true">
+            <Button fx:id="visualization" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchScene" prefHeight="40.0" prefWidth="200.0" styleClass="menu-button" stylesheets="@css/menu.css" text="Визуализация" wrapText="true">
                <cursor>
                   <Cursor fx:constant="DEFAULT" />
                </cursor>

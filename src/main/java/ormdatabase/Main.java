@@ -15,35 +15,15 @@ public class Main extends javafx.application.Application {
 
         System.setProperty("objectdb.home", "./src/main/resources/odb/");
 
-        /*System.setProperty("objectdb.home", "./src/main/resources/odb/");
-
-        EntityManagerFactory emf =
-                Persistence.createEntityManagerFactory("$objectdb/db/shimstack.odb");
-        EntityManager em = emf.createEntityManager();
-
-
-        // Store objects in the database:
-        Record record = new Record();
-        record.setName("Имя");
-        record.setCar("Машина");
-
-
-
+        /*
         Query backupQuery = em.createQuery("objectdb backup");
         backupQuery.setParameter("target", new java.io.File("c:\\backup"));
         backupQuery.getSingleResult();
 
-
-        
-        
-        List<ShimStack> shimStackList = results.get(0).getShimStackList();
-        ShimStack shimStack = shimStackList.get(0);
-        
-        
-
         // Close the database connection:
         em.close();
-        emf.close();*/
+        emf.close();
+        */
 
         launch();
     }
