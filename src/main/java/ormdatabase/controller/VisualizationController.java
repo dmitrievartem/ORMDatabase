@@ -1,27 +1,25 @@
 package ormdatabase.controller;
 
-import java.net.URL;
-import java.util.Objects;
-import java.util.ResourceBundle;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.geometry.Point2D;
-import javafx.print.*;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.print.PrinterJob;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.image.ImageView;
-import javafx.scene.image.WritableImage;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
-import javafx.scene.transform.Scale;
 import ormdatabase.SceneSwitcher;
+import ormdatabase.model.Shim;
+
+import java.net.URL;
+import java.util.List;
+import java.util.ResourceBundle;
 
 public class VisualizationController extends SceneSwitcher {
 
@@ -32,61 +30,40 @@ public class VisualizationController extends SceneSwitcher {
     private URL location;
 
     @FXML
-    private Button add;
-
-    @FXML
-    private TableView<?> compressionTable1;
-
-    @FXML
-    private Button ct1addButton;
-
-    @FXML
-    private Button ct1deleteButton;
-
-    @FXML
-    private TableColumn<?, ?> ct1diameterColumn;
-
-    @FXML
-    private TableColumn<?, ?> ct1numberColumn;
-
-    @FXML
-    private TableColumn<?, ?> ct1thicknessColumn;
-
-    @FXML
-    private Button edit;
-
-    @FXML
-    private TableView<?> reboundTable1;
-
-    @FXML
-    private Button rt1addButton;
-
-    @FXML
-    private Button rt1deleteButton;
-
-    @FXML
-    private TableColumn<?, ?> rt1diameterColumn;
-
-    @FXML
-    private TableColumn<?, ?> rt1numberColumn;
-
-    @FXML
-    private TableColumn<?, ?> rt1thicknessColumn;
-
-    @FXML
     private Button search;
 
     @FXML
     private Button settings;
 
     @FXML
-    private VBox vBox1;
-
-    @FXML
     private Button view;
 
     @FXML
     private Button visualization;
+
+    @FXML
+    private TableView<Shim> reboundTable;
+
+    @FXML
+    private TableColumn <Shim, String> reboundNumberColumn;
+
+    @FXML
+    private TableColumn <Shim, String> reboundDiameterColumn;
+
+    @FXML
+    private TableColumn <Shim, String> reboundThicknessColumn;
+
+    @FXML
+    private TableView<Shim> compressionTable;
+
+    @FXML
+    private TableColumn <Shim, String> compressionNumberColumn;
+
+    @FXML
+    private TableColumn <Shim, String> compressionDiameterColumn;
+
+    @FXML
+    private TableColumn <Shim, String> compressionThicknessColumn;
 
     @FXML
     private Pane pane;
@@ -101,12 +78,50 @@ public class VisualizationController extends SceneSwitcher {
 
     @FXML
     void initialize() {
-        System.out.println("initialize-----------------------");
-        System.out.println(pane.getLayoutX());
-        System.out.println(pane.getLayoutY());
 
-        System.out.println(pane.widthProperty());
-        System.out.println(pane.heightProperty());
+        List<TableView<Shim>> tableViewList = List.of(reboundTable, compressionTable);
+
+        for (TableView<Shim> tableView : tableViewList) {
+            tableView.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("number"));
+            tableView.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("diameter"));
+            tableView.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("thickness"));
+        }
+
+        List<TableColumn<Shim, String>> columnList = List.of(
+                reboundNumberColumn, reboundDiameterColumn, reboundThicknessColumn,
+                compressionNumberColumn, compressionDiameterColumn, compressionThicknessColumn
+        );
+
+        for (TableColumn<Shim, String> column : columnList) {
+            column.setCellFactory(TextFieldTableCell.forTableColumn());
+            column.setOnEditCommit(
+                    event -> {
+                        Shim shim = event.getTableView().getItems().get(event.getTablePosition().getRow());
+                        switch (event.getTablePosition().getColumn()) {
+                            case 0:
+                                shim.setNumber(event.getNewValue());
+                                break;
+                            case 1:
+                                shim.setDiameter(event.getNewValue());
+                                break;
+                            case 2:
+                                shim.setThickness(event.getNewValue());
+                                break;
+                        }
+                    }
+            );
+        }
+        for(TableView tableView : tableViewList) {
+            tableView.getItems().addListener(new ListChangeListener<Shim>(){
+
+                @Override
+                public void onChanged(javafx.collections.ListChangeListener.Change<? extends Shim> pChange) {
+                    while(pChange.next()) {
+                        System.out.println("ALARM");
+                    }
+                }
+            });
+        }
 
 //        pane.setMaxWidth();
 //        pane.getScaleY()
@@ -162,8 +177,31 @@ public class VisualizationController extends SceneSwitcher {
     }
 
     @FXML
-    void addDeleteRow(ActionEvent event) {
+    public void addDeleteRow(ActionEvent event) {
+        TableView<Shim> targetTable;
+        Button btn = (Button) event.getSource();
+        String id = btn.getId();
 
+        switch (id) {
+            default:
+            case "reboundAddButton":
+            case "reboundDeleteButton":
+                targetTable = reboundTable;
+                break;
+            case "compressionAddButton":
+            case "compressionDeleteButton":
+                targetTable = compressionTable;
+                break;
+        }
+        Shim newShim = new Shim("0", "0", "0");
+        ObservableList<Shim> shims = targetTable.getItems();
+
+        if (id.contains("Add")) {
+            shims.add(newShim);
+        } else if (id.contains("Delete") && targetTable.getItems().size() > 0) {
+            shims.remove(targetTable.getItems().size() - 1);
+        }
+        targetTable.setItems(shims);
     }
 
     public Line newLine() {

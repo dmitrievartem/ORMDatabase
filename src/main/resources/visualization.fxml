@@ -64,11 +64,11 @@
          <children>
             <VBox fx:id="vBox1" alignment="CENTER" styleClass="shim-stack-vbox">
                <children>
-                  <TableView fx:id="reboundTable1" editable="true" style="-fx-fixed-cell-size: 25;">
+                  <TableView fx:id="reboundTable" editable="true" style="-fx-fixed-cell-size: 25;">
                     <columns>
-                      <TableColumn fx:id="rt1numberColumn" prefWidth="75.0" text="К" />
-                      <TableColumn fx:id="rt1diameterColumn" prefWidth="76.0" text="Д" />
-                        <TableColumn fx:id="rt1thicknessColumn" prefWidth="76.0" text="Т" />
+                      <TableColumn fx:id="reboundNumberColumn" prefWidth="75.0" text="К" />
+                      <TableColumn fx:id="reboundDiameterColumn" prefWidth="76.0" text="Д" />
+                        <TableColumn fx:id="reboundThicknessColumn" prefWidth="76.0" text="Т" />
                     </columns>
                      <VBox.margin>
                         <Insets />
@@ -79,15 +79,15 @@
                   </TableView>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="rt1addButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#addDeleteRow" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@css/add.css" text="+" />
-                        <Button fx:id="rt1deleteButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#addDeleteRow" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@css/add.css" text="-" />
+                        <Button fx:id="reboundAddButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#addDeleteRow" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@css/add.css" text="+" />
+                        <Button fx:id="reboundDeleteButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#addDeleteRow" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@css/add.css" text="-" />
                      </children>
                   </HBox>
-                  <TableView fx:id="compressionTable1" editable="true">
+                  <TableView fx:id="compressionTable" editable="true">
                     <columns>
-                      <TableColumn fx:id="ct1numberColumn" prefWidth="75.0" text="К" />
-                      <TableColumn fx:id="ct1diameterColumn" prefWidth="75.0" text="Д" />
-                        <TableColumn fx:id="ct1thicknessColumn" prefWidth="75.0" text="Т" />
+                      <TableColumn fx:id="compressionNumberColumn" prefWidth="75.0" text="К" />
+                      <TableColumn fx:id="compressionDiameterColumn" prefWidth="75.0" text="Д" />
+                        <TableColumn fx:id="compressionThicknessColumn" prefWidth="75.0" text="Т" />
                     </columns>
                      <VBox.margin>
                         <Insets top="25.0" />
@@ -98,8 +98,8 @@
                   </TableView>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="ct1addButton" mnemonicParsing="false" onAction="#addDeleteRow" styleClass="add-delete-button" stylesheets="@css/add.css" text="+" />
-                        <Button fx:id="ct1deleteButton" mnemonicParsing="false" onAction="#addDeleteRow" styleClass="add-delete-button" stylesheets="@css/add.css" text="-" />
+                        <Button fx:id="compressionAddButton" mnemonicParsing="false" onAction="#addDeleteRow" styleClass="add-delete-button" stylesheets="@css/add.css" text="+" />
+                        <Button fx:id="compressionDeleteButton" mnemonicParsing="false" onAction="#addDeleteRow" styleClass="add-delete-button" stylesheets="@css/add.css" text="-" />
                      </children>
                   </HBox>
                </children>
