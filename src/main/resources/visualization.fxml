@@ -7,7 +7,6 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane fx:id="bp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="border-pane" stylesheets="@css/menu.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ormdatabase.controller.VisualizationController">
@@ -107,14 +106,7 @@
                   <Insets left="50.0" />
                </HBox.margin>
             </VBox>
-            <Pane fx:id="pane" maxHeight="750.0" maxWidth="500.0" minHeight="580.0" minWidth="400.0" prefHeight="750.0" prefWidth="500.0" style="-fx-border-color: black;">
-               <HBox.margin>
-                  <Insets left="50.0" />
-               </HBox.margin>
-               <children>
-                  <VBox fx:id="stackVisualizationVBox" layoutX="6.0" maxHeight="750.0" maxWidth="500.0" minHeight="580.0" minWidth="400.0" prefHeight="750.0" prefWidth="500.0" />
-               </children>
-            </Pane>
+            <VBox fx:id="stackVisualizationVBox" alignment="CENTER" maxHeight="750.0" maxWidth="500.0" minHeight="580.0" minWidth="400.0" prefHeight="750.0" prefWidth="500.0" style="-fx-border-color: black;" />
          </children>
       </HBox>
    </center>

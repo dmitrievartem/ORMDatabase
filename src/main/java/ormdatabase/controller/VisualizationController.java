@@ -4,6 +4,7 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.print.PrinterJob;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -14,6 +15,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Rectangle;
 import ormdatabase.SceneSwitcher;
 import ormdatabase.model.Shim;
 
@@ -45,25 +47,25 @@ public class VisualizationController extends SceneSwitcher {
     private TableView<Shim> reboundTable;
 
     @FXML
-    private TableColumn <Shim, String> reboundNumberColumn;
+    private TableColumn<Shim, String> reboundNumberColumn;
 
     @FXML
-    private TableColumn <Shim, String> reboundDiameterColumn;
+    private TableColumn<Shim, String> reboundDiameterColumn;
 
     @FXML
-    private TableColumn <Shim, String> reboundThicknessColumn;
+    private TableColumn<Shim, String> reboundThicknessColumn;
 
     @FXML
     private TableView<Shim> compressionTable;
 
     @FXML
-    private TableColumn <Shim, String> compressionNumberColumn;
+    private TableColumn<Shim, String> compressionNumberColumn;
 
     @FXML
-    private TableColumn <Shim, String> compressionDiameterColumn;
+    private TableColumn<Shim, String> compressionDiameterColumn;
 
     @FXML
-    private TableColumn <Shim, String> compressionThicknessColumn;
+    private TableColumn<Shim, String> compressionThicknessColumn;
 
     @FXML
     private Pane pane;
@@ -108,20 +110,12 @@ public class VisualizationController extends SceneSwitcher {
                                 shim.setThickness(event.getNewValue());
                                 break;
                         }
+                        drawShimStack();
                     }
             );
         }
-        for(TableView tableView : tableViewList) {
-            tableView.getItems().addListener(new ListChangeListener<Shim>(){
 
-                @Override
-                public void onChanged(javafx.collections.ListChangeListener.Change<? extends Shim> pChange) {
-                    while(pChange.next()) {
-                        System.out.println("ALARM");
-                    }
-                }
-            });
-        }
+        stackVisualizationVBox.setAlignment(Pos.CENTER);
 
 //        pane.setMaxWidth();
 //        pane.getScaleY()
@@ -142,27 +136,6 @@ public class VisualizationController extends SceneSwitcher {
         stackVisualizationVBox.setSpacing(20);
 
 
-        VBox vBox1 = new VBox();
-        vBox1.setSpacing(5);
-
-        VBox vBox2 = new VBox();
-        vBox2.setSpacing(5);
-
-        vBox1.getChildren().add(newLine());
-        vBox1.getChildren().add(newLine());
-        vBox1.getChildren().add(newLine());
-        vBox1.getChildren().add(newLine());
-        vBox1.getChildren().add(newLine());
-        vBox1.getChildren().add(newLine());
-
-
-        vBox2.getChildren().add(newLine());
-        vBox2.getChildren().add(newLine());
-        vBox2.getChildren().add(newLine());
-        vBox2.getChildren().add(newLine());
-
-        stackVisualizationVBox.getChildren().add(vBox1);
-        stackVisualizationVBox.getChildren().add(vBox2);
 //        pane.getChildren().add(line);
 
 //        Node node = bp;
@@ -204,13 +177,38 @@ public class VisualizationController extends SceneSwitcher {
         targetTable.setItems(shims);
     }
 
-    public Line newLine() {
-        Line line = new Line();
-        line.startXProperty().bind(pane.widthProperty().divide(2));
-        line.startYProperty().bind(pane.heightProperty().divide(2));
-        line.endXProperty().bind(pane.widthProperty().divide(2).add(100));
-        line.endYProperty().bind(pane.heightProperty().divide(2));
-        return line;
+//    public Line newLine() {
+//        Line line = new Line();
+//        line.startXProperty().bind(pane.widthProperty().divide(2));
+//        line.startYProperty().bind(pane.heightProperty().divide(2));
+//        line.endXProperty().bind(pane.widthProperty().divide(2).add(100));
+//        line.endYProperty().bind(pane.heightProperty().divide(2));
+//        return line;
+//    }
+
+    public void drawShimStack() {
+        stackVisualizationVBox.getChildren().removeAll(stackVisualizationVBox.getChildren());
+        System.out.println(stackVisualizationVBox.getChildren().size());
+        for (Shim shim : reboundTable.getItems()) {
+            for (int i = 0; i < Integer.parseInt(shim.getNumber()); i++) {
+                stackVisualizationVBox.getChildren().add(
+                        new Line(0, 0, Float.parseFloat(shim.getDiameter()) * 300, 0)
+                );
+            }
+        }
+//        Line line = new Line(0, 0, 100, 0);
+//        line.setStrokeWidth(1);
+
+        Rectangle rectangle = new Rectangle(300, 100);
+        stackVisualizationVBox.getChildren().add(rectangle);
+
+        for (Shim shim : compressionTable.getItems()) {
+            for (int i = 0; i < Integer.parseInt(shim.getNumber()); i++) {
+                stackVisualizationVBox.getChildren().add(
+                        new Line(0, 0, Float.parseFloat(shim.getDiameter()) * 300, 0)
+                );
+            }
+        }
     }
 
 }
