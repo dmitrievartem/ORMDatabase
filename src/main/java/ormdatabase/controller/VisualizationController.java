@@ -3,6 +3,7 @@ package ormdatabase.controller;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.print.PrinterJob;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -46,6 +47,9 @@ public class VisualizationController extends SceneSwitcher {
 
     @FXML
     private VBox stackVisualizationVBox;
+
+    int outerSpacing = 10;
+    int innerSpacing = 5;
 
     PrinterJob currentPrinterJob;
 
@@ -142,11 +146,15 @@ public class VisualizationController extends SceneSwitcher {
 
     public void addLines(TableView<Shim> tableView) {
         for (Shim shim : tableView.getItems()) {
+            VBox vBox = new VBox();
+            vBox.setSpacing(innerSpacing);
+            vBox.setAlignment(Pos.CENTER);
             for (int i = 0; i < Integer.parseInt(shim.getNumber()); i++) {
-                stackVisualizationVBox.getChildren().add(
+                vBox.getChildren().add(
                         new Line(0, 0, Float.parseFloat(shim.getDiameter()) * 300, 0)
                 );
             }
+            stackVisualizationVBox.getChildren().add(vBox);
         }
     }
 
