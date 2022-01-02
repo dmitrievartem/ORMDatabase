@@ -15,9 +15,9 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.*;
 
-public class EditRecordController extends Controller {
+public class EditRecordController {
 
-    private int currentVersion = observableRecord.getShimStackSetList().size();
+    private int currentVersion = Controller.observableRecord.getShimStackSetList().size();
     private final DataSource dataSource = new DataSource();
 
     @FXML
@@ -268,20 +268,20 @@ public class EditRecordController extends Controller {
     }
 
     public void viewEditableRecord() {
-        nameField.setText(observableRecord.getName());
-        carField.setText(observableRecord.getCar());
-        Date date = observableRecord.getDate();
+        nameField.setText(Controller.observableRecord.getName());
+        carField.setText(Controller.observableRecord.getCar());
+        Date date = Controller.observableRecord.getDate();
         dateField.setValue(date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-        phoneField.setText(observableRecord.getPhone());
-        cityField.setText(observableRecord.getCity());
-        favoritesCheckBox.setSelected(observableRecord.isFavorites());
+        phoneField.setText(Controller.observableRecord.getPhone());
+        cityField.setText(Controller.observableRecord.getCity());
+        favoritesCheckBox.setSelected(Controller.observableRecord.isFavorites());
         viewVersion(currentVersion);
     }
 
     void viewVersion(int targetVersion) {
         currentVersion = targetVersion;
-        ShimStackSet targetShimStackSet = observableRecord.getShimStackSetList().get(targetVersion - 1);
-        String versionAmount = String.valueOf(observableRecord.getShimStackSetList().size());
+        ShimStackSet targetShimStackSet = Controller.observableRecord.getShimStackSetList().get(targetVersion - 1);
+        String versionAmount = String.valueOf(Controller.observableRecord.getShimStackSetList().size());
         versionLabel.setText(String.valueOf(targetVersion).concat("/").concat(versionAmount));
         versionTypeField.getSelectionModel().select(targetShimStackSet.getType());
         setType(targetShimStackSet.getType());
@@ -299,11 +299,11 @@ public class EditRecordController extends Controller {
                         new Pair<>(reboundTable3, compressionTable3),
                         new Pair<>(reboundTable4, compressionTable4)
                 );
-        ShimStackSet targetShimStackSet = observableRecord.getShimStackSetList().get(targetVersion - 1);
+        ShimStackSet targetShimStackSet = Controller.observableRecord.getShimStackSetList().get(targetVersion - 1);
         if (targetShimStackSet.getShimStackList().size() > 0) {
             List<Shim> reboundList;
             List<Shim> compressionList;
-            for (int i = 0; i < observableRecord.getShimStackSetList().get(targetVersion - 1).getTypeNumber(); i++) {
+            for (int i = 0; i < Controller.observableRecord.getShimStackSetList().get(targetVersion - 1).getTypeNumber(); i++) {
                 reboundList = targetShimStackSet.getShimStackList().get(i).getReboundStack().getStack();
                 compressionList = targetShimStackSet.getShimStackList().get(i).getCompressionStack().getStack();
                 tableList.get(i).getKey().setItems(FXCollections.observableArrayList(reboundList));
@@ -319,11 +319,11 @@ public class EditRecordController extends Controller {
     }
 
     public void setType(String selectedType) {
-        List<ShimStackSet> shimStackSetList = observableRecord.getShimStackSetList();
+        List<ShimStackSet> shimStackSetList = Controller.observableRecord.getShimStackSetList();
         ShimStackSet shimStackSet = shimStackSetList.get(currentVersion - 1);
         shimStackSet.setType(selectedType);
         shimStackSetList.set(currentVersion - 1, shimStackSet);
-        observableRecord.setShimStackSetList(shimStackSetList);
+        Controller.observableRecord.setShimStackSetList(shimStackSetList);
 
         switch (selectedType) {
             case "4 одинаковые":
@@ -368,7 +368,7 @@ public class EditRecordController extends Controller {
     }
 
     public void viewNextVersion() {
-        int versionAmount = observableRecord.getShimStackSetList().size();
+        int versionAmount = Controller.observableRecord.getShimStackSetList().size();
         if (currentVersion + 1 <= versionAmount && isTablesValid()) {
             saveVersion();
             int targetVersion = currentVersion + 1;
@@ -401,7 +401,7 @@ public class EditRecordController extends Controller {
     }
 
     public void saveVersion() {
-        observableRecord.setVersion(currentVersion - 1, getCurrentShimStackSet());
+        Controller.observableRecord.setVersion(currentVersion - 1, getCurrentShimStackSet());
     }
 
     public ShimStackSet getCurrentShimStackSet() {
@@ -440,7 +440,7 @@ public class EditRecordController extends Controller {
     }
 
     public void deleteVersion() {
-        int versionAmount = observableRecord.getShimStackSetList().size();
+        int versionAmount = Controller.observableRecord.getShimStackSetList().size();
         int targetVersion;
         if (versionAmount > 1) {
             if (currentVersion == 1) {
@@ -450,16 +450,16 @@ public class EditRecordController extends Controller {
             } else {
                 targetVersion = currentVersion - 1;
             }
-            observableRecord.deleteVersion(currentVersion - 1);
+            Controller.observableRecord.deleteVersion(currentVersion - 1);
             viewVersion(targetVersion);
         }
     }
 
     public void addVersion() {
         if (isTablesValid()) {
-            observableRecord.setVersion(currentVersion - 1, getCurrentShimStackSet());
-            observableRecord.addVersion(new ShimStackSet());
-            viewVersion(observableRecord.getShimStackSetList().size());
+            Controller.observableRecord.setVersion(currentVersion - 1, getCurrentShimStackSet());
+            Controller.observableRecord.addVersion(new ShimStackSet());
+            viewVersion(Controller.observableRecord.getShimStackSetList().size());
             resetTables();
         }
     }
@@ -524,16 +524,16 @@ public class EditRecordController extends Controller {
     public void saveNewRecord() {
         if (isTablesValid() && !nameField.getText().isEmpty()) {
             saveVersion();
-            observableRecord.setName(nameField.getText());
-            observableRecord.setUppercaseName(nameField.getText().toUpperCase(Locale.ROOT));
-            observableRecord.setCar(carField.getText());
-            observableRecord.setUppercaseCar(carField.getText().toUpperCase(Locale.ROOT));
+            Controller.observableRecord.setName(nameField.getText());
+            Controller.observableRecord.setUppercaseName(nameField.getText().toUpperCase(Locale.ROOT));
+            Controller.observableRecord.setCar(carField.getText());
+            Controller.observableRecord.setUppercaseCar(carField.getText().toUpperCase(Locale.ROOT));
             Date date = Date.from(dateField.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
-            observableRecord.setDate(date);
-            observableRecord.setPhone(phoneField.getText());
-            observableRecord.setCity(cityField.getText());
-            observableRecord.setFavorites(favoritesCheckBox.isSelected());
-            dataSource.update(observableRecord, observableRecord.getId());
+            Controller.observableRecord.setDate(date);
+            Controller.observableRecord.setPhone(phoneField.getText());
+            Controller.observableRecord.setCity(cityField.getText());
+            Controller.observableRecord.setFavorites(favoritesCheckBox.isSelected());
+            dataSource.update(Controller.observableRecord, Controller.observableRecord.getId());
         }
     }
 }

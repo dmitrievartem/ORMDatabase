@@ -15,7 +15,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.*;
 
-public class AddRecordController extends Controller {
+public class AddRecordController {
 
     private Record newRecord;
     private int currentVersion;

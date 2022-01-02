@@ -13,9 +13,9 @@ import ormdatabase.model.Shim;
 import java.util.Arrays;
 import java.util.List;
 
-public class ViewRecordController extends Controller {
+public class ViewRecordController {
 
-    int currentVersion = observableRecord.getShimStackSetList().size();
+    int currentVersion = Controller.observableRecord.getShimStackSetList().size();
 
     @FXML
     private Label authorLabel;
@@ -135,13 +135,13 @@ public class ViewRecordController extends Controller {
     }
 
     void viewRecord() {
-        idLabel.setText(String.valueOf(observableRecord.getId()));
-        nameLabel.setText(observableRecord.getName());
-        carLabel.setText(observableRecord.getCar());
-        dateLabel.setText(String.valueOf(observableRecord.getDate()));
-        phoneLabel.setText(observableRecord.getPhone());
-        cityLabel.setText(observableRecord.getCity());
-        favoritesCheckBox.setSelected(observableRecord.isFavorites());
+        idLabel.setText(String.valueOf(Controller.observableRecord.getId()));
+        nameLabel.setText(Controller.observableRecord.getName());
+        carLabel.setText(Controller.observableRecord.getCar());
+        dateLabel.setText(String.valueOf(Controller.observableRecord.getDate()));
+        phoneLabel.setText(Controller.observableRecord.getPhone());
+        cityLabel.setText(Controller.observableRecord.getCity());
+        favoritesCheckBox.setSelected(Controller.observableRecord.isFavorites());
         viewVersion(currentVersion);
     }
 
@@ -181,12 +181,12 @@ public class ViewRecordController extends Controller {
     }
 
     void viewVersion(int targetVersion) {
-        String versionAmount = String.valueOf(observableRecord.getShimStackSetList().size());
+        String versionAmount = String.valueOf(Controller.observableRecord.getShimStackSetList().size());
         versionLabel.setText(String.valueOf(targetVersion).concat("/").concat(versionAmount));
-        versionDateLabel.setText(String.valueOf(observableRecord.getShimStackSetList().get(targetVersion - 1).getDate()));
-        commentLabel.setText(observableRecord.getShimStackSetList().get(targetVersion - 1).getComment());
-        authorLabel.setText(observableRecord.getShimStackSetList().get(targetVersion - 1).getAuthor());
-        typeLabel.setText(observableRecord.getShimStackSetList().get(targetVersion - 1).getType());
+        versionDateLabel.setText(String.valueOf(Controller.observableRecord.getShimStackSetList().get(targetVersion - 1).getDate()));
+        commentLabel.setText(Controller.observableRecord.getShimStackSetList().get(targetVersion - 1).getComment());
+        authorLabel.setText(Controller.observableRecord.getShimStackSetList().get(targetVersion - 1).getAuthor());
+        typeLabel.setText(Controller.observableRecord.getShimStackSetList().get(targetVersion - 1).getType());
         setType(typeLabel.getText());
         viewTableValues(targetVersion);
         currentVersion = targetVersion;
@@ -200,7 +200,7 @@ public class ViewRecordController extends Controller {
     }
 
     public void viewNextVersion() {
-        int versionAmount = observableRecord.getShimStackSetList().size();
+        int versionAmount = Controller.observableRecord.getShimStackSetList().size();
         if (currentVersion + 1 <= versionAmount) {
             int targetVersion = currentVersion + 1;
             viewVersion(targetVersion);
@@ -216,9 +216,9 @@ public class ViewRecordController extends Controller {
                 );
         List<Shim> reboundList;
         List<Shim> compressionList;
-        for (int i = 0; i < observableRecord.getShimStackSetList().get(targetVersion - 1).getTypeNumber(); i++) {
-            reboundList = observableRecord.getShimStackSetList().get(targetVersion - 1).getShimStackList().get(i).getReboundStack().getStack();
-            compressionList = observableRecord.getShimStackSetList().get(targetVersion - 1).getShimStackList().get(i).getCompressionStack().getStack();
+        for (int i = 0; i < Controller.observableRecord.getShimStackSetList().get(targetVersion - 1).getTypeNumber(); i++) {
+            reboundList = Controller.observableRecord.getShimStackSetList().get(targetVersion - 1).getShimStackList().get(i).getReboundStack().getStack();
+            compressionList = Controller.observableRecord.getShimStackSetList().get(targetVersion - 1).getShimStackList().get(i).getCompressionStack().getStack();
 
             tableList.get(i).getKey().setItems(FXCollections.observableArrayList(reboundList));
             tableList.get(i).getValue().setItems(FXCollections.observableArrayList(compressionList));

@@ -15,7 +15,9 @@ import ormdatabase.model.Record;
 import java.sql.Date;
 import java.util.List;
 
-public class SearchController extends Controller{
+public class SearchController {
+
+    Controller controller;
 
     @FXML
     private TextField idTextField;
@@ -78,8 +80,8 @@ public class SearchController extends Controller{
             if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
                 if (mouseEvent.getClickCount() == 2) {
                     if (searchTable.getSelectionModel().getSelectedItem() != null) {
-                        observableRecord = searchTable.getSelectionModel().getSelectedItem();
-                        switchScene("view.fxml");
+                        Controller.observableRecord = searchTable.getSelectionModel().getSelectedItem();
+                        Controller.switchPane("view.fxml");
                     }
                 }
             }
@@ -92,5 +94,9 @@ public class SearchController extends Controller{
         List<Record> queryResults = dataSource.select(favoritesCheckBox.isSelected(), idTextField.getText(), nameTextField.getText(), carTextField.getText());
         ObservableList<Record> recordList = FXCollections.observableArrayList(queryResults);
         searchTable.setItems(recordList);
+    }
+
+    public void setController(Controller controller){
+        this.controller = controller;
     }
 }
