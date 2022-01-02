@@ -1,70 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" styleClass="border-pane" stylesheets="@css/menu.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="ormdatabase.controller.ViewRecordController">
-   <cursor>
-      <Cursor fx:constant="DEFAULT" />
-   </cursor>
-   <left>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0" styleClass="vbox" stylesheets="@css/menu.css" BorderPane.alignment="CENTER">
-         <children>
-            <Button fx:id="search" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchScene" prefHeight="40.0" prefWidth="200.0" styleClass="menu-button" stylesheets="@css/menu.css" text="Поиск" wrapText="true">
-               <cursor>
-                  <Cursor fx:constant="DEFAULT" />
-               </cursor>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </Button>
-            <Button fx:id="view" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchScene" prefHeight="40.0" prefWidth="200.0" styleClass="menu-button" stylesheets="@css/menu.css" text="Просмотр" wrapText="true">
-               <cursor>
-                  <Cursor fx:constant="DEFAULT" />
-               </cursor>
-            </Button>
-            <Button fx:id="edit" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchScene" prefHeight="40.0" prefWidth="200.0" styleClass="menu-button" stylesheets="@css/menu.css" text="Редактирование" wrapText="true">
-               <cursor>
-                  <Cursor fx:constant="DEFAULT" />
-               </cursor>
-            </Button>
-            <Button fx:id="add" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchScene" prefHeight="40.0" prefWidth="200.0" styleClass="menu-button" stylesheets="@css/menu.css" text="Добавление" wrapText="true">
-               <cursor>
-                  <Cursor fx:constant="DEFAULT" />
-               </cursor>
-            </Button>
-            <Button fx:id="visualization" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchScene" prefHeight="40.0" prefWidth="200.0" styleClass="menu-button" stylesheets="@css/menu.css" text="Визуализация" wrapText="true">
-               <cursor>
-                  <Cursor fx:constant="DEFAULT" />
-               </cursor>
-            </Button>
-            <Button fx:id="settings" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchScene" prefHeight="40.0" prefWidth="200.0" styleClass="menu-button" stylesheets="@css/menu.css" text="Настройки" wrapText="true">
-               <cursor>
-                  <Cursor fx:constant="DEFAULT" />
-               </cursor>
-            </Button>
-         </children>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </VBox>
-   </left>
-   <opaqueInsets>
-      <Insets />
-   </opaqueInsets>
-   <center>
-      <HBox prefHeight="100.0" prefWidth="200.0" styleClass="hbox" stylesheets="@css/record.css" BorderPane.alignment="CENTER">
+
+<AnchorPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ormdatabase.controller.ViewRecordController">
+   <children>
+      <HBox prefHeight="100.0" prefWidth="200.0" styleClass="hbox" stylesheets="@css/record.css">
          <children>
             <VBox alignment="TOP_CENTER" prefWidth="350.0">
                <children>
@@ -279,5 +231,5 @@
             </VBox>
          </children>
       </HBox>
-   </center>
-</BorderPane>
+   </children>
+</AnchorPane>

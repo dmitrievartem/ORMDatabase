@@ -9,14 +9,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.VBox;
 import javafx.util.Pair;
-import ormdatabase.SceneSwitcher;
 import ormdatabase.model.*;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.*;
 
-public class AddRecordController extends SceneSwitcher {
+public class AddRecordController extends Controller {
 
     private Record newRecord;
     private int currentVersion;

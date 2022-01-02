@@ -9,14 +9,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.VBox;
 import javafx.util.Pair;
-import ormdatabase.SceneSwitcher;
 import ormdatabase.model.*;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.*;
 
-public class EditRecordController extends SceneSwitcher {
+public class EditRecordController extends Controller {
 
     private int currentVersion = observableRecord.getShimStackSetList().size();
     private final DataSource dataSource = new DataSource();

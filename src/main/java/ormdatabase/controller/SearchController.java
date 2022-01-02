@@ -9,14 +9,13 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
-import ormdatabase.SceneSwitcher;
 import ormdatabase.model.DataSource;
 import ormdatabase.model.Record;
 
 import java.sql.Date;
 import java.util.List;
 
-public class SearchController extends SceneSwitcher {
+public class SearchController extends Controller{
 
     @FXML
     private TextField idTextField;
@@ -79,7 +78,8 @@ public class SearchController extends SceneSwitcher {
             if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
                 if (mouseEvent.getClickCount() == 2) {
                     if (searchTable.getSelectionModel().getSelectedItem() != null) {
-                        switchScene(searchTable.getScene(), "view.fxml", searchTable.getSelectionModel().getSelectedItem());
+                        observableRecord = searchTable.getSelectionModel().getSelectedItem();
+                        switchScene("view.fxml");
                     }
                 }
             }

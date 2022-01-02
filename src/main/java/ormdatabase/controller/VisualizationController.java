@@ -14,12 +14,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
-import ormdatabase.SceneSwitcher;
 import ormdatabase.model.Shim;
 
 import java.util.List;
 
-public class VisualizationController extends SceneSwitcher {
+public class VisualizationController extends Controller {
 
     @FXML
     private TableView<Shim> reboundTable;

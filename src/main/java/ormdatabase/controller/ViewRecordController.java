@@ -8,13 +8,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.util.Pair;
-import ormdatabase.SceneSwitcher;
 import ormdatabase.model.Shim;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class ViewRecordController extends SceneSwitcher {
+public class ViewRecordController extends Controller {
 
     int currentVersion = observableRecord.getShimStackSetList().size();
 
