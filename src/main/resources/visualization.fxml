@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -59,7 +60,7 @@
       <Insets />
    </opaqueInsets>
    <center>
-      <HBox prefHeight="100.0" prefWidth="200.0" styleClass="hbox" stylesheets="@css/record.css" BorderPane.alignment="CENTER">
+      <HBox fx:id="hBox" prefHeight="100.0" prefWidth="200.0" styleClass="hbox" stylesheets="@css/record.css" BorderPane.alignment="CENTER">
          <children>
             <VBox fx:id="vBox1" alignment="CENTER" styleClass="shim-stack-vbox">
                <children>
@@ -106,7 +107,14 @@
                   <Insets left="50.0" />
                </HBox.margin>
             </VBox>
-            <VBox fx:id="stackVisualizationVBox" alignment="CENTER" maxHeight="750.0" maxWidth="500.0" minHeight="580.0" minWidth="400.0" prefHeight="750.0" prefWidth="500.0" style="-fx-border-color: black;" />
+            <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" maxHeight="750.0" maxWidth="500.0" minWidth="500.0" style="-fx-border-color: #6d7986;">
+               <content>
+                  <VBox fx:id="stackVisualizationVBox" alignment="CENTER" maxHeight="750.0" maxWidth="500.0" spacing="10.0" />
+               </content>
+               <padding>
+                  <Insets bottom="20.0" top="20.0" />
+               </padding>
+            </ScrollPane>
          </children>
       </HBox>
    </center>

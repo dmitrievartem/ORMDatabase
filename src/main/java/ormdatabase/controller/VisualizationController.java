@@ -1,47 +1,24 @@
 package ormdatabase.controller;
 
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
 import javafx.print.PrinterJob;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import ormdatabase.SceneSwitcher;
 import ormdatabase.model.Shim;
 
-import java.net.URL;
 import java.util.List;
-import java.util.ResourceBundle;
 
 public class VisualizationController extends SceneSwitcher {
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
-    private Button search;
-
-    @FXML
-    private Button settings;
-
-    @FXML
-    private Button view;
-
-    @FXML
-    private Button visualization;
 
     @FXML
     private TableView<Shim> reboundTable;
@@ -68,13 +45,7 @@ public class VisualizationController extends SceneSwitcher {
     private TableColumn<Shim, String> compressionThicknessColumn;
 
     @FXML
-    private Pane pane;
-
-    @FXML
     private VBox stackVisualizationVBox;
-
-    @FXML
-    private BorderPane bp;
 
     PrinterJob currentPrinterJob;
 
@@ -115,28 +86,7 @@ public class VisualizationController extends SceneSwitcher {
             );
         }
 
-        stackVisualizationVBox.setAlignment(Pos.CENTER);
-
-//        pane.setMaxWidth();
-//        pane.getScaleY()
-
-//        Line line = new Line(
-//                pane.getLayoutX() + (pane.getWidth() / 2),
-//                pane.getLayoutY() + pane.getHeight() / 2,
-//                pane.getLayoutX() + 100,
-//                pane.getLayoutY() + pane.getHeight() / 2
-//        );
-
-//        Line line = new Line();
-//        line.startXProperty().bind(pane.widthProperty().divide(2));
-//        line.startYProperty().bind(pane.heightProperty().divide(2));
-//        line.endXProperty().bind(pane.widthProperty().divide(2));
-//        line.endYProperty().bind(pane.heightProperty().divide(2).add(100));
-
-        stackVisualizationVBox.setSpacing(20);
-
-
-//        pane.getChildren().add(line);
+        drawShimStack();
 
 //        Node node = bp;
 //        PrinterJob job = PrinterJob.createPrinterJob();
@@ -166,7 +116,7 @@ public class VisualizationController extends SceneSwitcher {
                 targetTable = compressionTable;
                 break;
         }
-        Shim newShim = new Shim("0", "0", "0");
+        Shim newShim = new Shim("1", "1", "0");
         ObservableList<Shim> shims = targetTable.getItems();
 
         if (id.contains("Add")) {
@@ -175,34 +125,23 @@ public class VisualizationController extends SceneSwitcher {
             shims.remove(targetTable.getItems().size() - 1);
         }
         targetTable.setItems(shims);
+        drawShimStack();
     }
-
-//    public Line newLine() {
-//        Line line = new Line();
-//        line.startXProperty().bind(pane.widthProperty().divide(2));
-//        line.startYProperty().bind(pane.heightProperty().divide(2));
-//        line.endXProperty().bind(pane.widthProperty().divide(2).add(100));
-//        line.endYProperty().bind(pane.heightProperty().divide(2));
-//        return line;
-//    }
 
     public void drawShimStack() {
         stackVisualizationVBox.getChildren().removeAll(stackVisualizationVBox.getChildren());
-        System.out.println(stackVisualizationVBox.getChildren().size());
-        for (Shim shim : reboundTable.getItems()) {
-            for (int i = 0; i < Integer.parseInt(shim.getNumber()); i++) {
-                stackVisualizationVBox.getChildren().add(
-                        new Line(0, 0, Float.parseFloat(shim.getDiameter()) * 300, 0)
-                );
-            }
-        }
-//        Line line = new Line(0, 0, 100, 0);
-//        line.setStrokeWidth(1);
-
-        Rectangle rectangle = new Rectangle(300, 100);
+        addLines(reboundTable);
+        Rectangle rectangle = new Rectangle(350, 75);
+        rectangle.setFill(Color.web("#edeff1"));
+        rectangle.setArcWidth(10);
+        rectangle.setArcHeight(10);
+        rectangle.setStroke(Color.BLACK);
         stackVisualizationVBox.getChildren().add(rectangle);
+        addLines(compressionTable);
+    }
 
-        for (Shim shim : compressionTable.getItems()) {
+    public void addLines(TableView<Shim> tableView) {
+        for (Shim shim : tableView.getItems()) {
             for (int i = 0; i < Integer.parseInt(shim.getNumber()); i++) {
                 stackVisualizationVBox.getChildren().add(
                         new Line(0, 0, Float.parseFloat(shim.getDiameter()) * 300, 0)

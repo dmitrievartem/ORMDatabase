@@ -1,7 +1,6 @@
 package ormdatabase;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -15,24 +14,6 @@ import java.util.Objects;
 public class SceneSwitcher {
 
     public static Record observableRecord;
-
-    @FXML
-    private Button search;
-
-    @FXML
-    private Button view;
-
-    @FXML
-    private Button edit;
-
-    @FXML
-    private Button add;
-
-    @FXML
-    private Button favorites;
-
-    @FXML
-    private Button settings;
 
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
