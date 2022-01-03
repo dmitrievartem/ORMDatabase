@@ -3,6 +3,7 @@ package ormdatabase.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
@@ -13,11 +14,11 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class Controller {
-    
-    public static Record observableRecord;
 
     @FXML
     public AnchorPane anchorPane;
+    
+    public static Record observableRecord;
 
     public static AnchorPane staticAnchorPane;
 
@@ -33,10 +34,8 @@ public class Controller {
 
     @FXML
     void initialize() throws IOException {
-        AnchorPane newAnchorPane =  FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("search.fxml")));
-        anchorPane.getChildren().clear();
-        anchorPane.getChildren().add(newAnchorPane);
         staticAnchorPane = anchorPane;
+        switchPane("search.fxml");
     }
 
     public void switchPane(ActionEvent event) {
@@ -47,13 +46,15 @@ public class Controller {
         switchPane(id.concat(".fxml"));
     }
 
-    public static void switchPane(String view) {
+    public void switchPane(String view) {
         try {
-//            Parent newPage = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource(view)));
-//            subScene.setRoot(newPage);
-            AnchorPane newAnchorPane =  FXMLLoader.load(Objects.requireNonNull(Controller.class.getClassLoader().getResource(view)));
+            Node node =  FXMLLoader.load(Objects.requireNonNull(Controller.class.getClassLoader().getResource(view)));
             staticAnchorPane.getChildren().clear();
-            staticAnchorPane.getChildren().add(newAnchorPane);
+            staticAnchorPane.getChildren().add(node);
+            AnchorPane.setTopAnchor(node, 0.0);
+            AnchorPane.setRightAnchor(node, 0.0);
+            AnchorPane.setBottomAnchor(node, 0.0);
+            AnchorPane.setLeftAnchor(node, 0.0);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -15,7 +15,7 @@ import ormdatabase.model.Record;
 import java.sql.Date;
 import java.util.List;
 
-public class SearchController {
+public class SearchController extends Controller{
 
     Controller controller;
 
@@ -80,8 +80,8 @@ public class SearchController {
             if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
                 if (mouseEvent.getClickCount() == 2) {
                     if (searchTable.getSelectionModel().getSelectedItem() != null) {
-                        Controller.observableRecord = searchTable.getSelectionModel().getSelectedItem();
-                        Controller.switchPane("view.fxml");
+                        observableRecord = searchTable.getSelectionModel().getSelectedItem();
+                        switchPane("view.fxml");
                     }
                 }
             }

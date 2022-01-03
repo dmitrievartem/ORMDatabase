@@ -18,7 +18,7 @@ import ormdatabase.model.Shim;
 
 import java.util.List;
 
-public class VisualizationController {
+public class VisualizationController extends Controller {
 
     @FXML
     private TableView<Shim> reboundTable;
