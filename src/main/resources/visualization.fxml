@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<HBox fx:id="hBox" alignment="CENTER" styleClass="hbox" stylesheets="@css/record.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ormdatabase.controller.VisualizationController">
+<HBox fx:id="hBox" alignment="CENTER" styleClass="hbox" stylesheets="@point/css/record.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ormdatabase.controller.VisualizationController">
    <children>
       <VBox fx:id="vBox1" alignment="CENTER" styleClass="shim-stack-vbox">
          <children>
@@ -28,8 +28,8 @@
             </TableView>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="reboundAddButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#addDeleteRow" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@css/add.css" text="+" />
-                  <Button fx:id="reboundDeleteButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#addDeleteRow" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@css/add.css" text="-" />
+                  <Button fx:id="reboundAddButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#addDeleteRow" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@point/css/add.css" text="+" />
+                  <Button fx:id="reboundDeleteButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#addDeleteRow" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@point/css/add.css" text="-" />
                </children>
             </HBox>
             <TableView fx:id="compressionTable" editable="true">
@@ -47,8 +47,8 @@
             </TableView>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="compressionAddButton" mnemonicParsing="false" onAction="#addDeleteRow" styleClass="add-delete-button" stylesheets="@css/add.css" text="+" />
-                  <Button fx:id="compressionDeleteButton" mnemonicParsing="false" onAction="#addDeleteRow" styleClass="add-delete-button" stylesheets="@css/add.css" text="-" />
+                  <Button fx:id="compressionAddButton" mnemonicParsing="false" onAction="#addDeleteRow" styleClass="add-delete-button" stylesheets="@point/css/add.css" text="+" />
+                  <Button fx:id="compressionDeleteButton" mnemonicParsing="false" onAction="#addDeleteRow" styleClass="add-delete-button" stylesheets="@point/css/add.css" text="-" />
                </children>
             </HBox>
          </children>

@@ -6,17 +6,27 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.effect.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import ormdatabase.model.Record;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
 
 public class Controller {
 
     @FXML
     public AnchorPane anchorPane;
+
+    @FXML
+    public VBox menu;
     
     public static Record observableRecord;
 
@@ -30,6 +40,7 @@ public class Controller {
         stage.setMaximized(true);
         stage.setScene(scene);
         stage.show();
+        scene.getStylesheets().add(Objects.requireNonNull(Controller.class.getResource("light.css")).toExternalForm());
     }
 
     @FXML
@@ -43,6 +54,8 @@ public class Controller {
         if (Objects.isNull(observableRecord) && (id.equals("view") || id.equals("edit"))) {
             return;
         }
+        System.out.println("switchPane ActionEvent -----------------------");
+        System.out.println(id);
         switchPane(id.concat(".fxml"));
     }
 

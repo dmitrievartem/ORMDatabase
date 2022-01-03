@@ -1,0 +1,36 @@
+#border-pane {
+    -fx-background-color: #ffffff;
+}
+
+#menu-vbox {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 10;
+    -fx-padding: 15 15 15 15;
+    -fx-effect: dropshadow(three-pass-box, #bbc4d1, 20, 0, 0, 0);
+    -fx-spacing: 10;
+}
+
+#menu-button, #add {
+    -fx-min-width: 175;
+    -fx-min-height: 40;
+ 	-fx-background-color: #ffffff;
+    -fx-background-radius: 10;
+    -fx-padding: 0 15 0 15;
+    -fx-alignment: center-left;
+    -fx-font-family: Verdana;
+    -fx-font-weight: 100;
+    -fx-font-size: 12;
+}
+
+#menu-button:hover, #menu-button:focused,
+#add:hover, #add:focused {
+    //-fx-effect: dropshadow(three-pass-box, #bbc4d1, 10, 0, 0, 0);
+    -fx-effect: dropshadow(three-pass-box, #d3dae5, 10, 0, 0, 0);
+}
+
+#anchor-pane {
+ 	-fx-background-color: #ffffff;
+    -fx-background-radius: 10;
+    -fx-padding: 15 15 15 15;
+    -fx-effect: dropshadow(three-pass-box, #bbc4d1, 20, 0, 0, 0);
+}

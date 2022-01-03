@@ -7,15 +7,14 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="border-pane" stylesheets="@css/menu.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ormdatabase.controller.Controller">
+<BorderPane id="border-pane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ormdatabase.controller.Controller">
    <cursor>
       <Cursor fx:constant="DEFAULT" />
    </cursor>
    <left>
-      <VBox alignment="CENTER" styleClass="vbox" stylesheets="@css/menu.css" BorderPane.alignment="CENTER">
+      <VBox id="menu-vbox" fx:id="menu" alignment="TOP_CENTER">
          <children>
-            <Button fx:id="search" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchPane" prefHeight="40.0" prefWidth="200.0" styleClass="menu-button" stylesheets="@css/menu.css" text="Поиск" wrapText="true">
+            <Button id="menu-button" fx:id="search" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchPane" prefHeight="40.0" prefWidth="200.0" text="Поиск" wrapText="true">
                <cursor>
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
@@ -23,37 +22,44 @@
                   <Insets />
                </VBox.margin>
             </Button>
-            <Button fx:id="view" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchPane" prefHeight="40.0" prefWidth="200.0" styleClass="menu-button" stylesheets="@css/menu.css" text="Просмотр" wrapText="true">
+            <Button id="menu-button" fx:id="view" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchPane" prefHeight="40.0" prefWidth="200.0" text="Просмотр" wrapText="true">
                <cursor>
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </Button>
-            <Button fx:id="edit" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchPane" prefHeight="40.0" prefWidth="200.0" styleClass="menu-button" stylesheets="@css/menu.css" text="Редактирование" wrapText="true">
+            <Button id="menu-button" fx:id="edit" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchPane" prefHeight="40.0" prefWidth="200.0" text="Редактирование" wrapText="true">
                <cursor>
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </Button>
-            <Button fx:id="add" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchPane" prefHeight="40.0" prefWidth="200.0" styleClass="menu-button" stylesheets="@css/menu.css" text="Добавление" wrapText="true">
+            <Button id="add" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchPane" prefHeight="40.0" prefWidth="200.0" text="Добавление" wrapText="true">
                <cursor>
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </Button>
-            <Button fx:id="visualization" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchPane" prefHeight="40.0" prefWidth="200.0" styleClass="menu-button" stylesheets="@css/menu.css" text="Визуализация" wrapText="true">
+            <Button id="menu-button" fx:id="visualization" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchPane" prefHeight="40.0" prefWidth="200.0" text="Визуализация" wrapText="true">
                <cursor>
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </Button>
-            <Button fx:id="settings" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchPane" prefHeight="40.0" prefWidth="200.0" styleClass="menu-button" stylesheets="@css/menu.css" text="Настройки" wrapText="true">
-               <cursor>
-                  <Cursor fx:constant="DEFAULT" />
-               </cursor>
-            </Button>
+            <VBox alignment="BOTTOM_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+               <children>
+                  <Button id="menu-button" fx:id="settings" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchPane" prefHeight="40.0" prefWidth="200.0" text="Настройки" wrapText="true">
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                  </Button>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </VBox>
          </children>
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
          <BorderPane.margin>
-            <Insets />
+            <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
          </BorderPane.margin>
       </VBox>
    </left>
@@ -61,9 +67,9 @@
       <Insets />
    </opaqueInsets>
    <center>
-      <AnchorPane fx:id="anchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="700.0" minWidth="1100.0" style="-fx-border-width: 2 0 0 0; -fx-border-color: #eeeff1;" BorderPane.alignment="CENTER">
+      <AnchorPane id="anchor-pane" fx:id="anchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
          <BorderPane.margin>
-            <Insets top="25.0" />
+            <Insets bottom="25.0" right="25.0" top="25.0" />
          </BorderPane.margin>
       </AnchorPane>
    </center>

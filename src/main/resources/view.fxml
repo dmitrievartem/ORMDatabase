@@ -13,11 +13,11 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<HBox styleClass="hbox" stylesheets="@css/record.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ormdatabase.controller.ViewRecordController">
+<HBox styleClass="hbox" stylesheets="@point/css/record.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ormdatabase.controller.ViewRecordController">
    <children>
       <VBox alignment="TOP_CENTER" prefWidth="350.0">
          <children>
-            <GridPane maxHeight="700.0" stylesheets="@css/record.css">
+            <GridPane maxHeight="700.0" stylesheets="@point/css/record.css">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="300.0" />
@@ -108,7 +108,7 @@
       </VBox>
       <VBox fx:id="vBox1" alignment="CENTER" styleClass="shim-stack-vbox">
          <children>
-            <TableView fx:id="reboundTable1" stylesheets="@css/record.css">
+            <TableView fx:id="reboundTable1" stylesheets="@point/css/record.css">
               <columns>
                 <TableColumn fx:id="rt1numberColumn" prefWidth="75.0" text="К" />
                 <TableColumn fx:id="rt1diameterColumn" prefWidth="76.0" text="Д" />

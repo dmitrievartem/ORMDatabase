@@ -15,15 +15,15 @@
    <children>
       <HBox alignment="CENTER" prefHeight="50.0">
          <children>
-            <Label styleClass="search-input-label" stylesheets="@css/search.css" text="Имя" />
-            <TextField fx:id="nameTextField" styleClass="search-input-text-field-name" stylesheets="@css/search.css" />
-            <Label styleClass="search-input-label" stylesheets="@css/search.css" text="Машина" />
-            <TextField fx:id="carTextField" styleClass="search-input-text-field-car" stylesheets="@css/search.css" />
-            <Label minWidth="46.0" prefHeight="20.0" prefWidth="46.0" styleClass="search-input-label" stylesheets="@css/search.css" text="ID" />
-            <TextField fx:id="idTextField" styleClass="search-input-text-field-id" stylesheets="@css/search.css" />
-            <Label styleClass="search-input-label" stylesheets="@css/search.css" text="Избранное" />
+            <Label styleClass="search-input-label" stylesheets="@point/css/search.css" text="Имя" />
+            <TextField fx:id="nameTextField" styleClass="search-input-text-field-name" stylesheets="@point/css/search.css" />
+            <Label styleClass="search-input-label" stylesheets="@point/css/search.css" text="Машина" />
+            <TextField fx:id="carTextField" styleClass="search-input-text-field-car" stylesheets="@point/css/search.css" />
+            <Label minWidth="46.0" prefHeight="20.0" prefWidth="46.0" styleClass="search-input-label" stylesheets="@point/css/search.css" text="ID" />
+            <TextField fx:id="idTextField" styleClass="search-input-text-field-id" stylesheets="@point/css/search.css" />
+            <Label styleClass="search-input-label" stylesheets="@point/css/search.css" text="Избранное" />
             <CheckBox fx:id="favoritesCheckBox" mnemonicParsing="false" />
-            <Button fx:id="searchButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#search" styleClass="search-button" stylesheets="@css/search.css" text="Искать">
+            <Button fx:id="searchButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#search" styleClass="search-button" stylesheets="@point/css/search.css" text="Искать">
                <HBox.margin>
                   <Insets left="30.0" />
                </HBox.margin>
@@ -33,7 +33,7 @@
             <Insets right="20.0" />
          </VBox.margin>
       </HBox>
-      <TableView fx:id="searchTable" stylesheets="@css/search.css">
+      <TableView fx:id="searchTable" stylesheets="@point/css/search.css">
         <columns>
             <TableColumn fx:id="idColumn" prefWidth="65.60005033016205" text="ID" />
           <TableColumn fx:id="nameColumn" prefWidth="232.00000762939453" text="ФИО" />

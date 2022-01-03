@@ -16,11 +16,11 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<HBox styleClass="hbox" stylesheets="@css/record.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ormdatabase.controller.AddRecordController">
+<HBox styleClass="hbox" stylesheets="@point/css/record.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ormdatabase.controller.AddRecordController">
    <children>
       <VBox alignment="TOP_CENTER" prefWidth="350.0">
          <children>
-            <GridPane maxHeight="700.0" stylesheets="@css/record.css">
+            <GridPane maxHeight="700.0" stylesheets="@point/css/record.css">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="300.0" />
@@ -84,12 +84,12 @@
                 <RowConstraints minHeight="60.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button mnemonicParsing="false" onAction="#deleteVersion" styleClass="version-button" stylesheets="@css/add.css" text="Удалить версию" GridPane.rowIndex="1" />
-                  <Button mnemonicParsing="false" onAction="#addVersion" styleClass="version-button" stylesheets="@css/add.css" text="Добавить версию" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Button mnemonicParsing="false" onAction="#resetTables" styleClass="version-button" stylesheets="@css/add.css" text="Сброс" GridPane.rowIndex="2" />
-                  <Button mnemonicParsing="false" onAction="#saveNewRecord" styleClass="version-button" stylesheets="@css/add.css" text="Сохранить" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Button mnemonicParsing="false" onAction="#viewPreviousVersion" styleClass="version-button" stylesheets="@css/add.css" text="Предыдущая версия" />
-                  <Button mnemonicParsing="false" onAction="#viewNextVersion" styleClass="version-button" stylesheets="@css/add.css" text="Следующая версия" GridPane.columnIndex="1" />
+                  <Button mnemonicParsing="false" onAction="#deleteVersion" styleClass="version-button" stylesheets="@point/css/add.css" text="Удалить версию" GridPane.rowIndex="1" />
+                  <Button mnemonicParsing="false" onAction="#addVersion" styleClass="version-button" stylesheets="@point/css/add.css" text="Добавить версию" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Button mnemonicParsing="false" onAction="#resetTables" styleClass="version-button" stylesheets="@point/css/add.css" text="Сброс" GridPane.rowIndex="2" />
+                  <Button mnemonicParsing="false" onAction="#saveNewRecord" styleClass="version-button" stylesheets="@point/css/add.css" text="Сохранить" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Button mnemonicParsing="false" onAction="#viewPreviousVersion" styleClass="version-button" stylesheets="@point/css/add.css" text="Предыдущая версия" />
+                  <Button mnemonicParsing="false" onAction="#viewNextVersion" styleClass="version-button" stylesheets="@point/css/add.css" text="Следующая версия" GridPane.columnIndex="1" />
                </children>
             </GridPane>
          </children>
@@ -125,8 +125,8 @@
             </TableView>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="rt1addButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#addDeleteRow" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@css/add.css" text="+" />
-                  <Button fx:id="rt1deleteButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#addDeleteRow" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@css/add.css" text="-" />
+                  <Button fx:id="rt1addButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#addDeleteRow" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@point/css/add.css" text="+" />
+                  <Button fx:id="rt1deleteButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#addDeleteRow" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@point/css/add.css" text="-" />
                </children>
             </HBox>
             <TableView fx:id="compressionTable1" editable="true">
@@ -144,8 +144,8 @@
             </TableView>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="ct1addButton" mnemonicParsing="false" onAction="#addDeleteRow" styleClass="add-delete-button" stylesheets="@css/add.css" text="+" />
-                  <Button fx:id="ct1deleteButton" mnemonicParsing="false" onAction="#addDeleteRow" styleClass="add-delete-button" stylesheets="@css/add.css" text="-" />
+                  <Button fx:id="ct1addButton" mnemonicParsing="false" onAction="#addDeleteRow" styleClass="add-delete-button" stylesheets="@point/css/add.css" text="+" />
+                  <Button fx:id="ct1deleteButton" mnemonicParsing="false" onAction="#addDeleteRow" styleClass="add-delete-button" stylesheets="@point/css/add.css" text="-" />
                </children>
             </HBox>
          </children>
@@ -167,8 +167,8 @@
             </TableView>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="rt2addButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#addDeleteRow" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@css/add.css" text="+" />
-                  <Button fx:id="rt2deleteButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#addDeleteRow" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@css/add.css" text="-" />
+                  <Button fx:id="rt2addButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#addDeleteRow" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@point/css/add.css" text="+" />
+                  <Button fx:id="rt2deleteButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#addDeleteRow" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@point/css/add.css" text="-" />
                </children>
             </HBox>
             <TableView fx:id="compressionTable2" editable="true">
@@ -186,8 +186,8 @@
             </TableView>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="ct2addButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#addDeleteRow" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@css/add.css" text="+" />
-                  <Button fx:id="ct2deleteButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#addDeleteRow" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@css/add.css" text="-" />
+                  <Button fx:id="ct2addButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#addDeleteRow" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@point/css/add.css" text="+" />
+                  <Button fx:id="ct2deleteButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#addDeleteRow" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@point/css/add.css" text="-" />
                </children>
             </HBox>
          </children>
@@ -209,8 +209,8 @@
             </TableView>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="rt3addButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#addDeleteRow" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@css/add.css" text="+" />
-                  <Button fx:id="rt3deleteButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#addDeleteRow" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@css/add.css" text="-" />
+                  <Button fx:id="rt3addButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#addDeleteRow" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@point/css/add.css" text="+" />
+                  <Button fx:id="rt3deleteButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#addDeleteRow" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@point/css/add.css" text="-" />
                </children>
             </HBox>
             <TableView fx:id="compressionTable3" editable="true">
@@ -228,8 +228,8 @@
             </TableView>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="ct3addButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#addDeleteRow" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@css/add.css" text="+" />
-                  <Button fx:id="ct3deleteButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#addDeleteRow" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@css/add.css" text="-" />
+                  <Button fx:id="ct3addButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#addDeleteRow" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@point/css/add.css" text="+" />
+                  <Button fx:id="ct3deleteButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#addDeleteRow" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@point/css/add.css" text="-" />
                </children>
             </HBox>
          </children>
@@ -251,8 +251,8 @@
             </TableView>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="rt4addButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#addDeleteRow" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@css/add.css" text="+" />
-                  <Button fx:id="rt4deleteButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#addDeleteRow" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@css/add.css" text="-" />
+                  <Button fx:id="rt4addButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#addDeleteRow" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@point/css/add.css" text="+" />
+                  <Button fx:id="rt4deleteButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#addDeleteRow" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@point/css/add.css" text="-" />
                </children>
             </HBox>
             <TableView fx:id="compressionTable4" editable="true">
@@ -270,8 +270,8 @@
             </TableView>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="ct4addButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#addDeleteRow" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@css/add.css" text="+" />
-                  <Button fx:id="ct4deleteButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#addDeleteRow" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@css/add.css" text="-" />
+                  <Button fx:id="ct4addButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#addDeleteRow" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@point/css/add.css" text="+" />
+                  <Button fx:id="ct4deleteButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#addDeleteRow" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@point/css/add.css" text="-" />
                </children>
             </HBox>
          </children>
