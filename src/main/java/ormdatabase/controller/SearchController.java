@@ -3,12 +3,15 @@ package ormdatabase.controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import ormdatabase.model.DataSource;
 import ormdatabase.model.Record;
 
@@ -18,6 +21,9 @@ import java.util.List;
 public class SearchController extends Controller{
 
     Controller controller;
+
+    @FXML
+    private HBox headerHbox;
 
     @FXML
     private TextField idTextField;
@@ -54,6 +60,10 @@ public class SearchController extends Controller{
 
     @FXML
     void initialize() {
+        for (Node node : headerHbox.getChildren()) {
+            HBox.setHgrow(node, Priority.ALWAYS);
+        }
+
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         carColumn.setCellValueFactory(new PropertyValueFactory<>("car"));

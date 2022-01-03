@@ -18,13 +18,11 @@
     -fx-padding: 0 15 0 15;
     -fx-alignment: center-left;
     -fx-font-family: Verdana;
-    -fx-font-weight: 100;
     -fx-font-size: 12;
 }
 
 #search:hover, #view:hover, #edit:hover, #add:hover, #menu-button:hover, #visualization:hover, #settings:hover,
 #search:focused, #view:focused, #edit:focused, #add:focused, #menu-button:focused, #visualization:focused, #settings:focused {
-    //-fx-effect: dropshadow(three-pass-box, #bbc4d1, 10, 0, 0, 0);
     -fx-effect: dropshadow(three-pass-box, #d3dae5, 10, 0, 0, 0);
 }
 
@@ -33,4 +31,53 @@
     -fx-background-radius: 10;
     -fx-padding: 25 25 25 25;
     -fx-effect: dropshadow(three-pass-box, #bbc4d1, 20, 0, 0, 0);
+}
+
+#search-header-hbox {
+    -fx-spacing: 25;
+}
+
+#search-id, #search-name, #search-car, #search-city {
+    -fx-min-height: 30;
+    -fx-max-height: 30;
+    -fx-background-radius: 10;
+    -fx-padding:  5 10 5 10;
+    -fx-font-family: Verdana;
+    -fx-background-insets:  0 0 0 0;
+    -fx-background-color: #ffffff;
+    -fx-effect: dropshadow(three-pass-box, #d3dae5, 10, 0, 0, 0);
+}
+
+#search-id {
+    -fx-min-width: 100;
+    -fx-pref-width: 100;
+}
+
+#search-name {
+    -fx-min-width: 200;
+    -fx-pref-width: 250;
+}
+
+#search-car, #search-city {
+    -fx-min-width: 200;
+    -fx-pref-width: 200;
+}
+
+#search-id:hover, #search-name:hover, #search-car:hover, #search-city:hover,
+#search-id:focused, #search-name:focused, #search-car:focused, #search-city:focused {
+    -fx-effect: dropshadow(three-pass-box, #bbc4d1, 10, 0, 0, 0);
+}
+
+#search-button {
+    -fx-min-width: 100;
+    -fx-min-height: 30;
+ 	-fx-background-color: #ffffff;
+    -fx-background-radius: 10;
+    -fx-font-family: Verdana;
+    -fx-font-size: 12;
+    -fx-effect: dropshadow(three-pass-box, #d3dae5, 10, 0, 0, 0);
+}
+
+#search-button:hover {
+    -fx-effect: dropshadow(three-pass-box, #bbc4d1, 10, 0, 0, 0);
 }

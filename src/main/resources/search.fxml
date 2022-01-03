@@ -3,39 +3,40 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
 <VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ormdatabase.controller.SearchController">
    <children>
-      <HBox alignment="CENTER" prefHeight="50.0">
+      <HBox id="search-header-hbox" fx:id="headerHbox" alignment="CENTER">
          <children>
-            <Label styleClass="search-input-label" stylesheets="@point/css/search.css" text="Имя" />
-            <TextField fx:id="nameTextField" styleClass="search-input-text-field-name" stylesheets="@point/css/search.css" />
-            <Label styleClass="search-input-label" stylesheets="@point/css/search.css" text="Машина" />
-            <TextField fx:id="carTextField" styleClass="search-input-text-field-car" stylesheets="@point/css/search.css" />
-            <Label minWidth="46.0" prefHeight="20.0" prefWidth="46.0" styleClass="search-input-label" stylesheets="@point/css/search.css" text="ID" />
-            <TextField fx:id="idTextField" styleClass="search-input-text-field-id" stylesheets="@point/css/search.css" />
-            <Label styleClass="search-input-label" stylesheets="@point/css/search.css" text="Избранное" />
-            <CheckBox fx:id="favoritesCheckBox" mnemonicParsing="false" />
-            <Button fx:id="searchButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#search" styleClass="search-button" stylesheets="@point/css/search.css" text="Искать">
+            <TextField id="search-id" fx:id="requestTextField" promptText="ID">
                <HBox.margin>
-                  <Insets left="30.0" />
+                  <Insets />
+               </HBox.margin></TextField>
+            <TextField id="search-name" promptText="ФИО" />
+            <TextField id="search-car" promptText="Машина" />
+            <TextField id="search-city" promptText="Город" />
+            <CheckBox fx:id="favoritesCheckBox" mnemonicParsing="false" text="Избранное" />
+            <Button id="search-button" fx:id="searchButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#search" style="-fx-font-family: Verdana; -fx-border-radius: 10;" text="Искать">
+               <HBox.margin>
+                  <Insets />
                </HBox.margin>
             </Button>
          </children>
          <VBox.margin>
-            <Insets right="20.0" />
+            <Insets bottom="25.0" />
          </VBox.margin>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
       </HBox>
-      <TableView fx:id="searchTable" stylesheets="@point/css/search.css">
+      <TableView fx:id="searchTable">
         <columns>
-            <TableColumn fx:id="idColumn" prefWidth="65.60005033016205" text="ID" />
+            <TableColumn fx:id="idColumn" minWidth="-1.0" prefWidth="65.60005033016205" text="ID" />
           <TableColumn fx:id="nameColumn" prefWidth="232.00000762939453" text="ФИО" />
           <TableColumn fx:id="carColumn" minWidth="0.0" prefWidth="0.0" text="Машина" />
             <TableColumn fx:id="dateColumn" prefWidth="75.0" text="Дата" />
