@@ -10,8 +10,8 @@
     -fx-spacing: 10;
 }
 
-#menu-button, #add {
-    -fx-min-width: 175;
+#search, #view, #edit, #add, #visualization, #settings {
+    -fx-min-width: 200;
     -fx-min-height: 40;
  	-fx-background-color: #ffffff;
     -fx-background-radius: 10;
@@ -22,8 +22,8 @@
     -fx-font-size: 12;
 }
 
-#menu-button:hover, #menu-button:focused,
-#add:hover, #add:focused {
+#search:hover, #view:hover, #edit:hover, #add:hover, #menu-button:hover, #visualization:hover, #settings:hover,
+#search:focused, #view:focused, #edit:focused, #add:focused, #menu-button:focused, #visualization:focused, #settings:focused {
     //-fx-effect: dropshadow(three-pass-box, #bbc4d1, 10, 0, 0, 0);
     -fx-effect: dropshadow(three-pass-box, #d3dae5, 10, 0, 0, 0);
 }
@@ -31,6 +31,6 @@
 #anchor-pane {
  	-fx-background-color: #ffffff;
     -fx-background-radius: 10;
-    -fx-padding: 15 15 15 15;
+    -fx-padding: 25 25 25 25;
     -fx-effect: dropshadow(three-pass-box, #bbc4d1, 20, 0, 0, 0);
 }

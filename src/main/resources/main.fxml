@@ -14,7 +14,7 @@
    <left>
       <VBox id="menu-vbox" fx:id="menu" alignment="TOP_CENTER">
          <children>
-            <Button id="menu-button" fx:id="search" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchPane" prefHeight="40.0" prefWidth="200.0" text="Поиск" wrapText="true">
+            <Button id="search" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchPane" text="Поиск" wrapText="true">
                <cursor>
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
@@ -22,29 +22,29 @@
                   <Insets />
                </VBox.margin>
             </Button>
-            <Button id="menu-button" fx:id="view" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchPane" prefHeight="40.0" prefWidth="200.0" text="Просмотр" wrapText="true">
+            <Button id="view" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchPane" text="Просмотр" wrapText="true">
                <cursor>
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </Button>
-            <Button id="menu-button" fx:id="edit" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchPane" prefHeight="40.0" prefWidth="200.0" text="Редактирование" wrapText="true">
+            <Button id="edit" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchPane" text="Редактирование" wrapText="true">
                <cursor>
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </Button>
-            <Button id="add" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchPane" prefHeight="40.0" prefWidth="200.0" text="Добавление" wrapText="true">
+            <Button id="add" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchPane" text="Добавление" wrapText="true">
                <cursor>
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </Button>
-            <Button id="menu-button" fx:id="visualization" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchPane" prefHeight="40.0" prefWidth="200.0" text="Визуализация" wrapText="true">
+            <Button id="visualization" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchPane" text="Визуализация" wrapText="true">
                <cursor>
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </Button>
             <VBox alignment="BOTTOM_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
                <children>
-                  <Button id="menu-button" fx:id="settings" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchPane" prefHeight="40.0" prefWidth="200.0" text="Настройки" wrapText="true">
+                  <Button id="settings" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchPane" text="Настройки" wrapText="true">
                      <cursor>
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>
