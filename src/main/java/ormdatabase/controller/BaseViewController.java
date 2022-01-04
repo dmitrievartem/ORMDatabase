@@ -7,10 +7,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.util.Pair;
 import ormdatabase.model.*;
 
+import java.io.File;
 import java.time.ZoneId;
 import java.util.*;
 
@@ -657,6 +660,14 @@ public class BaseViewController extends Controller {
         );
         for(Button button : buttonList) {
             button.setOnAction(this::resetTable);
+            System.out.println(System.getProperty("user.dir"));
+            System.out.println(new File(".").getAbsolutePath());
+
+//            Image icon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("src/main/resources/images/reset.png")));
+//            Image icon = new Image("file:reset.png");
+            Image icon = new Image(new File("reset.png").toURI().toString());
+            Objects.requireNonNull(icon);
+            button.setGraphic(new ImageView(icon));
         }
     }
 

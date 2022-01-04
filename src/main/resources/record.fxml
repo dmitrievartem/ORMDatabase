@@ -55,20 +55,20 @@
                   <Label text="Тип настройки" GridPane.rowIndex="8" />
                   <Label text="Автор" GridPane.rowIndex="11" />
                   <Label text="Дата версии" GridPane.rowIndex="9" />
-                  <TextField fx:id="name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField fx:id="car" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField fx:id="phone" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <TextField fx:id="city" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <TextField fx:id="author" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                  <TextField id="record-field" fx:id="name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField id="record-field" fx:id="car" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField id="record-field" fx:id="phone" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField id="record-field" fx:id="city" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <TextField id="record-field" fx:id="author" GridPane.columnIndex="1" GridPane.rowIndex="11" />
                   <DatePicker fx:id="date" editable="false" prefHeight="30.0" prefWidth="336.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <ComboBox fx:id="type" prefHeight="30.0" prefWidth="313.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                  <ComboBox id="record-field" fx:id="type" prefHeight="30.0" prefWidth="313.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                   <Label layoutX="10.0" layoutY="300.0" text="Комментарий" GridPane.rowIndex="10" />
                   <DatePicker fx:id="versionDate" prefHeight="30.0" prefWidth="336.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
                   <Label text="Избранное" GridPane.rowIndex="6" />
                   <CheckBox fx:id="favorites" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <Label text="Id" />
                   <Label fx:id="id" text="Id" GridPane.columnIndex="1" />
-                  <TextArea fx:id="comment" prefHeight="100.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                  <TextArea id="record-comment-area" fx:id="comment" prefHeight="100.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="10" />
                </children>
             </GridPane>
             <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
@@ -128,7 +128,7 @@
                      <children>
                         <Button id="table-button" fx:id="rt1addButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@point/css/add.css" text="+" />
                         <Button id="table-button" fx:id="rt1deleteButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@point/css/add.css" text="-" />
-                        <Button id="table-button" fx:id="rt1resetButton" mnemonicParsing="false" text="Сброс" />
+                        <Button id="table-button" fx:id="rt1resetButton" mnemonicParsing="false" />
                      </children>
                      <VBox.margin>
                         <Insets />
