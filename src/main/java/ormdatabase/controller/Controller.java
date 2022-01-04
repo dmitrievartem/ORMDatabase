@@ -40,7 +40,7 @@ public class Controller {
     @FXML
     void initialize() {
         staticAnchorPane = anchorPane;
-        switchPane("search.fxml");
+        switchPane("search");
     }
 
     public void switchPane(ActionEvent event) {
@@ -49,12 +49,22 @@ public class Controller {
             staticAnchorPane.getChildren().clear();
             return;
         }
-        switchPane(id.concat(".fxml"));
+        switchPane(id);
     }
 
-    public void switchPane(String view) {
+    public void switchPane(String id) {
+        System.out.println("switchPane-------------------------");
         try {
-            Node node = FXMLLoader.load(Objects.requireNonNull(Controller.class.getClassLoader().getResource(view)));
+            Node node;
+            if (id.equals("view")) {
+                node = getLoaderWithController("record.fxml", new ViewController()).load();
+            } else if (id.equals("edit")) {
+                node = getLoaderWithController("record.fxml", new EditController()).load();
+            } else if (id.equals("add")) {
+                node = getLoaderWithController("record.fxml", new AddController()).load();
+            } else {
+                node = FXMLLoader.load(Objects.requireNonNull(Controller.class.getClassLoader().getResource(id.concat(".fxml"))));
+            }
             staticAnchorPane.getChildren().clear();
             staticAnchorPane.getChildren().add(node);
             AnchorPane.setTopAnchor(node, 0.0);
@@ -64,5 +74,12 @@ public class Controller {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private FXMLLoader getLoaderWithController(String view, Object controller) {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Objects.requireNonNull(Controller.class.getClassLoader().getResource(view)));
+        loader.setController(controller);
+        return loader;
     }
 }

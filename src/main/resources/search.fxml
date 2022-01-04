@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
+
 <VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ormdatabase.controller.SearchController">
    <children>
       <HBox id="search-header-hbox" fx:id="headerHbox" alignment="CENTER">
@@ -16,14 +17,16 @@
             <TextField id="search-id" fx:id="idTextField" promptText="ID">
                <HBox.margin>
                   <Insets />
-               </HBox.margin></TextField>
+               </HBox.margin>
+            </TextField>
             <TextField id="search-name" fx:id="nameTextField" promptText="ФИО" />
             <TextField id="search-car" fx:id="carTextField" promptText="Машина" />
             <TextField id="search-city" fx:id="cityTextField" promptText="Город" />
             <CheckBox id="search-favorites" fx:id="favoritesCheckBox" mnemonicParsing="false" text="Избранное">
                <HBox.margin>
                   <Insets />
-               </HBox.margin></CheckBox>
+               </HBox.margin>
+            </CheckBox>
             <Button id="search-button" fx:id="searchButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#search" style="-fx-font-family: Verdana; -fx-border-radius: 10;" text="Искать">
                <HBox.margin>
                   <Insets />

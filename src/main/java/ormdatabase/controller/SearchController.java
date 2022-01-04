@@ -23,37 +23,37 @@ public class SearchController extends Controller{
     Controller controller;
 
     @FXML
-    private HBox headerHbox;
+    protected HBox headerHbox;
 
     @FXML
-    private TextField idTextField;
+    protected TextField idTextField;
 
     @FXML
-    private TextField nameTextField;
+    protected TextField nameTextField;
 
     @FXML
-    private TextField carTextField;
+    protected TextField carTextField;
 
     @FXML
-    private TextField cityTextField;
+    protected TextField cityTextField;
 
     @FXML
-    private CheckBox favoritesCheckBox;
+    protected CheckBox favoritesCheckBox;
 
     @FXML
-    private TableView<Record> searchTable;
+    protected TableView<Record> searchTable;
 
     @FXML
-    private TableColumn<Record, String> idColumn;
+    protected TableColumn<Record, String> idColumn;
 
     @FXML
-    private TableColumn<Record, String> nameColumn;
+    protected TableColumn<Record, String> nameColumn;
 
     @FXML
-    private TableColumn<Record, String> carColumn;
+    protected TableColumn<Record, String> carColumn;
 
     @FXML
-    private TableColumn<Record, Date> dateColumn;
+    protected TableColumn<Record, Date> dateColumn;
 
     @FXML
     private TableColumn<Record, String> phoneNumberColumn;
@@ -94,7 +94,7 @@ public class SearchController extends Controller{
                 if (mouseEvent.getClickCount() == 2) {
                     if (searchTable.getSelectionModel().getSelectedItem() != null) {
                         observableRecord = searchTable.getSelectionModel().getSelectedItem();
-                        switchPane("view.fxml");
+                        switchPane("view");
                     }
                 }
             }

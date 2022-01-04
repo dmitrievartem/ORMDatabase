@@ -167,7 +167,7 @@
 
 #record-button {
     -fx-min-width: 150;
-    -fx-min-height: 40;
+    -fx-min-height: 30;
  	-fx-background-color: #ffffff;
     -fx-background-radius: 10;
     -fx-font-size: 12;
@@ -179,14 +179,12 @@
 }
 
 #table-button {
-    -fx-margin: 10 10 10 10;
     -fx-min-width: 25;
     -fx-min-height: 25;
-    //-fx-max-width: 25;
     -fx-max-height: 25;
     -fx-background-color: #ffffff;
     -fx-background-radius: 10;
-    -fx-font-size: 12;
+    -fx-font-size: 10;
     -fx-effect: dropshadow(three-pass-box, #d3dae5, 10, 0, 0, 0);
 }
 
