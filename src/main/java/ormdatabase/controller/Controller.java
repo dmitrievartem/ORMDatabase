@@ -47,18 +47,8 @@ public class Controller {
         String id = ((Button) event.getSource()).getId();
         if (Objects.isNull(observableRecord) && (id.equals("view") || id.equals("edit"))) {
             staticAnchorPane.getChildren().clear();
-//            Label label = new Label("Сначала необходимо выбрать запись");
-//            label.setFont(Font.font("Verdana", 14.0));
-//            anchorPane.getChildren().add(label);
-//            label.setAlignment(Pos.CENTER);
-//            AnchorPane.setTopAnchor(label, 0.0);
-//            AnchorPane.setRightAnchor(label, 0.0);
-//            AnchorPane.setBottomAnchor(label, 0.0);
-//            AnchorPane.setLeftAnchor(label, 0.0);
             return;
         }
-        System.out.println("switchPane ActionEvent -----------------------");
-        System.out.println(id);
         switchPane(id.concat(".fxml"));
     }
 
