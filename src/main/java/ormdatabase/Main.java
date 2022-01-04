@@ -1,14 +1,15 @@
 package ormdatabase;
 
 import javafx.stage.Stage;
+import ormdatabase.controller.Controller;
 
 import java.io.IOException;
 
 public class Main extends javafx.application.Application {
     @Override
     public void start(Stage stage) throws IOException {
-        SceneSwitcher sceneSwitcher = new SceneSwitcher();
-        sceneSwitcher.start(stage);
+        Controller controller = new Controller();
+        controller.start(stage);
     }
 
     public static void main(String[] args) {
