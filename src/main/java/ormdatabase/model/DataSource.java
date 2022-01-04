@@ -18,6 +18,7 @@ public class DataSource {
                 .concat(param[0].isBlank() ? "" : String.format(" AND r.id = %d", Long.parseLong(param[0])))
                 .concat(param[1].isBlank() ? "" : " AND r.uppercaseName LIKE '%".concat(param[1].toUpperCase(Locale.ROOT)).concat("%'"))
                 .concat(param[2].isBlank() ? "" : " AND r.uppercaseCar LIKE '%".concat(param[2].toUpperCase(Locale.ROOT)).concat("%'"))
+                .concat(param[3].isBlank() ? "" : " AND r.uppercaseCity LIKE '%".concat(param[3].toUpperCase(Locale.ROOT)).concat("%'"))
                 .concat(favorites ? " AND r.favorites = true" : "");
 
         TypedQuery<Record> selectQuery = em.createQuery(queryString, Record.class);

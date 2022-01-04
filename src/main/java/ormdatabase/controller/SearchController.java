@@ -35,6 +35,9 @@ public class SearchController extends Controller{
     private TextField carTextField;
 
     @FXML
+    private TextField cityTextField;
+
+    @FXML
     private CheckBox favoritesCheckBox;
 
     @FXML
@@ -71,20 +74,20 @@ public class SearchController extends Controller{
         phoneNumberColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
         cityColumn.setCellValueFactory(new PropertyValueFactory<>("city"));
 
-        idColumn.setMinWidth(65);
-        idColumn.setMaxWidth(65);
-        idColumn.setPrefWidth(65);
-        nameColumn.setMinWidth(200);
-        nameColumn.setPrefWidth(200);
-        dateColumn.setMinWidth(150);
-        dateColumn.setMaxWidth(150);
-        dateColumn.setPrefWidth(150);
-        carColumn.setMinWidth(250);
-        carColumn.setMaxWidth(250);
-        carColumn.setPrefWidth(250);
-        phoneNumberColumn.setMinWidth(250);
-        phoneNumberColumn.setMaxWidth(250);
-        phoneNumberColumn.setPrefWidth(250);
+//        idColumn.setMinWidth(65);
+//        idColumn.setMaxWidth(65);
+//        idColumn.setPrefWidth(65);
+//        nameColumn.setMinWidth(200);
+//        nameColumn.setPrefWidth(200);
+//        dateColumn.setMinWidth(150);
+//        dateColumn.setMaxWidth(150);
+//        dateColumn.setPrefWidth(150);
+//        carColumn.setMinWidth(250);
+//        carColumn.setMaxWidth(250);
+//        carColumn.setPrefWidth(250);
+//        phoneNumberColumn.setMinWidth(250);
+//        phoneNumberColumn.setMaxWidth(250);
+//        phoneNumberColumn.setPrefWidth(250);
 
         searchTable.setOnMouseClicked(mouseEvent -> {
             if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
@@ -101,7 +104,7 @@ public class SearchController extends Controller{
 
     public void search() {
         DataSource dataSource = new DataSource();
-        List<Record> queryResults = dataSource.select(favoritesCheckBox.isSelected(), idTextField.getText(), nameTextField.getText(), carTextField.getText());
+        List<Record> queryResults = dataSource.select(favoritesCheckBox.isSelected(), idTextField.getText(), nameTextField.getText(), carTextField.getText(), cityTextField.getText());
         ObservableList<Record> recordList = FXCollections.observableArrayList(queryResults);
         searchTable.setItems(recordList);
     }
