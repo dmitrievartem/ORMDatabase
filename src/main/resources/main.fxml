@@ -10,7 +10,7 @@
 
 <ScrollPane cache="true" fitToHeight="true" fitToWidth="true" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ormdatabase.controller.Controller">
    <content>
-      <BorderPane id="border-pane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+      <BorderPane id="border-pane" fx:id="borderPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>
@@ -47,7 +47,7 @@
                   </Button>
                   <VBox alignment="BOTTOM_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Button id="print" alignment="CENTER" cache="true" contentDisplay="CENTER" mnemonicParsing="false" text="Печать страницы" wrapText="true">
+                        <Button id="print" alignment="CENTER" cache="true" contentDisplay="CENTER" mnemonicParsing="false" onAction="#printPage" text="Печать страницы" wrapText="true">
                            <cursor>
                               <Cursor fx:constant="DEFAULT" />
                            </cursor>

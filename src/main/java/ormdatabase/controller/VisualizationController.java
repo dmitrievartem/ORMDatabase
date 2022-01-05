@@ -4,7 +4,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
-import javafx.print.PrinterJob;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -47,10 +46,7 @@ public class VisualizationController extends Controller {
     @FXML
     private VBox stackVisualizationVBox;
 
-    int outerSpacing = 10;
     int innerSpacing = 5;
-
-    PrinterJob currentPrinterJob;
 
     @FXML
     void initialize() {
@@ -90,16 +86,6 @@ public class VisualizationController extends Controller {
         }
 
         drawShimStack();
-
-//        Node node = bp;
-//        PrinterJob job = PrinterJob.createPrinterJob();
-//        if (job != null) {
-//            boolean success = job.printPage(stackVisualizationVBox);
-//            if (success) {
-//                job.endJob();
-//            }
-//        }
-
     }
 
     @FXML

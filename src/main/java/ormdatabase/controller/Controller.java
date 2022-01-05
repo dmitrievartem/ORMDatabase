@@ -3,11 +3,12 @@ package ormdatabase.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.print.*;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import ormdatabase.model.Record;
 
@@ -45,6 +46,8 @@ public class Controller {
 
     private static Button currentPageButton;
 
+    public Stage stage1;
+
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getClassLoader().getResource("main.fxml"));
@@ -54,6 +57,7 @@ public class Controller {
         stage.setMaximized(true);
         stage.setScene(scene);
         stage.show();
+        stage1 = stage;
     }
 
     @FXML
@@ -114,5 +118,22 @@ public class Controller {
         buttonFrom.setDisable(false);
         buttonTo.setDisable(true);
         currentPageButton = buttonTo;
+    }
+
+    public void printPage() {
+        Stage stage = (Stage) anchorPane.getScene().getWindow();
+        stage.setHeight(850);
+        stage.setWidth(1480);
+        PrinterJob job = PrinterJob.createPrinterJob();
+        if (job != null) {
+            PageLayout pageLayout = job.getPrinter().createPageLayout(Paper.A3, PageOrientation.REVERSE_LANDSCAPE, 0, 0, 0, 0);
+            boolean success = job.printPage(pageLayout, anchorPane.getChildren().get(0));
+            if (success) {
+                job.endJob();
+            }
+            stage.setMaximized(false);
+            stage.setMaximized(true);
+            stage.show();
+        }
     }
 }
