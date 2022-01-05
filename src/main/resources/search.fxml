@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="TOP_CENTER" stylesheets="@ormdatabase/controller/light.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ormdatabase.controller.SearchController">
+<VBox alignment="TOP_CENTER" stylesheets="@ormdatabase/controller/light.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="ormdatabase.controller.SearchController">
    <children>
       <HBox id="search-header-hbox" fx:id="headerHbox" alignment="CENTER">
          <children>

@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox fx:id="hBox" alignment="CENTER" spacing="50.0" stylesheets="@ormdatabase/controller/light.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ormdatabase.controller.VisualizationController">
+<HBox fx:id="hBox" alignment="CENTER" spacing="50.0" stylesheets="@ormdatabase/controller/light.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="ormdatabase.controller.VisualizationController">
    <children>
       <VBox fx:id="vBox1" alignment="CENTER" spacing="30.0" styleClass="shim-stack-vbox">
          <children>

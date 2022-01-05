@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox alignment="CENTER" spacing="10.0" style="-fx-background-color: #ffffff;" stylesheets="@ormdatabase/controller/light.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<HBox alignment="CENTER" spacing="10.0" style="-fx-background-color: #ffffff;" stylesheets="@ormdatabase/controller/light.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
    <children>
       <VBox alignment="TOP_CENTER" prefWidth="300.0">
          <children>
@@ -126,8 +126,8 @@
                   </TableView>
                   <HBox alignment="CENTER" spacing="10.0">
                      <children>
-                        <Button id="table-button" fx:id="rt1addButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@point/css/add.css" text="+" />
-                        <Button id="table-button" fx:id="rt1deleteButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@point/css/add.css" text="-" />
+                        <Button id="table-button" fx:id="rt1addButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" text="+" />
+                        <Button id="table-button" fx:id="rt1deleteButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" text="-" />
                         <Button id="table-button" fx:id="rt1resetButton" mnemonicParsing="false" />
                      </children>
                      <VBox.margin>
@@ -150,8 +150,8 @@
                   </TableView>
                   <HBox alignment="CENTER" spacing="10.0">
                      <children>
-                        <Button id="table-button" fx:id="ct1addButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@point/css/add.css" text="+" />
-                        <Button id="table-button" fx:id="ct1deleteButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@point/css/add.css" text="-" />
+                        <Button id="table-button" fx:id="ct1addButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" text="+" />
+                        <Button id="table-button" fx:id="ct1deleteButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" text="-" />
                         <Button id="table-button" fx:id="ct1resetButton" mnemonicParsing="false" text="Сброс" />
                      </children>
                      <VBox.margin>
@@ -178,8 +178,8 @@
                   </TableView>
                   <HBox alignment="CENTER" spacing="10.0">
                      <children>
-                        <Button id="table-button" fx:id="rt2addButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@point/css/add.css" text="+" />
-                        <Button id="table-button" fx:id="rt2deleteButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@point/css/add.css" text="-" />
+                        <Button id="table-button" fx:id="rt2addButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" text="+" />
+                        <Button id="table-button" fx:id="rt2deleteButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" text="-" />
                         <Button id="table-button" fx:id="rt2resetButton" mnemonicParsing="false" text="Сброс" />
                      </children>
                      <VBox.margin>
@@ -202,8 +202,8 @@
                   </TableView>
                   <HBox alignment="CENTER" spacing="10.0">
                      <children>
-                        <Button id="table-button" fx:id="ct2addButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@point/css/add.css" text="+" />
-                        <Button id="table-button" fx:id="ct2deleteButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@point/css/add.css" text="-" />
+                        <Button id="table-button" fx:id="ct2addButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" text="+" />
+                        <Button id="table-button" fx:id="ct2deleteButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" text="-" />
                         <Button id="table-button" fx:id="ct2resetButton" mnemonicParsing="false" text="Сброс" />
                      </children>
                      <VBox.margin>
@@ -230,8 +230,8 @@
                   </TableView>
                   <HBox alignment="CENTER" spacing="10.0">
                      <children>
-                        <Button id="table-button" fx:id="rt3addButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@point/css/add.css" text="+" />
-                        <Button id="table-button" fx:id="rt3deleteButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@point/css/add.css" text="-" />
+                        <Button id="table-button" fx:id="rt3addButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" text="+" />
+                        <Button id="table-button" fx:id="rt3deleteButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" text="-" />
                         <Button id="table-button" fx:id="rt3resetButton" mnemonicParsing="false" text="Сброс" />
                      </children>
                      <VBox.margin>
@@ -254,8 +254,8 @@
                   </TableView>
                   <HBox alignment="CENTER" spacing="10.0">
                      <children>
-                        <Button id="table-button" fx:id="ct3addButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@point/css/add.css" text="+" />
-                        <Button id="table-button" fx:id="ct3deleteButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@point/css/add.css" text="-" />
+                        <Button id="table-button" fx:id="ct3addButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" text="+" />
+                        <Button id="table-button" fx:id="ct3deleteButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" text="-" />
                         <Button id="table-button" fx:id="ct3resetButton" mnemonicParsing="false" text="Сброс" />
                      </children>
                      <VBox.margin>
@@ -282,8 +282,8 @@
                   </TableView>
                   <HBox alignment="CENTER" spacing="10.0">
                      <children>
-                        <Button id="table-button" fx:id="rt4addButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@point/css/add.css" text="+" />
-                        <Button id="table-button" fx:id="rt4deleteButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" stylesheets="@point/css/add.css" text="-" />
+                        <Button id="table-button" fx:id="rt4addButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" text="+" />
+                        <Button id="table-button" fx:id="rt4deleteButton" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" text="-" />
                         <Button id="table-button" fx:id="rt4resetButton" mnemonicParsing="false" text="Сброс" />
                      </children>
                      <VBox.margin>

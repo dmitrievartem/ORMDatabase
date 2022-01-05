@@ -325,25 +325,6 @@ public class BaseViewController extends Controller {
         currentVersion = targetVersion;
     }
 
-//    protected void viewPreviousVersion() {
-//        System.out.println("viewPreviousVersion-----------------------");
-//
-//        if (currentVersion - 1 > 0) {
-//            int targetVersion = currentVersion - 1;
-//            viewVersion(observableRecord, targetVersion);
-//        }
-//    }
-//
-//    protected void viewNextVersion() {
-//        System.out.println("viewNextVersion-----------------------");
-//
-//        int versionAmount = observableRecord.getShimStackSetList().size();
-//        if (currentVersion + 1 <= versionAmount) {
-//            int targetVersion = currentVersion + 1;
-//            viewVersion(observableRecord, targetVersion);
-//        }
-//    }
-
     public void viewPreviousVersion(Record record) {
         if (currentVersion - 1 > 0 && isTablesValid()) {
             saveVersion(record);
@@ -393,11 +374,8 @@ public class BaseViewController extends Controller {
             tableView.setEditable(false);
         }
 
-//        date.setEditable(false);
         date.setDisable(true);
-//        type.setEditable(false);
         type.setDisable(true);
-//        versionDate.setEditable(false);
         versionDate.setDisable(true);
 
         deleteVersion.setDisable(true);
@@ -660,11 +638,6 @@ public class BaseViewController extends Controller {
         );
         for(Button button : buttonList) {
             button.setOnAction(this::resetTable);
-            System.out.println(System.getProperty("user.dir"));
-            System.out.println(new File(".").getAbsolutePath());
-
-//            Image icon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("src/main/resources/images/reset.png")));
-//            Image icon = new Image("file:reset.png");
             Image icon = new Image(new File("reset.png").toURI().toString());
             Objects.requireNonNull(icon);
             button.setGraphic(new ImageView(icon));

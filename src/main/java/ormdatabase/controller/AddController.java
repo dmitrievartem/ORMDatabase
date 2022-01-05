@@ -24,6 +24,7 @@ public class AddController extends BaseViewController {
 
         previousVersion.setOnAction(event -> viewPreviousVersion(newRecord));
         nextVersion.setOnAction(event -> viewNextVersion(newRecord));
+        editRecord.setDisable(true);
 //        editRecord.setOnAction(event -> switchPane(add, "edit"));
         deleteVersion.setOnAction(event -> deleteVersion(newRecord));
         addVersion.setOnAction(event -> addVersion(newRecord));
