@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-
 <ScrollPane cache="true" fitToHeight="true" fitToWidth="true" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ormdatabase.controller.Controller">
    <content>
       <BorderPane id="border-pane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
@@ -16,9 +15,9 @@
             <Cursor fx:constant="DEFAULT" />
          </cursor>
          <left>
-            <VBox id="menu-vbox" fx:id="menu" alignment="TOP_CENTER" cache="true">
+            <VBox id="menu-vbox" fx:id="menu" alignment="TOP_CENTER" cache="true" spacing="10.0">
                <children>
-                  <Button id="search" cache="true" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchPane" text="Поиск" wrapText="true">
+                  <Button id="search" fx:id="search" cache="true" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchPane" text="Поиск" wrapText="true">
                      <cursor>
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>
@@ -26,29 +25,34 @@
                         <Insets />
                      </VBox.margin>
                   </Button>
-                  <Button id="view" cache="true" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchPane" text="Просмотр" wrapText="true">
+                  <Button id="view" fx:id="view" cache="true" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchPane" text="Просмотр" wrapText="true">
                      <cursor>
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>
                   </Button>
-                  <Button id="edit" cache="true" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchPane" text="Редактирование" wrapText="true">
+                  <Button id="edit" fx:id="edit" cache="true" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchPane" text="Редактирование" wrapText="true">
                      <cursor>
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>
                   </Button>
-                  <Button id="add" cache="true" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchPane" text="Добавление" wrapText="true">
+                  <Button id="add" fx:id="add" cache="true" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchPane" text="Добавление" wrapText="true">
                      <cursor>
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>
                   </Button>
-                  <Button id="visualization" cache="true" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchPane" text="Визуализация" wrapText="true">
+                  <Button id="visualization" fx:id="visualization" cache="true" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchPane" text="Визуализация" wrapText="true">
                      <cursor>
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>
                   </Button>
-                  <VBox alignment="BOTTOM_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+                  <VBox alignment="BOTTOM_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Button id="settings" alignment="CENTER" cache="true" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchPane" text="Настройки" wrapText="true">
+                        <Button id="print" alignment="CENTER" cache="true" contentDisplay="CENTER" mnemonicParsing="false" text="Печать страницы" wrapText="true">
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
+                        </Button>
+                        <Button id="backup" alignment="CENTER" cache="true" contentDisplay="CENTER" mnemonicParsing="false" text="Бэкап базы данных" wrapText="true">
                            <cursor>
                               <Cursor fx:constant="DEFAULT" />
                            </cursor>

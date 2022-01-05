@@ -60,7 +60,7 @@
                   <TextField id="record-field" fx:id="phone" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <TextField id="record-field" fx:id="city" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <TextField id="record-field" fx:id="author" GridPane.columnIndex="1" GridPane.rowIndex="11" />
-                  <DatePicker fx:id="date" editable="false" prefHeight="30.0" prefWidth="336.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <DatePicker fx:id="date" prefHeight="30.0" prefWidth="336.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <ComboBox id="record-field" fx:id="type" prefHeight="30.0" prefWidth="313.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                   <Label layoutX="10.0" layoutY="300.0" text="Комментарий" GridPane.rowIndex="10" />
                   <DatePicker fx:id="versionDate" prefHeight="30.0" prefWidth="336.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
@@ -68,7 +68,7 @@
                   <CheckBox fx:id="favorites" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <Label text="Id" />
                   <Label fx:id="id" text="Id" GridPane.columnIndex="1" />
-                  <TextArea id="record-comment-area" fx:id="comment" prefHeight="100.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                  <TextArea fx:id="comment" prefHeight="100.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="10" />
                </children>
             </GridPane>
             <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">

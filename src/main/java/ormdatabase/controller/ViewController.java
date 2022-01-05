@@ -10,7 +10,10 @@ public class ViewController extends BaseViewController {
         setColumnProperties();
         previousVersion.setOnAction(event -> viewPreviousVersion(observableRecord));
         nextVersion.setOnAction(event -> viewNextVersion(observableRecord));
-        editRecord.setOnAction(event -> switchPane("edit"));
+        editRecord.setOnAction(event -> {
+            switchPane("edit");
+            switchButton(staticView, staticEdit);
+        });
         disableInputs();
         viewRecord(observableRecord);
     }

@@ -135,10 +135,10 @@ public class VisualizationController extends Controller {
         stackVisualizationVBox.getChildren().removeAll(stackVisualizationVBox.getChildren());
         addLines(reboundTable);
         Rectangle rectangle = new Rectangle(350, 75);
-        rectangle.setFill(Color.web("#edeff1"));
+        rectangle.setFill(Color.web("#ffffff"));
         rectangle.setArcWidth(10);
         rectangle.setArcHeight(10);
-        rectangle.setStroke(Color.BLACK);
+        rectangle.setStroke(Color.web("#bbc4d1"));
         stackVisualizationVBox.getChildren().add(rectangle);
         addLines(compressionTable);
     }

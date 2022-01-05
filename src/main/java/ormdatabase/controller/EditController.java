@@ -19,7 +19,7 @@ public class EditController extends BaseViewController {
 
         previousVersion.setOnAction(event -> viewPreviousVersion(observableRecord));
         nextVersion.setOnAction(event -> viewNextVersion(observableRecord));
-        editRecord.setOnAction(event -> switchPane("edit"));
+//        editRecord.setOnAction(event -> switchPane(edit, "edit"));
         deleteVersion.setOnAction(event -> deleteVersion(observableRecord));
         addVersion.setOnAction(event -> addVersion(observableRecord));
         save.setOnAction(event -> save(observableRecord));

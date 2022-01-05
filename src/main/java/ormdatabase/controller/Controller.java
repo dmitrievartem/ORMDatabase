@@ -19,12 +19,31 @@ public class Controller {
     @FXML
     public AnchorPane anchorPane;
 
+    public static AnchorPane staticAnchorPane;
+
     @FXML
-    public VBox menu;
+    public Button search;
+
+    public static Button staticSearch;
+
+    @FXML
+    public Button view;
+
+    public static Button staticView;
+
+    @FXML
+    public Button edit;
+
+    public static Button staticEdit;
+
+    @FXML
+    public Button add;
+
+    public static Button staticAdd;
 
     public static Record observableRecord;
 
-    public static AnchorPane staticAnchorPane;
+    private static Button currentPageButton;
 
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
@@ -40,11 +59,20 @@ public class Controller {
     @FXML
     void initialize() {
         staticAnchorPane = anchorPane;
+        currentPageButton = search;
+        staticSearch = search;
+        staticView = view;
+        staticEdit = edit;
+        staticAdd = add;
+        currentPageButton.setDisable(true);
         switchPane("search");
     }
 
     public void switchPane(ActionEvent event) {
-        String id = ((Button) event.getSource()).getId();
+        currentPageButton.setDisable(false);
+        currentPageButton = ((Button) event.getSource());
+        currentPageButton.setDisable(true);
+        String id = currentPageButton.getId();
         if (Objects.isNull(observableRecord) && (id.equals("view") || id.equals("edit"))) {
             staticAnchorPane.getChildren().clear();
             return;
@@ -53,15 +81,14 @@ public class Controller {
     }
 
     public void switchPane(String id) {
-        System.out.println("switchPane-------------------------");
         try {
             Node node;
             if (id.equals("view")) {
-                node = getLoaderWithController("record.fxml", new ViewController()).load();
+                node = getLoaderWithController(new ViewController()).load();
             } else if (id.equals("edit")) {
-                node = getLoaderWithController("record.fxml", new EditController()).load();
+                node = getLoaderWithController(new EditController()).load();
             } else if (id.equals("add")) {
-                node = getLoaderWithController("record.fxml", new AddController()).load();
+                node = getLoaderWithController(new AddController()).load();
             } else {
                 node = FXMLLoader.load(Objects.requireNonNull(Controller.class.getClassLoader().getResource(id.concat(".fxml"))));
             }
@@ -76,10 +103,16 @@ public class Controller {
         }
     }
 
-    private FXMLLoader getLoaderWithController(String view, Object controller) {
+    private FXMLLoader getLoaderWithController(Object controller) {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Objects.requireNonNull(Controller.class.getClassLoader().getResource(view)));
+        loader.setLocation(Objects.requireNonNull(Controller.class.getClassLoader().getResource("record.fxml")));
         loader.setController(controller);
         return loader;
+    }
+
+    public void switchButton(Button buttonFrom, Button buttonTo) {
+        buttonFrom.setDisable(false);
+        buttonTo.setDisable(true);
+        currentPageButton = buttonTo;
     }
 }
