@@ -616,7 +616,7 @@ public class BaseViewController extends Controller {
                 rt1addButton, rt2addButton, rt3addButton, rt4addButton,
                 ct1addButton, ct2addButton, ct3addButton, ct4addButton
         );
-        for(Button button : buttonList) {
+        for (Button button : buttonList) {
             button.setOnAction(this::addTableRow);
         }
     }
@@ -626,7 +626,7 @@ public class BaseViewController extends Controller {
                 rt1deleteButton, rt2deleteButton, rt3deleteButton, rt4deleteButton,
                 ct1deleteButton, ct2deleteButton, ct3deleteButton, ct4deleteButton
         );
-        for(Button button : buttonList) {
+        for (Button button : buttonList) {
             button.setOnAction(this::deleteTableRow);
         }
     }
@@ -636,7 +636,7 @@ public class BaseViewController extends Controller {
                 rt1resetButton, rt2resetButton, rt3resetButton, rt4resetButton,
                 ct1resetButton, ct2resetButton, ct3resetButton, ct4resetButton
         );
-        for(Button button : buttonList) {
+        for (Button button : buttonList) {
             button.setOnAction(this::resetTable);
             Image icon = new Image(new File("reset.png").toURI().toString());
             Objects.requireNonNull(icon);

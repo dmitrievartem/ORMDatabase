@@ -20,8 +20,6 @@ import java.util.List;
 
 public class SearchController extends Controller {
 
-//    Controller controller;
-
     @FXML
     protected HBox headerHbox;
 
@@ -94,8 +92,4 @@ public class SearchController extends Controller {
         ObservableList<Record> recordList = FXCollections.observableArrayList(queryResults);
         searchTable.setItems(recordList);
     }
-
-//    public void setController(Controller controller) {
-//        this.controller = controller;
-//    }
 }

@@ -11,7 +11,6 @@ import java.util.Locale;
 
 public class AddController extends BaseViewController {
 
-    private int currentVersion;
     private Record newRecord;
 
     @FXML
@@ -25,7 +24,6 @@ public class AddController extends BaseViewController {
         previousVersion.setOnAction(event -> viewPreviousVersion(newRecord));
         nextVersion.setOnAction(event -> viewNextVersion(newRecord));
         editRecord.setDisable(true);
-//        editRecord.setOnAction(event -> switchPane(add, "edit"));
         deleteVersion.setOnAction(event -> deleteVersion(newRecord));
         addVersion.setOnAction(event -> addVersion(newRecord));
         save.setOnAction(event -> save(newRecord));
@@ -36,7 +34,7 @@ public class AddController extends BaseViewController {
     public void resetNewRecord() {
         newRecord = new Record();
         newRecord.addVersion(new ShimStackSet());
-        currentVersion = 1;
+        int currentVersion = 1;
         viewVersion(newRecord, currentVersion);
     }
 
