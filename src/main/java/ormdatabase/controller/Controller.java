@@ -3,13 +3,16 @@ package ormdatabase.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.print.*;
+import javafx.print.PageLayout;
+import javafx.print.PageOrientation;
+import javafx.print.Paper;
+import javafx.print.PrinterJob;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import ormdatabase.model.DataSource;
 import ormdatabase.model.Record;
 
 import java.io.IOException;
@@ -135,5 +138,10 @@ public class Controller {
             stage.setMaximized(true);
             stage.show();
         }
+    }
+
+    public void backup() {
+        DataSource dataSource = new DataSource();
+        dataSource.backup();
     }
 }

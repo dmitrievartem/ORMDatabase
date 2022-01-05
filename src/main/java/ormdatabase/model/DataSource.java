@@ -1,9 +1,6 @@
 package ormdatabase.model;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 import java.util.List;
 import java.util.Locale;
 
@@ -36,5 +33,11 @@ public class DataSource {
         em.getTransaction().begin();
         record.clone(editedRecord);
         em.getTransaction().commit();
+    }
+
+    public void backup() {
+        Query backupQuery = em.createQuery("objectdb backup");
+        backupQuery.setParameter("target", new java.io.File("d:\\backup"));
+        backupQuery.getSingleResult();
     }
 }

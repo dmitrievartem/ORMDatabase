@@ -52,7 +52,7 @@
                               <Cursor fx:constant="DEFAULT" />
                            </cursor>
                         </Button>
-                        <Button id="backup" alignment="CENTER" cache="true" contentDisplay="CENTER" mnemonicParsing="false" text="Бэкап базы данных" wrapText="true">
+                        <Button id="backup" alignment="CENTER" cache="true" contentDisplay="CENTER" mnemonicParsing="false" onAction="#backup" text="Бэкап базы данных" wrapText="true">
                            <cursor>
                               <Cursor fx:constant="DEFAULT" />
                            </cursor>

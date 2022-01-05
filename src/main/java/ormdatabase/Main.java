@@ -13,19 +13,7 @@ public class Main extends javafx.application.Application {
     }
 
     public static void main(String[] args) {
-
         System.setProperty("objectdb.home", "./src/main/resources/odb/");
-
-        /*
-        Query backupQuery = em.createQuery("objectdb backup");
-        backupQuery.setParameter("target", new java.io.File("c:\\backup"));
-        backupQuery.getSingleResult();
-
-        // Close the database connection:
-        em.close();
-        emf.close();
-        */
-
         launch();
     }
 }
