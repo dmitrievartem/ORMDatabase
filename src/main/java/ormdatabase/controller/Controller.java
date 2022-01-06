@@ -10,6 +10,7 @@ import javafx.print.PrinterJob;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import ormdatabase.model.DataSource;
@@ -57,6 +58,7 @@ public class Controller {
         stage.setTitle("ShimStack");
         stage.setMaximized(true);
         stage.setScene(scene);
+        stage.getIcons().add(new Image(Objects.requireNonNull(Controller.class.getResourceAsStream("icon.png"))));
         stage.show();
     }
 
