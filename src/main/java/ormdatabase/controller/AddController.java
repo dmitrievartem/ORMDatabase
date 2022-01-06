@@ -39,7 +39,9 @@ public class AddController extends BaseViewController {
     }
 
     public void save(Record record) {
-        if (isTablesValid() && !name.getText().isEmpty()) {
+        if (!isTablesValid() || name.getText().isEmpty()) {
+            requiredFieldsAlert();
+        } else {
             saveVersion(newRecord);
             record.setName(name.getText());
             record.setUppercaseName(name.getText().toUpperCase(Locale.ROOT));

@@ -49,8 +49,6 @@ public class Controller {
 
     private static Button currentPageButton;
 
-    public Stage stage1;
-
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getClassLoader().getResource("main.fxml"));
@@ -60,7 +58,6 @@ public class Controller {
         stage.setMaximized(true);
         stage.setScene(scene);
         stage.show();
-        stage1 = stage;
     }
 
     @FXML

@@ -278,3 +278,38 @@
 #visualization-vbox {
      -fx-background-color: #ffffff;
 }
+
+
+
+
+
+
+
+.dialog-pane {
+    -fx-background-color: #f8e4e4;
+}
+
+.dialog-pane > .content.label {
+    -fx-padding: 20 20 0 20;
+    -fx-background-color: transparent;
+    -border-width: 0;
+}
+
+.dialog-pane:no-header .graphic-container {
+    -fx-padding: 0;
+}
+
+.dialog-pane > .button-bar > .container {
+   -fx-background-color: transparent;
+    -fx-padding: 20;
+}
+
+.dialog-pane .button{
+   -fx-background-color: #ffffff;
+    -fx-font-family: Verdana;
+    -fx-effect: dropshadow(three-pass-box, #d3dae5, 10, 0, 0, 0);
+ }
+
+.dialog-pane .button:hover {
+    -fx-effect: dropshadow(three-pass-box, #bbc4d1, 10, 0, 0, 0);
+}

@@ -10,6 +10,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.stage.StageStyle;
 import javafx.util.Pair;
 import ormdatabase.model.*;
 
@@ -648,5 +649,15 @@ public class BaseViewController extends Controller {
         setAddButtonAction();
         setDeleteButtonAction();
         setResetButtonAction();
+    }
+
+    protected void requiredFieldsAlert() {
+        Alert alert = new Alert(Alert.AlertType.NONE, "", ButtonType.OK);
+        alert.setHeaderText(null);
+        alert.setContentText("Заполняй все как надо блять");
+        alert.initStyle(StageStyle.UNDECORATED);
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(Objects.requireNonNull(Controller.class.getResource("light.css")).toExternalForm());
+        alert.showAndWait();
     }
 }

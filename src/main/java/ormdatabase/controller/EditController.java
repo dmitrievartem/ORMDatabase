@@ -17,6 +17,15 @@ public class EditController extends BaseViewController {
         setTableCellsEditable();
         setEditButtonsAction();
 
+        staticView.setOnAction(event -> {
+            if (!isTablesValid() || name.getText().isEmpty()){
+                requiredFieldsAlert();
+            } else {
+                saveVersion(observableRecord);
+                switchPane(event);
+            }
+        });
+
         previousVersion.setOnAction(event -> viewPreviousVersion(observableRecord));
         nextVersion.setOnAction(event -> viewNextVersion(observableRecord));
         editRecord.setDisable(true);
@@ -28,7 +37,9 @@ public class EditController extends BaseViewController {
     }
 
     public void save(Record record) {
-        if (isTablesValid() && !name.getText().isEmpty()) {
+        if (!isTablesValid() || name.getText().isEmpty()){
+            requiredFieldsAlert();
+        } else {
             saveVersion(observableRecord);
             record.setName(name.getText());
             record.setUppercaseName(name.getText().toUpperCase(Locale.ROOT));
