@@ -3,14 +3,13 @@ package ormdatabase.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
 @Entity
-public class Record implements Serializable {
+public class Record {
     @Id
     @GeneratedValue
     private Long id;
@@ -19,7 +18,7 @@ public class Record implements Serializable {
     private String car;
     private String uppercaseName;
     private String uppercaseCar;
-    private Date date;
+    private Date date = new Date();
     private String phone;
     private String city;
     private List<ShimStackSet> shimStackSetList = new ArrayList<>();
@@ -34,6 +33,19 @@ public class Record implements Serializable {
         this.phone = phone;
         this.city = city;
         this.shimStackSetList = shimStackSetList;
+    }
+
+    public Record(Record record) {
+        this.id = record.id;
+        this.favorites = record.favorites;
+        this.name = record.name;
+        this.car = record.car;
+        this.uppercaseName = record.uppercaseName;
+        this.uppercaseCar = record.uppercaseCar;
+        this.date = new Date(record.date.getTime());
+        this.phone = record.phone;
+        this.city = record.city;
+        this.shimStackSetList = new ArrayList<>(record.shimStackSetList);
     }
 
     public Long getId() {
@@ -116,7 +128,7 @@ public class Record implements Serializable {
         this.shimStackSetList.remove(shimStackSetNumber);
     }
 
-    public void clone(Record record) {
+    public void copy(Record record) {
         this.name = record.getName();
         this.uppercaseName = record.getName().toUpperCase(Locale.ROOT);
         this.car = record.getCar();

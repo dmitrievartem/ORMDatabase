@@ -20,7 +20,7 @@ import java.util.*;
 
 public class BaseViewController extends Controller {
 
-    protected int currentVersion = observableRecord.getShimStackSetList().size();
+    protected int currentVersion = 1;
     protected final DataSource dataSource = new DataSource();
 
     @FXML

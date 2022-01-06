@@ -27,6 +27,15 @@ public class ShimStackSet {
         this.shimStackList = shimStackList;
     }
 
+    public ShimStackSet(ShimStackSet shimStackSet) {
+        this.type = shimStackSet.type;
+        this.date = new Date(shimStackSet.date.getTime());
+        this.comment = shimStackSet.comment;
+        this.author = shimStackSet.author;
+        this.favorites = shimStackSet.favorites;
+        this.shimStackList = new ArrayList<>(shimStackSet.shimStackList);
+    }
+
     public String getType() {
         return type;
     }
@@ -86,4 +95,5 @@ public class ShimStackSet {
     public void setShimStackList(List<StackPair> shimStackList) {
         this.shimStackList = shimStackList;
     }
+
 }

@@ -6,6 +6,7 @@ public class ViewController extends BaseViewController {
 
     @FXML
     void initialize() {
+        currentVersion = observableRecord.getShimStackSetList().size();
         setLabels();
         setColumnProperties();
         previousVersion.setOnAction(event -> viewPreviousVersion(observableRecord));

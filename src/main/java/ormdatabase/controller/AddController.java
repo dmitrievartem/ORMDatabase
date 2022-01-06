@@ -11,8 +11,6 @@ import java.util.Locale;
 
 public class AddController extends BaseViewController {
 
-    private Record newRecord;
-
     @FXML
     void initialize() {
         setTypeComboBox();

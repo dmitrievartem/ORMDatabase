@@ -31,7 +31,8 @@ public class DataSource {
     public void update(Record editedRecord, Long id) {
         Record record = em.find(Record.class, id);
         em.getTransaction().begin();
-        record.clone(editedRecord);
+        record.copy(editedRecord);
+//        record = new Record(editedRecord);
         em.getTransaction().commit();
     }
 

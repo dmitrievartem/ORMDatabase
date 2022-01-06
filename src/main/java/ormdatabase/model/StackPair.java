@@ -6,24 +6,29 @@ import javax.persistence.Embedded;
 @Embeddable
 public class StackPair {
     @Embedded
-    CompressionStack compressionStack;
-    @Embedded
     ReboundStack reboundStack;
+    @Embedded
+    CompressionStack compressionStack;
 
     public StackPair() {
     }
 
     public StackPair(ReboundStack reboundStack, CompressionStack compressionStack) {
-        this.compressionStack = compressionStack;
         this.reboundStack = reboundStack;
+        this.compressionStack = compressionStack;
     }
 
-    public CompressionStack getCompressionStack() {
-        return compressionStack;
+    public StackPair(StackPair stackPair) {
+        this.reboundStack = new ReboundStack(stackPair.reboundStack);
+        this.compressionStack = new CompressionStack(stackPair.compressionStack);
     }
 
     public ReboundStack getReboundStack() {
         return reboundStack;
+    }
+
+    public CompressionStack getCompressionStack() {
+        return compressionStack;
     }
 
 }

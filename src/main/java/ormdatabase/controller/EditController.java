@@ -11,45 +11,49 @@ public class EditController extends BaseViewController {
 
     @FXML
     void initialize() {
+        currentVersion = observableRecord.getShimStackSetList().size();
         setTypeComboBox();
         setLabels();
         setColumnProperties();
         setTableCellsEditable();
         setEditButtonsAction();
 
+        editableRecord = new Record(observableRecord);
+
         staticView.setOnAction(event -> {
             if (!isTablesValid() || name.getText().isEmpty()){
                 requiredFieldsAlert();
             } else {
-                saveVersion(observableRecord);
+                saveVersion(editableRecord);
                 switchPane(event);
             }
         });
 
-        previousVersion.setOnAction(event -> viewPreviousVersion(observableRecord));
-        nextVersion.setOnAction(event -> viewNextVersion(observableRecord));
+        previousVersion.setOnAction(event -> viewPreviousVersion(editableRecord));
+        nextVersion.setOnAction(event -> viewNextVersion(editableRecord));
         editRecord.setDisable(true);
-        deleteVersion.setOnAction(event -> deleteVersion(observableRecord));
-        addVersion.setOnAction(event -> addVersion(observableRecord));
-        save.setOnAction(event -> save(observableRecord));
+        deleteVersion.setOnAction(event -> deleteVersion(editableRecord));
+        addVersion.setOnAction(event -> addVersion(editableRecord));
+        save.setOnAction(event -> save());
 
-        viewRecord(observableRecord);
+        viewRecord(editableRecord);
     }
 
-    public void save(Record record) {
+    public void save() {
         if (!isTablesValid() || name.getText().isEmpty()){
             requiredFieldsAlert();
         } else {
-            saveVersion(observableRecord);
-            record.setName(name.getText());
-            record.setUppercaseName(name.getText().toUpperCase(Locale.ROOT));
-            record.setCar(car.getText());
-            record.setUppercaseCar(car.getText().toUpperCase(Locale.ROOT));
-            record.setDate(Date.from(date.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
-            record.setPhone(phone.getText());
-            record.setCity(city.getText());
-            record.setFavorites(favorites.isSelected());
-            dataSource.update(record, observableRecord.getId());
+            saveVersion(editableRecord);
+            observableRecord = editableRecord;
+            editableRecord.setName(name.getText());
+            editableRecord.setUppercaseName(name.getText().toUpperCase(Locale.ROOT));
+            editableRecord.setCar(car.getText());
+            editableRecord.setUppercaseCar(car.getText().toUpperCase(Locale.ROOT));
+            editableRecord.setDate(Date.from(date.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+            editableRecord.setPhone(phone.getText());
+            editableRecord.setCity(city.getText());
+            editableRecord.setFavorites(favorites.isSelected());
+            dataSource.update(editableRecord, observableRecord.getId());
         }
     }
 }

@@ -17,6 +17,12 @@ public class Shim {
         this.thickness = thickness;
     }
 
+    public Shim(Shim shim) {
+        this.number = shim.number;
+        this.diameter = shim.diameter;
+        this.thickness = shim.thickness;
+    }
+
     public String getNumber() {
         return number;
     }
@@ -40,4 +46,5 @@ public class Shim {
     public void setThickness(String thickness) {
         this.thickness = thickness;
     }
+
 }

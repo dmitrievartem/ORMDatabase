@@ -44,13 +44,18 @@ public class Controller {
     @FXML
     public Button add;
 
-    public static Button staticAdd;
+    protected static Button staticAdd;
 
-    public static Record observableRecord;
+    protected static Record observableRecord;
+
+    protected static Record editableRecord;
+
+    protected static Record newRecord;
 
     private static Button currentPageButton;
 
     public void start(Stage stage) throws IOException {
+
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getClassLoader().getResource("main.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
