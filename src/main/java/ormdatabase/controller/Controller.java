@@ -87,18 +87,17 @@ public class Controller {
         staticView = view;
         staticEdit = edit;
         staticAdd = add;
+        staticSearch.fire();
         currentPageButton.setDisable(true);
-        switchPane("search");
     }
 
     public void switchPane(ActionEvent event) {
-
         if (currentPageButton.getId().equals("edit") && Objects.nonNull(observableRecord)) {
-            if(!((EditController) loader.getController()).saveObject(editableRecord)) {
+            if (!((EditController) loader.getController()).saveObject(editableRecord)) {
                 return;
             }
         } else if (currentPageButton.getId().equals("add")) {
-            if(!((AddController) loader.getController()).saveObject(newRecord)) {
+            if (!((AddController) loader.getController()).saveObject(newRecord)) {
                 return;
             }
         }
@@ -122,7 +121,7 @@ public class Controller {
             } else if (id.equals("add")) {
                 setLoaderWithController(new AddController());
             } else {
-                loader = new FXMLLoader(Objects.requireNonNull(Controller.class.getClassLoader().getResource(id.concat(".fxml"))));
+                loader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource(id.concat(".fxml"))));
             }
             Node node = loader.load();
             staticAnchorPane.getChildren().clear();
@@ -137,14 +136,8 @@ public class Controller {
     }
 
     private void setLoaderWithController(Object controller) {
-        loader = new FXMLLoader(Objects.requireNonNull(Controller.class.getClassLoader().getResource("record.fxml")));
+        loader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource("record.fxml")));
         loader.setController(controller);
-    }
-
-    public void switchButton(Button buttonFrom, Button buttonTo) {
-        buttonFrom.setDisable(false);
-        buttonTo.setDisable(true);
-        currentPageButton = buttonTo;
     }
 
     public void printPage() {

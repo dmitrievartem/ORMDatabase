@@ -119,7 +119,7 @@
     -fx-background-color: #ffffff;
     -fx-background-radius: 10;
     -fx-background-insets: 0 0 0 0;
-    -fx-padding: 0 0 10 0;
+    -fx-padding: 0 0 5 0;
     -fx-effect: dropshadow(three-pass-box, #d3dae5, 10, 0, 0, 0);
 }
 
@@ -128,8 +128,16 @@
     -fx-background-radius: 10;
 }
 
+.table-view .column-header-background .filler {
+     -fx-background-color: transparent;
+ }
+
 .table-view .column-header-background .label{
     -fx-padding: 10 0 10 0;
+}
+
+.table-view .corner {
+    -fx-background-color: transparent;
 }
 
 .table-view .column-header {
@@ -173,12 +181,13 @@
     -fx-padding: 2;
 }
 
-//.table-view .virtual-flow .scroll-bar:vertical .thumb{
-    -fx-background-color:  linear-gradient(to bottom, #1dbbdd44, #93f9b944);
-}
-
-.table-view .virtual-flow .scroll-bar:horizontal .thumb{
-    -fx-background-color: transparent;
+.table-view .virtual-flow .scroll-bar:horizontal {
+    -fx-min-width: 0;
+    -fx-pref-width: 0;
+    -fx-max-width: 0;
+    -fx-min-height: 0;
+    -fx-pref-height: 0;
+    -fx-max-height: 0;
 }
 
 #record-button {
@@ -196,6 +205,7 @@
 
 #table-button {
     -fx-min-width: 25;
+    -fx-max-height: 25;
     -fx-min-height: 25;
     -fx-max-height: 25;
     -fx-background-color: #ffffff;

@@ -1,13 +1,11 @@
 package ormdatabase.controller;
 
 import javafx.fxml.FXML;
-import ormdatabase.model.DataSource;
 import ormdatabase.model.Record;
 import ormdatabase.model.ShimStackSet;
 
 import java.time.ZoneId;
 import java.util.Date;
-import java.util.Locale;
 import java.util.Objects;
 
 public class AddController extends BaseViewController {
@@ -28,7 +26,6 @@ public class AddController extends BaseViewController {
         save.setOnAction(event -> saveRecord());
 
         if (Objects.isNull(newRecord)) {
-            System.out.println("newRecord IS NULL");
             resetNewRecord();
         } else {
             viewRecord(newRecord);
@@ -38,8 +35,7 @@ public class AddController extends BaseViewController {
     public void resetNewRecord() {
         newRecord = new Record();
         newRecord.addVersion(new ShimStackSet());
-        int currentVersion = 1;
-        viewVersion(newRecord, currentVersion);
+        viewRecord(newRecord);
     }
 
     @Override
@@ -60,6 +56,7 @@ public class AddController extends BaseViewController {
     }
 
     public void saveRecord() {
+        saveObject(newRecord);
         dataSource.insert(newRecord);
         resetNewRecord();
     }

@@ -4,7 +4,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.*;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.HBox;
@@ -84,47 +87,12 @@ public class SearchController extends Controller {
                 if (mouseEvent.getClickCount() == 2) {
                     if (searchTable.getSelectionModel().getSelectedItem() != null) {
                         observableRecord = searchTable.getSelectionModel().getSelectedItem();
-                        switchPane("view");
-                        switchButton(staticSearch, staticView);
+                        staticView.fire();
                     }
                 }
             }
         });
     }
-
-
-    /*private void showAlertWithHeaderText() {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("Warning alert");
-        alert.setHeaderText("Battery Status:");
-        alert.setContentText("The battery charge is low!");
-
-        alert.showAndWait();
-    }
-
-    // Show a Warning Alert with default header Text
-    private void showAlertWithDefaultHeaderText() {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("Warning alert");
-
-        // alert.setHeaderText("Battery Status:");
-        alert.setContentText("The battery charge is low!");
-
-        alert.showAndWait();
-    }
-
-    // Show a Warning Alert without Header Text
-    private void showAlertWithoutHeaderText() {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("Warning alert");
-
-        // Header Text: null
-        alert.setHeaderText(null);
-        alert.setContentText("The battery charge is low!");
-
-        alert.showAndWait();
-    }*/
-
 
     public void search() {
         DataSource dataSource = new DataSource();

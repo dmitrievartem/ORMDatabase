@@ -3,10 +3,7 @@ package ormdatabase.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 @Entity
 public class Record implements Cloneable {
@@ -54,7 +51,7 @@ public class Record implements Cloneable {
 
     public void setName(String name) {
         this.name = name;
-        this.uppercaseName = name.toUpperCase(Locale.ROOT);
+        this.uppercaseName = Objects.nonNull(name) ? name.toUpperCase(Locale.ROOT) : null;
     }
 
     public String getCar() {
@@ -63,7 +60,7 @@ public class Record implements Cloneable {
 
     public void setCar(String car) {
         this.car = car;
-        this.uppercaseCar = car.toUpperCase(Locale.ROOT);
+        this.uppercaseCar = Objects.nonNull(car) ? car.toUpperCase(Locale.ROOT) : null;
     }
 
     public Date getDate() {
@@ -88,7 +85,7 @@ public class Record implements Cloneable {
 
     public void setCity(String city) {
         this.city = city;
-        this.uppercaseCity = city.toUpperCase(Locale.ROOT);
+        this.uppercaseCity = Objects.nonNull(city) ? city.toUpperCase(Locale.ROOT) : null;
     }
 
     public List<ShimStackSet> getShimStackSetList() {

@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox alignment="CENTER" cache="false" cacheHint="QUALITY" spacing="10.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<HBox alignment="CENTER" cache="false" cacheHint="QUALITY" spacing="10.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
    <children>
       <VBox alignment="TOP_CENTER" cache="false" cacheHint="QUALITY" prefWidth="300.0">
          <children>
@@ -114,7 +114,7 @@
          <children>
             <VBox cache="false" cacheHint="QUALITY" spacing="10.0">
                <children>
-                  <TableView fx:id="reboundTable1" cache="false" cacheHint="QUALITY" editable="true" style="-fx-fixed-cell-size: 25;">
+                  <TableView fx:id="reboundTable1" cache="false" cacheHint="QUALITY" editable="true">
                     <columns>
                       <TableColumn fx:id="rt1numberColumn" prefWidth="75.0" text="К" />
                       <TableColumn fx:id="rt1diameterColumn" prefWidth="76.0" text="Д" />
@@ -128,7 +128,7 @@
                      <children>
                         <Button id="table-button" fx:id="rt1addButton" cache="false" cacheHint="QUALITY" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" text="+" />
                         <Button id="table-button" fx:id="rt1deleteButton" cache="false" cacheHint="QUALITY" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" text="-" />
-                        <Button id="table-button" fx:id="rt1resetButton" cache="false" cacheHint="QUALITY" mnemonicParsing="false" />
+                        <Button id="table-button" fx:id="rt1resetButton" cache="false" cacheHint="QUALITY" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="x" />
                      </children>
                      <VBox.margin>
                         <Insets />
@@ -152,7 +152,7 @@
                      <children>
                         <Button id="table-button" fx:id="ct1addButton" cache="false" cacheHint="QUALITY" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" text="+" />
                         <Button id="table-button" fx:id="ct1deleteButton" cache="false" cacheHint="QUALITY" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" text="-" />
-                        <Button id="table-button" fx:id="ct1resetButton" cache="false" cacheHint="QUALITY" mnemonicParsing="false" text="Сброс" />
+                        <Button id="table-button" fx:id="ct1resetButton" cache="false" cacheHint="QUALITY" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" text="x" />
                      </children>
                      <VBox.margin>
                         <Insets />
@@ -180,7 +180,7 @@
                      <children>
                         <Button id="table-button" fx:id="rt2addButton" cache="false" cacheHint="QUALITY" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" text="+" />
                         <Button id="table-button" fx:id="rt2deleteButton" cache="false" cacheHint="QUALITY" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" text="-" />
-                        <Button id="table-button" fx:id="rt2resetButton" cache="false" cacheHint="QUALITY" mnemonicParsing="false" text="Сброс" />
+                        <Button id="table-button" fx:id="rt2resetButton" cache="false" cacheHint="QUALITY" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="x" />
                      </children>
                      <VBox.margin>
                         <Insets />
@@ -204,7 +204,7 @@
                      <children>
                         <Button id="table-button" fx:id="ct2addButton" cache="false" cacheHint="QUALITY" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" text="+" />
                         <Button id="table-button" fx:id="ct2deleteButton" cache="false" cacheHint="QUALITY" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" text="-" />
-                        <Button id="table-button" fx:id="ct2resetButton" cache="false" cacheHint="QUALITY" mnemonicParsing="false" text="Сброс" />
+                        <Button id="table-button" fx:id="ct2resetButton" cache="false" cacheHint="QUALITY" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" text="x" />
                      </children>
                      <VBox.margin>
                         <Insets />
@@ -232,7 +232,7 @@
                      <children>
                         <Button id="table-button" fx:id="rt3addButton" cache="false" cacheHint="QUALITY" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" text="+" />
                         <Button id="table-button" fx:id="rt3deleteButton" cache="false" cacheHint="QUALITY" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" text="-" />
-                        <Button id="table-button" fx:id="rt3resetButton" cache="false" cacheHint="QUALITY" mnemonicParsing="false" text="Сброс" />
+                        <Button id="table-button" fx:id="rt3resetButton" cache="false" cacheHint="QUALITY" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="x" />
                      </children>
                      <VBox.margin>
                         <Insets />
@@ -256,7 +256,7 @@
                      <children>
                         <Button id="table-button" fx:id="ct3addButton" cache="false" cacheHint="QUALITY" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" text="+" />
                         <Button id="table-button" fx:id="ct3deleteButton" cache="false" cacheHint="QUALITY" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" text="-" />
-                        <Button id="table-button" fx:id="ct3resetButton" cache="false" cacheHint="QUALITY" mnemonicParsing="false" text="Сброс" />
+                        <Button id="table-button" fx:id="ct3resetButton" cache="false" cacheHint="QUALITY" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" text="x" />
                      </children>
                      <VBox.margin>
                         <Insets />
@@ -284,7 +284,7 @@
                      <children>
                         <Button id="table-button" fx:id="rt4addButton" cache="false" cacheHint="QUALITY" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" text="+" />
                         <Button id="table-button" fx:id="rt4deleteButton" cache="false" cacheHint="QUALITY" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="add-delete-button" text="-" />
-                        <Button id="table-button" fx:id="rt4resetButton" cache="false" cacheHint="QUALITY" mnemonicParsing="false" text="Сброс" />
+                        <Button id="table-button" fx:id="rt4resetButton" cache="false" cacheHint="QUALITY" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="x" />
                      </children>
                      <VBox.margin>
                         <Insets />
@@ -308,7 +308,7 @@
                      <children>
                         <Button id="table-button" fx:id="ct4addButton" cache="false" cacheHint="QUALITY" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="+" />
                         <Button id="table-button" fx:id="ct4deleteButton" cache="false" cacheHint="QUALITY" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="-" />
-                        <Button id="table-button" fx:id="ct4resetButton" cache="false" cacheHint="QUALITY" mnemonicParsing="false" text="Сброс" />
+                        <Button id="table-button" fx:id="ct4resetButton" cache="false" cacheHint="QUALITY" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" text="x" />
                      </children>
                      <VBox.margin>
                         <Insets />

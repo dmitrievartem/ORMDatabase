@@ -7,14 +7,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.StageStyle;
 import javafx.util.Pair;
 import ormdatabase.model.*;
 
-import java.io.File;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.*;
@@ -480,6 +477,8 @@ public class BaseViewController extends Controller {
             tableView.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("number"));
             tableView.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("diameter"));
             tableView.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("thickness"));
+
+//            tableView.sc
         }
     }
 
@@ -644,9 +643,6 @@ public class BaseViewController extends Controller {
         );
         for (Button button : buttonList) {
             button.setOnAction(this::resetTable);
-            Image icon = new Image(new File("reset.png").toURI().toString());
-            Objects.requireNonNull(icon);
-            button.setGraphic(new ImageView(icon));
         }
     }
 
