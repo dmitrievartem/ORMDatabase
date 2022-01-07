@@ -57,9 +57,8 @@ public class Controller {
     private FXMLLoader loader;
 
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getClassLoader().getResource("main.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
+        loader = new FXMLLoader(getClass().getClassLoader().getResource("main.fxml"));
+        Scene scene = new Scene(loader.load());
         scene.getStylesheets().add(Objects.requireNonNull(Controller.class.getResource("light.css")).toExternalForm());
         stage.setTitle("ShimStack");
         stage.setMaximized(true);

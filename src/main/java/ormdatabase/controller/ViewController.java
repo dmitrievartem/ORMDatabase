@@ -1,10 +1,7 @@
 package ormdatabase.controller;
 
-import javafx.fxml.FXML;
-
 public class ViewController extends BaseViewController {
 
-    @FXML
     void initialize() {
         currentVersion = observableRecord.getShimStackSetList().size();
         setLabels();
