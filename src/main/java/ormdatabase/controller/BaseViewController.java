@@ -266,26 +266,31 @@ public class BaseViewController extends Controller {
     private Button ct4resetButton;
 
     @FXML
-    private final ViewController viewController = new ViewController();
+    protected final ViewController viewController = new ViewController();
 
     @FXML
-    private final EditController editController = new EditController();
+    protected final EditController editController = new EditController();
 
     @FXML
-    public final AddController addController = new AddController();
+    protected final AddController addController = new AddController();
 
     public void initialize() {
         this.viewController.setParentController(this);
         this.editController.setParentController(this);
         this.addController.setParentController(this);
-        if (pageId.equals("view")) {
+        if (pageId.equals("view") && Objects.nonNull(observableRecord)) {
             viewController.start();
-        } else if (pageId.equals("edit")) {
+        } else if (pageId.equals("edit") && Objects.nonNull(observableRecord)) {
             editController.start();
         } else if (pageId.equals("add")) {
             addController.start();
         }
 
+        setTypeComboBox();
+        setLabels();
+        setColumnProperties();
+        setTableCellsEditable();
+        setEditButtonsAction();
     }
 
     public void viewRecord(Record record) {
@@ -412,6 +417,30 @@ public class BaseViewController extends Controller {
         }
     }
 
+    public void enableInputs() {
+        name.setEditable(true);
+        car.setEditable(true);
+        phone.setEditable(true);
+        city.setEditable(true);
+        favorites.setDisable(false);
+        comment.setEditable(true);
+        author.setEditable(true);
+        for (TableView<Shim> tableView : getAllTables()) {
+            tableView.setEditable(true);
+        }
+
+        date.setDisable(false);
+        type.setDisable(false);
+        versionDate.setDisable(false);
+
+        deleteVersion.setDisable(false);
+        addVersion.setDisable(false);
+        save.setDisable(false);
+        for (Button button : getAllTableButtons()) {
+            button.setDisable(false);
+        }
+    }
+
     public void setLabels() {
         frontLeftLabel.setText("ПЛ");
         frontRightLabel.setText("ПП");
@@ -507,16 +536,16 @@ public class BaseViewController extends Controller {
 
     public void setTableCellsEditable() {
         List<TextField> onlyTextFields = List.of(name, car, city, author);
-        for (TextField textField : onlyTextFields) {
-            textField.textProperty().addListener((observable, oldValue, newValue) -> {
-                if (Objects.nonNull(newValue) && !newValue.matches("[(][)]\\s\\p{L}*")) {
-                    textField.setText(newValue.replaceAll("[^[(][)]\\s\\p{L}*]", ""));
-                }
-                if (Objects.nonNull(newValue) && newValue.length() > 50) {
-                    textField.setText(newValue.substring(0, 50));
-                }
-            });
-        }
+//        for (TextField textField : onlyTextFields) {
+//            textField.textProperty().addListener((observable, oldValue, newValue) -> {
+//                if (Objects.nonNull(newValue) && !newValue.matches("[(][)]\\s\\p{L}*")) {
+//                    textField.setText(newValue.replaceAll("[^[(][)]\\s\\p{L}*]", ""));
+//                }
+//                if (Objects.nonNull(newValue) && newValue.length() > 50) {
+//                    textField.setText(newValue.substring(0, 50));
+//                }
+//            });
+//        }
         phone.textProperty().addListener((observable, oldValue, newValue) -> {
             if (Objects.nonNull(newValue) && !newValue.matches("\\d*")) {
                 phone.setText(newValue.replaceAll("[^\\d]", ""));
@@ -681,7 +710,7 @@ public class BaseViewController extends Controller {
         alert.setContentText("Заполняй все как надо блять");
         alert.initStyle(StageStyle.UNDECORATED);
         DialogPane dialogPane = alert.getDialogPane();
-        dialogPane.getStylesheets().add(Objects.requireNonNull(Controller.class.getResource("light.css")).toExternalForm());
+        dialogPane.getStylesheets().add(Objects.requireNonNull(Controller.class.getResource("light-with-shadows.css")).toExternalForm());
         alert.showAndWait();
     }
 

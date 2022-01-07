@@ -4,16 +4,18 @@
 }
 
 #menu-vbox {
-    -fx-background-color: transparent;
-    -fx-padding: 50 25 50 25;
-    -fx-border-width: 0 1 0 0;
- 	-fx-border-color: #bbc4d1;
+    -fx-margin: 25 25 25 25;
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 10;
+    -fx-padding: 15 15 15 15;
+    -fx-effect: dropshadow(three-pass-box, #bbc4d1, 20, 0, 0, 0);
 }
 
 #search, #view, #edit, #add, #visualization, #print, #backup {
     -fx-min-width: 200;
     -fx-min-height: 40;
- 	-fx-background-color: transparent;
+ 	-fx-background-color: #ffffff;
+    -fx-background-radius: 10;
     -fx-padding: 0 15 0 15;
     -fx-alignment: center-left;
     -fx-font-size: 12;
@@ -25,13 +27,18 @@
 #add:disabled,
 #visualization:disabled {
     -fx-opacity: 100;
- 	-fx-border-color: #bbc4d1;
- 	-fx-border-width: 1;
- 	-fx-border-radius: 10;
+    -fx-effect: dropshadow(three-pass-box, #b3c0d3, 10, 0, 0, 0);
 }
 
-#anchor-pane {
+#search:hover, #view:hover, #edit:hover, #add:hover, #menu-button:hover, #visualization:hover, #print:hover, #backup:hover {
+    -fx-effect: dropshadow(three-pass-box, #d3dae5, 10, 0, 0, 0);
+}
+
+#anchor-pane, #scroll-pane {
+ 	-fx-background-color: #ffffff;
+    -fx-background-radius: 10;
     -fx-padding: 25 25 25 25;
+    -fx-effect: dropshadow(three-pass-box, #bbc4d1, 20, 0, 0, 0);
 }
 
 #search-header-hbox {
@@ -41,12 +48,11 @@
 #search-id, #search-name, #search-car, #search-city {
     -fx-min-height: 30;
     -fx-max-height: 30;
-    -fx-background-color: transparent;
+    -fx-background-radius: 10;
     -fx-padding: 5 10 5 10;
     -fx-background-insets: 0 0 0 0;
- 	-fx-border-color: #bbc4d1;
- 	-fx-border-width: 1;
- 	-fx-border-radius: 10;
+    -fx-background-color: #ffffff;
+    -fx-effect: dropshadow(three-pass-box, #d3dae5, 10, 0, 0, 0);
 }
 
 #search-id {
@@ -64,11 +70,26 @@
     -fx-pref-width: 200;
 }
 
+#search-id:hover, #search-name:hover, #search-car:hover, #search-city:hover,
+#search-id:focused, #search-name:focused, #search-car:focused, #search-city:focused {
+    -fx-effect: dropshadow(three-pass-box, #bbc4d1, 10, 0, 0, 0);
+}
+
 #search-favorites {
     -fx-min-width: 110;
     -fx-min-height: 30;
     -fx-padding: 5 15 5 15;
-    -fx-background-color: transparent;
+    -fx-background-radius: 10;
+    -fx-background-color: #ffffff;
+    -fx-background-insets: 0 0 0 0;
+}
+
+#favorites {
+    -fx-min-width: 25;
+    -fx-min-height: 25;
+    -fx-padding: 5 5 5 5;
+    -fx-background-radius: 15;
+    -fx-background-color: #ffffff;
     -fx-background-insets: 0 0 0 0;
 }
 
@@ -78,13 +99,21 @@
     -fx-border-color: #d3dae5;
 }
 
+#search-favorites:hover, #favorites:hover {
+    -fx-effect: dropshadow(three-pass-box, #bbc4d1, 10, 0, 0, 0);
+ }
+
 #search-button {
     -fx-min-width: 100;
     -fx-min-height: 30;
- 	-fx-background-color: transparent;
- 	-fx-border-color: #bbc4d1;
- 	-fx-border-width: 1;
- 	-fx-border-radius: 10;
+ 	-fx-background-color: #ffffff;
+    -fx-background-radius: 10;
+    -fx-font-size: 12;
+    -fx-effect: dropshadow(three-pass-box, #d3dae5, 10, 0, 0, 0);
+}
+
+#search-button:hover {
+    -fx-effect: dropshadow(three-pass-box, #bbc4d1, 10, 0, 0, 0);
 }
 
 .table-view {
@@ -92,9 +121,7 @@
     -fx-background-radius: 10;
     -fx-background-insets: 0 0 0 0;
     -fx-padding: 0 0 5 0;
- 	-fx-border-color: #bbc4d1;
- 	-fx-border-width: 1;
- 	-fx-border-radius: 10;
+    -fx-effect: dropshadow(three-pass-box, #d3dae5, 10, 0, 0, 0);
 }
 
 .table-view .column-header-background{
@@ -167,11 +194,14 @@
 #record-button {
     -fx-min-width: 150;
     -fx-min-height: 30;
- 	-fx-background-color: transparent;
+ 	-fx-background-color: #ffffff;
+    -fx-background-radius: 10;
     -fx-font-size: 12;
- 	-fx-border-color: #bbc4d1;
- 	-fx-border-width: 1;
- 	-fx-border-radius: 10;
+    -fx-effect: dropshadow(three-pass-box, #d3dae5, 10, 0, 0, 0);
+}
+
+#record-button:hover {
+    -fx-effect: dropshadow(three-pass-box, #bbc4d1, 10, 0, 0, 0);
 }
 
 #table-button {
@@ -179,10 +209,14 @@
     -fx-max-height: 25;
     -fx-min-height: 25;
     -fx-max-height: 25;
-    -fx-background-color: transparent;
- 	-fx-border-color: #bbc4d1;
- 	-fx-border-width: 1;
- 	-fx-border-radius: 10;
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 10;
+    -fx-font-size: 10;
+    -fx-effect: dropshadow(three-pass-box, #d3dae5, 10, 0, 0, 0);
+}
+
+#table-button:hover {
+    -fx-effect: dropshadow(three-pass-box, #bbc4d1, 10, 0, 0, 0);
 }
 
 #record-field {
@@ -191,18 +225,19 @@
     -fx-background-radius: 10;
     -fx-padding: 5 10 5 10;
     -fx-background-insets: 0 0 0 0;
-    -fx-background-color: transparent;
- 	-fx-border-color: #bbc4d1;
- 	-fx-border-width: 1;
- 	-fx-border-radius: 10;
+    -fx-background-color: #ffffff;
+    -fx-effect: dropshadow(three-pass-box, #d3dae5, 10, 0, 0, 0);
+}
+
+#record-field:hover, #record-field:focused {
+    -fx-effect: dropshadow(three-pass-box, #bbc4d1, 10, 0, 0, 0);
 }
 
 .text-area {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 10;
     -fx-padding: 5 10 5 10;
-    -fx-background-color: transparent;
- 	-fx-border-color: #bbc4d1;
- 	-fx-border-width: 1;
- 	-fx-border-radius: 10;
+    -fx-effect: dropshadow(three-pass-box, #d3dae5, 10, 0, 0, 0);
 }
 
 .text-area .content{

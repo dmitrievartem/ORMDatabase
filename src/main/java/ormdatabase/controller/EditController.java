@@ -12,11 +12,7 @@ public class EditController {
 
     void start() {
         baseViewController.currentVersion = Controller.observableRecord.getShimStackSetList().size();
-        baseViewController.setTypeComboBox();
-        baseViewController.setLabels();
-        baseViewController.setColumnProperties();
-        baseViewController.setTableCellsEditable();
-        baseViewController.setEditButtonsAction();
+        baseViewController.enableInputs();
 
         if (Objects.isNull(Controller.editableRecord)) {
             Controller.editableRecord = Controller.observableRecord.clone();
@@ -27,7 +23,10 @@ public class EditController {
         baseViewController.editRecord.setDisable(true);
         baseViewController.deleteVersion.setOnAction(event -> baseViewController.deleteVersion(Controller.editableRecord));
         baseViewController.addVersion.setOnAction(event -> baseViewController.addVersion(Controller.editableRecord));
-        baseViewController.save.setOnAction(event -> saveRecord());
+        baseViewController.save.setOnAction(event -> {
+            saveRecord();
+            Controller.staticView.fire();
+        });
 
         baseViewController.viewRecord(Controller.editableRecord);
     }

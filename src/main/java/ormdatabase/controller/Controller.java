@@ -1,5 +1,6 @@
 package ormdatabase.controller;
 
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,6 +9,7 @@ import javafx.print.PageOrientation;
 import javafx.print.Paper;
 import javafx.print.PrinterJob;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -17,7 +19,6 @@ import ormdatabase.model.DataSource;
 import ormdatabase.model.Record;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Objects;
 
 public class Controller {
@@ -57,19 +58,62 @@ public class Controller {
 
     private FXMLLoader loader;
 
-    public BaseViewController baseViewController;
+    public static BaseViewController baseViewController;
 
-    protected static String pageId;
+    protected static String pageId = "view";
+
+    private Scene scene;
+
+    private static Node searchNode;
+
+    private static Node recordNode;
+
+    private static Node visualizationNode;
 
     public void start(Stage stage) throws IOException {
         loader = new FXMLLoader(getClass().getClassLoader().getResource("main.fxml"));
-        Scene scene = new Scene(loader.load());
-        scene.getStylesheets().add(Objects.requireNonNull(Controller.class.getResource("light.css")).toExternalForm());
+        scene = new Scene(loader.load());
+
+        scene.getStylesheets().add(Objects.requireNonNull(Controller.class.getResource("light-with-shadows.css")).toExternalForm());
         stage.setTitle("ShimStack");
         stage.setMaximized(true);
         stage.setScene(scene);
         stage.getIcons().add(new Image(Objects.requireNonNull(Controller.class.getResourceAsStream("icon.png"))));
         stage.show();
+
+
+        Task<Parent> loadTask = new Task<>() {
+            @Override
+            public Parent call() throws IOException {
+                loader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource("search.fxml")));
+                searchNode = loader.load();
+
+                loader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource("record.fxml")));
+                baseViewController = new BaseViewController();
+                loader.setController(baseViewController);
+                recordNode = loader.load();
+
+                loader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource("visualization.fxml")));
+                visualizationNode = loader.load();
+
+                return (Parent) searchNode;
+            }
+        };
+
+        loadTask.setOnSucceeded(e -> {
+            Node node = loadTask.getValue();
+            staticAnchorPane.getChildren().add(node);
+            AnchorPane.setTopAnchor(node, 0.0);
+            AnchorPane.setRightAnchor(node, 0.0);
+            AnchorPane.setBottomAnchor(node, 0.0);
+            AnchorPane.setLeftAnchor(node, 0.0);
+            System.out.println("thread complete");
+        });
+
+        loadTask.setOnFailed(e -> loadTask.getException().printStackTrace());
+
+        Thread thread = new Thread(loadTask);
+        thread.start();
 
 
 //        Path dir = Files.createDirectories(Paths.get("path", "to", "files"));
@@ -91,12 +135,13 @@ public class Controller {
         staticView = view;
         staticEdit = edit;
         staticAdd = add;
-        staticSearch.fire();
+//        staticSearch.fire();
         currentPageButton.setDisable(true);
     }
 
     public void switchPane(ActionEvent event) {
         if (currentPageButton.getId().equals("edit") && Objects.nonNull(observableRecord)) {
+            baseViewController.saveObject(editableRecord);
 //            if (!((BaseViewController) loader.getController()).saveObject(editableRecord)) {
 //                return;
 //            }
@@ -104,6 +149,7 @@ public class Controller {
 //            if (!((BaseViewController) loader.getController()).saveObject(newRecord)) {
 //                return;
 //            }
+            baseViewController.addController.saveObject(newRecord);
         }
         currentPageButton.setDisable(false);
         currentPageButton = ((Button) event.getSource());
@@ -117,31 +163,31 @@ public class Controller {
     }
 
     public void switchPane(String id) {
-        try {
-            if (List.of("view", "edit", "add").contains(id)) {
-                baseViewController = Objects.isNull(baseViewController) ? new BaseViewController() : baseViewController;
-                setLoaderWithController(baseViewController);
-                pageId = id;
-            } else {
-                loader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource(id.concat(".fxml"))));
-            }
+        staticAnchorPane.getChildren().clear();
+        Node node = null;
+        if (id.equals("search")) {
+            node = searchNode;
+        } else if (id.equals("view") || id.equals("edit") || id.equals("add")) {
+            node = recordNode;
+        } else if (id.equals("visualization")) {
+            node = visualizationNode;
+        }
+        staticAnchorPane.getChildren().add(node);
+        AnchorPane.setTopAnchor(node, 0.0);
+        AnchorPane.setRightAnchor(node, 0.0);
+        AnchorPane.setBottomAnchor(node, 0.0);
+        AnchorPane.setLeftAnchor(node, 0.0);
 
-            Node node = loader.load();
-            staticAnchorPane.getChildren().clear();
-            staticAnchorPane.getChildren().add(node);
-            AnchorPane.setTopAnchor(node, 0.0);
-            AnchorPane.setRightAnchor(node, 0.0);
-            AnchorPane.setBottomAnchor(node, 0.0);
-            AnchorPane.setLeftAnchor(node, 0.0);
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (id.equals("view") && Objects.nonNull(observableRecord)) {
+            baseViewController.viewController.start();
+        } else if (id.equals("edit") && Objects.nonNull(observableRecord)) {
+            baseViewController.editController.start();
+        } else if (id.equals("add")) {
+            baseViewController.addController.start();
         }
     }
 
-    private void setLoaderWithController(Object controller) {
-        loader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource("record.fxml")));
-        loader.setController(controller);
-    }
+
 
     public void printPage() {
         Stage stage = (Stage) anchorPane.getScene().getWindow();

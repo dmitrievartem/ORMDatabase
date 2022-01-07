@@ -8,16 +8,16 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane cache="false" cacheHint="SPEED" fitToHeight="true" fitToWidth="true" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="ormdatabase.controller.Controller">
+<ScrollPane cache="false" cacheHint="QUALITY" fitToHeight="true" fitToWidth="true" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ormdatabase.controller.Controller">
    <content>
-      <BorderPane id="border-pane" fx:id="borderPane" cache="false" cacheHint="SPEED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+      <BorderPane id="border-pane" fx:id="borderPane" cache="false" cacheHint="QUALITY" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>
          <left>
-            <VBox id="menu-vbox" fx:id="menu" alignment="TOP_CENTER" cache="false" cacheHint="SPEED" spacing="10.0">
+            <VBox id="menu-vbox" fx:id="menu" alignment="TOP_CENTER" cache="false" cacheHint="QUALITY" spacing="10.0">
                <children>
-                  <Button id="search" fx:id="search" cache="false" cacheHint="SPEED" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchPane" text="Поиск" wrapText="true">
+                  <Button id="search" fx:id="search" cache="false" cacheHint="QUALITY" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchPane" text="Поиск" wrapText="true">
                      <cursor>
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>
@@ -25,34 +25,34 @@
                         <Insets />
                      </VBox.margin>
                   </Button>
-                  <Button id="view" fx:id="view" cache="false" cacheHint="SPEED" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchPane" text="Просмотр" wrapText="true">
+                  <Button id="view" fx:id="view" cache="false" cacheHint="QUALITY" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchPane" text="Просмотр" wrapText="true">
                      <cursor>
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>
                   </Button>
-                  <Button id="edit" fx:id="edit" cache="false" cacheHint="SPEED" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchPane" text="Редактирование" wrapText="true">
+                  <Button id="edit" fx:id="edit" cache="false" cacheHint="QUALITY" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchPane" text="Редактирование" wrapText="true">
                      <cursor>
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>
                   </Button>
-                  <Button id="add" fx:id="add" cache="false" cacheHint="SPEED" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchPane" text="Добавление" wrapText="true">
+                  <Button id="add" fx:id="add" cache="false" cacheHint="QUALITY" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchPane" text="Добавление" wrapText="true">
                      <cursor>
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>
                   </Button>
-                  <Button id="visualization" fx:id="visualization" cache="false" cacheHint="SPEED" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchPane" text="Визуализация" wrapText="true">
+                  <Button id="visualization" fx:id="visualization" cache="false" cacheHint="QUALITY" contentDisplay="CENTER" mnemonicParsing="false" onAction="#switchPane" text="Визуализация" wrapText="true">
                      <cursor>
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>
                   </Button>
-                  <VBox alignment="BOTTOM_CENTER" cache="false" cacheHint="SPEED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0" VBox.vgrow="ALWAYS">
+                  <VBox alignment="BOTTOM_CENTER" cache="false" cacheHint="QUALITY" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Button id="print" alignment="CENTER" cache="false" cacheHint="SPEED" contentDisplay="CENTER" mnemonicParsing="false" onAction="#printPage" text="Печать страницы" wrapText="true">
+                        <Button id="print" alignment="CENTER" cache="false" cacheHint="QUALITY" contentDisplay="CENTER" mnemonicParsing="false" onAction="#printPage" text="Печать страницы" wrapText="true">
                            <cursor>
                               <Cursor fx:constant="DEFAULT" />
                            </cursor>
                         </Button>
-                        <Button id="backup" alignment="CENTER" cache="false" cacheHint="SPEED" contentDisplay="CENTER" mnemonicParsing="false" onAction="#backup" text="Бэкап базы данных" wrapText="true">
+                        <Button id="backup" alignment="CENTER" cache="false" cacheHint="QUALITY" contentDisplay="CENTER" mnemonicParsing="false" onAction="#backup" text="Бэкап базы данных" wrapText="true">
                            <cursor>
                               <Cursor fx:constant="DEFAULT" />
                            </cursor>
@@ -75,7 +75,7 @@
             <Insets />
          </opaqueInsets>
          <center>
-            <AnchorPane id="anchor-pane" fx:id="anchorPane" cache="false" cacheHint="SPEED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
+            <AnchorPane id="anchor-pane" fx:id="anchorPane" cache="false" cacheHint="QUALITY" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets bottom="25.0" right="25.0" top="25.0" />
                </BorderPane.margin>
