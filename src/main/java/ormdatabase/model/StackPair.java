@@ -4,7 +4,7 @@ import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
 
 @Embeddable
-public class StackPair {
+public class StackPair implements Cloneable {
     @Embedded
     ReboundStack reboundStack;
     @Embedded

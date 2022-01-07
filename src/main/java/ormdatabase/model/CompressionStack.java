@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Embeddable
-public class CompressionStack {
+public class CompressionStack implements Cloneable {
     List<Shim> stack;
 
     public CompressionStack() {
@@ -23,4 +23,14 @@ public class CompressionStack {
         return stack;
     }
 
+    @Override
+    public CompressionStack clone() {
+        try {
+            CompressionStack clone = (CompressionStack) super.clone();
+            // TODO: copy mutable state here, so the clone can't change the internals of the original
+            return clone;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
+    }
 }

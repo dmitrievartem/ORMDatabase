@@ -46,16 +46,17 @@ public class Controller {
 
     protected static Button staticAdd;
 
-    protected static Record observableRecord;
+    protected static Record observableRecord = null;
 
-    protected static Record editableRecord;
+    protected static Record editableRecord = null;
 
-    protected static Record newRecord;
+    protected static Record newRecord = null;
 
     private static Button currentPageButton;
 
-    public void start(Stage stage) throws IOException {
+    private FXMLLoader loader;
 
+    public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getClassLoader().getResource("main.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
@@ -65,6 +66,17 @@ public class Controller {
         stage.setScene(scene);
         stage.getIcons().add(new Image(Objects.requireNonNull(Controller.class.getResourceAsStream("icon.png"))));
         stage.show();
+
+
+//        Path dir = Files.createDirectories(Paths.get("path", "to", "files"));
+//        OutputStream out = Files.newOutputStream(dir.resolve("shimstack.odb"));
+//
+//        final FileChooser fileChooser = new FileChooser();
+//        File file = fileChooser.showOpenDialog(stage);
+//        byte[] fileContent = Files.readAllBytes(file.toPath());
+//
+//        out.write(fileContent);
+
     }
 
     @FXML
@@ -80,6 +92,14 @@ public class Controller {
     }
 
     public void switchPane(ActionEvent event) {
+        if (currentPageButton.getId().equals("edit")) {
+            EditController editController = loader.getController();
+            editController.saveObject();
+            System.out.println("switchButton-------------edit");
+        } else if (currentPageButton.getId().equals("add")) {
+//            AddController editController = loader.getController();
+//            editController.saveObject();
+        }
         currentPageButton.setDisable(false);
         currentPageButton = ((Button) event.getSource());
         currentPageButton.setDisable(true);
@@ -93,16 +113,16 @@ public class Controller {
 
     public void switchPane(String id) {
         try {
-            Node node;
             if (id.equals("view")) {
-                node = getLoaderWithController(new ViewController()).load();
+                setLoaderWithController(new ViewController());
             } else if (id.equals("edit")) {
-                node = getLoaderWithController(new EditController()).load();
+                setLoaderWithController(new EditController());
             } else if (id.equals("add")) {
-                node = getLoaderWithController(new AddController()).load();
+                setLoaderWithController(new AddController());
             } else {
-                node = FXMLLoader.load(Objects.requireNonNull(Controller.class.getClassLoader().getResource(id.concat(".fxml"))));
+                loader = new FXMLLoader(Objects.requireNonNull(Controller.class.getClassLoader().getResource(id.concat(".fxml"))));
             }
+            Node node = loader.load();
             staticAnchorPane.getChildren().clear();
             staticAnchorPane.getChildren().add(node);
             AnchorPane.setTopAnchor(node, 0.0);
@@ -114,14 +134,20 @@ public class Controller {
         }
     }
 
-    private FXMLLoader getLoaderWithController(Object controller) {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Objects.requireNonNull(Controller.class.getClassLoader().getResource("record.fxml")));
+    private void setLoaderWithController(Object controller) {
+        loader = new FXMLLoader(Objects.requireNonNull(Controller.class.getClassLoader().getResource("record.fxml")));
         loader.setController(controller);
-        return loader;
     }
 
     public void switchButton(Button buttonFrom, Button buttonTo) {
+        if (buttonFrom.getId().equals("edit")) {
+            EditController editController = loader.getController();
+            editController.saveObject();
+            System.out.println("switchButton-------------edit");
+        } else if (buttonFrom.getId().equals("add")) {
+//            AddController editController = loader.getController();
+//            editController.saveObject();
+        }
         buttonFrom.setDisable(false);
         buttonTo.setDisable(true);
         currentPageButton = buttonTo;

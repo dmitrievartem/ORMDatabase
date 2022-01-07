@@ -6,6 +6,7 @@ import ormdatabase.model.Record;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 
 public class EditController extends BaseViewController {
 
@@ -18,33 +19,39 @@ public class EditController extends BaseViewController {
         setTableCellsEditable();
         setEditButtonsAction();
 
-        editableRecord = new Record(observableRecord);
+        if (Objects.isNull(editableRecord)) {
+            System.out.println("editableRecord IS NULL");
+//            editableRecord = new Record(observableRecord);
+            editableRecord = observableRecord.clone();
+//            editableRecord = observableRecord;
+            System.out.println("observable == observable: ".concat(String.valueOf(observableRecord.getName()==observableRecord.getName())));
+            System.out.println("editable == observable: ".concat(String.valueOf(editableRecord.getName()==observableRecord.getName())));
+        }
 
-        staticView.setOnAction(event -> {
-            if (!isTablesValid() || name.getText().isEmpty()){
-                requiredFieldsAlert();
-            } else {
-                saveVersion(editableRecord);
-                switchPane(event);
-            }
-        });
+
+//        staticView.setOnAction(event -> {
+//            if (!isTablesValid() || name.getText().isEmpty()) {
+//                requiredFieldsAlert();
+//            } else {
+//                saveVersion(editableRecord);
+//                switchPane(event);
+//            }
+//        });
 
         previousVersion.setOnAction(event -> viewPreviousVersion(editableRecord));
         nextVersion.setOnAction(event -> viewNextVersion(editableRecord));
         editRecord.setDisable(true);
         deleteVersion.setOnAction(event -> deleteVersion(editableRecord));
         addVersion.setOnAction(event -> addVersion(editableRecord));
-        save.setOnAction(event -> save());
+        save.setOnAction(event -> saveRecord());
 
         viewRecord(editableRecord);
     }
 
-    public void save() {
-        if (!isTablesValid() || name.getText().isEmpty()){
+    public void saveObject() {
+        if (!isTablesValid() || name.getText().isEmpty()) {
             requiredFieldsAlert();
         } else {
-            saveVersion(editableRecord);
-            observableRecord = editableRecord;
             editableRecord.setName(name.getText());
             editableRecord.setUppercaseName(name.getText().toUpperCase(Locale.ROOT));
             editableRecord.setCar(car.getText());
@@ -53,7 +60,14 @@ public class EditController extends BaseViewController {
             editableRecord.setPhone(phone.getText());
             editableRecord.setCity(city.getText());
             editableRecord.setFavorites(favorites.isSelected());
-            dataSource.update(editableRecord, observableRecord.getId());
+            saveVersion(editableRecord);
         }
+    }
+
+    public void saveRecord() {
+        saveObject();
+        dataSource.update(editableRecord, observableRecord.getId());
+//        observableRecord = new Record(editableRecord);
+        observableRecord = editableRecord.clone();
     }
 }

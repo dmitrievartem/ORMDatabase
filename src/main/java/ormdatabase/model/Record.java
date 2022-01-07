@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Locale;
 
 @Entity
-public class Record {
+public class Record implements Cloneable {
     @Id
     @GeneratedValue
     private Long id;
@@ -35,18 +35,18 @@ public class Record {
         this.shimStackSetList = shimStackSetList;
     }
 
-    public Record(Record record) {
-        this.id = record.id;
-        this.favorites = record.favorites;
-        this.name = record.name;
-        this.car = record.car;
-        this.uppercaseName = record.uppercaseName;
-        this.uppercaseCar = record.uppercaseCar;
-        this.date = new Date(record.date.getTime());
-        this.phone = record.phone;
-        this.city = record.city;
-        this.shimStackSetList = new ArrayList<>(record.shimStackSetList);
-    }
+//    public Record(Record record) {
+//        this.id = record.id;
+//        this.favorites = record.favorites;
+//        this.name = record.name;
+//        this.car = record.car;
+//        this.uppercaseName = record.uppercaseName;
+//        this.uppercaseCar = record.uppercaseCar;
+//        this.date = new Date(record.date.getTime());
+//        this.phone = record.phone;
+//        this.city = record.city;
+//        this.shimStackSetList = new ArrayList<>(record.shimStackSetList);
+//    }
 
     public Long getId() {
         return id;
@@ -138,5 +138,17 @@ public class Record {
         this.city = record.getCity();
         this.favorites = record.isFavorites();
         this.shimStackSetList = record.getShimStackSetList();
+    }
+
+    @Override
+    public Record clone() {
+        try {
+            Record clone = (Record) super.clone();
+            // TODO: copy mutable state here, so the clone can't change the internals of the original
+            clone.shimStackSetList = new ArrayList<>(clone.shimStackSetList);
+            return clone;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
     }
 }

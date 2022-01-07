@@ -3,7 +3,7 @@ package ormdatabase.model;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class Shim {
+public class Shim implements Cloneable {
     private String number;
     private String diameter;
     private String thickness;
@@ -47,4 +47,14 @@ public class Shim {
         this.thickness = thickness;
     }
 
+    @Override
+    public Shim clone() {
+        try {
+            Shim clone = (Shim) super.clone();
+            // TODO: copy mutable state here, so the clone can't change the internals of the original
+            return clone;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
+    }
 }

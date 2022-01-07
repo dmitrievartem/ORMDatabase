@@ -32,7 +32,6 @@ public class DataSource {
         Record record = em.find(Record.class, id);
         em.getTransaction().begin();
         record.copy(editedRecord);
-//        record = new Record(editedRecord);
         em.getTransaction().commit();
     }
 
