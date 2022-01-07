@@ -21,6 +21,7 @@ public class Record implements Cloneable {
     private Date date = new Date();
     private String phone;
     private String city;
+    private String uppercaseCity;
     private List<ShimStackSet> shimStackSetList = new ArrayList<>();
 
     public Record() {
@@ -53,6 +54,7 @@ public class Record implements Cloneable {
 
     public void setName(String name) {
         this.name = name;
+        this.uppercaseName = name.toUpperCase(Locale.ROOT);
     }
 
     public String getCar() {
@@ -61,14 +63,7 @@ public class Record implements Cloneable {
 
     public void setCar(String car) {
         this.car = car;
-    }
-
-    public void setUppercaseName(String uppercaseName) {
-        this.uppercaseName = uppercaseName;
-    }
-
-    public void setUppercaseCar(String uppercaseCar) {
-        this.uppercaseCar = uppercaseCar;
+        this.uppercaseCar = car.toUpperCase(Locale.ROOT);
     }
 
     public Date getDate() {
@@ -93,14 +88,11 @@ public class Record implements Cloneable {
 
     public void setCity(String city) {
         this.city = city;
+        this.uppercaseCity = city.toUpperCase(Locale.ROOT);
     }
 
     public List<ShimStackSet> getShimStackSetList() {
         return shimStackSetList;
-    }
-
-    public void setShimStackSetList(List<ShimStackSet> shimStackSetList) {
-        this.shimStackSetList = shimStackSetList;
     }
 
     public void setVersion(int index, ShimStackSet shimStackSet) {
@@ -116,6 +108,7 @@ public class Record implements Cloneable {
     }
 
     public void copy(Record record) {
+        // как клонируются uppercase?
         this.name = record.getName();
         this.uppercaseName = record.getName().toUpperCase(Locale.ROOT);
         this.car = record.getCar();
@@ -123,6 +116,7 @@ public class Record implements Cloneable {
         this.date = record.getDate();
         this.phone = record.getPhone();
         this.city = record.getCity();
+        this.uppercaseCity = record.getCity().toUpperCase(Locale.ROOT);
         this.favorites = record.isFavorites();
         this.shimStackSetList = record.getShimStackSetList();
     }

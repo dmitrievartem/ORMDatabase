@@ -49,12 +49,8 @@ public class AddController extends BaseViewController {
             return false;
         } else {
             record.setName(name.getText());
-            record.setUppercaseName(name.getText().toUpperCase(Locale.ROOT));
             record.setCar(car.getText());
-            record.setUppercaseCar(car.getText().toUpperCase(Locale.ROOT));
-//            Date recordDate = Date.from(date.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
             record.setDate(Objects.isNull(date.getValue()) ? new Date() : Date.from(date.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
-//            record.setDate(recordDate);
             record.setPhone(phone.getText());
             record.setCity(city.getText());
             record.setFavorites(favorites.isSelected());

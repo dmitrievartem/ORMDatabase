@@ -14,6 +14,7 @@ import ormdatabase.model.Record;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Objects;
 
 public class SearchController extends Controller {
 
@@ -68,6 +69,15 @@ public class SearchController extends Controller {
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
         phoneNumberColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
         cityColumn.setCellValueFactory(new PropertyValueFactory<>("city"));
+
+        idTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (Objects.nonNull(newValue) && !newValue.matches("\\d*")) {
+                idTextField.setText(newValue.replaceAll("[^\\d]", ""));
+            }
+            if (Objects.nonNull(newValue) && newValue.length() > 10) {
+                idTextField.setText(newValue.substring(0, 10));
+            }
+        });
 
         searchTable.setOnMouseClicked(mouseEvent -> {
             if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {

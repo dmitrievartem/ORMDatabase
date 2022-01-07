@@ -672,9 +672,7 @@ public class BaseViewController extends Controller {
             return false;
         } else {
             record.setName(name.getText());
-            record.setUppercaseName(name.getText().toUpperCase(Locale.ROOT));
             record.setCar(car.getText());
-            record.setUppercaseCar(car.getText().toUpperCase(Locale.ROOT));
             record.setDate(Date.from(date.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
             record.setPhone(phone.getText());
             record.setCity(city.getText());
