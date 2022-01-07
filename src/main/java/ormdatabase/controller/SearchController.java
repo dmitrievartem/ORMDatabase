@@ -22,37 +22,37 @@ import java.util.Objects;
 public class SearchController extends Controller {
 
     @FXML
-    protected HBox headerHbox;
+    public HBox headerHbox;
 
     @FXML
-    protected TextField idTextField;
+    public TextField idTextField;
 
     @FXML
-    protected TextField nameTextField;
+    public TextField nameTextField;
 
     @FXML
-    protected TextField carTextField;
+    public TextField carTextField;
 
     @FXML
-    protected TextField cityTextField;
+    public TextField cityTextField;
 
     @FXML
-    protected CheckBox favoritesCheckBox;
+    public CheckBox favoritesCheckBox;
 
     @FXML
-    protected TableView<Record> searchTable;
+    public TableView<Record> searchTable;
 
     @FXML
-    protected TableColumn<Record, String> idColumn;
+    public TableColumn<Record, String> idColumn;
 
     @FXML
-    protected TableColumn<Record, String> nameColumn;
+    public TableColumn<Record, String> nameColumn;
 
     @FXML
-    protected TableColumn<Record, String> carColumn;
+    public TableColumn<Record, String> carColumn;
 
     @FXML
-    protected TableColumn<Record, Date> dateColumn;
+    public TableColumn<Record, Date> dateColumn;
 
     @FXML
     private TableColumn<Record, String> phoneNumberColumn;

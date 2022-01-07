@@ -17,6 +17,7 @@ import ormdatabase.model.DataSource;
 import ormdatabase.model.Record;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
 
 public class Controller {
@@ -44,17 +45,21 @@ public class Controller {
     @FXML
     public Button add;
 
-    protected static Button staticAdd;
+    public static Button staticAdd;
 
-    protected static Record observableRecord = null;
+    public static Record observableRecord = null;
 
-    protected static Record editableRecord = null;
+    public static Record editableRecord = null;
 
-    protected static Record newRecord = null;
+    public static Record newRecord = null;
 
     private static Button currentPageButton;
 
     private FXMLLoader loader;
+
+    public BaseViewController baseViewController;
+
+    protected static String pageId;
 
     public void start(Stage stage) throws IOException {
         loader = new FXMLLoader(getClass().getClassLoader().getResource("main.fxml"));
@@ -92,13 +97,13 @@ public class Controller {
 
     public void switchPane(ActionEvent event) {
         if (currentPageButton.getId().equals("edit") && Objects.nonNull(observableRecord)) {
-            if (!((EditController) loader.getController()).saveObject(editableRecord)) {
-                return;
-            }
+//            if (!((BaseViewController) loader.getController()).saveObject(editableRecord)) {
+//                return;
+//            }
         } else if (currentPageButton.getId().equals("add")) {
-            if (!((AddController) loader.getController()).saveObject(newRecord)) {
-                return;
-            }
+//            if (!((BaseViewController) loader.getController()).saveObject(newRecord)) {
+//                return;
+//            }
         }
         currentPageButton.setDisable(false);
         currentPageButton = ((Button) event.getSource());
@@ -113,15 +118,14 @@ public class Controller {
 
     public void switchPane(String id) {
         try {
-            if (id.equals("view")) {
-                setLoaderWithController(new ViewController());
-            } else if (id.equals("edit")) {
-                setLoaderWithController(new EditController());
-            } else if (id.equals("add")) {
-                setLoaderWithController(new AddController());
+            if (List.of("view", "edit", "add").contains(id)) {
+                baseViewController = Objects.isNull(baseViewController) ? new BaseViewController() : baseViewController;
+                setLoaderWithController(baseViewController);
+                pageId = id;
             } else {
                 loader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource(id.concat(".fxml"))));
             }
+
             Node node = loader.load();
             staticAnchorPane.getChildren().clear();
             staticAnchorPane.getChildren().add(node);
