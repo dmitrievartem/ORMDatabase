@@ -279,7 +279,12 @@
      -fx-background-color: #ffffff;
 }
 
-
+.date-picker:disabled,
+.date-picker:disabled .text-field,
+.combo-box:disabled,
+.combo-box-base:disabled .list-cell {
+    -fx-opacity: 100;
+}
 
 
 
