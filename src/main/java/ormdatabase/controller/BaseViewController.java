@@ -18,84 +18,84 @@ import java.util.*;
 
 public class BaseViewController extends Controller {
 
-    protected int currentVersion = 1;
-    protected final DataSource dataSource = new DataSource();
+    public int currentVersion = 1;
+    public final DataSource dataSource = new DataSource();
 
     @FXML
-    protected Label id;
+    public Label id;
 
     @FXML
-    protected TextField name;
+    public TextField name;
 
     @FXML
-    protected TextField car;
+    public TextField car;
 
     @FXML
-    protected DatePicker date;
+    public DatePicker date;
 
     @FXML
-    protected TextField phone;
+    public TextField phone;
 
     @FXML
-    protected TextField city;
+    public TextField city;
 
     @FXML
-    protected CheckBox favorites;
+    public CheckBox favorites;
 
     @FXML
-    protected Label version;
+    public Label version;
 
     @FXML
-    protected ComboBox<String> type;
+    public ComboBox<String> type;
 
     @FXML
-    protected DatePicker versionDate;
+    public DatePicker versionDate;
 
     @FXML
-    protected TextArea comment;
+    public TextArea comment;
 
     @FXML
-    protected TextField author;
+    public TextField author;
 
     @FXML
-    protected Button previousVersion;
+    public Button previousVersion;
 
     @FXML
-    protected Button nextVersion;
+    public Button nextVersion;
 
     @FXML
-    protected Button deleteVersion;
+    public Button deleteVersion;
 
     @FXML
-    protected Button addVersion;
+    public Button addVersion;
 
     @FXML
-    protected Button editRecord;
+    public Button editRecord;
 
     @FXML
-    protected Button save;
+    public Button save;
 
-    protected final Label frontLeftLabel = new Label();
-    protected final Label frontRightLabel = new Label();
-    protected final Label rearLeftLabel = new Label();
-    protected final Label rearRightLabel = new Label();
+    public final Label frontLeftLabel = new Label();
+    public final Label frontRightLabel = new Label();
+    public final Label rearLeftLabel = new Label();
+    public final Label rearRightLabel = new Label();
 
-    protected final Label frontLabel = new Label();
-    protected final Label rearLabel = new Label();
+    public final Label frontLabel = new Label();
+    public final Label rearLabel = new Label();
 
-    protected final Label emptyLabel = new Label();
-
-    @FXML
-    protected VBox vBox1;
+    public final Label emptyLabel = new Label();
 
     @FXML
-    protected VBox vBox2;
+    public VBox vBox1;
 
     @FXML
-    protected VBox vBox3;
+    public VBox vBox2;
 
     @FXML
-    protected VBox vBox4;
+    public VBox vBox3;
+
+    @FXML
+    public VBox vBox4;
 
     @FXML
     private TableView<Shim> reboundTable1;
@@ -265,7 +265,35 @@ public class BaseViewController extends Controller {
     @FXML
     private Button ct4resetButton;
 
-    protected void viewRecord(Record record) {
+    @FXML
+    protected final ViewController viewController = new ViewController();
+
+    @FXML
+    protected final EditController editController = new EditController();
+
+    @FXML
+    protected final AddController addController = new AddController();
+
+    public void initialize() {
+        this.viewController.setParentController(this);
+        this.editController.setParentController(this);
+        this.addController.setParentController(this);
+        if (pageId.equals("view") && Objects.nonNull(observableRecord)) {
+            viewController.start();
+        } else if (pageId.equals("edit") && Objects.nonNull(observableRecord)) {
+            editController.start();
+        } else if (pageId.equals("add")) {
+            addController.start();
+        }
+
+        setTypeComboBox();
+        setLabels();
+        setColumnProperties();
+        setTableCellsEditable();
+        setEditButtonsAction();
+    }
+
+    public void viewRecord(Record record) {
         id.setText(Objects.isNull(record.getId()) ? "Id" : String.valueOf(record.getId()));
         name.setText(record.getName());
         car.setText(record.getCar());
@@ -277,7 +305,7 @@ public class BaseViewController extends Controller {
         viewVersion(record, currentVersion);
     }
 
-    protected void setType(String selectedType) {
+    public void setType(String selectedType) {
         switch (selectedType) {
             case "4 одинаковые":
                 vBox1.getChildren().remove(0);
@@ -312,7 +340,7 @@ public class BaseViewController extends Controller {
         }
     }
 
-    protected void viewVersion(Record record, int targetVersion) {
+    public void viewVersion(Record record, int targetVersion) {
         if (record.getShimStackSetList().size() > 0) {
             ShimStackSet shimStackSet = record.getShimStackSetList().get(targetVersion - 1);
             String versionAmount = String.valueOf(record.getShimStackSetList().size());
@@ -345,7 +373,7 @@ public class BaseViewController extends Controller {
         }
     }
 
-    protected void viewTableValues(Record record, Integer targetVersion) {
+    public void viewTableValues(Record record, Integer targetVersion) {
         List<Pair<TableView<Shim>, TableView<Shim>>> tableList =
                 Arrays.asList(new Pair<>(reboundTable1, compressionTable1),
                         new Pair<>(reboundTable2, compressionTable2),
@@ -365,7 +393,7 @@ public class BaseViewController extends Controller {
         }
     }
 
-    protected void disableInputs() {
+    public void disableInputs() {
         name.setEditable(false);
         car.setEditable(false);
         phone.setEditable(false);
@@ -389,7 +417,31 @@ public class BaseViewController extends Controller {
         }
     }
 
-    protected void setLabels() {
+    public void enableInputs() {
+        name.setEditable(true);
+        car.setEditable(true);
+        phone.setEditable(true);
+        city.setEditable(true);
+        favorites.setDisable(false);
+        comment.setEditable(true);
+        author.setEditable(true);
+        for (TableView<Shim> tableView : getAllTables()) {
+            tableView.setEditable(true);
+        }
+
+        date.setDisable(false);
+        type.setDisable(false);
+        versionDate.setDisable(false);
+
+        deleteVersion.setDisable(false);
+        addVersion.setDisable(false);
+        save.setDisable(false);
+        for (Button button : getAllTableButtons()) {
+            button.setDisable(false);
+        }
+    }
+
+    public void setLabels() {
         frontLeftLabel.setText("ПЛ");
         frontRightLabel.setText("ПП");
         rearLeftLabel.setText("ЗЛ");
@@ -403,7 +455,7 @@ public class BaseViewController extends Controller {
         vBox4.getChildren().add(0, rearRightLabel);
     }
 
-    protected void deleteVersion(Record record) {
+    public void deleteVersion(Record record) {
         int versionAmount = record.getShimStackSetList().size();
         int targetVersion;
         if (versionAmount > 1) {
@@ -419,7 +471,7 @@ public class BaseViewController extends Controller {
         }
     }
 
-    protected void addVersion(Record record) {
+    public void addVersion(Record record) {
         if (isTablesValid()) {
             record.setVersion(currentVersion - 1, getCurrentShimStackSet());
             record.addVersion(new ShimStackSet());
@@ -433,7 +485,7 @@ public class BaseViewController extends Controller {
     }
 
 
-    protected boolean isTablesValid() {
+    public boolean isTablesValid() {
 
         for (TableView<Shim> table : getActualTables()) {
             if (table.getItems().isEmpty()) {
@@ -443,13 +495,13 @@ public class BaseViewController extends Controller {
         return true;
     }
 
-    protected void resetTables() {
+    public void resetTables() {
         for (TableView<Shim> table : getActualTables()) {
             table.getItems().clear();
         }
     }
 
-    protected ShimStackSet getCurrentShimStackSet() {
+    public ShimStackSet getCurrentShimStackSet() {
         ShimStackSet shimStackSet = new ShimStackSet();
         shimStackSet.setType(type.getSelectionModel().getSelectedItem());
         Date date = Date.from(versionDate.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
@@ -460,7 +512,7 @@ public class BaseViewController extends Controller {
         return shimStackSet;
     }
 
-    protected List<StackPair> getCurrentShimStackPairList(List<TableView<Shim>> tableViewList) {
+    public List<StackPair> getCurrentShimStackPairList(List<TableView<Shim>> tableViewList) {
         List<StackPair> stackPairList = new ArrayList<>();
         for (int i = 0; i < tableViewList.size(); i += 2) {
             stackPairList.add(
@@ -472,7 +524,7 @@ public class BaseViewController extends Controller {
         return stackPairList;
     }
 
-    protected void setColumnProperties() {
+    public void setColumnProperties() {
         for (TableView<Shim> tableView : getAllTables()) {
             tableView.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("number"));
             tableView.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("diameter"));
@@ -482,18 +534,18 @@ public class BaseViewController extends Controller {
         }
     }
 
-    protected void setTableCellsEditable() {
+    public void setTableCellsEditable() {
         List<TextField> onlyTextFields = List.of(name, car, city, author);
-        for (TextField textField : onlyTextFields) {
-            textField.textProperty().addListener((observable, oldValue, newValue) -> {
-                if (Objects.nonNull(newValue) && !newValue.matches("[(][)]\\s\\p{L}*")) {
-                    textField.setText(newValue.replaceAll("[^[(][)]\\s\\p{L}*]", ""));
-                }
-                if (Objects.nonNull(newValue) && newValue.length() > 50) {
-                    textField.setText(newValue.substring(0, 50));
-                }
-            });
-        }
+//        for (TextField textField : onlyTextFields) {
+//            textField.textProperty().addListener((observable, oldValue, newValue) -> {
+//                if (Objects.nonNull(newValue) && !newValue.matches("[(][)]\\s\\p{L}*")) {
+//                    textField.setText(newValue.replaceAll("[^[(][)]\\s\\p{L}*]", ""));
+//                }
+//                if (Objects.nonNull(newValue) && newValue.length() > 50) {
+//                    textField.setText(newValue.substring(0, 50));
+//                }
+//            });
+//        }
         phone.textProperty().addListener((observable, oldValue, newValue) -> {
             if (Objects.nonNull(newValue) && !newValue.matches("\\d*")) {
                 phone.setText(newValue.replaceAll("[^\\d]", ""));
@@ -538,7 +590,7 @@ public class BaseViewController extends Controller {
         }
     }
 
-    protected void setTypeComboBox() {
+    public void setTypeComboBox() {
         List<String> typeList = FXCollections.observableArrayList(List.of("4 одинаковые", "4 разные", "перед-зад"));
         type.setItems(FXCollections.observableArrayList(typeList));
         type.getSelectionModel().select("4 разные");
@@ -554,7 +606,7 @@ public class BaseViewController extends Controller {
         );
     }
 
-    protected List<TableView<Shim>> getActualTables() {
+    public List<TableView<Shim>> getActualTables() {
         List<TableView<Shim>> tableList = List.of(
                 reboundTable1, compressionTable1,
                 reboundTable2, compressionTable2,
@@ -568,7 +620,7 @@ public class BaseViewController extends Controller {
         return actualTableList;
     }
 
-    protected int getTypeNumber() {
+    public int getTypeNumber() {
         switch (type.getSelectionModel().getSelectedItem()) {
             case "4 одинаковые":
                 return 1;
@@ -592,7 +644,7 @@ public class BaseViewController extends Controller {
     }
 
     @SuppressWarnings("unchecked")
-    protected void addTableRow(ActionEvent event) {
+    public void addTableRow(ActionEvent event) {
         VBox parentVBox = (VBox) ((Button) event.getSource()).getParent().getParent();
         TableView<Shim> targetTable = (TableView<Shim>) parentVBox.getChildren().get(0);
         ObservableList<Shim> shims = targetTable.getItems();
@@ -601,7 +653,7 @@ public class BaseViewController extends Controller {
     }
 
     @SuppressWarnings("unchecked")
-    protected void deleteTableRow(ActionEvent event) {
+    public void deleteTableRow(ActionEvent event) {
         VBox parentVBox = (VBox) ((Button) event.getSource()).getParent().getParent();
         TableView<Shim> targetTable = (TableView<Shim>) parentVBox.getChildren().get(0);
         ObservableList<Shim> shims = targetTable.getItems();
@@ -610,13 +662,13 @@ public class BaseViewController extends Controller {
     }
 
     @SuppressWarnings("unchecked")
-    protected void resetTable(ActionEvent event) {
+    public void resetTable(ActionEvent event) {
         VBox parentVBox = (VBox) ((Button) event.getSource()).getParent().getParent();
         TableView<Shim> targetTable = (TableView<Shim>) parentVBox.getChildren().get(0);
         targetTable.getItems().clear();
     }
 
-    protected void setAddButtonAction() {
+    public void setAddButtonAction() {
         List<Button> buttonList = List.of(
                 rt1addButton, rt2addButton, rt3addButton, rt4addButton,
                 ct1addButton, ct2addButton, ct3addButton, ct4addButton
@@ -626,7 +678,7 @@ public class BaseViewController extends Controller {
         }
     }
 
-    protected void setDeleteButtonAction() {
+    public void setDeleteButtonAction() {
         List<Button> buttonList = List.of(
                 rt1deleteButton, rt2deleteButton, rt3deleteButton, rt4deleteButton,
                 ct1deleteButton, ct2deleteButton, ct3deleteButton, ct4deleteButton
@@ -636,7 +688,7 @@ public class BaseViewController extends Controller {
         }
     }
 
-    protected void setResetButtonAction() {
+    public void setResetButtonAction() {
         List<Button> buttonList = List.of(
                 rt1resetButton, rt2resetButton, rt3resetButton, rt4resetButton,
                 ct1resetButton, ct2resetButton, ct3resetButton, ct4resetButton
@@ -646,19 +698,19 @@ public class BaseViewController extends Controller {
         }
     }
 
-    protected void setEditButtonsAction() {
+    public void setEditButtonsAction() {
         setAddButtonAction();
         setDeleteButtonAction();
         setResetButtonAction();
     }
 
-    protected void requiredFieldsAlert() {
+    public void requiredFieldsAlert() {
         Alert alert = new Alert(Alert.AlertType.NONE, "", ButtonType.OK);
         alert.setHeaderText(null);
         alert.setContentText("Заполняй все как надо блять");
         alert.initStyle(StageStyle.UNDECORATED);
         DialogPane dialogPane = alert.getDialogPane();
-        dialogPane.getStylesheets().add(Objects.requireNonNull(Controller.class.getResource("light.css")).toExternalForm());
+        dialogPane.getStylesheets().add(Objects.requireNonNull(Controller.class.getResource("light-with-shadows.css")).toExternalForm());
         alert.showAndWait();
     }
 

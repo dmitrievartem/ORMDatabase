@@ -1,37 +1,39 @@
 package ormdatabase.controller;
 
-import javafx.fxml.FXML;
-
 import java.util.Objects;
 
-public class EditController extends BaseViewController {
+public class EditController {
 
-    @FXML
-    void initialize() {
-        currentVersion = observableRecord.getShimStackSetList().size();
-        setTypeComboBox();
-        setLabels();
-        setColumnProperties();
-        setTableCellsEditable();
-        setEditButtonsAction();
+    private BaseViewController baseViewController;
 
-        if (Objects.isNull(editableRecord)) {
-            editableRecord = observableRecord.clone();
+    public void setParentController(BaseViewController baseViewController) {
+        this.baseViewController = baseViewController;
+    }
+
+    void start() {
+        baseViewController.currentVersion = Controller.observableRecord.getShimStackSetList().size();
+        baseViewController.enableInputs();
+
+        if (Objects.isNull(Controller.editableRecord)) {
+            Controller.editableRecord = Controller.observableRecord.clone();
         }
 
-        previousVersion.setOnAction(event -> viewPreviousVersion(editableRecord));
-        nextVersion.setOnAction(event -> viewNextVersion(editableRecord));
-        editRecord.setDisable(true);
-        deleteVersion.setOnAction(event -> deleteVersion(editableRecord));
-        addVersion.setOnAction(event -> addVersion(editableRecord));
-        save.setOnAction(event -> saveRecord());
+        baseViewController.previousVersion.setOnAction(event -> baseViewController.viewPreviousVersion(Controller.editableRecord));
+        baseViewController.nextVersion.setOnAction(event -> baseViewController.viewNextVersion(Controller.editableRecord));
+        baseViewController.editRecord.setDisable(true);
+        baseViewController.deleteVersion.setOnAction(event -> baseViewController.deleteVersion(Controller.editableRecord));
+        baseViewController.addVersion.setOnAction(event -> baseViewController.addVersion(Controller.editableRecord));
+        baseViewController.save.setOnAction(event -> {
+            saveRecord();
+            Controller.staticView.fire();
+        });
 
-        viewRecord(editableRecord);
+        baseViewController.viewRecord(Controller.editableRecord);
     }
 
     public void saveRecord() {
-        saveObject(editableRecord);
-        dataSource.update(editableRecord, observableRecord.getId());
-        observableRecord = editableRecord.clone();
+        baseViewController.saveObject(Controller.editableRecord);
+        baseViewController.dataSource.update(Controller.editableRecord, Controller.observableRecord.getId());
+        Controller.observableRecord = Controller.editableRecord.clone();
     }
 }
