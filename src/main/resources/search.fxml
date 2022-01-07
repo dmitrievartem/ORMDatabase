@@ -9,24 +9,24 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="TOP_CENTER" cache="false" cacheHint="SPEED" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="ormdatabase.controller.SearchController">
+<VBox alignment="TOP_CENTER" cache="false" cacheHint="QUALITY" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="ormdatabase.controller.SearchController">
    <children>
-      <HBox id="search-header-hbox" fx:id="headerHbox" alignment="CENTER" cache="false" cacheHint="SPEED">
+      <HBox id="search-header-hbox" fx:id="headerHbox" alignment="CENTER" cache="false" cacheHint="QUALITY">
          <children>
-            <TextField id="search-id" fx:id="idTextField" cache="false" cacheHint="SPEED" promptText="ID">
+            <TextField id="search-id" fx:id="idTextField" cache="false" cacheHint="QUALITY" promptText="ID">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
             </TextField>
-            <TextField id="search-name" fx:id="nameTextField" cache="false" cacheHint="SPEED" promptText="ФИО" />
-            <TextField id="search-car" fx:id="carTextField" cache="false" cacheHint="SPEED" promptText="Машина" />
-            <TextField id="search-city" fx:id="cityTextField" cache="false" cacheHint="SPEED" promptText="Город" />
-            <CheckBox id="search-favorites" fx:id="favoritesCheckBox" cache="false" cacheHint="SPEED" mnemonicParsing="false" text="Избранное">
+            <TextField id="search-name" fx:id="nameTextField" cache="false" cacheHint="QUALITY" promptText="ФИО" />
+            <TextField id="search-car" fx:id="carTextField" cache="false" cacheHint="QUALITY" promptText="Машина" />
+            <TextField id="search-city" fx:id="cityTextField" cache="false" cacheHint="QUALITY" promptText="Город" />
+            <CheckBox id="search-favorites" fx:id="favoritesCheckBox" cache="false" cacheHint="QUALITY" mnemonicParsing="false" text="Избранное">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
             </CheckBox>
-            <Button id="search-button" fx:id="searchButton" alignment="CENTER" cache="false" cacheHint="SPEED" contentDisplay="CENTER" mnemonicParsing="false" onAction="#search" style="-fx-font-family: Verdana; -fx-border-radius: 10;" text="Искать">
+            <Button id="search-button" fx:id="searchButton" alignment="CENTER" cache="false" cacheHint="QUALITY" contentDisplay="CENTER" mnemonicParsing="false" onAction="#search" style="-fx-font-family: Verdana; -fx-border-radius: 10;" text="Искать">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
@@ -39,7 +39,7 @@
             <Insets />
          </opaqueInsets>
       </HBox>
-      <TableView id="search-table" fx:id="searchTable" cache="false" cacheHint="SPEED" VBox.vgrow="ALWAYS">
+      <TableView id="search-table" fx:id="searchTable" cache="false" cacheHint="QUALITY" VBox.vgrow="ALWAYS">
         <columns>
             <TableColumn fx:id="idColumn" editable="false" minWidth="50.0" prefWidth="75.0" text="ID" />
           <TableColumn fx:id="nameColumn" editable="false" minWidth="250.0" prefWidth="-1.0" text="ФИО" />

@@ -109,11 +109,11 @@ public class Record implements Cloneable {
         this.name = record.getName();
         this.uppercaseName = record.getName().toUpperCase(Locale.ROOT);
         this.car = record.getCar();
-        this.uppercaseCar = record.getCar().toUpperCase(Locale.ROOT);
+        this.uppercaseCar = Objects.nonNull(record.getCar()) ? record.getCar().toUpperCase(Locale.ROOT) : null;
         this.date = record.getDate();
         this.phone = record.getPhone();
         this.city = record.getCity();
-        this.uppercaseCity = record.getCity().toUpperCase(Locale.ROOT);
+        this.uppercaseCity = Objects.nonNull(record.getCity()) ? record.getCity().toUpperCase(Locale.ROOT) : null;
         this.favorites = record.isFavorites();
         this.shimStackSetList = record.getShimStackSetList();
     }

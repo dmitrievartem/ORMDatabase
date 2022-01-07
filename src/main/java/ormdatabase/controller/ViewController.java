@@ -19,12 +19,11 @@ public class ViewController {
 
     void start() {
         baseViewController.currentVersion = Controller.observableRecord.getShimStackSetList().size();
-        baseViewController.setLabels();
-        baseViewController.setColumnProperties();
         baseViewController.previousVersion.setOnAction(event -> baseViewController.viewPreviousVersion(Controller.observableRecord));
         baseViewController.nextVersion.setOnAction(event -> baseViewController.viewNextVersion(Controller.observableRecord));
         baseViewController.editRecord.setOnAction(event -> Controller.staticEdit.fire());
         baseViewController.disableInputs();
+        baseViewController.editRecord.setDisable(false);
         baseViewController.viewRecord(Controller.observableRecord);
     }
 }

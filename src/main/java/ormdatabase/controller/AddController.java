@@ -16,12 +16,7 @@ public class AddController {
     }
 
     void start() {
-        baseViewController.setTypeComboBox();
-        baseViewController.setLabels();
-        baseViewController.setColumnProperties();
-        baseViewController.setTableCellsEditable();
-        baseViewController.setEditButtonsAction();
-
+        baseViewController.enableInputs();
         baseViewController.previousVersion.setOnAction(event -> baseViewController.viewPreviousVersion(Controller.newRecord));
         baseViewController.nextVersion.setOnAction(event -> baseViewController.viewNextVersion(Controller.newRecord));
         baseViewController.editRecord.setDisable(true);
@@ -39,6 +34,7 @@ public class AddController {
     public void resetNewRecord() {
         Controller.newRecord = new Record();
         Controller.newRecord.addVersion(new ShimStackSet());
+        baseViewController.currentVersion = 1;
         baseViewController.viewRecord(Controller.newRecord);
     }
 
