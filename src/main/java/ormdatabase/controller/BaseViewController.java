@@ -15,6 +15,7 @@ import javafx.util.Pair;
 import ormdatabase.model.*;
 
 import java.io.File;
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.*;
 
@@ -268,10 +269,11 @@ public class BaseViewController extends Controller {
     private Button ct4resetButton;
 
     protected void viewRecord(Record record) {
-        id.setText(String.valueOf(record.getId()));
+        id.setText(Objects.isNull(record.getId()) ? "Id" : String.valueOf(record.getId()));
         name.setText(record.getName());
         car.setText(record.getCar());
-        date.setValue(record.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+        LocalDate localDate = record.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        date.setValue(Objects.isNull(localDate) ? LocalDate.now() : localDate);
         phone.setText(record.getPhone());
         city.setText(record.getCity());
         favorites.setSelected(record.isFavorites());
@@ -314,16 +316,19 @@ public class BaseViewController extends Controller {
     }
 
     protected void viewVersion(Record record, int targetVersion) {
-        ShimStackSet shimStackSet = record.getShimStackSetList().get(targetVersion - 1);
-        String versionAmount = String.valueOf(record.getShimStackSetList().size());
-        version.setText(String.valueOf(targetVersion).concat("/").concat(versionAmount));
-        versionDate.setValue(shimStackSet.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-        comment.setText(shimStackSet.getComment());
-        author.setText(shimStackSet.getAuthor());
-        type.getSelectionModel().select(shimStackSet.getType());
-        setType(shimStackSet.getType());
+        if (record.getShimStackSetList().size() > 0) {
+            ShimStackSet shimStackSet = record.getShimStackSetList().get(targetVersion - 1);
+            String versionAmount = String.valueOf(record.getShimStackSetList().size());
+            version.setText(String.valueOf(targetVersion).concat("/").concat(versionAmount));
+            versionDate.setValue(shimStackSet.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+            comment.setText(shimStackSet.getComment());
+            author.setText(shimStackSet.getAuthor());
+            type.getSelectionModel().select(shimStackSet.getType());
+            setType(shimStackSet.getType());
+            currentVersion = targetVersion;
+        }
+
         viewTableValues(record, targetVersion);
-        currentVersion = targetVersion;
     }
 
     public void viewPreviousVersion(Record record) {
@@ -351,15 +356,15 @@ public class BaseViewController extends Controller {
                         new Pair<>(reboundTable4, compressionTable4)
                 );
         ShimStackSet targetShimStackSet = record.getShimStackSetList().get(targetVersion - 1);
-        if (targetShimStackSet.getShimStackList().size() > 0) {
-            List<Shim> reboundList;
-            List<Shim> compressionList;
-            for (int i = 0; i < targetShimStackSet.getTypeNumber(); i++) {
+        List<Shim> reboundList = List.of(new Shim("0", "0", "0"));
+        List<Shim> compressionList = List.of(new Shim("0", "0", "0"));
+        for (int i = 0; i < targetShimStackSet.getTypeNumber(); i++) {
+            if (targetShimStackSet.getShimStackList().size() > 0) {
                 reboundList = targetShimStackSet.getShimStackList().get(i).getReboundStack().getStack();
                 compressionList = targetShimStackSet.getShimStackList().get(i).getCompressionStack().getStack();
-                tableList.get(i).getKey().setItems(FXCollections.observableArrayList(reboundList));
-                tableList.get(i).getValue().setItems(FXCollections.observableArrayList(compressionList));
             }
+            tableList.get(i).getKey().setItems(FXCollections.observableArrayList(reboundList));
+            tableList.get(i).getValue().setItems(FXCollections.observableArrayList(compressionList));
         }
     }
 
@@ -659,5 +664,23 @@ public class BaseViewController extends Controller {
         DialogPane dialogPane = alert.getDialogPane();
         dialogPane.getStylesheets().add(Objects.requireNonNull(Controller.class.getResource("light.css")).toExternalForm());
         alert.showAndWait();
+    }
+
+    public boolean saveObject(Record record) {
+        if (!isTablesValid() || name.getText().isEmpty()) {
+            requiredFieldsAlert();
+            return false;
+        } else {
+            record.setName(name.getText());
+            record.setUppercaseName(name.getText().toUpperCase(Locale.ROOT));
+            record.setCar(car.getText());
+            record.setUppercaseCar(car.getText().toUpperCase(Locale.ROOT));
+            record.setDate(Date.from(date.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+            record.setPhone(phone.getText());
+            record.setCity(city.getText());
+            record.setFavorites(favorites.isSelected());
+            saveVersion(record);
+            return true;
+        }
     }
 }

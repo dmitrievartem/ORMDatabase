@@ -14,7 +14,7 @@ public class Record implements Cloneable {
     @GeneratedValue
     private Long id;
     private boolean favorites = false;
-    private String name;
+    private String name = "ФИО";
     private String car;
     private String uppercaseName;
     private String uppercaseCar;
@@ -34,19 +34,6 @@ public class Record implements Cloneable {
         this.city = city;
         this.shimStackSetList = shimStackSetList;
     }
-
-//    public Record(Record record) {
-//        this.id = record.id;
-//        this.favorites = record.favorites;
-//        this.name = record.name;
-//        this.car = record.car;
-//        this.uppercaseName = record.uppercaseName;
-//        this.uppercaseCar = record.uppercaseCar;
-//        this.date = new Date(record.date.getTime());
-//        this.phone = record.phone;
-//        this.city = record.city;
-//        this.shimStackSetList = new ArrayList<>(record.shimStackSetList);
-//    }
 
     public Long getId() {
         return id;

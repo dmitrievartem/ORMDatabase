@@ -92,13 +92,15 @@ public class Controller {
     }
 
     public void switchPane(ActionEvent event) {
-        if (currentPageButton.getId().equals("edit")) {
-            EditController editController = loader.getController();
-            editController.saveObject();
-            System.out.println("switchButton-------------edit");
+
+        if (currentPageButton.getId().equals("edit") && Objects.nonNull(observableRecord)) {
+            if(!((EditController) loader.getController()).saveObject(editableRecord)) {
+                return;
+            }
         } else if (currentPageButton.getId().equals("add")) {
-//            AddController editController = loader.getController();
-//            editController.saveObject();
+            if(!((AddController) loader.getController()).saveObject(newRecord)) {
+                return;
+            }
         }
         currentPageButton.setDisable(false);
         currentPageButton = ((Button) event.getSource());
@@ -140,14 +142,6 @@ public class Controller {
     }
 
     public void switchButton(Button buttonFrom, Button buttonTo) {
-        if (buttonFrom.getId().equals("edit")) {
-            EditController editController = loader.getController();
-            editController.saveObject();
-            System.out.println("switchButton-------------edit");
-        } else if (buttonFrom.getId().equals("add")) {
-//            AddController editController = loader.getController();
-//            editController.saveObject();
-        }
         buttonFrom.setDisable(false);
         buttonTo.setDisable(true);
         currentPageButton = buttonTo;

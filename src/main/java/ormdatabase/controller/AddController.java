@@ -8,6 +8,7 @@ import ormdatabase.model.ShimStackSet;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 
 public class AddController extends BaseViewController {
 
@@ -24,9 +25,14 @@ public class AddController extends BaseViewController {
         editRecord.setDisable(true);
         deleteVersion.setOnAction(event -> deleteVersion(newRecord));
         addVersion.setOnAction(event -> addVersion(newRecord));
-        save.setOnAction(event -> save(newRecord));
+        save.setOnAction(event -> saveRecord());
 
-        resetNewRecord();
+        if (Objects.isNull(newRecord)) {
+            System.out.println("newRecord IS NULL");
+            resetNewRecord();
+        } else {
+            viewRecord(newRecord);
+        }
     }
 
     public void resetNewRecord() {
@@ -36,22 +42,29 @@ public class AddController extends BaseViewController {
         viewVersion(newRecord, currentVersion);
     }
 
-    public void save(Record record) {
-        if (!isTablesValid() || name.getText().isEmpty()) {
+    @Override
+    public boolean saveObject(Record record) {
+        if (!isTablesValid()) {
             requiredFieldsAlert();
+            return false;
         } else {
-            saveVersion(newRecord);
             record.setName(name.getText());
             record.setUppercaseName(name.getText().toUpperCase(Locale.ROOT));
             record.setCar(car.getText());
             record.setUppercaseCar(car.getText().toUpperCase(Locale.ROOT));
-            record.setDate(Date.from(date.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+//            Date recordDate = Date.from(date.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
+            record.setDate(Objects.isNull(date.getValue()) ? new Date() : Date.from(date.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+//            record.setDate(recordDate);
             record.setPhone(phone.getText());
             record.setCity(city.getText());
             record.setFavorites(favorites.isSelected());
-            DataSource dataSource = new DataSource();
-            dataSource.insert(record);
-            resetNewRecord();
+            saveVersion(record);
+            return true;
         }
+    }
+
+    public void saveRecord() {
+        dataSource.insert(newRecord);
+        resetNewRecord();
     }
 }

@@ -31,4 +31,14 @@ public class StackPair implements Cloneable {
         return compressionStack;
     }
 
+    @Override
+    public StackPair clone() {
+        try {
+            StackPair clone = (StackPair) super.clone();
+            // TODO: copy mutable state here, so the clone can't change the internals of the original
+            return clone;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
+    }
 }
