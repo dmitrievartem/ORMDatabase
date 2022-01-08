@@ -50,15 +50,17 @@ public class Controller {
 
     public static Record observableRecord = null;
 
-    public static Record editableRecord = null;
+    public static Record editableRecord = observableRecord;
 
-    public static Record newRecord = null;
+    public static Record newRecord;
 
     private static Button currentPageButton;
 
     private FXMLLoader loader;
 
     public static BaseViewController baseViewController;
+
+    public static VisualizationController visualizationController;
 
     protected static String pageId = "view";
 
@@ -92,8 +94,11 @@ public class Controller {
                 baseViewController = new BaseViewController();
                 loader.setController(baseViewController);
                 recordNode = loader.load();
+                baseViewController.addController.initNewRecord();
 
                 loader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource("visualization.fxml")));
+                visualizationController = new VisualizationController();
+                loader.setController(visualizationController);
                 visualizationNode = loader.load();
 
                 return (Parent) searchNode;
@@ -141,15 +146,13 @@ public class Controller {
 
     public void switchPane(ActionEvent event) {
         if (currentPageButton.getId().equals("edit") && Objects.nonNull(observableRecord)) {
-            baseViewController.saveObject(editableRecord);
-//            if (!((BaseViewController) loader.getController()).saveObject(editableRecord)) {
-//                return;
-//            }
+            if (!baseViewController.saveObject(editableRecord)) {
+                return;
+            }
         } else if (currentPageButton.getId().equals("add")) {
-//            if (!((BaseViewController) loader.getController()).saveObject(newRecord)) {
-//                return;
-//            }
-            baseViewController.addController.saveObject(newRecord);
+            if (!baseViewController.addController.saveObject(newRecord)) {
+                return;
+            }
         }
         currentPageButton.setDisable(false);
         currentPageButton = ((Button) event.getSource());
@@ -184,10 +187,10 @@ public class Controller {
             baseViewController.editController.start();
         } else if (id.equals("add")) {
             baseViewController.addController.start();
+        } else if (id.equals("visualization")) {
+            visualizationController.refreshSelection();
         }
     }
-
-
 
     public void printPage() {
         Stage stage = (Stage) anchorPane.getScene().getWindow();

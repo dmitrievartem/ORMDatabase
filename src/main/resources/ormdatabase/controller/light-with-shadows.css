@@ -223,7 +223,7 @@
     -fx-min-height: 30;
     -fx-max-height: 30;
     -fx-background-radius: 10;
-    -fx-padding: 5 10 5 10;
+    -fx-padding: 0 10 0 10;
     -fx-background-insets: 0 0 0 0;
     -fx-background-color: #ffffff;
     -fx-effect: dropshadow(three-pass-box, #d3dae5, 10, 0, 0, 0);

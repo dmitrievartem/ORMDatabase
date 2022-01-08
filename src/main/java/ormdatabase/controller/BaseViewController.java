@@ -554,6 +554,7 @@ public class BaseViewController extends Controller {
                 phone.setText(newValue.substring(0, 11));
             }
         });
+
         comment.textProperty().addListener((observable, oldValue, newValue) -> {
             if (Objects.nonNull(newValue) && newValue.length() > 500) {
                 comment.setText(newValue.substring(0, 500));
@@ -719,6 +720,7 @@ public class BaseViewController extends Controller {
             requiredFieldsAlert();
             return false;
         } else {
+            System.out.println("saveObject(edit) -------------- ");
             record.setName(name.getText());
             record.setCar(car.getText());
             record.setDate(Date.from(date.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));

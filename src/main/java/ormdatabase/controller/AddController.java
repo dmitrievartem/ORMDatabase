@@ -16,6 +16,7 @@ public class AddController {
     }
 
     void start() {
+        baseViewController.currentVersion = Controller.newRecord.getShimStackSetList().size();
         baseViewController.enableInputs();
         baseViewController.previousVersion.setOnAction(event -> baseViewController.viewPreviousVersion(Controller.newRecord));
         baseViewController.nextVersion.setOnAction(event -> baseViewController.viewNextVersion(Controller.newRecord));
@@ -23,15 +24,10 @@ public class AddController {
         baseViewController.deleteVersion.setOnAction(event -> baseViewController.deleteVersion(Controller.newRecord));
         baseViewController.addVersion.setOnAction(event -> baseViewController.addVersion(Controller.newRecord));
         baseViewController.save.setOnAction(event -> saveRecord());
-
-        if (Objects.isNull(Controller.newRecord)) {
-            resetNewRecord();
-        } else {
-            baseViewController.viewRecord(Controller.newRecord);
-        }
+        baseViewController.viewRecord(Controller.newRecord);
     }
 
-    public void resetNewRecord() {
+    public void initNewRecord() {
         Controller.newRecord = new Record();
         Controller.newRecord.addVersion(new ShimStackSet());
         baseViewController.currentVersion = 1;
@@ -43,6 +39,7 @@ public class AddController {
             baseViewController.requiredFieldsAlert();
             return false;
         } else {
+            System.out.println("saveObject(add) -------------- ");
             record.setName(baseViewController.name.getText());
             record.setCar(baseViewController.car.getText());
             record.setDate(Objects.isNull(baseViewController.date.getValue()) ? new Date() : Date.from(baseViewController.date.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
@@ -57,6 +54,6 @@ public class AddController {
     public void saveRecord() {
         saveObject(Controller.newRecord);
         baseViewController.dataSource.insert(Controller.newRecord);
-        resetNewRecord();
+        initNewRecord();
     }
 }

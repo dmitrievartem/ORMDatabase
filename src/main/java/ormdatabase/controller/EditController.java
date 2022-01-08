@@ -1,7 +1,5 @@
 package ormdatabase.controller;
 
-import java.util.Objects;
-
 public class EditController {
 
     private BaseViewController baseViewController;
@@ -11,13 +9,8 @@ public class EditController {
     }
 
     void start() {
-        baseViewController.currentVersion = Controller.observableRecord.getShimStackSetList().size();
+        baseViewController.currentVersion = Controller.editableRecord.getShimStackSetList().size();
         baseViewController.enableInputs();
-
-        if (Objects.isNull(Controller.editableRecord)) {
-            Controller.editableRecord = Controller.observableRecord.clone();
-        }
-
         baseViewController.previousVersion.setOnAction(event -> baseViewController.viewPreviousVersion(Controller.editableRecord));
         baseViewController.nextVersion.setOnAction(event -> baseViewController.viewNextVersion(Controller.editableRecord));
         baseViewController.editRecord.setDisable(true);
@@ -27,7 +20,6 @@ public class EditController {
             saveRecord();
             Controller.staticView.fire();
         });
-
         baseViewController.viewRecord(Controller.editableRecord);
     }
 

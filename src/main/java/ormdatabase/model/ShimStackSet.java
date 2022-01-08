@@ -51,7 +51,9 @@ public class ShimStackSet implements Cloneable {
             case "перед-зад":
                 return 2;
             case "4 разные":
+                return 4;
             default:
+                System.out.println("ПРОИЗОШЛА КАКАЯ-ТО ХУЙНЯ");
                 return 4;
         }
     }

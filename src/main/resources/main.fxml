@@ -75,7 +75,7 @@
             <Insets />
          </opaqueInsets>
          <center>
-            <AnchorPane id="anchor-pane" fx:id="anchorPane" cache="false" cacheHint="QUALITY" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
+            <AnchorPane id="anchor-pane" fx:id="anchorPane" cache="false" cacheHint="QUALITY" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER_LEFT">
                <BorderPane.margin>
                   <Insets bottom="25.0" right="25.0" top="25.0" />
                </BorderPane.margin>

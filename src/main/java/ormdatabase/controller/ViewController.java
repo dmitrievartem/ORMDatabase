@@ -1,15 +1,6 @@
 package ormdatabase.controller;
 
-import ormdatabase.model.Record;
-
 public class ViewController {
-//public class ViewController extends BaseViewController {
-
-//    private Record record;
-//
-//    public ViewController(Record record) {
-//        this.record = record;
-//    }
 
     private BaseViewController baseViewController;
 
@@ -19,11 +10,11 @@ public class ViewController {
 
     void start() {
         baseViewController.currentVersion = Controller.observableRecord.getShimStackSetList().size();
+        baseViewController.disableInputs();
         baseViewController.previousVersion.setOnAction(event -> baseViewController.viewPreviousVersion(Controller.observableRecord));
         baseViewController.nextVersion.setOnAction(event -> baseViewController.viewNextVersion(Controller.observableRecord));
-        baseViewController.editRecord.setOnAction(event -> Controller.staticEdit.fire());
-        baseViewController.disableInputs();
         baseViewController.editRecord.setDisable(false);
+        baseViewController.editRecord.setOnAction(event -> Controller.staticEdit.fire());
         baseViewController.viewRecord(Controller.observableRecord);
     }
 }

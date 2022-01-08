@@ -87,6 +87,7 @@ public class SearchController extends Controller {
                 if (mouseEvent.getClickCount() == 2) {
                     if (searchTable.getSelectionModel().getSelectedItem() != null) {
                         observableRecord = searchTable.getSelectionModel().getSelectedItem();
+                        editableRecord = observableRecord;
                         staticView.fire();
                     }
                 }

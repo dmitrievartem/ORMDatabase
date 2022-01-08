@@ -2,13 +2,15 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox fx:id="hBox" alignment="CENTER" spacing="50.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="ormdatabase.controller.VisualizationController">
+<HBox fx:id="hBox" alignment="CENTER" spacing="50.0" stylesheets="@ormdatabase/controller/light-with-shadows.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox fx:id="vBox1" alignment="CENTER" spacing="30.0" styleClass="shim-stack-vbox">
          <children>
@@ -26,8 +28,9 @@
                   </TableView>
                   <HBox alignment="CENTER" spacing="10.0">
                      <children>
-                        <Button id="table-button" fx:id="reboundAddButton" mnemonicParsing="false" onAction="#addDeleteRow" text="+" />
-                        <Button id="table-button" fx:id="reboundDeleteButton" mnemonicParsing="false" onAction="#addDeleteRow" text="-" />
+                        <Button id="table-button" fx:id="reboundAddButton" mnemonicParsing="false" text="+" />
+                        <Button id="table-button" fx:id="reboundDeleteButton" mnemonicParsing="false" text="-" />
+                        <Button id="table-button" fx:id="reboundResetButton" mnemonicParsing="false" text="x" />
                      </children>
                   </HBox>
                </children>
@@ -46,8 +49,9 @@
                   </TableView>
                   <HBox alignment="CENTER" spacing="10.0">
                      <children>
-                        <Button id="table-button" fx:id="compressionAddButton" mnemonicParsing="false" onAction="#addDeleteRow" text="+" />
-                        <Button id="table-button" fx:id="compressionDeleteButton" mnemonicParsing="false" onAction="#addDeleteRow" text="-" />
+                        <Button id="table-button" fx:id="compressionAddButton" mnemonicParsing="false" text="+" />
+                        <Button id="table-button" fx:id="compressionDeleteButton" mnemonicParsing="false" text="-" />
+                        <Button id="table-button" fx:id="compressionResetButton" mnemonicParsing="false" text="x" />
                      </children>
                   </HBox>
                </children>
@@ -65,5 +69,29 @@
             <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
          </padding>
       </ScrollPane>
+      <VBox fx:id="sendToPageVbox" alignment="CENTER" minWidth="200.0" spacing="10.0">
+         <children>
+            <Label alignment="TOP_LEFT" contentDisplay="CENTER" maxWidth="180.0" minWidth="180.0" text="Выбор страницы:" />
+            <ComboBox id="record-field" fx:id="pageComboBox" maxWidth="200.0" minWidth="200.0">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </ComboBox>
+            <Label alignment="TOP_LEFT" contentDisplay="CENTER" maxWidth="180.0" minWidth="180.0" text="Выбор амортизатора:">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+            <ComboBox id="record-field" fx:id="shockAbsorberComboBox" maxWidth="200.0" minWidth="200.0">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </ComboBox>
+            <Button id="record-button" fx:id="sendButton" maxWidth="180.0" minWidth="180.0" mnemonicParsing="false" text="Отправить">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin></Button>
+         </children>
+      </VBox>
    </children>
 </HBox>
