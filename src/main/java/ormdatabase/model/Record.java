@@ -19,9 +19,10 @@ public class Record implements Cloneable {
     private String phone;
     private String city;
     private String uppercaseCity;
-    private List<ShimStackSet> shimStackSetList = new ArrayList<>();
+    private List<ShimStackSet> shimStackSetList;
 
     public Record() {
+        shimStackSetList = new ArrayList<>(List.of(new ShimStackSet()));
     }
 
     public Record(String name, String car, Date date, String phone, String city, List<ShimStackSet> shimStackSetList) {

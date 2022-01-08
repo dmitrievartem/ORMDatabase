@@ -9,6 +9,7 @@ public class ReboundStack implements Cloneable {
     List<Shim> stack;
 
     public ReboundStack() {
+        stack = new ArrayList<>(List.of(new Shim("0", "0", "0")));
     }
 
     public ReboundStack(List<Shim> stack) {

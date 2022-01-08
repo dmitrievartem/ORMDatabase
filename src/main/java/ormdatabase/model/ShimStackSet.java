@@ -12,9 +12,10 @@ public class ShimStackSet implements Cloneable {
     String comment;
     String author;
     Boolean favorites;
-    List<StackPair> shimStackList = new ArrayList<>();
+    List<StackPair> shimStackList;
 
     public ShimStackSet() {
+        shimStackList = new ArrayList<>(List.of(new StackPair(), new StackPair(), new StackPair(), new StackPair()));
     }
 
     public ShimStackSet(String type, Date date, String comment, String author, Boolean favorites,

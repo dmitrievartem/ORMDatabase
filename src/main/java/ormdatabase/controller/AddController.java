@@ -1,5 +1,6 @@
 package ormdatabase.controller;
 
+import ormdatabase.model.DataSource;
 import ormdatabase.model.Record;
 import ormdatabase.model.ShimStackSet;
 
@@ -29,7 +30,6 @@ public class AddController {
 
     public void initNewRecord() {
         Controller.newRecord = new Record();
-        Controller.newRecord.addVersion(new ShimStackSet());
         baseViewController.currentVersion = 1;
         baseViewController.viewRecord(Controller.newRecord);
     }
@@ -52,8 +52,9 @@ public class AddController {
     }
 
     public void saveRecord() {
+        DataSource dataSource = new DataSource();
         saveObject(Controller.newRecord);
-        baseViewController.dataSource.insert(Controller.newRecord);
+        dataSource.insert(Controller.newRecord);
         initNewRecord();
     }
 }

@@ -9,6 +9,7 @@ public class CompressionStack implements Cloneable {
     List<Shim> stack;
 
     public CompressionStack() {
+        stack = new ArrayList<>(List.of(new Shim("0", "0", "0")));
     }
 
     public CompressionStack(List<Shim> stack) {

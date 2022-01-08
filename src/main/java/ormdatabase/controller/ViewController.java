@@ -1,8 +1,12 @@
 package ormdatabase.controller;
 
+import javafx.scene.control.Button;
+
 public class ViewController {
 
     private BaseViewController baseViewController;
+
+    private Button edit;
 
     public void setParentController(BaseViewController baseViewController) {
         this.baseViewController = baseViewController;
@@ -14,7 +18,11 @@ public class ViewController {
         baseViewController.previousVersion.setOnAction(event -> baseViewController.viewPreviousVersion(Controller.observableRecord));
         baseViewController.nextVersion.setOnAction(event -> baseViewController.viewNextVersion(Controller.observableRecord));
         baseViewController.editRecord.setDisable(false);
-        baseViewController.editRecord.setOnAction(event -> Controller.staticEdit.fire());
+        baseViewController.editRecord.setOnAction(event -> edit.fire());
         baseViewController.viewRecord(Controller.observableRecord);
+    }
+
+    public void setEdit(Button edit) {
+        this.edit = edit;
     }
 }

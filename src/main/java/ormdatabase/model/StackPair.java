@@ -11,6 +11,8 @@ public class StackPair implements Cloneable {
     CompressionStack compressionStack;
 
     public StackPair() {
+        reboundStack = new ReboundStack();
+        compressionStack = new CompressionStack();
     }
 
     public StackPair(ReboundStack reboundStack, CompressionStack compressionStack) {

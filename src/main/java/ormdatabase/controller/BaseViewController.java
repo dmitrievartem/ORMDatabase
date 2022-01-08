@@ -19,7 +19,6 @@ import java.util.*;
 public class BaseViewController extends Controller {
 
     public int currentVersion = 1;
-    public final DataSource dataSource = new DataSource();
 
     @FXML
     public Label id;
@@ -278,14 +277,6 @@ public class BaseViewController extends Controller {
         this.viewController.setParentController(this);
         this.editController.setParentController(this);
         this.addController.setParentController(this);
-        if (pageId.equals("view") && Objects.nonNull(observableRecord)) {
-            viewController.start();
-        } else if (pageId.equals("edit") && Objects.nonNull(observableRecord)) {
-            editController.start();
-        } else if (pageId.equals("add")) {
-            addController.start();
-        }
-
         setTypeComboBox();
         setLabels();
         setColumnProperties();
@@ -341,18 +332,15 @@ public class BaseViewController extends Controller {
     }
 
     public void viewVersion(Record record, int targetVersion) {
-        if (record.getShimStackSetList().size() > 0) {
-            ShimStackSet shimStackSet = record.getShimStackSetList().get(targetVersion - 1);
-            String versionAmount = String.valueOf(record.getShimStackSetList().size());
-            version.setText(String.valueOf(targetVersion).concat("/").concat(versionAmount));
-            versionDate.setValue(shimStackSet.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-            comment.setText(shimStackSet.getComment());
-            author.setText(shimStackSet.getAuthor());
-            type.getSelectionModel().select(shimStackSet.getType());
-            setType(shimStackSet.getType());
-            currentVersion = targetVersion;
-        }
-
+        ShimStackSet shimStackSet = record.getShimStackSetList().get(targetVersion - 1);
+        String versionAmount = String.valueOf(record.getShimStackSetList().size());
+        version.setText(String.valueOf(targetVersion).concat("/").concat(versionAmount));
+        versionDate.setValue(shimStackSet.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+        comment.setText(shimStackSet.getComment());
+        author.setText(shimStackSet.getAuthor());
+        type.getSelectionModel().select(shimStackSet.getType());
+        setType(shimStackSet.getType());
+        currentVersion = targetVersion;
         viewTableValues(record, targetVersion);
     }
 

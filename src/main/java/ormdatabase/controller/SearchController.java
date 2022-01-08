@@ -4,10 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.HBox;
@@ -20,6 +17,8 @@ import java.util.List;
 import java.util.Objects;
 
 public class SearchController extends Controller {
+
+    private Button view;
 
     @FXML
     public HBox headerHbox;
@@ -87,8 +86,8 @@ public class SearchController extends Controller {
                 if (mouseEvent.getClickCount() == 2) {
                     if (searchTable.getSelectionModel().getSelectedItem() != null) {
                         observableRecord = searchTable.getSelectionModel().getSelectedItem();
-                        editableRecord = observableRecord;
-                        staticView.fire();
+                        editableRecord = observableRecord.clone();
+                        view.fire();
                     }
                 }
             }
@@ -100,5 +99,9 @@ public class SearchController extends Controller {
         List<Record> queryResults = dataSource.select(favoritesCheckBox.isSelected(), idTextField.getText(), nameTextField.getText(), carTextField.getText(), cityTextField.getText());
         ObservableList<Record> recordList = FXCollections.observableArrayList(queryResults);
         searchTable.setItems(recordList);
+    }
+
+    public void setView(Button view) {
+        this.view = view;
     }
 }

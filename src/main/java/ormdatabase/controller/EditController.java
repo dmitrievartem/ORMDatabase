@@ -1,8 +1,13 @@
 package ormdatabase.controller;
 
+import javafx.scene.control.Button;
+import ormdatabase.model.DataSource;
+
 public class EditController {
 
     private BaseViewController baseViewController;
+
+    private Button view;
 
     public void setParentController(BaseViewController baseViewController) {
         this.baseViewController = baseViewController;
@@ -18,14 +23,19 @@ public class EditController {
         baseViewController.addVersion.setOnAction(event -> baseViewController.addVersion(Controller.editableRecord));
         baseViewController.save.setOnAction(event -> {
             saveRecord();
-            Controller.staticView.fire();
+            view.fire();
         });
         baseViewController.viewRecord(Controller.editableRecord);
     }
 
     public void saveRecord() {
+        DataSource dataSource = new DataSource();
         baseViewController.saveObject(Controller.editableRecord);
-        baseViewController.dataSource.update(Controller.editableRecord, Controller.observableRecord.getId());
+        dataSource.update(Controller.editableRecord, Controller.observableRecord.getId());
         Controller.observableRecord = Controller.editableRecord.clone();
+    }
+
+    public void setView(Button view) {
+        this.view = view;
     }
 }

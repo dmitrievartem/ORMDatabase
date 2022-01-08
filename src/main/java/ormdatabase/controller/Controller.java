@@ -14,11 +14,17 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import ormdatabase.model.DataSource;
 import ormdatabase.model.Record;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Objects;
 
 public class Controller {
@@ -26,75 +32,51 @@ public class Controller {
     @FXML
     public AnchorPane anchorPane;
 
-    public static AnchorPane staticAnchorPane;
-
     @FXML
     public Button search;
-
-    public static Button staticSearch;
 
     @FXML
     public Button view;
 
-    public static Button staticView;
-
     @FXML
     public Button edit;
 
-    public static Button staticEdit;
+    protected static Record observableRecord = null;
 
-    @FXML
-    public Button add;
+    protected static Record editableRecord = null;
 
-    public static Button staticAdd;
-
-    public static Record observableRecord = null;
-
-    public static Record editableRecord = observableRecord;
-
-    public static Record newRecord;
+    protected static Record newRecord = new Record();
 
     private static Button currentPageButton;
 
     private FXMLLoader loader;
 
-    public static BaseViewController baseViewController;
+    protected static SearchController searchController;
 
-    public static VisualizationController visualizationController;
+    protected static BaseViewController baseViewController;
 
-    protected static String pageId = "view";
+    protected static VisualizationController visualizationController;
 
-    private Scene scene;
+    private Node searchNode;
 
-    private static Node searchNode;
+    private Node recordNode;
 
-    private static Node recordNode;
+    private Node visualizationNode;
 
-    private static Node visualizationNode;
-
-    public void start(Stage stage) throws IOException {
-        loader = new FXMLLoader(getClass().getClassLoader().getResource("main.fxml"));
-        scene = new Scene(loader.load());
-
-        scene.getStylesheets().add(Objects.requireNonNull(Controller.class.getResource("light-with-shadows.css")).toExternalForm());
-        stage.setTitle("ShimStack");
-        stage.setMaximized(true);
-        stage.setScene(scene);
-        stage.getIcons().add(new Image(Objects.requireNonNull(Controller.class.getResourceAsStream("icon.png"))));
-        stage.show();
-
+    public void start(Stage stage) {
 
         Task<Parent> loadTask = new Task<>() {
             @Override
             public Parent call() throws IOException {
                 loader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource("search.fxml")));
+                searchController = new SearchController();
+                loader.setController(searchController);
                 searchNode = loader.load();
 
                 loader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource("record.fxml")));
                 baseViewController = new BaseViewController();
                 loader.setController(baseViewController);
                 recordNode = loader.load();
-                baseViewController.addController.initNewRecord();
 
                 loader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource("visualization.fxml")));
                 visualizationController = new VisualizationController();
@@ -106,8 +88,25 @@ public class Controller {
         };
 
         loadTask.setOnSucceeded(e -> {
+            loader = new FXMLLoader(getClass().getClassLoader().getResource("main.fxml"));
+            loader.setController(this);
+            Scene scene = null;
+            try {
+                scene = new Scene(loader.load());
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+
+            assert scene != null;
+            scene.getStylesheets().add(Objects.requireNonNull(Controller.class.getResource("light-with-shadows.css")).toExternalForm());
+            stage.setTitle("ShimStack");
+            stage.setMaximized(true);
+            stage.setScene(scene);
+            stage.getIcons().add(new Image(Objects.requireNonNull(Controller.class.getResourceAsStream("icon.png"))));
+            stage.show();
+
             Node node = loadTask.getValue();
-            staticAnchorPane.getChildren().add(node);
+            anchorPane.getChildren().add(node);
             AnchorPane.setTopAnchor(node, 0.0);
             AnchorPane.setRightAnchor(node, 0.0);
             AnchorPane.setBottomAnchor(node, 0.0);
@@ -120,8 +119,7 @@ public class Controller {
         Thread thread = new Thread(loadTask);
         thread.start();
 
-
-//        Path dir = Files.createDirectories(Paths.get("path", "to", "files"));
+//        Path dir = Files.createDirectories(Paths.get("src/main/resources/odb/db"));
 //        OutputStream out = Files.newOutputStream(dir.resolve("shimstack.odb"));
 //
 //        final FileChooser fileChooser = new FileChooser();
@@ -134,13 +132,11 @@ public class Controller {
 
     @FXML
     void initialize() {
-        staticAnchorPane = anchorPane;
+        System.out.println("initialize");
+        searchController.setView(view);
+        baseViewController.editController.setView(view);
+        baseViewController.viewController.setEdit(edit);
         currentPageButton = search;
-        staticSearch = search;
-        staticView = view;
-        staticEdit = edit;
-        staticAdd = add;
-//        staticSearch.fire();
         currentPageButton.setDisable(true);
     }
 
@@ -159,14 +155,14 @@ public class Controller {
         currentPageButton.setDisable(true);
         String id = currentPageButton.getId();
         if (Objects.isNull(observableRecord) && (id.equals("view") || id.equals("edit"))) {
-            staticAnchorPane.getChildren().clear();
+            anchorPane.getChildren().clear();
             return;
         }
         switchPane(id);
     }
 
-    public void switchPane(String id) {
-        staticAnchorPane.getChildren().clear();
+    private void switchPane(String id) {
+        anchorPane.getChildren().clear();
         Node node = null;
         if (id.equals("search")) {
             node = searchNode;
@@ -175,7 +171,7 @@ public class Controller {
         } else if (id.equals("visualization")) {
             node = visualizationNode;
         }
-        staticAnchorPane.getChildren().add(node);
+        anchorPane.getChildren().add(node);
         AnchorPane.setTopAnchor(node, 0.0);
         AnchorPane.setRightAnchor(node, 0.0);
         AnchorPane.setBottomAnchor(node, 0.0);
