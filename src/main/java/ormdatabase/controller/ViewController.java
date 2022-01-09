@@ -13,7 +13,7 @@ public class ViewController {
     }
 
     void start() {
-        baseViewController.currentVersion = Controller.observableRecord.getShimStackSetList().size();
+        BaseViewController.currentVersion = Controller.observableRecord.getShimStackSetList().size();
         baseViewController.disableInputs();
         baseViewController.previousVersion.setOnAction(event -> baseViewController.viewPreviousVersion(Controller.observableRecord));
         baseViewController.nextVersion.setOnAction(event -> baseViewController.viewNextVersion(Controller.observableRecord));

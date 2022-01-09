@@ -119,12 +119,18 @@ public class Record implements Cloneable {
         this.shimStackSetList = record.getShimStackSetList();
     }
 
+
     @Override
     public Record clone() {
         try {
             Record clone = (Record) super.clone();
             // TODO: copy mutable state here, so the clone can't change the internals of the original
-            clone.shimStackSetList = new ArrayList<>(clone.shimStackSetList);
+            List<ShimStackSet> newList = new ArrayList<>();
+            for (ShimStackSet shimStackSet : clone.shimStackSetList) {
+                newList.add(shimStackSet.clone());
+            }
+            clone.shimStackSetList = newList;
+//            clone.shimStackSetList = clone.getShimStackSetList().clone();
             return clone;
         } catch (CloneNotSupportedException e) {
             throw new AssertionError();

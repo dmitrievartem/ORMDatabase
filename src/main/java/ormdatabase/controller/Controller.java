@@ -41,27 +41,29 @@ public class Controller {
     @FXML
     public Button edit;
 
-    protected static Record observableRecord = null;
-
-    protected static Record editableRecord = null;
-
-    protected static Record newRecord = new Record();
-
-    private static Button currentPageButton;
-
     private FXMLLoader loader;
 
-    protected static SearchController searchController;
+    protected SearchController searchController;
 
-    protected static BaseViewController baseViewController;
+    protected BaseViewController baseViewController;
 
-    protected static VisualizationController visualizationController;
+    protected VisualizationController visualizationController;
 
     private Node searchNode;
 
     private Node recordNode;
 
     private Node visualizationNode;
+
+    private static Button currentPageButton;
+
+    protected static Record observableRecord = null;
+
+    protected static Record editableRecord = null;
+
+    protected static Record newRecord = new Record();
+
+    private final DataSource dataSource = new DataSource();
 
     public void start(Stage stage) {
 
@@ -134,8 +136,11 @@ public class Controller {
     void initialize() {
         System.out.println("initialize");
         searchController.setView(view);
-        baseViewController.editController.setView(view);
+        searchController.setDataSource(dataSource);
         baseViewController.viewController.setEdit(edit);
+        baseViewController.editController.setView(view);
+        baseViewController.editController.setDataSource(dataSource);
+        baseViewController.addController.setDataSource(dataSource);
         currentPageButton = search;
         currentPageButton.setDisable(true);
     }
@@ -146,7 +151,7 @@ public class Controller {
                 return;
             }
         } else if (currentPageButton.getId().equals("add")) {
-            if (!baseViewController.addController.saveObject(newRecord)) {
+            if (!baseViewController.saveObject(newRecord)) {
                 return;
             }
         }
@@ -206,7 +211,11 @@ public class Controller {
     }
 
     public void backup() {
-        DataSource dataSource = new DataSource();
         dataSource.backup();
+    }
+
+    public void closeDB() {
+        System.out.println("_______________________");
+        dataSource.emf.close();
     }
 }

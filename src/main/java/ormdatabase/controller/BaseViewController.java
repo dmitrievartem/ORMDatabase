@@ -18,7 +18,7 @@ import java.util.*;
 
 public class BaseViewController extends Controller {
 
-    public int currentVersion = 1;
+    public static int currentVersion = 1;
 
     @FXML
     public Label id;
@@ -345,7 +345,7 @@ public class BaseViewController extends Controller {
     }
 
     public void viewPreviousVersion(Record record) {
-        if (currentVersion - 1 > 0 && isTablesValid()) {
+        if (currentVersion - 1 > 0) {
             saveVersion(record);
             int targetVersion = currentVersion - 1;
             viewVersion(record, targetVersion);
@@ -354,7 +354,7 @@ public class BaseViewController extends Controller {
 
     public void viewNextVersion(Record record) {
         int versionAmount = record.getShimStackSetList().size();
-        if (currentVersion + 1 <= versionAmount && isTablesValid()) {
+        if (currentVersion + 1 <= versionAmount) {
             saveVersion(record);
             int targetVersion = currentVersion + 1;
             viewVersion(record, targetVersion);
@@ -460,33 +460,13 @@ public class BaseViewController extends Controller {
     }
 
     public void addVersion(Record record) {
-        if (isTablesValid()) {
-            record.setVersion(currentVersion - 1, getCurrentShimStackSet());
-            record.addVersion(new ShimStackSet());
-            viewVersion(record, record.getShimStackSetList().size());
-            resetTables();
-        }
+        record.setVersion(currentVersion - 1, getCurrentShimStackSet());
+        record.addVersion(new ShimStackSet());
+        viewVersion(record, record.getShimStackSetList().size());
     }
 
     public void saveVersion(Record record) {
         record.setVersion(currentVersion - 1, getCurrentShimStackSet());
-    }
-
-
-    public boolean isTablesValid() {
-
-        for (TableView<Shim> table : getActualTables()) {
-            if (table.getItems().isEmpty()) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public void resetTables() {
-        for (TableView<Shim> table : getActualTables()) {
-            table.getItems().clear();
-        }
     }
 
     public ShimStackSet getCurrentShimStackSet() {
@@ -523,17 +503,6 @@ public class BaseViewController extends Controller {
     }
 
     public void setTableCellsEditable() {
-        List<TextField> onlyTextFields = List.of(name, car, city, author);
-//        for (TextField textField : onlyTextFields) {
-//            textField.textProperty().addListener((observable, oldValue, newValue) -> {
-//                if (Objects.nonNull(newValue) && !newValue.matches("[(][)]\\s\\p{L}*")) {
-//                    textField.setText(newValue.replaceAll("[^[(][)]\\s\\p{L}*]", ""));
-//                }
-//                if (Objects.nonNull(newValue) && newValue.length() > 50) {
-//                    textField.setText(newValue.substring(0, 50));
-//                }
-//            });
-//        }
         phone.textProperty().addListener((observable, oldValue, newValue) -> {
             if (Objects.nonNull(newValue) && !newValue.matches("\\d*")) {
                 phone.setText(newValue.replaceAll("[^\\d]", ""));
@@ -646,15 +615,20 @@ public class BaseViewController extends Controller {
         VBox parentVBox = (VBox) ((Button) event.getSource()).getParent().getParent();
         TableView<Shim> targetTable = (TableView<Shim>) parentVBox.getChildren().get(0);
         ObservableList<Shim> shims = targetTable.getItems();
-        shims.remove(targetTable.getItems().size() - 1);
-        targetTable.setItems(shims);
+        if (shims.size() > 1) {
+            shims.remove(shims.size() - 1);
+            targetTable.setItems(shims);
+        }
     }
 
     @SuppressWarnings("unchecked")
     public void resetTable(ActionEvent event) {
         VBox parentVBox = (VBox) ((Button) event.getSource()).getParent().getParent();
         TableView<Shim> targetTable = (TableView<Shim>) parentVBox.getChildren().get(0);
-        targetTable.getItems().clear();
+        ObservableList<Shim> shims = targetTable.getItems();
+        shims.clear();
+        shims.add(new Shim("0", "0", "0"));
+        targetTable.setItems(shims);
     }
 
     public void setAddButtonAction() {
@@ -704,19 +678,14 @@ public class BaseViewController extends Controller {
     }
 
     public boolean saveObject(Record record) {
-        if (!isTablesValid() || name.getText().isEmpty()) {
-            requiredFieldsAlert();
-            return false;
-        } else {
-            System.out.println("saveObject(edit) -------------- ");
-            record.setName(name.getText());
-            record.setCar(car.getText());
-            record.setDate(Date.from(date.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
-            record.setPhone(phone.getText());
-            record.setCity(city.getText());
-            record.setFavorites(favorites.isSelected());
-            saveVersion(record);
-            return true;
-        }
+        System.out.println("saveObject() -------------- ");
+        record.setName(name.getText());
+        record.setCar(car.getText());
+        record.setDate(Date.from(date.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        record.setPhone(phone.getText());
+        record.setCity(city.getText());
+        record.setFavorites(favorites.isSelected());
+        saveVersion(record);
+        return true;
     }
 }

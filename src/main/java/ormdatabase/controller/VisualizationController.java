@@ -70,10 +70,6 @@ public class VisualizationController {
     @FXML
     private VBox stackVisualizationVBox;
 
-    private int innerSpacing = 5;
-
-    ObservableList<String> pageList = FXCollections.observableArrayList(List.of("Добавление", "Редактирование"));
-
     @FXML
     private ComboBox<String> pageComboBox;
 
@@ -140,12 +136,12 @@ public class VisualizationController {
         drawShimStack();
 
         sendValidation();
-        pageComboBox.setItems(FXCollections.observableArrayList(pageList));
+        pageComboBox.setItems(FXCollections.observableArrayList(List.of("Добавление", "Редактирование")));
 
         pageComboBox.setOnAction(event -> {
             if (Objects.nonNull(pageComboBox.getSelectionModel().getSelectedItem())) {
                 if (pageComboBox.getSelectionModel().getSelectedItem().equals("Редактирование")) {
-                    targetRecord = observableRecord;
+                    targetRecord = editableRecord;
                 }
                 if (pageComboBox.getSelectionModel().getSelectedItem().equals("Добавление")) {
                     targetRecord = newRecord;
@@ -161,8 +157,8 @@ public class VisualizationController {
                 sendValidation();
                 shockAbsorberComboBox.setDisable(false);
                 System.out.println("targetRecord non NULL");
-                List<String> shockAbsorberList = null;
-                int shockAbsorberNumber = targetRecord.getShimStackSetList().get(baseViewController.currentVersion - 1).getTypeNumber();
+                List<String> shockAbsorberList;
+                int shockAbsorberNumber = targetRecord.getShimStackSetList().get(BaseViewController.currentVersion - 1).getTypeNumber();
 
                 System.out.println("shockAbsorberNumber: " + shockAbsorberNumber);
                 if (shockAbsorberNumber == 4) {
@@ -184,7 +180,7 @@ public class VisualizationController {
                     new CompressionStack(new ArrayList<>(compressionTable.getItems()))
             );
             int index = shockAbsorberComboBox.getSelectionModel().getSelectedIndex();
-            targetRecord.getShimStackSetList().get(baseViewController.currentVersion - 1).getShimStackList().add(index, stackPair);
+            targetRecord.getShimStackSetList().get(BaseViewController.currentVersion - 1).getShimStackList().add(index, stackPair);
         });
     }
 
@@ -203,7 +199,7 @@ public class VisualizationController {
     public void addLines(TableView<Shim> tableView) {
         for (Shim shim : tableView.getItems()) {
             VBox vBox = new VBox();
-            vBox.setSpacing(innerSpacing);
+            vBox.setSpacing(5);
             vBox.setAlignment(Pos.CENTER);
             for (int i = 0; i < Integer.parseInt(shim.getNumber()); i++) {
                 vBox.getChildren().add(
@@ -254,15 +250,11 @@ public class VisualizationController {
     }
 
     private void sendValidation() {
-        if (reboundTable.getItems().size() > 0
-                && compressionTable.getItems().size() > 0
-                && Objects.nonNull(targetRecord)
-                && !pageComboBox.getSelectionModel().isEmpty()
-                && !shockAbsorberComboBox.getSelectionModel().isEmpty()) {
-            sendButton.setDisable(false);
-        } else {
-            sendButton.setDisable(true);
-        }
+        sendButton.setDisable(reboundTable.getItems().size() <= 0
+                || compressionTable.getItems().size() <= 0
+                || Objects.isNull(targetRecord)
+                || pageComboBox.getSelectionModel().isEmpty()
+                || shockAbsorberComboBox.getSelectionModel().isEmpty());
     }
 
     protected void refreshSelection() {

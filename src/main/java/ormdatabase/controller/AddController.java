@@ -10,6 +10,8 @@ import java.util.Objects;
 
 public class AddController {
 
+    private DataSource dataSource;
+
     private BaseViewController baseViewController;
 
     public void setParentController(BaseViewController baseViewController) {
@@ -17,7 +19,7 @@ public class AddController {
     }
 
     void start() {
-        baseViewController.currentVersion = Controller.newRecord.getShimStackSetList().size();
+        BaseViewController.currentVersion = Controller.newRecord.getShimStackSetList().size();
         baseViewController.enableInputs();
         baseViewController.previousVersion.setOnAction(event -> baseViewController.viewPreviousVersion(Controller.newRecord));
         baseViewController.nextVersion.setOnAction(event -> baseViewController.viewNextVersion(Controller.newRecord));
@@ -30,31 +32,17 @@ public class AddController {
 
     public void initNewRecord() {
         Controller.newRecord = new Record();
-        baseViewController.currentVersion = 1;
+        BaseViewController.currentVersion = 1;
         baseViewController.viewRecord(Controller.newRecord);
     }
 
-    public boolean saveObject(Record record) {
-        if (!baseViewController.isTablesValid()) {
-            baseViewController.requiredFieldsAlert();
-            return false;
-        } else {
-            System.out.println("saveObject(add) -------------- ");
-            record.setName(baseViewController.name.getText());
-            record.setCar(baseViewController.car.getText());
-            record.setDate(Objects.isNull(baseViewController.date.getValue()) ? new Date() : Date.from(baseViewController.date.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
-            record.setPhone(baseViewController.phone.getText());
-            record.setCity(baseViewController.city.getText());
-            record.setFavorites(baseViewController.favorites.isSelected());
-            baseViewController.saveVersion(record);
-            return true;
-        }
-    }
-
     public void saveRecord() {
-        DataSource dataSource = new DataSource();
-        saveObject(Controller.newRecord);
+        baseViewController.saveObject(Controller.newRecord);
         dataSource.insert(Controller.newRecord);
         initNewRecord();
+    }
+
+    public void setDataSource(DataSource dataSource) {
+        this.dataSource = dataSource;
     }
 }

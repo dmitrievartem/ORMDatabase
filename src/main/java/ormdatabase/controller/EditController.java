@@ -7,6 +7,8 @@ public class EditController {
 
     private BaseViewController baseViewController;
 
+    private DataSource dataSource;
+
     private Button view;
 
     public void setParentController(BaseViewController baseViewController) {
@@ -14,7 +16,7 @@ public class EditController {
     }
 
     void start() {
-        baseViewController.currentVersion = Controller.editableRecord.getShimStackSetList().size();
+        BaseViewController.currentVersion = Controller.editableRecord.getShimStackSetList().size();
         baseViewController.enableInputs();
         baseViewController.previousVersion.setOnAction(event -> baseViewController.viewPreviousVersion(Controller.editableRecord));
         baseViewController.nextVersion.setOnAction(event -> baseViewController.viewNextVersion(Controller.editableRecord));
@@ -29,7 +31,6 @@ public class EditController {
     }
 
     public void saveRecord() {
-        DataSource dataSource = new DataSource();
         baseViewController.saveObject(Controller.editableRecord);
         dataSource.update(Controller.editableRecord, Controller.observableRecord.getId());
         Controller.observableRecord = Controller.editableRecord.clone();
@@ -37,5 +38,9 @@ public class EditController {
 
     public void setView(Button view) {
         this.view = view;
+    }
+
+    public void setDataSource(DataSource dataSource) {
+        this.dataSource = dataSource;
     }
 }

@@ -38,6 +38,8 @@ public class StackPair implements Cloneable {
         try {
             StackPair clone = (StackPair) super.clone();
             // TODO: copy mutable state here, so the clone can't change the internals of the original
+//            clone.reboundStack = new ReboundStack(clone.reboundStack);
+//            clone.compressionStack = new CompressionStack(clone.compressionStack);
             return clone;
         } catch (CloneNotSupportedException e) {
             throw new AssertionError();

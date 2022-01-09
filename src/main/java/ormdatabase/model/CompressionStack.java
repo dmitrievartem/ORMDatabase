@@ -29,6 +29,7 @@ public class CompressionStack implements Cloneable {
         try {
             CompressionStack clone = (CompressionStack) super.clone();
             // TODO: copy mutable state here, so the clone can't change the internals of the original
+//            clone.stack = new ArrayList<>(clone.stack);
             return clone;
         } catch (CloneNotSupportedException e) {
             throw new AssertionError();

@@ -20,6 +20,8 @@ public class SearchController extends Controller {
 
     private Button view;
 
+    private DataSource dataSource;
+
     @FXML
     public HBox headerHbox;
 
@@ -37,6 +39,9 @@ public class SearchController extends Controller {
 
     @FXML
     public CheckBox favoritesCheckBox;
+
+    @FXML
+    public Button searchButton;
 
     @FXML
     public TableView<Record> searchTable;
@@ -81,6 +86,12 @@ public class SearchController extends Controller {
             }
         });
 
+        searchButton.setOnAction(event -> {
+            List<Record> queryResults = dataSource.select(favoritesCheckBox.isSelected(), idTextField.getText(), nameTextField.getText(), carTextField.getText(), cityTextField.getText());
+            ObservableList<Record> recordList = FXCollections.observableArrayList(queryResults);
+            searchTable.setItems(recordList);
+        });
+
         searchTable.setOnMouseClicked(mouseEvent -> {
             if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
                 if (mouseEvent.getClickCount() == 2) {
@@ -94,14 +105,11 @@ public class SearchController extends Controller {
         });
     }
 
-    public void search() {
-        DataSource dataSource = new DataSource();
-        List<Record> queryResults = dataSource.select(favoritesCheckBox.isSelected(), idTextField.getText(), nameTextField.getText(), carTextField.getText(), cityTextField.getText());
-        ObservableList<Record> recordList = FXCollections.observableArrayList(queryResults);
-        searchTable.setItems(recordList);
-    }
-
     public void setView(Button view) {
         this.view = view;
+    }
+
+    public void setDataSource(DataSource dataSource) {
+        this.dataSource = dataSource;
     }
 }

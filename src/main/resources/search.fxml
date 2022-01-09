@@ -26,7 +26,7 @@
                   <Insets />
                </HBox.margin>
             </CheckBox>
-            <Button id="search-button" fx:id="searchButton" alignment="CENTER" cache="false" cacheHint="QUALITY" contentDisplay="CENTER" mnemonicParsing="false" onAction="#search" style="-fx-font-family: Verdana; -fx-border-radius: 10;" text="Искать">
+            <Button id="search-button" fx:id="searchButton" alignment="CENTER" cache="false" cacheHint="QUALITY" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-font-family: Verdana; -fx-border-radius: 10;" text="Искать">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
