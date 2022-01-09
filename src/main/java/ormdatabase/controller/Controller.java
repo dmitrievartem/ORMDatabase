@@ -1,5 +1,6 @@
 package ormdatabase.controller;
 
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,14 +12,21 @@ import javafx.print.PrinterJob;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogPane;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import ormdatabase.model.DataSource;
 import ormdatabase.model.Record;
 
+import javax.persistence.Persistence;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -40,6 +48,21 @@ public class Controller {
 
     @FXML
     public Button edit;
+
+    @FXML
+    public Button add;
+
+    @FXML
+    public Button visualization;
+
+    @FXML
+    public Button print;
+
+    @FXML
+    public Button downloadBackup;
+
+    @FXML
+    public Button uploadBackup;
 
     private FXMLLoader loader;
 
@@ -65,7 +88,10 @@ public class Controller {
 
     private final DataSource dataSource = new DataSource();
 
+    private Stage stage;
+
     public void start(Stage stage) {
+        this.stage = stage;
 
         Task<Parent> loadTask = new Task<>() {
             @Override
@@ -120,21 +146,19 @@ public class Controller {
 
         Thread thread = new Thread(loadTask);
         thread.start();
-
-//        Path dir = Files.createDirectories(Paths.get("src/main/resources/odb/db"));
-//        OutputStream out = Files.newOutputStream(dir.resolve("shimstack.odb"));
-//
-//        final FileChooser fileChooser = new FileChooser();
-//        File file = fileChooser.showOpenDialog(stage);
-//        byte[] fileContent = Files.readAllBytes(file.toPath());
-//
-//        out.write(fileContent);
-
     }
 
     @FXML
-    void initialize() {
+    void initialize() throws InterruptedException {
         System.out.println("initialize");
+        search.setOnAction(this::switchPane);
+        view.setOnAction(this::switchPane);
+        edit.setOnAction(this::switchPane);
+        add.setOnAction(this::switchPane);
+        visualization.setOnAction(this::switchPane);
+        print.setOnAction(event -> printPage());
+        downloadBackup.setOnAction(event -> downloadBackup());
+        uploadBackup.setOnAction(event -> uploadBackup());
         searchController.setView(view);
         searchController.setDataSource(dataSource);
         baseViewController.viewController.setEdit(edit);
@@ -143,6 +167,31 @@ public class Controller {
         baseViewController.addController.setDataSource(dataSource);
         currentPageButton = search;
         currentPageButton.setDisable(true);
+
+        Alert alert = new Alert(Alert.AlertType.NONE, "", ButtonType.OK);
+        alert.setHeaderText(null);
+        alert.setContentText("Заполняй все как надо блять");
+        alert.initStyle(StageStyle.UNDECORATED);
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(Objects.requireNonNull(Controller.class.getResource("light-with-shadows.css")).toExternalForm());
+        dialogPane.getScene().setFill(Color.TRANSPARENT);
+        ((Stage) dialogPane.getScene().getWindow()).initStyle(StageStyle.TRANSPARENT);
+        alert.showAndWait();
+//        alert.show();
+
+//        Thread thread = new Thread(() -> {
+//            try {
+//                // Wait for 5 secs
+//                Thread.sleep(3000);
+//                if (alert.isShowing()) {
+//                    Platform.runLater(() -> alert.close());
+//                }
+//            } catch (Exception exp) {
+//                exp.printStackTrace();
+//            }
+//        });
+//        thread.setDaemon(true);
+//        thread.start();
     }
 
     public void switchPane(ActionEvent event) {
@@ -210,8 +259,26 @@ public class Controller {
         }
     }
 
-    public void backup() {
-        dataSource.backup();
+    public void downloadBackup() {
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        File selectedDirectory = directoryChooser.showDialog(stage);
+        dataSource.backup(selectedDirectory);
+    }
+
+    public void uploadBackup() {
+        dataSource.emf.close();
+        try {
+            Path dir = Files.createDirectories(Paths.get("src/main/resources/odb/db"));
+            OutputStream out = Files.newOutputStream(dir.resolve("shimstack.odb"));
+            final FileChooser fileChooser = new FileChooser();
+            File file = fileChooser.showOpenDialog(stage);
+            byte[] fileContent = Files.readAllBytes(file.toPath());
+            out.write(fileContent);
+            dataSource.emf = Persistence.createEntityManagerFactory("$objectdb/db/shimstack.odb");
+        } catch (IOException e) {
+            e.printStackTrace();
+            dataSource.emf = Persistence.createEntityManagerFactory("$objectdb/db/shimstack.odb");
+        }
     }
 
     public void closeDB() {

@@ -4,7 +4,7 @@ import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
 
 @Embeddable
-public class StackPair implements Cloneable {
+public class StackPair {
     @Embedded
     ReboundStack reboundStack;
     @Embedded
@@ -33,16 +33,16 @@ public class StackPair implements Cloneable {
         return compressionStack;
     }
 
-    @Override
-    public StackPair clone() {
-        try {
-            StackPair clone = (StackPair) super.clone();
-            // TODO: copy mutable state here, so the clone can't change the internals of the original
-//            clone.reboundStack = new ReboundStack(clone.reboundStack);
-//            clone.compressionStack = new CompressionStack(clone.compressionStack);
-            return clone;
-        } catch (CloneNotSupportedException e) {
-            throw new AssertionError();
-        }
-    }
+//    @Override
+//    public StackPair clone() {
+//        try {
+//            StackPair clone = (StackPair) super.clone();
+//            // TODO: copy mutable state here, so the clone can't change the internals of the original
+////            clone.reboundStack = new ReboundStack(clone.reboundStack);
+////            clone.compressionStack = new CompressionStack(clone.compressionStack);
+//            return clone;
+//        } catch (CloneNotSupportedException e) {
+//            throw new AssertionError();
+//        }
+//    }
 }

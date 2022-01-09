@@ -4,10 +4,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.SceneAntialiasing;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Pair;
 import ormdatabase.model.*;
@@ -674,6 +680,8 @@ public class BaseViewController extends Controller {
         alert.initStyle(StageStyle.UNDECORATED);
         DialogPane dialogPane = alert.getDialogPane();
         dialogPane.getStylesheets().add(Objects.requireNonNull(Controller.class.getResource("light-with-shadows.css")).toExternalForm());
+        dialogPane.getScene().setFill(Color.TRANSPARENT);
+        ((Stage) dialogPane.getScene().getWindow()).initStyle(StageStyle.TRANSPARENT);
         alert.showAndWait();
     }
 

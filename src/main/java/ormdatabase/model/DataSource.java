@@ -1,6 +1,7 @@
 package ormdatabase.model;
 
 import javax.persistence.*;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -9,7 +10,6 @@ public class DataSource {
 
     public EntityManagerFactory emf =
             Persistence.createEntityManagerFactory("$objectdb/db/shimstack.odb");
-//    public EntityManager em = emf.createEntityManager();
 
     public List<Record> select(Boolean favorites, String... param) {
         List<Record> recordList = new ArrayList<>();
@@ -24,7 +24,7 @@ public class DataSource {
 
             TypedQuery<Record> selectQuery = em.createQuery(queryString, Record.class);
             for (Record record : selectQuery.getResultList()) {
-                recordList.add(record.clone());
+                recordList.add(new Record(record));
             }
             return recordList;
         } finally {
@@ -38,8 +38,7 @@ public class DataSource {
             em.getTransaction().begin();
             em.persist(record);
             em.getTransaction().commit();
-        }
-        finally {
+        } finally {
             em.close();
         }
     }
@@ -51,20 +50,18 @@ public class DataSource {
             em.getTransaction().begin();
             record.copy(editedRecord);
             em.getTransaction().commit();
-        }
-        finally {
+        } finally {
             em.close();
         }
     }
 
-    public void backup() {
+    public void backup(File selectedDirectory) {
         EntityManager em = emf.createEntityManager();
         try {
             Query backupQuery = em.createQuery("objectdb backup");
-            backupQuery.setParameter("target", new java.io.File("d:\\backup"));
+            backupQuery.setParameter("target", new java.io.File(String.valueOf(selectedDirectory)));
             backupQuery.getSingleResult();
-        }
-        finally {
+        } finally {
             em.close();
         }
     }

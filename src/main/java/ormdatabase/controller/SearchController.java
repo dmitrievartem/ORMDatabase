@@ -9,6 +9,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
+import javafx.stage.StageStyle;
 import ormdatabase.model.DataSource;
 import ormdatabase.model.Record;
 
@@ -97,7 +98,7 @@ public class SearchController extends Controller {
                 if (mouseEvent.getClickCount() == 2) {
                     if (searchTable.getSelectionModel().getSelectedItem() != null) {
                         observableRecord = searchTable.getSelectionModel().getSelectedItem();
-                        editableRecord = observableRecord.clone();
+                        editableRecord = new Record(observableRecord);
                         view.fire();
                     }
                 }

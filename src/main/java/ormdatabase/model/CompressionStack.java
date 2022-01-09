@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Embeddable
-public class CompressionStack implements Cloneable {
+public class CompressionStack {
     List<Shim> stack;
 
     public CompressionStack() {
@@ -17,22 +17,14 @@ public class CompressionStack implements Cloneable {
     }
 
     public CompressionStack(CompressionStack compressionStack) {
-        this.stack = new ArrayList<>(compressionStack.stack);
+        this.stack = new ArrayList<>();
+        for (Shim shim : compressionStack.stack) {
+            this.stack.add(new Shim(shim));
+        }
     }
 
     public List<Shim> getStack() {
         return stack;
     }
 
-    @Override
-    public CompressionStack clone() {
-        try {
-            CompressionStack clone = (CompressionStack) super.clone();
-            // TODO: copy mutable state here, so the clone can't change the internals of the original
-//            clone.stack = new ArrayList<>(clone.stack);
-            return clone;
-        } catch (CloneNotSupportedException e) {
-            throw new AssertionError();
-        }
-    }
 }

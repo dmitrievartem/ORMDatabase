@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 @Embeddable
-public class ShimStackSet implements Cloneable {
+public class ShimStackSet {
     String type = "4 разные";
     Date date = new Date();
     String comment;
@@ -34,7 +34,10 @@ public class ShimStackSet implements Cloneable {
         this.comment = shimStackSet.comment;
         this.author = shimStackSet.author;
         this.favorites = shimStackSet.favorites;
-        this.shimStackList = shimStackSet.shimStackList;
+        this.shimStackList = new ArrayList<>();
+        for (StackPair stackPair : shimStackSet.shimStackList) {
+            shimStackList.add(new StackPair(stackPair));
+        }
     }
 
     public String getType() {
@@ -97,17 +100,5 @@ public class ShimStackSet implements Cloneable {
 
     public void setShimStackList(List<StackPair> shimStackList) {
         this.shimStackList = shimStackList;
-    }
-
-    @Override
-    public ShimStackSet clone() {
-        try {
-            ShimStackSet clone = (ShimStackSet) super.clone();
-            // TODO: copy mutable state here, so the clone can't change the internals of the original
-//            clone.shimStackList = new ArrayList<>(clone.shimStackList);
-            return clone;
-        } catch (CloneNotSupportedException e) {
-            throw new AssertionError();
-        }
     }
 }

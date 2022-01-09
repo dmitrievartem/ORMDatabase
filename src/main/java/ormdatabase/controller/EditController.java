@@ -2,6 +2,7 @@ package ormdatabase.controller;
 
 import javafx.scene.control.Button;
 import ormdatabase.model.DataSource;
+import ormdatabase.model.Record;
 
 public class EditController {
 
@@ -33,7 +34,7 @@ public class EditController {
     public void saveRecord() {
         baseViewController.saveObject(Controller.editableRecord);
         dataSource.update(Controller.editableRecord, Controller.observableRecord.getId());
-        Controller.observableRecord = Controller.editableRecord.clone();
+        Controller.observableRecord = new Record(Controller.editableRecord);
     }
 
     public void setView(Button view) {

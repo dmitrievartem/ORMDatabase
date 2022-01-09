@@ -6,12 +6,12 @@ import javax.persistence.Id;
 import java.util.*;
 
 @Entity
-public class Record implements Cloneable {
+public class Record {
     @Id
     @GeneratedValue
     private Long id;
     private boolean favorites = false;
-    private String name = "ФИО";
+    private String name;
     private String car;
     private String uppercaseName;
     private String uppercaseCar;
@@ -23,6 +23,23 @@ public class Record implements Cloneable {
 
     public Record() {
         shimStackSetList = new ArrayList<>(List.of(new ShimStackSet()));
+    }
+
+    public Record(Record record) {
+        this.id = record.id;
+        this.favorites = record.favorites;
+        this.name = record.name;
+        this.car = record.car;
+        this.uppercaseName = record.uppercaseName;
+        this.uppercaseCar = record.uppercaseCar;
+        this.date = record.date;
+        this.phone = record.phone;
+        this.city = record.city;
+        this.uppercaseCity = record.uppercaseCity;
+        this.shimStackSetList = new ArrayList<>();
+        for (ShimStackSet shimStackSet : record.shimStackSetList) {
+            this.shimStackSetList.add(new ShimStackSet(shimStackSet));
+        }
     }
 
     public Record(String name, String car, Date date, String phone, String city, List<ShimStackSet> shimStackSetList) {
@@ -106,7 +123,6 @@ public class Record implements Cloneable {
     }
 
     public void copy(Record record) {
-        // как клонируются uppercase?
         this.name = record.getName();
         this.uppercaseName = record.getName().toUpperCase(Locale.ROOT);
         this.car = record.getCar();
@@ -119,21 +135,4 @@ public class Record implements Cloneable {
         this.shimStackSetList = record.getShimStackSetList();
     }
 
-
-    @Override
-    public Record clone() {
-        try {
-            Record clone = (Record) super.clone();
-            // TODO: copy mutable state here, so the clone can't change the internals of the original
-            List<ShimStackSet> newList = new ArrayList<>();
-            for (ShimStackSet shimStackSet : clone.shimStackSetList) {
-                newList.add(shimStackSet.clone());
-            }
-            clone.shimStackSetList = newList;
-//            clone.shimStackSetList = clone.getShimStackSetList().clone();
-            return clone;
-        } catch (CloneNotSupportedException e) {
-            throw new AssertionError();
-        }
-    }
 }
