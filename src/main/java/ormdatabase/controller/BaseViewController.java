@@ -271,6 +271,37 @@ public class BaseViewController extends Controller {
     private Button ct4resetButton;
 
     @FXML
+    private Button visualizationButton1;
+
+
+    @FXML
+    private Button visualizationButton2;
+
+
+    @FXML
+    private Button visualizationButton3;
+
+
+    @FXML
+    private Button visualizationButton4;
+
+
+    @FXML
+    private Button visualizationButton5;
+
+
+    @FXML
+    private Button visualizationButton6;
+
+
+    @FXML
+    private Button visualizationButton7;
+
+
+    @FXML
+    private Button visualizationButton8;
+
+    @FXML
     protected final ViewController viewController = new ViewController();
 
     @FXML
@@ -288,6 +319,7 @@ public class BaseViewController extends Controller {
         setColumnProperties();
         setTableCellsEditable();
         setEditButtonsAction();
+        setSendToVisualization();
     }
 
     public void viewRecord(Record record) {
@@ -635,6 +667,33 @@ public class BaseViewController extends Controller {
         shims.clear();
         shims.add(new Shim("0", "0", "0"));
         targetTable.setItems(shims);
+    }
+
+    @SuppressWarnings("unchecked")
+    public void sendToReboundVisualization(ActionEvent event) {
+        VBox parentVBox = (VBox) ((Button) event.getSource()).getParent().getParent();
+        TableView<Shim> targetTable = (TableView<Shim>) parentVBox.getChildren().get(0);
+//        visualizationController.visualizationReboundStack = new ReboundStack(new ArrayList<>(targetTable.getItems()));
+        visualizationController.reboundTable.setItems(targetTable.getItems());
+        visualizationController.drawShimStack();
+    }
+
+    @SuppressWarnings("unchecked")
+    public void sendToCompressionVisualization(ActionEvent event) {
+        VBox parentVBox = (VBox) ((Button) event.getSource()).getParent().getParent();
+        TableView<Shim> targetTable = (TableView<Shim>) parentVBox.getChildren().get(0);
+//        visualizationController.visualizationCompressionStack = new CompressionStack(new ArrayList<>(targetTable.getItems()));
+        visualizationController.compressionTable.setItems(targetTable.getItems());
+        visualizationController.drawShimStack();
+    }
+
+    public void setSendToVisualization() {
+        for(Button button : List.of(visualizationButton1, visualizationButton3, visualizationButton5, visualizationButton7)) {
+            button.setOnAction(this::sendToReboundVisualization);
+        }
+        for(Button button : List.of(visualizationButton2, visualizationButton4, visualizationButton6, visualizationButton8)) {
+            button.setOnAction(this::sendToCompressionVisualization);
+        }
     }
 
     public void setAddButtonAction() {

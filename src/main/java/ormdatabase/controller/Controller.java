@@ -23,8 +23,7 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import ormdatabase.model.DataSource;
-import ormdatabase.model.Record;
+import ormdatabase.model.*;
 
 import javax.persistence.Persistence;
 import java.io.File;

@@ -26,7 +26,7 @@ import static ormdatabase.controller.Controller.*;
 public class VisualizationController {
 
     @FXML
-    private TableView<Shim> reboundTable;
+    protected TableView<Shim> reboundTable;
 
     @FXML
     private TableColumn<Shim, String> reboundNumberColumn;
@@ -47,7 +47,7 @@ public class VisualizationController {
     private Button reboundResetButton;
 
     @FXML
-    private TableView<Shim> compressionTable;
+    protected TableView<Shim> compressionTable;
 
     @FXML
     private TableColumn<Shim, String> compressionNumberColumn;
@@ -80,6 +80,10 @@ public class VisualizationController {
     private Button sendButton;
 
     private Record targetRecord;
+
+    protected ReboundStack visualizationReboundStack;
+
+    protected CompressionStack visualizationCompressionStack;
 
     @FXML
     void initialize() {
