@@ -15,6 +15,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
+import org.controlsfx.control.NotificationPane;
+import org.controlsfx.control.Notifications;
 import ormdatabase.model.*;
 
 import java.util.ArrayList;
@@ -71,19 +74,28 @@ public class VisualizationController {
     private VBox stackVisualizationVBox;
 
     @FXML
-    private ComboBox<String> pageComboBox;
+    private ComboBox<String> reboundPageComboBox;
 
     @FXML
-    private ComboBox<String> shockAbsorberComboBox;
+    private ComboBox<String> reboundShockAbsorberComboBox;
 
     @FXML
-    private Button sendButton;
+    private Button reboundSendButton;
+
+    @FXML
+    private ComboBox<String> compressionPageComboBox;
+
+    @FXML
+    private ComboBox<String> compressionShockAbsorberComboBox;
+
+    @FXML
+    private Button compressionSendButton;
 
     private Record targetRecord;
 
-    protected ReboundStack visualizationReboundStack;
+    private Record reboundTargetRecord;
 
-    protected CompressionStack visualizationCompressionStack;
+    private Record compressionTargetRecord;
 
     @FXML
     void initialize() {
@@ -140,29 +152,29 @@ public class VisualizationController {
         drawShimStack();
 
         sendValidation();
-        pageComboBox.setItems(FXCollections.observableArrayList(List.of("Добавление", "Редактирование")));
+        reboundPageComboBox.setItems(FXCollections.observableArrayList(List.of("Добавление", "Редактирование")));
+        compressionPageComboBox.setItems(FXCollections.observableArrayList(List.of("Добавление", "Редактирование")));
 
-        pageComboBox.setOnAction(event -> {
-            if (Objects.nonNull(pageComboBox.getSelectionModel().getSelectedItem())) {
-                if (pageComboBox.getSelectionModel().getSelectedItem().equals("Редактирование")) {
-                    targetRecord = editableRecord;
-                }
-                if (pageComboBox.getSelectionModel().getSelectedItem().equals("Добавление")) {
-                    targetRecord = newRecord;
+        reboundPageComboBox.setOnAction(event -> {
+            if (Objects.nonNull(reboundPageComboBox.getSelectionModel().getSelectedItem())) {
+                if (reboundPageComboBox.getSelectionModel().getSelectedItem().equals("Редактирование")) {
+                    reboundTargetRecord = editableRecord;
+                } else {
+                    reboundTargetRecord = newRecord;
                 }
             }
 
-            if (Objects.isNull(targetRecord)) {
-                shockAbsorberComboBox.getSelectionModel().clearSelection();
-                shockAbsorberComboBox.setDisable(true);
+            if (Objects.isNull(reboundTargetRecord)) {
+                reboundShockAbsorberComboBox.getSelectionModel().clearSelection();
+                reboundShockAbsorberComboBox.setDisable(true);
                 sendValidation();
                 System.out.println("targetRecord is NULL");
             } else {
                 sendValidation();
-                shockAbsorberComboBox.setDisable(false);
+                reboundShockAbsorberComboBox.setDisable(false);
                 System.out.println("targetRecord non NULL");
                 List<String> shockAbsorberList;
-                int shockAbsorberNumber = targetRecord.getShimStackSetList().get(BaseViewController.currentVersion - 1).getTypeNumber();
+                int shockAbsorberNumber = reboundTargetRecord.getShimStackSetList().get(BaseViewController.currentVersion - 1).getTypeNumber();
 
                 System.out.println("shockAbsorberNumber: " + shockAbsorberNumber);
                 if (shockAbsorberNumber == 4) {
@@ -172,19 +184,75 @@ public class VisualizationController {
                 } else {
                     shockAbsorberList = FXCollections.observableArrayList(List.of("4 одинаковые"));
                 }
-                shockAbsorberComboBox.setItems(FXCollections.observableArrayList(shockAbsorberList));
+                reboundShockAbsorberComboBox.setItems(FXCollections.observableArrayList(shockAbsorberList));
             }
         });
 
-        shockAbsorberComboBox.setOnAction(event -> sendValidation());
+        compressionPageComboBox.setOnAction(event -> {
+            if (Objects.nonNull(compressionPageComboBox.getSelectionModel().getSelectedItem())) {
+                if (compressionPageComboBox.getSelectionModel().getSelectedItem().equals("Редактирование")) {
+                    compressionTargetRecord = editableRecord;
+                } else {
+                    compressionTargetRecord = newRecord;
+                }
+            }
 
-        sendButton.setOnAction(event -> {
-            StackPair stackPair =  new StackPair(
-                    new ReboundStack(new ArrayList<>(reboundTable.getItems())),
-                    new CompressionStack(new ArrayList<>(compressionTable.getItems()))
-            );
-            int index = shockAbsorberComboBox.getSelectionModel().getSelectedIndex();
-            targetRecord.getShimStackSetList().get(BaseViewController.currentVersion - 1).getShimStackList().add(index, stackPair);
+            if (Objects.isNull(compressionTargetRecord)) {
+                compressionShockAbsorberComboBox.getSelectionModel().clearSelection();
+                compressionShockAbsorberComboBox.setDisable(true);
+                sendValidation();
+                System.out.println("targetRecord is NULL");
+            } else {
+                sendValidation();
+                compressionShockAbsorberComboBox.setDisable(false);
+                System.out.println("targetRecord non NULL");
+                List<String> shockAbsorberList;
+                int shockAbsorberNumber = compressionTargetRecord.getShimStackSetList().get(BaseViewController.currentVersion - 1).getTypeNumber();
+
+                System.out.println("shockAbsorberNumber: " + shockAbsorberNumber);
+                if (shockAbsorberNumber == 4) {
+                    shockAbsorberList = FXCollections.observableArrayList(List.of("ПЛ", "ПП", "ЗЛ", "ЗП"));
+                } else if (shockAbsorberNumber == 2) {
+                    shockAbsorberList = FXCollections.observableArrayList(List.of("П", "З"));
+                } else {
+                    shockAbsorberList = FXCollections.observableArrayList(List.of("4 одинаковые"));
+                }
+                compressionShockAbsorberComboBox.setItems(FXCollections.observableArrayList(shockAbsorberList));
+            }
+        });
+
+        reboundShockAbsorberComboBox.setOnAction(event -> sendValidation());
+        compressionShockAbsorberComboBox.setOnAction(event -> sendValidation());
+
+        reboundSendButton.setOnAction(event -> {
+            ReboundStack reboundStack = new ReboundStack(new ArrayList<>(reboundTable.getItems()));
+            int index = reboundShockAbsorberComboBox.getSelectionModel().getSelectedIndex();
+            reboundTargetRecord.getShimStackSetList().get(BaseViewController.currentVersion - 1).getShimStackList().get(index).setReboundStack(reboundStack);
+            reboundPageComboBox.getSelectionModel().clearSelection();
+            reboundShockAbsorberComboBox.getSelectionModel().clearSelection();
+            reboundShockAbsorberComboBox.setDisable(true);
+            Notifications.create()
+                    .owner(compressionSendButton.getScene().getWindow())
+                    .position(Pos.BOTTOM_RIGHT)
+                    .hideCloseButton()
+                    .text("Отправлено")
+                    .hideAfter(Duration.seconds(3))
+                    .show();
+        });
+        compressionSendButton.setOnAction(event -> {
+            CompressionStack compressionStack = new CompressionStack(new ArrayList<>(compressionTable.getItems()));
+            int index = compressionShockAbsorberComboBox.getSelectionModel().getSelectedIndex();
+            compressionTargetRecord.getShimStackSetList().get(BaseViewController.currentVersion - 1).getShimStackList().get(index).setCompressionStack(compressionStack);
+            compressionPageComboBox.getSelectionModel().clearSelection();
+            compressionShockAbsorberComboBox.getSelectionModel().clearSelection();
+            compressionShockAbsorberComboBox.setDisable(true);
+            Notifications.create()
+                    .owner(compressionSendButton.getScene().getWindow())
+                    .position(Pos.BOTTOM_RIGHT)
+                    .hideCloseButton()
+                    .text("Отправлено")
+                    .hideAfter(Duration.seconds(3))
+                    .show();
         });
     }
 
@@ -254,16 +322,22 @@ public class VisualizationController {
     }
 
     private void sendValidation() {
-        sendButton.setDisable(reboundTable.getItems().size() <= 0
-                || compressionTable.getItems().size() <= 0
-                || Objects.isNull(targetRecord)
-                || pageComboBox.getSelectionModel().isEmpty()
-                || shockAbsorberComboBox.getSelectionModel().isEmpty());
+        reboundSendButton.setDisable(reboundTable.getItems().size() <= 0
+                || Objects.isNull(reboundTargetRecord)
+                || reboundPageComboBox.getSelectionModel().isEmpty()
+                || reboundShockAbsorberComboBox.getSelectionModel().isEmpty());
+        compressionSendButton.setDisable(compressionTable.getItems().size() <= 0
+                || Objects.isNull(compressionTargetRecord)
+                || compressionPageComboBox.getSelectionModel().isEmpty()
+                || compressionShockAbsorberComboBox.getSelectionModel().isEmpty());
     }
 
     protected void refreshSelection() {
-        pageComboBox.getSelectionModel().clearSelection();
-        shockAbsorberComboBox.getSelectionModel().clearSelection();
-        shockAbsorberComboBox.setDisable(true);
+        reboundPageComboBox.getSelectionModel().clearSelection();
+        reboundShockAbsorberComboBox.getSelectionModel().clearSelection();
+        reboundShockAbsorberComboBox.setDisable(true);
+        compressionPageComboBox.getSelectionModel().clearSelection();
+        compressionShockAbsorberComboBox.getSelectionModel().clearSelection();
+        compressionShockAbsorberComboBox.setDisable(true);
     }
 }

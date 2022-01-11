@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="TOP_CENTER" cache="false" cacheHint="QUALITY" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="TOP_CENTER" cache="false" cacheHint="QUALITY" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
    <children>
       <HBox id="search-header-hbox" fx:id="headerHbox" alignment="CENTER" cache="false" cacheHint="QUALITY">
          <children>
@@ -42,7 +42,7 @@
       <TableView id="search-table" fx:id="searchTable" cache="false" cacheHint="QUALITY" VBox.vgrow="ALWAYS">
         <columns>
             <TableColumn fx:id="idColumn" editable="false" minWidth="50.0" prefWidth="75.0" text="ID" />
-          <TableColumn fx:id="nameColumn" editable="false" minWidth="250.0" prefWidth="-1.0" text="ФИО" />
+          <TableColumn fx:id="nameColumn" editable="false" minWidth="250.0" prefWidth="-1.0" text="Имя" />
           <TableColumn fx:id="carColumn" editable="false" minWidth="150.0" prefWidth="200.0" text="Машина" />
             <TableColumn fx:id="dateColumn" editable="false" minWidth="100.0" prefWidth="150.0" text="Дата" />
             <TableColumn fx:id="phoneNumberColumn" editable="false" minWidth="100.0" prefWidth="150.0" text="Телефон" />

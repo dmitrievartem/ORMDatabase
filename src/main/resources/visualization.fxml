@@ -61,6 +61,20 @@
             <Insets />
          </HBox.margin>
       </VBox>
+      <VBox alignment="CENTER" cache="false" cacheHint="QUALITY" minWidth="50.0" prefWidth="50.0">
+         <children>
+            <Label cache="false" cacheHint="QUALITY" minWidth="50.0" rotate="270.0" text="Отбой">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Label>
+            <Label cache="false" cacheHint="QUALITY" minWidth="50.0" rotate="270.0" text="Сжатие">
+               <VBox.margin>
+                  <Insets top="250.0" />
+               </VBox.margin>
+            </Label>
+         </children>
+      </VBox>
       <ScrollPane id="visualization-scroll-pane" fx:id="scrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" minWidth="500.0">
          <content>
             <VBox id="visualization-vbox" fx:id="stackVisualizationVBox" alignment="CENTER" spacing="10.0" />
@@ -69,28 +83,26 @@
             <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
          </padding>
       </ScrollPane>
-      <VBox fx:id="sendToPageVbox" alignment="CENTER" minWidth="200.0" spacing="10.0">
+      <VBox fx:id="sendToPageVbox" alignment="CENTER" minWidth="200.0" spacing="200.0">
          <children>
-            <Label alignment="TOP_LEFT" contentDisplay="CENTER" maxWidth="180.0" minWidth="180.0" text="Выбор страницы:" />
-            <ComboBox id="record-field" fx:id="pageComboBox" maxWidth="200.0" minWidth="200.0">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </ComboBox>
-            <Label alignment="TOP_LEFT" contentDisplay="CENTER" maxWidth="180.0" minWidth="180.0" text="Выбор амортизатора:">
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </Label>
-            <ComboBox id="record-field" fx:id="shockAbsorberComboBox" maxWidth="200.0" minWidth="200.0">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </ComboBox>
-            <Button id="record-button" fx:id="sendButton" maxWidth="180.0" minWidth="180.0" mnemonicParsing="false" text="Отправить">
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin></Button>
+            <VBox spacing="10.0">
+               <children>
+                  <Label alignment="TOP_LEFT" contentDisplay="CENTER" maxWidth="180.0" minWidth="180.0" text="Выбор страницы:" />
+                  <ComboBox id="record-field" fx:id="reboundPageComboBox" maxWidth="200.0" minWidth="200.0" />
+                  <Label alignment="TOP_LEFT" contentDisplay="CENTER" maxWidth="180.0" minWidth="180.0" text="Выбор амортизатора:" />
+                  <ComboBox id="record-field" fx:id="reboundShockAbsorberComboBox" maxWidth="200.0" minWidth="200.0" />
+                  <Button id="record-button" fx:id="reboundSendButton" maxWidth="180.0" minWidth="180.0" mnemonicParsing="false" text="Отправить отбой" />
+               </children>
+            </VBox>
+            <VBox spacing="10.0">
+               <children>
+                  <Label alignment="TOP_LEFT" contentDisplay="CENTER" maxWidth="180.0" minWidth="180.0" text="Выбор страницы:" />
+                  <ComboBox id="record-field" fx:id="compressionPageComboBox" maxWidth="200.0" minWidth="200.0" />
+                  <Label alignment="TOP_LEFT" contentDisplay="CENTER" maxWidth="180.0" minWidth="180.0" text="Выбор амортизатора:" />
+                  <ComboBox id="record-field" fx:id="compressionShockAbsorberComboBox" maxWidth="200.0" minWidth="200.0" />
+                  <Button id="record-button" fx:id="compressionSendButton" maxWidth="180.0" minWidth="180.0" mnemonicParsing="false" text="Отправить сжатие" />
+               </children>
+            </VBox>
          </children>
       </VBox>
    </children>

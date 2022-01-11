@@ -29,8 +29,16 @@ public class StackPair {
         return reboundStack;
     }
 
+    public void setReboundStack(ReboundStack reboundStack) {
+        this.reboundStack = reboundStack;
+    }
+
     public CompressionStack getCompressionStack() {
         return compressionStack;
+    }
+
+    public void setCompressionStack(CompressionStack compressionStack) {
+        this.compressionStack = compressionStack;
     }
 
 //    @Override

@@ -21,6 +21,7 @@ repositories {
 
 dependencies {
     implementation 'com.objectdb:objectdb:2.8.1'
+    implementation 'org.controlsfx:controlsfx:11.1.1'
 }
 
 application {

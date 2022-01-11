@@ -5,6 +5,9 @@ import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.HPos;
+import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.print.PageLayout;
 import javafx.print.PageOrientation;
 import javafx.print.Paper;
@@ -19,10 +22,14 @@ import javafx.scene.control.DialogPane;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
+import org.controlsfx.control.NotificationPane;
+import org.controlsfx.control.Notifications;
 import ormdatabase.model.*;
 
 import javax.persistence.Persistence;
@@ -168,7 +175,7 @@ public class Controller {
         currentPageButton = search;
         currentPageButton.setDisable(true);
 
-        Alert alert = new Alert(Alert.AlertType.NONE, "", ButtonType.OK);
+/*        Alert alert = new Alert(Alert.AlertType.NONE, "", ButtonType.OK);
         alert.setHeaderText(null);
         alert.setContentText("Заполняй все как надо блять");
         alert.initStyle(StageStyle.UNDECORATED);
@@ -176,7 +183,8 @@ public class Controller {
         dialogPane.getStylesheets().add(Objects.requireNonNull(Controller.class.getResource("light-with-shadows.css")).toExternalForm());
         dialogPane.getScene().setFill(Color.TRANSPARENT);
         ((Stage) dialogPane.getScene().getWindow()).initStyle(StageStyle.TRANSPARENT);
-        alert.showAndWait();
+        alert.showAndWait();*/
+
 //        alert.show();
 
 //        Thread thread = new Thread(() -> {
