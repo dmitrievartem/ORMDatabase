@@ -310,6 +310,12 @@ public class BaseViewController extends Controller {
     @FXML
     protected final AddController addController = new AddController();
 
+    private VisualizationController visualizationController;
+
+    public void setVisualizationController(VisualizationController visualizationController) {
+        this.visualizationController = visualizationController;
+    }
+
     public void initialize() {
         this.viewController.setParentController(this);
         this.editController.setParentController(this);
@@ -673,7 +679,6 @@ public class BaseViewController extends Controller {
     public void sendToReboundVisualization(ActionEvent event) {
         VBox parentVBox = (VBox) ((Button) event.getSource()).getParent().getParent();
         TableView<Shim> targetTable = (TableView<Shim>) parentVBox.getChildren().get(0);
-//        visualizationController.visualizationReboundStack = new ReboundStack(new ArrayList<>(targetTable.getItems()));
         visualizationController.reboundTable.setItems(targetTable.getItems());
         visualizationController.drawShimStack();
     }
@@ -682,7 +687,6 @@ public class BaseViewController extends Controller {
     public void sendToCompressionVisualization(ActionEvent event) {
         VBox parentVBox = (VBox) ((Button) event.getSource()).getParent().getParent();
         TableView<Shim> targetTable = (TableView<Shim>) parentVBox.getChildren().get(0);
-//        visualizationController.visualizationCompressionStack = new CompressionStack(new ArrayList<>(targetTable.getItems()));
         visualizationController.compressionTable.setItems(targetTable.getItems());
         visualizationController.drawShimStack();
     }

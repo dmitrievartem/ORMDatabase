@@ -164,6 +164,7 @@ public class Controller {
         baseViewController.editController.setView(view);
         baseViewController.editController.setDataSource(dataSource);
         baseViewController.addController.setDataSource(dataSource);
+        baseViewController.setVisualizationController(visualizationController);
         currentPageButton = search;
         currentPageButton.setDisable(true);
 
