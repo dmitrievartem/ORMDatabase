@@ -228,31 +228,31 @@ public class VisualizationController {
             ReboundStack reboundStack = new ReboundStack(new ArrayList<>(reboundTable.getItems()));
             int index = reboundShockAbsorberComboBox.getSelectionModel().getSelectedIndex();
             reboundTargetRecord.getShimStackSetList().get(BaseViewController.currentVersion - 1).getShimStackList().get(index).setReboundStack(reboundStack);
-            reboundPageComboBox.getSelectionModel().clearSelection();
-            reboundShockAbsorberComboBox.getSelectionModel().clearSelection();
-            reboundShockAbsorberComboBox.setDisable(true);
             Notifications.create()
                     .owner(compressionSendButton.getScene().getWindow())
                     .position(Pos.BOTTOM_RIGHT)
                     .hideCloseButton()
-                    .text("Отправлено")
+                    .text(String.format("Таблица отбоя отправлена на страницу \"%s\"", reboundPageComboBox.getSelectionModel().getSelectedItem()))
                     .hideAfter(Duration.seconds(3))
                     .show();
+            reboundPageComboBox.getSelectionModel().clearSelection();
+            reboundShockAbsorberComboBox.getSelectionModel().clearSelection();
+            reboundShockAbsorberComboBox.setDisable(true);
         });
         compressionSendButton.setOnAction(event -> {
             CompressionStack compressionStack = new CompressionStack(new ArrayList<>(compressionTable.getItems()));
             int index = compressionShockAbsorberComboBox.getSelectionModel().getSelectedIndex();
             compressionTargetRecord.getShimStackSetList().get(BaseViewController.currentVersion - 1).getShimStackList().get(index).setCompressionStack(compressionStack);
-            compressionPageComboBox.getSelectionModel().clearSelection();
-            compressionShockAbsorberComboBox.getSelectionModel().clearSelection();
-            compressionShockAbsorberComboBox.setDisable(true);
             Notifications.create()
                     .owner(compressionSendButton.getScene().getWindow())
                     .position(Pos.BOTTOM_RIGHT)
                     .hideCloseButton()
-                    .text("Отправлено")
+                    .text(String.format("Таблица сжатия отправлена на страницу \"%s\"", compressionPageComboBox.getSelectionModel().getSelectedItem()))
                     .hideAfter(Duration.seconds(3))
                     .show();
+            compressionPageComboBox.getSelectionModel().clearSelection();
+            compressionShockAbsorberComboBox.getSelectionModel().clearSelection();
+            compressionShockAbsorberComboBox.setDisable(true);
         });
     }
 

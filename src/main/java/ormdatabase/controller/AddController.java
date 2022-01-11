@@ -1,12 +1,10 @@
 package ormdatabase.controller;
 
+import javafx.geometry.Pos;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 import ormdatabase.model.DataSource;
 import ormdatabase.model.Record;
-import ormdatabase.model.ShimStackSet;
-
-import java.time.ZoneId;
-import java.util.Date;
-import java.util.Objects;
 
 public class AddController {
 
@@ -39,6 +37,13 @@ public class AddController {
     public void saveRecord() {
         baseViewController.saveObject(Controller.newRecord);
         dataSource.insert(Controller.newRecord);
+        Notifications.create()
+                .owner(baseViewController.save.getScene().getWindow())
+                .position(Pos.BOTTOM_RIGHT)
+                .hideCloseButton()
+                .text("Новая запись сохранена")
+                .hideAfter(Duration.seconds(3))
+                .show();
         initNewRecord();
     }
 

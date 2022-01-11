@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.SceneAntialiasing;
@@ -15,7 +16,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 import javafx.util.Pair;
+import org.controlsfx.control.Notifications;
 import ormdatabase.model.*;
 
 import java.time.LocalDate;
@@ -650,7 +653,7 @@ public class BaseViewController extends Controller {
         VBox parentVBox = (VBox) ((Button) event.getSource()).getParent().getParent();
         TableView<Shim> targetTable = (TableView<Shim>) parentVBox.getChildren().get(0);
         ObservableList<Shim> shims = targetTable.getItems();
-        shims.add(new Shim("0", "0", "0"));
+        shims.add(new Shim("1", "1", "0"));
         targetTable.setItems(shims);
     }
 
@@ -681,6 +684,13 @@ public class BaseViewController extends Controller {
         TableView<Shim> targetTable = (TableView<Shim>) parentVBox.getChildren().get(0);
         visualizationController.reboundTable.setItems(targetTable.getItems());
         visualizationController.drawShimStack();
+        Notifications.create()
+                .owner(targetTable.getScene().getWindow())
+                .position(Pos.BOTTOM_RIGHT)
+                .hideCloseButton()
+                .text("Таблица отбоя отправлена на страницу \"Визуализация\"")
+                .hideAfter(Duration.seconds(3))
+                .show();
     }
 
     @SuppressWarnings("unchecked")
@@ -689,6 +699,13 @@ public class BaseViewController extends Controller {
         TableView<Shim> targetTable = (TableView<Shim>) parentVBox.getChildren().get(0);
         visualizationController.compressionTable.setItems(targetTable.getItems());
         visualizationController.drawShimStack();
+        Notifications.create()
+                .owner(targetTable.getScene().getWindow())
+                .position(Pos.BOTTOM_RIGHT)
+                .hideCloseButton()
+                .text("Таблица сжатия отправлена на страницу \"Визуализация\"")
+                .hideAfter(Duration.seconds(3))
+                .show();
     }
 
     public void setSendToVisualization() {
@@ -734,18 +751,6 @@ public class BaseViewController extends Controller {
         setAddButtonAction();
         setDeleteButtonAction();
         setResetButtonAction();
-    }
-
-    public void requiredFieldsAlert() {
-        Alert alert = new Alert(Alert.AlertType.NONE, "", ButtonType.OK);
-        alert.setHeaderText(null);
-        alert.setContentText("Заполняй все как надо блять");
-        alert.initStyle(StageStyle.UNDECORATED);
-        DialogPane dialogPane = alert.getDialogPane();
-        dialogPane.getStylesheets().add(Objects.requireNonNull(Controller.class.getResource("light-with-shadows.css")).toExternalForm());
-        dialogPane.getScene().setFill(Color.TRANSPARENT);
-        ((Stage) dialogPane.getScene().getWindow()).initStyle(StageStyle.TRANSPARENT);
-        alert.showAndWait();
     }
 
     public boolean saveObject(Record record) {

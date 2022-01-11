@@ -1,6 +1,9 @@
 package ormdatabase.controller;
 
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 import ormdatabase.model.DataSource;
 import ormdatabase.model.Record;
 
@@ -35,6 +38,13 @@ public class EditController {
         baseViewController.saveObject(Controller.editableRecord);
         dataSource.update(Controller.editableRecord, Controller.observableRecord.getId());
         Controller.observableRecord = new Record(Controller.editableRecord);
+        Notifications.create()
+                .owner(baseViewController.save.getScene().getWindow())
+                .position(Pos.BOTTOM_RIGHT)
+                .hideCloseButton()
+                .text("Изменения сохранены")
+                .hideAfter(Duration.seconds(3))
+                .show();
     }
 
     public void setView(Button view) {
