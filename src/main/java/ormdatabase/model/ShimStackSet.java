@@ -86,14 +86,6 @@ public class ShimStackSet {
         this.author = author;
     }
 
-    public Boolean getFavorites() {
-        return favorites;
-    }
-
-    public void setFavorites(Boolean favorites) {
-        this.favorites = favorites;
-    }
-
     public List<StackPair> getShimStackList() {
         return shimStackList;
     }

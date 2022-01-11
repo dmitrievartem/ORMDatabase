@@ -16,7 +16,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
-import org.controlsfx.control.NotificationPane;
 import org.controlsfx.control.Notifications;
 import ormdatabase.model.*;
 

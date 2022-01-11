@@ -1,7 +1,16 @@
 package ormdatabase.model;
 
+import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+
 import javax.persistence.*;
 import java.io.File;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -55,7 +64,9 @@ public class DataSource {
         }
     }
 
-    public void backup(File selectedDirectory) {
+    public void backup(Stage stage) {
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        File selectedDirectory = directoryChooser.showDialog(stage);
         EntityManager em = emf.createEntityManager();
         try {
             Query backupQuery = em.createQuery("objectdb backup");
@@ -63,6 +74,22 @@ public class DataSource {
             backupQuery.getSingleResult();
         } finally {
             em.close();
+        }
+    }
+
+    public void recovery(Stage stage) {
+        emf.close();
+        try {
+            Path dir = Files.createDirectories(Paths.get("src/main/resources/odb/db"));
+            OutputStream out = Files.newOutputStream(dir.resolve("shimstack.odb"));
+            final FileChooser fileChooser = new FileChooser();
+            File file = fileChooser.showOpenDialog(stage);
+            byte[] fileContent = Files.readAllBytes(file.toPath());
+            out.write(fileContent);
+            emf = Persistence.createEntityManagerFactory("$objectdb/db/shimstack.odb");
+        } catch (IOException e) {
+            e.printStackTrace();
+            emf = Persistence.createEntityManagerFactory("$objectdb/db/shimstack.odb");
         }
     }
 }

@@ -5,21 +5,15 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.SceneAntialiasing;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+import javafx.util.Callback;
 import javafx.util.Duration;
 import javafx.util.Pair;
 import org.controlsfx.control.Notifications;
 import ormdatabase.model.*;
+import ormdatabase.utils.EditCell;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -564,6 +558,8 @@ public class BaseViewController extends Controller {
                 comment.setText(newValue.substring(0, 500));
             }
         });
+
+
         List<TableColumn<Shim, String>> columnList = List.of(
                 rt1numberColumn, rt1diameterColumn, rt1thicknessColumn,
                 rt2numberColumn, rt2diameterColumn, rt2thicknessColumn,
@@ -574,8 +570,11 @@ public class BaseViewController extends Controller {
                 ct3numberColumn, ct3diameterColumn, ct3thicknessColumn,
                 ct4numberColumn, ct4diameterColumn, ct4thicknessColumn
         );
+
+        getAllTables().forEach(tableView -> tableView.getSelectionModel().setCellSelectionEnabled(true));
+        Callback<TableColumn<Shim, String>, TableCell<Shim, String>> editCell = (TableColumn<Shim, String> p) -> EditCell.createStringEditCell();
         for (TableColumn<Shim, String> column : columnList) {
-            column.setCellFactory(TextFieldTableCell.forTableColumn());
+            column.setCellFactory(editCell);
             column.setOnEditCommit(
                     event -> {
                         Shim shim = event.getTableView().getItems().get(event.getTablePosition().getRow());

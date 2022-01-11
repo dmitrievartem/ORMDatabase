@@ -3,14 +3,12 @@ package ormdatabase;
 import javafx.stage.Stage;
 import ormdatabase.controller.Controller;
 
-import java.io.IOException;
-
 public class Main extends javafx.application.Application {
 
     private Controller controller;
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) {
         controller = new Controller();
         controller.start(stage);
     }
@@ -23,7 +21,5 @@ public class Main extends javafx.application.Application {
     @Override
     public void stop(){
         controller.closeDB();
-        System.out.println("Stage is closing");
-        // Save file
     }
 }

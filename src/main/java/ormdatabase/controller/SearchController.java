@@ -9,7 +9,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
-import javafx.stage.StageStyle;
 import ormdatabase.model.DataSource;
 import ormdatabase.model.Record;
 
