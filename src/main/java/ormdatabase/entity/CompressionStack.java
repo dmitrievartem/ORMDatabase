@@ -1,24 +1,24 @@
-package ormdatabase.model;
+package ormdatabase.entity;
 
 import javax.persistence.Embeddable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Embeddable
-public class ReboundStack {
+public class CompressionStack {
     List<Shim> stack;
 
-    public ReboundStack() {
+    public CompressionStack() {
         stack = new ArrayList<>(List.of(new Shim("0", "0", "0")));
     }
 
-    public ReboundStack(List<Shim> stack) {
+    public CompressionStack(List<Shim> stack) {
         this.stack = stack;
     }
 
-    public ReboundStack(ReboundStack reboundStack) {
+    public CompressionStack(CompressionStack compressionStack) {
         this.stack = new ArrayList<>();
-        for (Shim shim : reboundStack.stack) {
+        for (Shim shim : compressionStack.stack) {
             this.stack.add(new Shim(shim));
         }
     }

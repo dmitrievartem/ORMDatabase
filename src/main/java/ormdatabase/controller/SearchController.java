@@ -9,16 +9,19 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
-import ormdatabase.model.DataSource;
-import ormdatabase.model.Record;
+import ormdatabase.DataSource;
+import ormdatabase.entity.Record;
 
 import java.sql.Date;
 import java.util.List;
 import java.util.Objects;
 
-public class SearchController extends Controller {
+import static ormdatabase.controller.MainController.observableRecord;
+import static ormdatabase.controller.MainController.editableRecord;
 
-    private Button view;
+public class SearchController {
+
+    protected Button view;
 
     private DataSource dataSource;
 
@@ -64,6 +67,14 @@ public class SearchController extends Controller {
     @FXML
     private TableColumn<Record, String> cityColumn;
 
+    private ViewController viewController;
+    private EditController editController;
+
+    public void setViewEditControllers(ViewController viewController, EditController editController) {
+        this.viewController = viewController;
+        this.editController = editController;
+    }
+
     @FXML
     void initialize() {
         for (Node node : headerHbox.getChildren()) {
@@ -98,6 +109,8 @@ public class SearchController extends Controller {
                     if (searchTable.getSelectionModel().getSelectedItem() != null) {
                         observableRecord = searchTable.getSelectionModel().getSelectedItem();
                         editableRecord = new Record(observableRecord);
+                        viewController.viewRecord(observableRecord);
+                        editController.viewRecord(editableRecord);
                         view.fire();
                     }
                 }

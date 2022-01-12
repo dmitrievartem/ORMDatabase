@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane cache="false" cacheHint="QUALITY" fitToHeight="true" fitToWidth="true" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane cache="false" cacheHint="QUALITY" fitToHeight="true" fitToWidth="true" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
    <content>
       <BorderPane id="border-pane" fx:id="borderPane" cache="false" cacheHint="QUALITY" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
          <cursor>

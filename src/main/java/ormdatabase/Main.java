@@ -1,16 +1,16 @@
 package ormdatabase;
 
 import javafx.stage.Stage;
-import ormdatabase.controller.Controller;
+import ormdatabase.controller.MainController;
 
 public class Main extends javafx.application.Application {
 
-    private Controller controller;
+    private MainController mainController;
 
     @Override
     public void start(Stage stage) {
-        controller = new Controller();
-        controller.start(stage);
+        mainController = new MainController();
+        mainController.start(stage);
     }
 
     public static void main(String[] args) {
@@ -20,6 +20,6 @@ public class Main extends javafx.application.Application {
 
     @Override
     public void stop(){
-        controller.closeDB();
+        mainController.closeDB();
     }
 }

@@ -1,8 +1,9 @@
-package ormdatabase.model;
+package ormdatabase;
 
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import ormdatabase.entity.Record;
 
 import javax.persistence.*;
 import java.io.File;

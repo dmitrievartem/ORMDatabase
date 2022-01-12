@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox alignment="CENTER" cache="false" cacheHint="QUALITY" spacing="10.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<HBox alignment="CENTER" cache="false" cacheHint="QUALITY" spacing="10.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
    <children>
       <VBox alignment="TOP_CENTER" cache="false" cacheHint="QUALITY" prefWidth="300.0">
          <children>

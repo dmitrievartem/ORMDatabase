@@ -1,4 +1,4 @@
-package ormdatabase.model;
+package ormdatabase.entity;
 
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;

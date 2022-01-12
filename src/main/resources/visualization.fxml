@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox fx:id="hBox" alignment="CENTER" spacing="50.0" stylesheets="@ormdatabase/controller/light-with-shadows.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<HBox fx:id="hBox" alignment="CENTER" spacing="50.0" stylesheets="@ormdatabase/controller/light-with-shadows.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
    <children>
       <VBox fx:id="vBox1" alignment="CENTER" spacing="30.0" styleClass="shim-stack-vbox">
          <children>

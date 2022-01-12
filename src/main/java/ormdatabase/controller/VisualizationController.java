@@ -5,25 +5,23 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Callback;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
-import ormdatabase.model.*;
+import ormdatabase.entity.*;
+import ormdatabase.utils.EditCell;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import static ormdatabase.controller.Controller.*;
+import static ormdatabase.controller.MainController.*;
 
 public class VisualizationController {
 
@@ -97,22 +95,21 @@ public class VisualizationController {
     private Record compressionTargetRecord;
 
     @FXML
-    void initialize() {
-
+    private void initialize() {
         List<TableView<Shim>> tableViewList = List.of(reboundTable, compressionTable);
         for (TableView<Shim> tableView : tableViewList) {
             tableView.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("number"));
             tableView.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("diameter"));
             tableView.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("thickness"));
         }
-
         List<TableColumn<Shim, String>> columnList = List.of(
                 reboundNumberColumn, reboundDiameterColumn, reboundThicknessColumn,
                 compressionNumberColumn, compressionDiameterColumn, compressionThicknessColumn
         );
-
+        List.of(reboundTable, compressionTable).forEach(tableView -> tableView.getSelectionModel().setCellSelectionEnabled(true));
+        Callback<TableColumn<Shim, String>, TableCell<Shim, String>> editCell = (TableColumn<Shim, String> p) -> EditCell.createStringEditCell();
         for (TableColumn<Shim, String> column : columnList) {
-            column.setCellFactory(TextFieldTableCell.forTableColumn());
+            column.setCellFactory(editCell);
             column.setOnEditCommit(
                     event -> {
                         Shim shim = event.getTableView().getItems().get(event.getTablePosition().getRow());
@@ -255,7 +252,7 @@ public class VisualizationController {
         });
     }
 
-    public void drawShimStack() {
+    protected void drawShimStack() {
         stackVisualizationVBox.getChildren().removeAll(stackVisualizationVBox.getChildren());
         addLines(reboundTable);
         Rectangle rectangle = new Rectangle(350, 75);
@@ -267,7 +264,7 @@ public class VisualizationController {
         addLines(compressionTable);
     }
 
-    public void addLines(TableView<Shim> tableView) {
+    private void addLines(TableView<Shim> tableView) {
         for (Shim shim : tableView.getItems()) {
             VBox vBox = new VBox();
             vBox.setSpacing(5);
@@ -282,7 +279,7 @@ public class VisualizationController {
     }
 
     @SuppressWarnings("unchecked")
-    public void addTableRow(ActionEvent event) {
+    private void addTableRow(ActionEvent event) {
         VBox parentVBox = (VBox) ((Button) event.getSource()).getParent().getParent();
         TableView<Shim> targetTable = (TableView<Shim>) parentVBox.getChildren().get(0);
         ObservableList<Shim> shims = targetTable.getItems();
@@ -297,7 +294,7 @@ public class VisualizationController {
     }
 
     @SuppressWarnings("unchecked")
-    public void deleteTableRow(ActionEvent event) {
+    private void deleteTableRow(ActionEvent event) {
         VBox parentVBox = (VBox) ((Button) event.getSource()).getParent().getParent();
         TableView<Shim> targetTable = (TableView<Shim>) parentVBox.getChildren().get(0);
         ObservableList<Shim> shims = targetTable.getItems();
@@ -312,7 +309,7 @@ public class VisualizationController {
     }
 
     @SuppressWarnings("unchecked")
-    public void resetTable(ActionEvent event) {
+    private void resetTable(ActionEvent event) {
         VBox parentVBox = (VBox) ((Button) event.getSource()).getParent().getParent();
         TableView<Shim> targetTable = (TableView<Shim>) parentVBox.getChildren().get(0);
         targetTable.getItems().clear();

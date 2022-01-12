@@ -1,54 +1,40 @@
 package ormdatabase.controller;
 
+import javafx.fxml.FXML;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
-import ormdatabase.model.DataSource;
-import ormdatabase.model.Record;
+import ormdatabase.DataSource;
+import ormdatabase.entity.Record;
 
-public class EditController {
-
-    private BaseViewController baseViewController;
+public class EditController extends BaseViewController {
 
     private DataSource dataSource;
 
-    private Button view;
-
-    public void setParentController(BaseViewController baseViewController) {
-        this.baseViewController = baseViewController;
-    }
-
-    void start() {
-        BaseViewController.currentVersion = Controller.editableRecord.getShimStackSetList().size();
-        baseViewController.enableInputs();
-        baseViewController.previousVersion.setOnAction(event -> baseViewController.viewPreviousVersion(Controller.editableRecord));
-        baseViewController.nextVersion.setOnAction(event -> baseViewController.viewNextVersion(Controller.editableRecord));
-        baseViewController.editRecord.setDisable(true);
-        baseViewController.deleteVersion.setOnAction(event -> baseViewController.deleteVersion(Controller.editableRecord));
-        baseViewController.addVersion.setOnAction(event -> baseViewController.addVersion(Controller.editableRecord));
-        baseViewController.save.setOnAction(event -> {
-            saveRecord();
-            view.fire();
-        });
-        baseViewController.viewRecord(Controller.editableRecord);
+    @FXML
+    public void initialize() {
+        initMainFieldsAndButtons();
+        setFocusListener(MainController.editableRecord);
+        enableInputs();
+        editRecord.setDisable(true);
+        previousVersion.setOnAction(event -> viewPreviousVersion(MainController.editableRecord));
+        nextVersion.setOnAction(event -> viewNextVersion(MainController.editableRecord));
+        deleteVersion.setOnAction(event -> deleteVersion(MainController.editableRecord));
+        addVersion.setOnAction(event -> addVersion(MainController.editableRecord));
+        save.setOnAction(event -> saveRecord());
     }
 
     public void saveRecord() {
-        baseViewController.saveObject(Controller.editableRecord);
-        dataSource.update(Controller.editableRecord, Controller.observableRecord.getId());
-        Controller.observableRecord = new Record(Controller.editableRecord);
+        saveObject(MainController.editableRecord);
+        dataSource.update(MainController.editableRecord, MainController.observableRecord.getId());
+        MainController.observableRecord = new Record(MainController.editableRecord);
         Notifications.create()
-                .owner(baseViewController.save.getScene().getWindow())
+                .owner(save.getScene().getWindow())
                 .position(Pos.BOTTOM_RIGHT)
                 .hideCloseButton()
                 .text("Изменения сохранены")
                 .hideAfter(Duration.seconds(3))
                 .show();
-    }
-
-    public void setView(Button view) {
-        this.view = view;
     }
 
     public void setDataSource(DataSource dataSource) {
