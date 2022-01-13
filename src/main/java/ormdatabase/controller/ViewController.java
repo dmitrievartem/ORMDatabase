@@ -3,7 +3,7 @@ package ormdatabase.controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-public class ViewController extends BaseViewController{
+public class ViewController extends BaseViewController {
 
     private Button edit;
 

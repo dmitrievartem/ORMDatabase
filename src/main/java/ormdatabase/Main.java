@@ -19,7 +19,7 @@ public class Main extends javafx.application.Application {
     }
 
     @Override
-    public void stop(){
+    public void stop() {
         mainController.closeDB();
     }
 }

@@ -16,8 +16,8 @@ import java.sql.Date;
 import java.util.List;
 import java.util.Objects;
 
-import static ormdatabase.controller.MainController.observableRecord;
 import static ormdatabase.controller.MainController.editableRecord;
+import static ormdatabase.controller.MainController.observableRecord;
 
 public class SearchController {
 
@@ -67,12 +67,7 @@ public class SearchController {
     @FXML
     private TableColumn<Record, String> cityColumn;
 
-    private ViewController viewController;
-    private EditController editController;
-
-    public void setViewEditControllers(ViewController viewController, EditController editController) {
-        this.viewController = viewController;
-        this.editController = editController;
+    public SearchController() {
     }
 
     @FXML

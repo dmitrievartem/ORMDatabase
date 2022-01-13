@@ -1,8 +1,10 @@
 package ormdatabase.controller;
 
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.print.PageLayout;
 import javafx.print.PageOrientation;
 import javafx.print.Paper;
@@ -14,6 +16,8 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 import ormdatabase.DataSource;
 import ormdatabase.entity.Record;
 
@@ -91,13 +95,13 @@ public class MainController {
     private void initialize() {
         search.setOnAction(event -> switchPage(searchNode, search));
         view.setOnAction(event -> {
-            if(Objects.nonNull(observableRecord)) {
+            if (Objects.nonNull(observableRecord)) {
                 switchPage(viewNode, view);
                 viewController.viewRecord(observableRecord);
             }
         });
         edit.setOnAction(event -> {
-            if(Objects.nonNull(editableRecord)) {
+            if (Objects.nonNull(editableRecord)) {
                 switchPage(editNode, edit);
                 editController.viewRecord(editableRecord);
             }
@@ -143,19 +147,26 @@ public class MainController {
     }
 
     private void printPage() {
-        Stage stage = (Stage) anchorPane.getScene().getWindow();
+        Platform.setImplicitExit(false);
+        stage.hide();
         stage.setHeight(850);
         stage.setWidth(1480);
         PrinterJob job = PrinterJob.createPrinterJob();
-        if (job != null) {
-            PageLayout pageLayout = job.getPrinter().createPageLayout(Paper.A3, PageOrientation.REVERSE_LANDSCAPE, 0, 0, 0, 0);
-            boolean success = job.printPage(pageLayout, anchorPane.getChildren().get(0));
-            if (success) {
-                job.endJob();
-            }
-            stage.setMaximized(false);
-            stage.setMaximized(true);
-            stage.show();
+        PageLayout pageLayout = job.getPrinter().createPageLayout(Paper.A3, PageOrientation.REVERSE_LANDSCAPE, 0, 0, 0, 0);
+        boolean result = job.printPage(pageLayout, anchorPane.getChildren().get(0));
+        job.endJob();
+        stage.setMaximized(false);
+        stage.setMaximized(true);
+        stage.show();
+        Platform.setImplicitExit(true);
+        if (result) {
+            Notifications.create()
+                    .owner(anchorPane.getScene().getWindow())
+                    .position(Pos.BOTTOM_RIGHT)
+                    .hideCloseButton()
+                    .text("Страница сохранена")
+                    .hideAfter(Duration.seconds(3))
+                    .show();
         }
     }
 
@@ -178,8 +189,6 @@ public class MainController {
                 loader = getNewLoader("record.fxml");
                 loader.setController(editController);
                 editNode = loader.load();
-
-                searchController.setViewEditControllers(viewController, editController);
 
                 loader = getNewLoader("record.fxml");
                 loader.setController(addController);

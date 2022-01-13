@@ -14,14 +14,18 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Callback;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
-import ormdatabase.entity.*;
+import ormdatabase.entity.CompressionStack;
+import ormdatabase.entity.ReboundStack;
+import ormdatabase.entity.Record;
+import ormdatabase.entity.Shim;
 import ormdatabase.utils.EditCell;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import static ormdatabase.controller.MainController.*;
+import static ormdatabase.controller.MainController.editableRecord;
+import static ormdatabase.controller.MainController.newRecord;
 
 public class VisualizationController {
 

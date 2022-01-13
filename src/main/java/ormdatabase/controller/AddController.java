@@ -11,7 +11,7 @@ import ormdatabase.entity.Record;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddController extends BaseViewController{
+public class AddController extends BaseViewController {
 
     private DataSource dataSource;
 
@@ -35,7 +35,7 @@ public class AddController extends BaseViewController{
     }
 
     private void setFocusListener() {
-        List<Node> nodeList = new ArrayList<>(List.of(name, car, date, phone, city, favorites, type , versionDate , comment , author));
+        List<Node> nodeList = new ArrayList<>(List.of(name, car, date, phone, city, favorites, type, versionDate, comment, author));
         nodeList.addAll(getAllTables());
         nodeList.forEach(node -> node.focusedProperty().addListener((obs, oldVal, newVal) -> {
             if (oldVal) {

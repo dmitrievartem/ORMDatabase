@@ -470,10 +470,10 @@ public class InitRecordViewController {
     }
 
     private void setSendToVisualization() {
-        for(Button button : List.of(visualizationButton1, visualizationButton3, visualizationButton5, visualizationButton7)) {
+        for (Button button : List.of(visualizationButton1, visualizationButton3, visualizationButton5, visualizationButton7)) {
             button.setOnAction(this::sendToReboundVisualization);
         }
-        for(Button button : List.of(visualizationButton2, visualizationButton4, visualizationButton6, visualizationButton8)) {
+        for (Button button : List.of(visualizationButton2, visualizationButton4, visualizationButton6, visualizationButton8)) {
             button.setOnAction(this::sendToCompressionVisualization);
         }
     }
@@ -514,7 +514,6 @@ public class InitRecordViewController {
         setResetButtonAction();
         setSendToVisualization();
     }
-
 
 
     protected void disableInputs() {

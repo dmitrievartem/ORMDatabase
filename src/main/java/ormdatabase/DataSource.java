@@ -1,8 +1,12 @@
 package ormdatabase;
 
+import javafx.application.Platform;
+import javafx.geometry.Pos;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 import ormdatabase.entity.Record;
 
 import javax.persistence.*;
@@ -12,9 +16,7 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 public class DataSource {
 
@@ -68,26 +70,57 @@ public class DataSource {
     public void backup(Stage stage) {
         DirectoryChooser directoryChooser = new DirectoryChooser();
         File selectedDirectory = directoryChooser.showDialog(stage);
-        EntityManager em = emf.createEntityManager();
-        try {
+        if (Objects.nonNull(selectedDirectory)) {
+            Platform.setImplicitExit(false);
+            stage.hide();
+            EntityManager em = emf.createEntityManager();
             Query backupQuery = em.createQuery("objectdb backup");
             backupQuery.setParameter("target", new java.io.File(String.valueOf(selectedDirectory)));
             backupQuery.getSingleResult();
-        } finally {
             em.close();
+            stage.show();
+            Platform.setImplicitExit(true);
+            Notifications.create()
+                    .owner(stage.getScene().getWindow())
+                    .position(Pos.BOTTOM_RIGHT)
+                    .hideCloseButton()
+                    .text("Копирование завершено")
+                    .hideAfter(Duration.seconds(3))
+                    .show();
         }
     }
 
     public void recovery(Stage stage) {
         emf.close();
         try {
+            Files.walk(Paths.get("src/main/resources/odb/db"))
+                    .sorted(Comparator.reverseOrder())
+                    .map(Path::toFile)
+                    .forEach(File::delete);
+
             Path dir = Files.createDirectories(Paths.get("src/main/resources/odb/db"));
             OutputStream out = Files.newOutputStream(dir.resolve("shimstack.odb"));
+
             final FileChooser fileChooser = new FileChooser();
             File file = fileChooser.showOpenDialog(stage);
-            byte[] fileContent = Files.readAllBytes(file.toPath());
-            out.write(fileContent);
-            emf = Persistence.createEntityManagerFactory("$objectdb/db/shimstack.odb");
+            String fileExtension = file.getName().substring(file.getName().lastIndexOf(".") + 1);
+
+            if (Objects.nonNull(file) && fileExtension.equals("odb")) {
+                Platform.setImplicitExit(false);
+                stage.hide();
+                byte[] fileContent = Files.readAllBytes(file.toPath());
+                out.write(fileContent);
+                emf = Persistence.createEntityManagerFactory("$objectdb/db/shimstack.odb");
+                stage.show();
+                Platform.setImplicitExit(true);
+                Notifications.create()
+                        .owner(stage.getScene().getWindow())
+                        .position(Pos.BOTTOM_RIGHT)
+                        .hideCloseButton()
+                        .text("Восстановление завершено")
+                        .hideAfter(Duration.seconds(3))
+                        .show();
+            }
         } catch (IOException e) {
             e.printStackTrace();
             emf = Persistence.createEntityManagerFactory("$objectdb/db/shimstack.odb");
