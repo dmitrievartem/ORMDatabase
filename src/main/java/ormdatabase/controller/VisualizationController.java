@@ -88,11 +88,17 @@ public class VisualizationController {
     @FXML
     private Button compressionSendButton;
 
-    private Record targetRecord;
-
     private Record reboundTargetRecord;
 
     private Record compressionTargetRecord;
+
+    private int reboundCurrentVersion;
+
+    private int compressionCurrentVersion;
+
+    private EditController editController;
+
+    private AddController addController;
 
     @FXML
     private void initialize() {
@@ -152,11 +158,17 @@ public class VisualizationController {
         compressionPageComboBox.setItems(FXCollections.observableArrayList(List.of("Добавление", "Редактирование")));
 
         reboundPageComboBox.setOnAction(event -> {
+            int shockAbsorberNumber = 1;
             if (Objects.nonNull(reboundPageComboBox.getSelectionModel().getSelectedItem())) {
                 if (reboundPageComboBox.getSelectionModel().getSelectedItem().equals("Редактирование")) {
                     reboundTargetRecord = editableRecord;
+                    reboundCurrentVersion = editController.currentVersion - 1;
+                    shockAbsorberNumber = reboundTargetRecord.getShimStackSetList().get(reboundCurrentVersion).getTypeNumber();
+
                 } else {
                     reboundTargetRecord = newRecord;
+                    reboundCurrentVersion = addController.currentVersion - 1;
+                    shockAbsorberNumber = reboundTargetRecord.getShimStackSetList().get(addController.currentVersion - 1).getTypeNumber();
                 }
             }
 
@@ -164,15 +176,11 @@ public class VisualizationController {
                 reboundShockAbsorberComboBox.getSelectionModel().clearSelection();
                 reboundShockAbsorberComboBox.setDisable(true);
                 sendValidation();
-                System.out.println("targetRecord is NULL");
             } else {
                 sendValidation();
                 reboundShockAbsorberComboBox.setDisable(false);
-                System.out.println("targetRecord non NULL");
                 List<String> shockAbsorberList;
-                int shockAbsorberNumber = reboundTargetRecord.getShimStackSetList().get(BaseViewController.currentVersion - 1).getTypeNumber();
 
-                System.out.println("shockAbsorberNumber: " + shockAbsorberNumber);
                 if (shockAbsorberNumber == 4) {
                     shockAbsorberList = FXCollections.observableArrayList(List.of("ПЛ", "ПП", "ЗЛ", "ЗП"));
                 } else if (shockAbsorberNumber == 2) {
@@ -185,11 +193,17 @@ public class VisualizationController {
         });
 
         compressionPageComboBox.setOnAction(event -> {
+            int shockAbsorberNumber = 1;
             if (Objects.nonNull(compressionPageComboBox.getSelectionModel().getSelectedItem())) {
                 if (compressionPageComboBox.getSelectionModel().getSelectedItem().equals("Редактирование")) {
                     compressionTargetRecord = editableRecord;
+                    compressionCurrentVersion = editController.currentVersion - 1;
+                    shockAbsorberNumber = reboundTargetRecord.getShimStackSetList().get(compressionCurrentVersion).getTypeNumber();
                 } else {
                     compressionTargetRecord = newRecord;
+                    compressionCurrentVersion = addController.currentVersion - 1;
+                    shockAbsorberNumber = reboundTargetRecord.getShimStackSetList().get(addController.currentVersion - 1).getTypeNumber();
+
                 }
             }
 
@@ -197,15 +211,11 @@ public class VisualizationController {
                 compressionShockAbsorberComboBox.getSelectionModel().clearSelection();
                 compressionShockAbsorberComboBox.setDisable(true);
                 sendValidation();
-                System.out.println("targetRecord is NULL");
             } else {
                 sendValidation();
                 compressionShockAbsorberComboBox.setDisable(false);
-                System.out.println("targetRecord non NULL");
                 List<String> shockAbsorberList;
-                int shockAbsorberNumber = compressionTargetRecord.getShimStackSetList().get(BaseViewController.currentVersion - 1).getTypeNumber();
 
-                System.out.println("shockAbsorberNumber: " + shockAbsorberNumber);
                 if (shockAbsorberNumber == 4) {
                     shockAbsorberList = FXCollections.observableArrayList(List.of("ПЛ", "ПП", "ЗЛ", "ЗП"));
                 } else if (shockAbsorberNumber == 2) {
@@ -223,7 +233,7 @@ public class VisualizationController {
         reboundSendButton.setOnAction(event -> {
             ReboundStack reboundStack = new ReboundStack(new ArrayList<>(reboundTable.getItems()));
             int index = reboundShockAbsorberComboBox.getSelectionModel().getSelectedIndex();
-            reboundTargetRecord.getShimStackSetList().get(BaseViewController.currentVersion - 1).getShimStackList().get(index).setReboundStack(reboundStack);
+            reboundTargetRecord.getShimStackSetList().get(reboundCurrentVersion).getShimStackList().get(index).setReboundStack(reboundStack);
             Notifications.create()
                     .owner(compressionSendButton.getScene().getWindow())
                     .position(Pos.BOTTOM_RIGHT)
@@ -235,10 +245,11 @@ public class VisualizationController {
             reboundShockAbsorberComboBox.getSelectionModel().clearSelection();
             reboundShockAbsorberComboBox.setDisable(true);
         });
+
         compressionSendButton.setOnAction(event -> {
             CompressionStack compressionStack = new CompressionStack(new ArrayList<>(compressionTable.getItems()));
             int index = compressionShockAbsorberComboBox.getSelectionModel().getSelectedIndex();
-            compressionTargetRecord.getShimStackSetList().get(BaseViewController.currentVersion - 1).getShimStackList().get(index).setCompressionStack(compressionStack);
+            compressionTargetRecord.getShimStackSetList().get(compressionCurrentVersion).getShimStackList().get(index).setCompressionStack(compressionStack);
             Notifications.create()
                     .owner(compressionSendButton.getScene().getWindow())
                     .position(Pos.BOTTOM_RIGHT)
@@ -335,5 +346,13 @@ public class VisualizationController {
         compressionPageComboBox.getSelectionModel().clearSelection();
         compressionShockAbsorberComboBox.getSelectionModel().clearSelection();
         compressionShockAbsorberComboBox.setDisable(true);
+    }
+
+    public void setEditController(EditController editController) {
+        this.editController = editController;
+    }
+
+    public void setAddController(AddController addController) {
+        this.addController = addController;
     }
 }

@@ -18,6 +18,7 @@ import ormdatabase.DataSource;
 import ormdatabase.entity.Record;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
 
 public class MainController {
@@ -88,12 +89,25 @@ public class MainController {
 
     @FXML
     private void initialize() {
-        search.setOnAction(event -> switchPage(searchNode));
-        view.setOnAction(event -> switchPage(Objects.isNull(observableRecord) ? searchNode : viewNode));
-        edit.setOnAction(event -> switchPage(Objects.isNull(editableRecord) ? searchNode : editNode));
-        add.setOnAction(event -> switchPage(addNode));
+        search.setOnAction(event -> switchPage(searchNode, search));
+        view.setOnAction(event -> {
+            if(Objects.nonNull(observableRecord)) {
+                switchPage(viewNode, view);
+                viewController.viewRecord(observableRecord);
+            }
+        });
+        edit.setOnAction(event -> {
+            if(Objects.nonNull(editableRecord)) {
+                switchPage(editNode, edit);
+                editController.viewRecord(editableRecord);
+            }
+        });
+        add.setOnAction(event -> {
+            switchPage(addNode, add);
+            addController.viewRecord(newRecord);
+        });
         visualization.setOnAction(event -> {
-            switchPage(visualizationNode);
+            switchPage(visualizationNode, visualization);
             visualizationController.refreshSelection();
         });
         print.setOnAction(event -> printPage());
@@ -107,19 +121,25 @@ public class MainController {
         viewController.setVisualizationController(visualizationController);
 
         editController.setVisualizationController(visualizationController);
+        editController.setViewController(viewController);
+        editController.setView(view);
         editController.setDataSource(dataSource);
 
         addController.setDataSource(dataSource);
         addController.setVisualizationController(visualizationController);
+
+        visualizationController.setAddController(addController);
+        visualizationController.setEditController(editController);
     }
 
-    private void switchPage(Node node) {
+    private void switchPage(Node node, Button button) {
         anchorPane.getChildren().clear();
         anchorPane.getChildren().add(node);
         AnchorPane.setTopAnchor(node, 0.0);
         AnchorPane.setRightAnchor(node, 0.0);
         AnchorPane.setBottomAnchor(node, 0.0);
         AnchorPane.setLeftAnchor(node, 0.0);
+        setDisabledButton(button);
     }
 
     private void printPage() {
@@ -184,7 +204,7 @@ public class MainController {
                 stage.setScene(scene);
                 stage.getIcons().add(new Image(Objects.requireNonNull(MainController.class.getResourceAsStream("icon.png"))));
                 stage.show();
-                switchPage(searchNode);
+                switchPage(searchNode, search);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -199,5 +219,10 @@ public class MainController {
 
     private FXMLLoader getNewLoader(String resource) {
         return new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource(resource)));
+    }
+
+    private void setDisabledButton(Button current) {
+        List.of(search, view, edit, add, visualization).forEach(button -> button.setDisable(false));
+        current.setDisable(true);
     }
 }

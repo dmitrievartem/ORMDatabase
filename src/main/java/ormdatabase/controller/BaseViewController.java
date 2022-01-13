@@ -1,7 +1,6 @@
 package ormdatabase.controller;
 
 import javafx.collections.FXCollections;
-import javafx.scene.Node;
 import javafx.scene.control.TableView;
 import javafx.util.Pair;
 import ormdatabase.entity.*;
@@ -11,8 +10,7 @@ import java.time.ZoneId;
 import java.util.*;
 
 public class BaseViewController extends InitRecordViewController {
-
-    protected static int currentVersion = 1;
+    public int currentVersion = 1;
 
     protected void viewRecord(Record record) {
         currentVersion = record.getShimStackSetList().size();
@@ -25,16 +23,6 @@ public class BaseViewController extends InitRecordViewController {
         city.setText(record.getCity());
         favorites.setSelected(record.isFavorites());
         viewVersion(record, currentVersion);
-    }
-
-    protected void setFocusListener(Record record) {
-        List<Node> nodeList = new ArrayList<>(List.of(name, car, date, phone, city, favorites, type , versionDate , comment , author));
-        nodeList.addAll(getAllTables());
-        nodeList.forEach(node -> node.focusedProperty().addListener((obs, oldVal, newVal) -> {
-            if (oldVal) {
-                saveObject(record);
-            }
-        }));
     }
 
     private void viewVersion(Record record, int targetVersion) {

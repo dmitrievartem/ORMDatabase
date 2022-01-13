@@ -109,8 +109,6 @@ public class SearchController {
                     if (searchTable.getSelectionModel().getSelectedItem() != null) {
                         observableRecord = searchTable.getSelectionModel().getSelectedItem();
                         editableRecord = new Record(observableRecord);
-                        viewController.viewRecord(observableRecord);
-                        editController.viewRecord(editableRecord);
                         view.fire();
                     }
                 }
