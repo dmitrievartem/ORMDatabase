@@ -7,9 +7,13 @@ import ormdatabase.entity.*;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class BaseViewController extends InitRecordViewController {
+
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+
     public int currentVersion = 1;
 
     protected void viewRecord(Record record) {
@@ -17,8 +21,7 @@ public class BaseViewController extends InitRecordViewController {
         id.setText(Objects.isNull(record.getId()) ? "Id" : String.valueOf(record.getId()));
         name.setText(record.getName());
         car.setText(record.getCar());
-        LocalDate localDate = record.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        date.setValue(Objects.isNull(localDate) ? LocalDate.now() : localDate);
+        date.setValue(Objects.isNull(record.getDate()) ? LocalDate.now() : LocalDate.parse(record.getDate(), formatter));
         phone.setText(record.getPhone());
         city.setText(record.getCity());
         favorites.setSelected(record.isFavorites());
@@ -128,7 +131,7 @@ public class BaseViewController extends InitRecordViewController {
     protected void saveObject(Record record) {
         record.setName(name.getText());
         record.setCar(car.getText());
-        record.setDate(Date.from(date.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        record.setDate(date.getValue().format(formatter));
         record.setPhone(phone.getText());
         record.setCity(city.getText());
         record.setFavorites(favorites.isSelected());

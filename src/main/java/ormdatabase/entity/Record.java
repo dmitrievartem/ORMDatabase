@@ -15,7 +15,7 @@ public class Record {
     private String car;
     private String uppercaseName;
     private String uppercaseCar;
-    private Date date = new Date();
+    private String date;
     private String phone;
     private String city;
     private String uppercaseCity;
@@ -42,7 +42,7 @@ public class Record {
         }
     }
 
-    public Record(String name, String car, Date date, String phone, String city, List<ShimStackSet> shimStackSetList) {
+    public Record(String name, String car, String date, String phone, String city, List<ShimStackSet> shimStackSetList) {
         this.name = name;
         this.car = car;
         this.date = date;
@@ -81,11 +81,11 @@ public class Record {
         this.uppercaseCar = Objects.nonNull(car) ? car.toUpperCase(Locale.ROOT) : null;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

@@ -1,11 +1,16 @@
 package ormdatabase.controller;
 
+import javafx.application.Platform;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -13,6 +18,8 @@ import ormdatabase.DataSource;
 import ormdatabase.entity.Record;
 
 import java.sql.Date;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Objects;
 
@@ -93,7 +100,7 @@ public class SearchController {
         });
 
         searchButton.setOnAction(event -> {
-            List<Record> queryResults = dataSource.select(favoritesCheckBox.isSelected(), idTextField.getText(), nameTextField.getText(), carTextField.getText(), cityTextField.getText());
+            List<Record> queryResults = dataSource.select(favoritesCheckBox.isSelected(), idTextField.getText(), nameTextField.getText().trim(), carTextField.getText().trim(), cityTextField.getText().trim());
             ObservableList<Record> recordList = FXCollections.observableArrayList(queryResults);
             searchTable.setItems(recordList);
         });
@@ -118,4 +125,9 @@ public class SearchController {
     public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
     }
+
+//    public void setDateFormatter() {
+//        Format formatter = new SimpleDateFormat("dd/MM/yy");
+//        formatter.format(dateColumn.getCellValueFactory());
+//    }
 }

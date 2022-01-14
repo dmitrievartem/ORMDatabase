@@ -14,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -93,7 +94,10 @@ public class MainController {
 
     @FXML
     private void initialize() {
-        search.setOnAction(event -> switchPage(searchNode, search));
+        search.setOnAction(event -> {
+            switchPage(searchNode, search);
+            searchController.searchButton.requestFocus();
+        });
         view.setOnAction(event -> {
             if (Objects.nonNull(observableRecord)) {
                 switchPage(viewNode, view);
@@ -214,6 +218,8 @@ public class MainController {
                 stage.getIcons().add(new Image(Objects.requireNonNull(MainController.class.getResourceAsStream("icon.png"))));
                 stage.show();
                 switchPage(searchNode, search);
+                searchController.searchButton.requestFocus();
+//                searchController.setDateFormatter();
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
