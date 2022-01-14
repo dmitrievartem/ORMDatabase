@@ -85,6 +85,8 @@ public class MainController {
 
     protected static Record newRecord = new Record();
 
+    private Button currentPageButton;
+
     private final DataSource dataSource = new DataSource();
 
     public void start(Stage stage) {
@@ -96,7 +98,7 @@ public class MainController {
     private void initialize() {
         search.setOnAction(event -> {
             switchPage(searchNode, search);
-            searchController.searchButton.requestFocus();
+            searchController.searchButton.fire();
         });
         view.setOnAction(event -> {
             if (Objects.nonNull(observableRecord)) {
@@ -108,11 +110,13 @@ public class MainController {
             if (Objects.nonNull(editableRecord)) {
                 switchPage(editNode, edit);
                 editController.viewRecord(editableRecord);
+                editController.name.requestFocus();
             }
         });
         add.setOnAction(event -> {
             switchPage(addNode, add);
             addController.viewRecord(newRecord);
+            addController.name.requestFocus();
         });
         visualization.setOnAction(event -> {
             switchPage(visualizationNode, visualization);
@@ -141,6 +145,11 @@ public class MainController {
     }
 
     private void switchPage(Node node, Button button) {
+        if (currentPageButton.getId().equals("add")) {
+            addController.saveObject(newRecord);
+        } else if (currentPageButton.getId().equals("edit")) {
+            editController.saveObject(editableRecord);
+        }
         anchorPane.getChildren().clear();
         anchorPane.getChildren().add(node);
         AnchorPane.setTopAnchor(node, 0.0);
@@ -148,6 +157,7 @@ public class MainController {
         AnchorPane.setBottomAnchor(node, 0.0);
         AnchorPane.setLeftAnchor(node, 0.0);
         setDisabledButton(button);
+        currentPageButton = button;
     }
 
     private void printPage() {
@@ -217,9 +227,9 @@ public class MainController {
                 stage.setScene(scene);
                 stage.getIcons().add(new Image(Objects.requireNonNull(MainController.class.getResourceAsStream("icon.png"))));
                 stage.show();
+                currentPageButton = search;
                 switchPage(searchNode, search);
-                searchController.searchButton.requestFocus();
-//                searchController.setDateFormatter();
+                searchController.searchButton.fire();
             } catch (IOException ex) {
                 ex.printStackTrace();
             }

@@ -124,7 +124,7 @@ public class Record {
 
     public void copy(Record record) {
         this.name = record.getName();
-        this.uppercaseName = record.getName().toUpperCase(Locale.ROOT);
+        this.uppercaseName = Objects.nonNull(record.getName()) ? record.getName().toUpperCase(Locale.ROOT) : null;
         this.car = record.getCar();
         this.uppercaseCar = Objects.nonNull(record.getCar()) ? record.getCar().toUpperCase(Locale.ROOT) : null;
         this.date = record.getDate();

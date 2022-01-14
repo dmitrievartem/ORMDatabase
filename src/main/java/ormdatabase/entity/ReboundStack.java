@@ -9,7 +9,7 @@ public class ReboundStack {
     List<Shim> stack;
 
     public ReboundStack() {
-        stack = new ArrayList<>(List.of(new Shim("0", "0", "0")));
+        stack = new ArrayList<>(List.of(new Shim("1", "1", "0")));
     }
 
     public ReboundStack(List<Shim> stack) {

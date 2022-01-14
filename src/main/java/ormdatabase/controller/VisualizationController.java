@@ -126,11 +126,11 @@ public class VisualizationController {
                         switch (event.getTablePosition().getColumn()) {
                             case 0:
                                 if (Objects.nonNull(event.getNewValue())
-                                        && event.getNewValue().matches("\\d*")
+                                        && event.getNewValue().matches("\\d+")
                                         && Integer.parseInt(event.getNewValue()) <= 50) {
                                     shim.setNumber(event.getNewValue());
                                 } else {
-                                    shim.setNumber("");
+                                    shim.setNumber("1");
                                 }
                                 break;
                             case 1:
@@ -139,7 +139,7 @@ public class VisualizationController {
                                         && Float.parseFloat(event.getNewValue()) <= 50) {
                                     shim.setDiameter(event.getNewValue());
                                 } else {
-                                    shim.setDiameter("");
+                                    shim.setDiameter("1");
                                 }
                                 break;
                         }
@@ -312,15 +312,18 @@ public class VisualizationController {
     private void deleteTableRow(ActionEvent event) {
         VBox parentVBox = (VBox) ((Button) event.getSource()).getParent().getParent();
         TableView<Shim> targetTable = (TableView<Shim>) parentVBox.getChildren().get(0);
-        ObservableList<Shim> shims = targetTable.getItems();
-        if (targetTable.getId().contains("rebound")) {
-            shims.remove(0);
-        } else {
-            shims.remove(targetTable.getItems().size() - 1);
+        if (targetTable.getItems().size() > 0) {
+            ObservableList<Shim> shims = targetTable.getItems();
+
+            if (targetTable.getId().contains("rebound")) {
+                shims.remove(0);
+            } else {
+                shims.remove(targetTable.getItems().size() - 1);
+            }
+            targetTable.setItems(shims);
+            drawShimStack();
+            sendValidation();
         }
-        targetTable.setItems(shims);
-        drawShimStack();
-        sendValidation();
     }
 
     @SuppressWarnings("unchecked")

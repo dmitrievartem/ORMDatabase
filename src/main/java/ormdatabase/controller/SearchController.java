@@ -116,6 +116,12 @@ public class SearchController {
                 }
             }
         });
+
+        headerHbox.getParent().setOnKeyPressed(ke -> {
+            if (ke.getCode().equals(KeyCode.ENTER)) {
+                searchButton.fire();
+            }
+        });
     }
 
     public void setView(Button view) {
@@ -125,9 +131,4 @@ public class SearchController {
     public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
     }
-
-//    public void setDateFormatter() {
-//        Format formatter = new SimpleDateFormat("dd/MM/yy");
-//        formatter.format(dateColumn.getCellValueFactory());
-//    }
 }

@@ -395,13 +395,22 @@ public class InitRecordViewController {
                         Shim shim = event.getTableView().getItems().get(event.getTablePosition().getRow());
                         switch (event.getTablePosition().getColumn()) {
                             case 0:
-                                shim.setNumber(event.getNewValue());
+                                if (Objects.nonNull(event.getNewValue())
+                                        && event.getNewValue().matches("\\d+")
+                                        && Integer.parseInt(event.getNewValue()) <= 50) {
+                                    shim.setNumber(event.getNewValue());
+                                } else {
+                                    shim.setNumber("1");
+                                }
                                 break;
                             case 1:
-                                shim.setDiameter(event.getNewValue());
-                                break;
-                            case 2:
-                                shim.setThickness(event.getNewValue());
+                                if (Objects.nonNull(event.getNewValue())
+                                        && event.getNewValue().matches("^\\d+(?:[\\.]\\d+)?$")
+                                        && Float.parseFloat(event.getNewValue()) <= 50) {
+                                    shim.setDiameter(event.getNewValue());
+                                } else {
+                                    shim.setDiameter("1");
+                                }
                                 break;
                         }
                     }

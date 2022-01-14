@@ -52,12 +52,12 @@
                               <Cursor fx:constant="DEFAULT" />
                            </cursor>
                         </Button>
-                        <Button id="backup" fx:id="downloadBackup" alignment="CENTER" cache="false" cacheHint="QUALITY" contentDisplay="CENTER" mnemonicParsing="false" text="Сохранить резервную копию" wrapText="true">
+                        <Button id="backup" fx:id="downloadBackup" alignment="CENTER" cache="false" cacheHint="QUALITY" contentDisplay="CENTER" mnemonicParsing="false" text="Резервное копирование" wrapText="true">
                            <cursor>
                               <Cursor fx:constant="DEFAULT" />
                            </cursor>
                         </Button>
-                        <Button id="backup" fx:id="uploadBackup" alignment="CENTER" cache="false" cacheHint="QUALITY" contentDisplay="CENTER" mnemonicParsing="false" text="Загрузить резервную копию" wrapText="true">
+                        <Button id="backup" fx:id="uploadBackup" alignment="CENTER" cache="false" cacheHint="QUALITY" contentDisplay="CENTER" mnemonicParsing="false" text="Восстановление" wrapText="true">
                            <cursor>
                               <Cursor fx:constant="DEFAULT" />
                            </cursor>

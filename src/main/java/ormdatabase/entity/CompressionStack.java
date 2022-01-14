@@ -9,7 +9,7 @@ public class CompressionStack {
     List<Shim> stack;
 
     public CompressionStack() {
-        stack = new ArrayList<>(List.of(new Shim("0", "0", "0")));
+        stack = new ArrayList<>(List.of(new Shim("1", "1", "0")));
     }
 
     public CompressionStack(List<Shim> stack) {

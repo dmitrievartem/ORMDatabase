@@ -12,6 +12,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.util.StringConverter;
 
+import java.util.Objects;
+
 
 public class EditCell<S, T> extends TableCell<S, T> {
 
@@ -44,27 +46,30 @@ public class EditCell<S, T> extends TableCell<S, T> {
             }
         });
         textField.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
-            if (event.getCode() == KeyCode.ESCAPE) {
-                textField.setText(converter.toString(getItem()));
-                cancelEdit();
-                event.consume();
-            } else if (event.getCode() == KeyCode.RIGHT) {
-                commitEdit(this.converter.fromString(textField.getText()));
-                getTableView().getSelectionModel().selectRightCell();
-                event.consume();
-            } else if (event.getCode() == KeyCode.LEFT) {
-                commitEdit(this.converter.fromString(textField.getText()));
-                getTableView().getSelectionModel().selectLeftCell();
-                event.consume();
-            } else if (event.getCode() == KeyCode.UP) {
-                commitEdit(this.converter.fromString(textField.getText()));
-                getTableView().getSelectionModel().selectAboveCell();
-                event.consume();
-            } else if (event.getCode() == KeyCode.DOWN) {
-                commitEdit(this.converter.fromString(textField.getText()));
-                getTableView().getSelectionModel().selectBelowCell();
-                event.consume();
+            if(!textField.getText().equals("") && textField.getText().matches("^\\d+(?:[\\.]\\d+)?$")) {
+                if (event.getCode() == KeyCode.ESCAPE) {
+                    textField.setText(converter.toString(getItem()));
+                    cancelEdit();
+                    event.consume();
+                } else if (event.getCode() == KeyCode.RIGHT) {
+                    commitEdit(this.converter.fromString(textField.getText()));
+                    getTableView().getSelectionModel().selectRightCell();
+                    event.consume();
+                } else if (event.getCode() == KeyCode.LEFT) {
+                    commitEdit(this.converter.fromString(textField.getText()));
+                    getTableView().getSelectionModel().selectLeftCell();
+                    event.consume();
+                } else if (event.getCode() == KeyCode.UP) {
+                    commitEdit(this.converter.fromString(textField.getText()));
+                    getTableView().getSelectionModel().selectAboveCell();
+                    event.consume();
+                } else if (event.getCode() == KeyCode.DOWN) {
+                    commitEdit(this.converter.fromString(textField.getText()));
+                    getTableView().getSelectionModel().selectBelowCell();
+                    event.consume();
+                }
             }
+
         });
     }
 
@@ -98,7 +103,7 @@ public class EditCell<S, T> extends TableCell<S, T> {
     @Override
     public void startEdit() {
         super.startEdit();
-        textField.setText(converter.toString(getItem()));
+        textField.setText("");
         setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
         textField.requestFocus();
     }

@@ -12,7 +12,7 @@ import java.util.*;
 
 public class BaseViewController extends InitRecordViewController {
 
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
 
     public int currentVersion = 1;
 
@@ -129,6 +129,7 @@ public class BaseViewController extends InitRecordViewController {
 
 
     protected void saveObject(Record record) {
+        System.out.println("------------------");
         record.setName(name.getText());
         record.setCar(car.getText());
         record.setDate(date.getValue().format(formatter));
