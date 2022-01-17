@@ -246,24 +246,7 @@ public class VisualizationController {
                 }
             }
 
-            if (Objects.isNull(reboundTargetRecord)) {
-                reboundShockAbsorberComboBox.getSelectionModel().clearSelection();
-                reboundShockAbsorberComboBox.setDisable(true);
-                sendValidation();
-            } else {
-                sendValidation();
-                reboundShockAbsorberComboBox.setDisable(false);
-                List<String> shockAbsorberList;
-
-                if (shockAbsorberNumber == 4) {
-                    shockAbsorberList = FXCollections.observableArrayList(List.of("ПЛ", "ПП", "ЗЛ", "ЗП"));
-                } else if (shockAbsorberNumber == 2) {
-                    shockAbsorberList = FXCollections.observableArrayList(List.of("П", "З"));
-                } else {
-                    shockAbsorberList = FXCollections.observableArrayList(List.of("4 одинаковые"));
-                }
-                reboundShockAbsorberComboBox.setItems(FXCollections.observableArrayList(shockAbsorberList));
-            }
+            setComboBox(reboundTargetRecord, reboundShockAbsorberComboBox, shockAbsorberNumber);
         });
 
         compressionPageComboBox.setOnAction(event -> {
@@ -273,36 +256,18 @@ public class VisualizationController {
                     if (Objects.nonNull(editableRecord)) {
                         compressionTargetRecord = editableRecord;
                         compressionCurrentVersion = editController.currentVersion - 1;
-                        shockAbsorberNumber = reboundTargetRecord.getShimStackSetList().get(compressionCurrentVersion).getTypeNumber();
+                        shockAbsorberNumber = compressionTargetRecord.getShimStackSetList().get(compressionCurrentVersion).getTypeNumber();
                     } else {
-                        reboundTargetRecord = null;
+                        compressionTargetRecord = null;
                     }
                 } else {
                     compressionTargetRecord = newRecord;
                     compressionCurrentVersion = addController.currentVersion - 1;
-                    shockAbsorberNumber = reboundTargetRecord.getShimStackSetList().get(addController.currentVersion - 1).getTypeNumber();
-
+                    shockAbsorberNumber = compressionTargetRecord.getShimStackSetList().get(addController.currentVersion - 1).getTypeNumber();
                 }
             }
 
-            if (Objects.isNull(compressionTargetRecord)) {
-                compressionShockAbsorberComboBox.getSelectionModel().clearSelection();
-                compressionShockAbsorberComboBox.setDisable(true);
-                sendValidation();
-            } else {
-                sendValidation();
-                compressionShockAbsorberComboBox.setDisable(false);
-                List<String> shockAbsorberList;
-
-                if (shockAbsorberNumber == 4) {
-                    shockAbsorberList = FXCollections.observableArrayList(List.of("ПЛ", "ПП", "ЗЛ", "ЗП"));
-                } else if (shockAbsorberNumber == 2) {
-                    shockAbsorberList = FXCollections.observableArrayList(List.of("П", "З"));
-                } else {
-                    shockAbsorberList = FXCollections.observableArrayList(List.of("4 одинаковые"));
-                }
-                compressionShockAbsorberComboBox.setItems(FXCollections.observableArrayList(shockAbsorberList));
-            }
+            setComboBox(compressionTargetRecord, compressionShockAbsorberComboBox, shockAbsorberNumber);
         });
 
         reboundShockAbsorberComboBox.setOnAction(event -> sendValidation());
@@ -426,5 +391,28 @@ public class VisualizationController {
 
     public void setAddController(AddController addController) {
         this.addController = addController;
+    }
+
+    private List<String> getShockAbsorberList(int shockAbsorberNumber) {
+        if (shockAbsorberNumber == 4) {
+            return FXCollections.observableArrayList(List.of("ПЛ", "ПП", "ЗЛ", "ЗП"));
+        } else if (shockAbsorberNumber == 2) {
+            return FXCollections.observableArrayList(List.of("П", "З"));
+        } else {
+            return FXCollections.observableArrayList(List.of("4 одинаковые"));
+        }
+    }
+
+    private void setComboBox(Record targetRecord, ComboBox<String> comboBox, int shockAbsorberNumber) {
+        if (Objects.isNull(targetRecord)) {
+            comboBox.getSelectionModel().clearSelection();
+            comboBox.setDisable(true);
+            sendValidation();
+        } else {
+            sendValidation();
+            comboBox.setDisable(false);
+            List<String> shockAbsorberList = getShockAbsorberList(shockAbsorberNumber);
+            comboBox.setItems(FXCollections.observableArrayList(shockAbsorberList));
+        }
     }
 }
