@@ -93,12 +93,12 @@ public class DataSource {
     public void recovery(Stage stage) {
         emf.close();
         try {
-            Files.walk(Paths.get("src/main/resources/odb/db"))
+            Files.walk(Paths.get("odb/db"))
                     .sorted(Comparator.reverseOrder())
                     .map(Path::toFile)
                     .forEach(File::delete);
 
-            Path dir = Files.createDirectories(Paths.get("src/main/resources/odb/db"));
+            Path dir = Files.createDirectories(Paths.get("odb/db"));
             OutputStream out = Files.newOutputStream(dir.resolve("shimstack.odb"));
 
             final FileChooser fileChooser = new FileChooser();

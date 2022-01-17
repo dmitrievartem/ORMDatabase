@@ -1,6 +1,7 @@
 .idea
 .gradle
 build
+src/main/java/META-INF
 src/main/resources/odb/db
 src/main/resources/odb/log/
 src/main/resources/odb/log/archive

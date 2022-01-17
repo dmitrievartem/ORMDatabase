@@ -14,7 +14,7 @@ public class Main extends javafx.application.Application {
     }
 
     public static void main(String[] args) {
-        System.setProperty("objectdb.home", "./src/main/resources/odb/");
+        System.setProperty("objectdb.home", "odb");
         launch();
     }
 

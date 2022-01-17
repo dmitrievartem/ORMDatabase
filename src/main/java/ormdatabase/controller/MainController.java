@@ -14,7 +14,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -192,23 +191,23 @@ public class MainController {
         Task<Parent> loadTask = new Task<>() {
             @Override
             public Parent call() throws IOException {
-                loader = getNewLoader("search.fxml");
+                loader = getNewLoader("fxml/search.fxml");
                 loader.setController(searchController);
                 searchNode = loader.load();
 
-                loader = getNewLoader("record.fxml");
+                loader = getNewLoader("fxml/record.fxml");
                 loader.setController(viewController);
                 viewNode = loader.load();
 
-                loader = getNewLoader("record.fxml");
+                loader = getNewLoader("fxml/record.fxml");
                 loader.setController(editController);
                 editNode = loader.load();
 
-                loader = getNewLoader("record.fxml");
+                loader = getNewLoader("fxml/record.fxml");
                 loader.setController(addController);
                 addNode = loader.load();
 
-                loader = getNewLoader("visualization.fxml");
+                loader = getNewLoader("fxml/visualization.fxml");
                 loader.setController(visualizationController);
                 visualizationNode = loader.load();
 
@@ -217,15 +216,15 @@ public class MainController {
         };
 
         loadTask.setOnSucceeded(e -> {
-            loader = new FXMLLoader(getClass().getClassLoader().getResource("main.fxml"));
+            loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/main.fxml"));
             loader.setController(this);
             try {
                 Scene scene = new Scene(loader.load());
-                scene.getStylesheets().add(Objects.requireNonNull(MainController.class.getResource("light-with-shadows.css")).toExternalForm());
+                scene.getStylesheets().add(Objects.requireNonNull(getClass().getClassLoader().getResource("light-with-shadows.css")).toExternalForm());
                 stage.setTitle("ShimStack");
                 stage.setMaximized(true);
                 stage.setScene(scene);
-                stage.getIcons().add(new Image(Objects.requireNonNull(MainController.class.getResourceAsStream("icon.png"))));
+                stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("icon.png"))));
                 stage.show();
                 currentPageButton = search;
                 switchPage(searchNode, search);
