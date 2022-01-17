@@ -7,6 +7,9 @@ import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.TransferMode;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
@@ -24,6 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import static ormdatabase.controller.InitRecordViewController.SERIALIZED_MIME_TYPE;
 import static ormdatabase.controller.MainController.editableRecord;
 import static ormdatabase.controller.MainController.newRecord;
 
@@ -112,10 +116,64 @@ public class VisualizationController {
             tableView.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("diameter"));
             tableView.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("thickness"));
         }
+
         List<TableColumn<Shim, String>> columnList = List.of(
                 reboundNumberColumn, reboundDiameterColumn, reboundThicknessColumn,
                 compressionNumberColumn, compressionDiameterColumn, compressionThicknessColumn
         );
+
+        List.of(reboundTable, compressionTable).forEach(tableView -> tableView.setRowFactory(tv -> {
+            TableRow<Shim> row = new TableRow<>();
+
+            row.setOnDragDetected(event -> {
+                if (! row.isEmpty()) {
+                    Integer index = row.getIndex();
+                    Dragboard db = row.startDragAndDrop(TransferMode.MOVE);
+                    db.setDragView(row.snapshot(null, null));
+                    ClipboardContent cc = new ClipboardContent();
+                    cc.put(SERIALIZED_MIME_TYPE, index);
+                    db.setContent(cc);
+                    event.consume();
+                }
+            });
+
+            row.setOnDragOver(event -> {
+                Dragboard db = event.getDragboard();
+                if (db.hasContent(SERIALIZED_MIME_TYPE)) {
+                    if (row.getIndex() != (Integer) db.getContent(SERIALIZED_MIME_TYPE)) {
+                        event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
+                        event.consume();
+                    }
+                }
+            });
+
+            row.setOnDragDropped(event -> {
+                Dragboard db = event.getDragboard();
+                if (db.hasContent(SERIALIZED_MIME_TYPE)) {
+                    int draggedIndex = (Integer) db.getContent(SERIALIZED_MIME_TYPE);
+                    Shim shim = tableView.getItems().remove(draggedIndex);
+
+                    int dropIndex ;
+
+                    if (row.isEmpty()) {
+                        dropIndex = tableView.getItems().size() ;
+                    } else {
+                        dropIndex = row.getIndex();
+                    }
+
+                    tableView.getItems().add(dropIndex, shim);
+
+                    event.setDropCompleted(true);
+                    tableView.getSelectionModel().select(dropIndex);
+                    event.consume();
+                    drawShimStack();
+                }
+            });
+
+            return row ;
+        }));
+
+
         List.of(reboundTable, compressionTable).forEach(tableView -> tableView.getSelectionModel().setCellSelectionEnabled(true));
         Callback<TableColumn<Shim, String>, TableCell<Shim, String>> editCell = (TableColumn<Shim, String> p) -> EditCell.createStringEditCell();
         for (TableColumn<Shim, String> column : columnList) {
@@ -135,11 +193,20 @@ public class VisualizationController {
                                 break;
                             case 1:
                                 if (Objects.nonNull(event.getNewValue())
-                                        && event.getNewValue().matches("^\\d+(.\\d+)?$")
+                                        && event.getNewValue().matches("^\\d+(?:[.]\\d+)?$")
                                         && Float.parseFloat(event.getNewValue()) <= 50) {
                                     shim.setDiameter(event.getNewValue());
                                 } else {
                                     shim.setDiameter("1");
+                                }
+                                break;
+                            case 2:
+                                if (Objects.nonNull(event.getNewValue())
+                                        && event.getNewValue().matches("^\\d+(?:[.]\\d+)?$")
+                                        && Float.parseFloat(event.getNewValue()) <= 50) {
+                                    shim.setThickness(event.getNewValue());
+                                } else {
+                                    shim.setThickness("1");
                                 }
                                 break;
                         }
@@ -165,10 +232,13 @@ public class VisualizationController {
             int shockAbsorberNumber = 1;
             if (Objects.nonNull(reboundPageComboBox.getSelectionModel().getSelectedItem())) {
                 if (reboundPageComboBox.getSelectionModel().getSelectedItem().equals("Редактирование")) {
-                    reboundTargetRecord = editableRecord;
-                    reboundCurrentVersion = editController.currentVersion - 1;
-                    shockAbsorberNumber = reboundTargetRecord.getShimStackSetList().get(reboundCurrentVersion).getTypeNumber();
-
+                    if (Objects.nonNull(editableRecord)) {
+                        reboundTargetRecord = editableRecord;
+                        reboundCurrentVersion = editController.currentVersion - 1;
+                        shockAbsorberNumber = reboundTargetRecord.getShimStackSetList().get(reboundCurrentVersion).getTypeNumber();
+                    } else {
+                        reboundTargetRecord = null;
+                    }
                 } else {
                     reboundTargetRecord = newRecord;
                     reboundCurrentVersion = addController.currentVersion - 1;
@@ -200,9 +270,13 @@ public class VisualizationController {
             int shockAbsorberNumber = 1;
             if (Objects.nonNull(compressionPageComboBox.getSelectionModel().getSelectedItem())) {
                 if (compressionPageComboBox.getSelectionModel().getSelectedItem().equals("Редактирование")) {
-                    compressionTargetRecord = editableRecord;
-                    compressionCurrentVersion = editController.currentVersion - 1;
-                    shockAbsorberNumber = reboundTargetRecord.getShimStackSetList().get(compressionCurrentVersion).getTypeNumber();
+                    if (Objects.nonNull(editableRecord)) {
+                        compressionTargetRecord = editableRecord;
+                        compressionCurrentVersion = editController.currentVersion - 1;
+                        shockAbsorberNumber = reboundTargetRecord.getShimStackSetList().get(compressionCurrentVersion).getTypeNumber();
+                    } else {
+                        reboundTargetRecord = null;
+                    }
                 } else {
                     compressionTargetRecord = newRecord;
                     compressionCurrentVersion = addController.currentVersion - 1;
@@ -298,11 +372,7 @@ public class VisualizationController {
         VBox parentVBox = (VBox) ((Button) event.getSource()).getParent().getParent();
         TableView<Shim> targetTable = (TableView<Shim>) parentVBox.getChildren().get(0);
         ObservableList<Shim> shims = targetTable.getItems();
-        if (targetTable.getId().contains("rebound")) {
-            shims.add(0, new Shim("1", "1", "0"));
-        } else {
-            shims.add(new Shim("1", "1", "0"));
-        }
+        shims.add(new Shim("1", "1", "0"));
         targetTable.setItems(shims);
         drawShimStack();
         sendValidation();
@@ -314,12 +384,7 @@ public class VisualizationController {
         TableView<Shim> targetTable = (TableView<Shim>) parentVBox.getChildren().get(0);
         if (targetTable.getItems().size() > 0) {
             ObservableList<Shim> shims = targetTable.getItems();
-
-            if (targetTable.getId().contains("rebound")) {
-                shims.remove(0);
-            } else {
-                shims.remove(targetTable.getItems().size() - 1);
-            }
+            shims.remove(targetTable.getItems().size() - 1);
             targetTable.setItems(shims);
             drawShimStack();
             sendValidation();

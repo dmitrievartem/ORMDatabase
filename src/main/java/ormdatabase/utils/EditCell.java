@@ -37,9 +37,7 @@ public class EditCell<S, T> extends TableCell<S, T> {
         setGraphic(textField);
         setContentDisplay(ContentDisplay.TEXT_ONLY);
 
-        textField.setOnAction(evt -> {
-            commitEdit(this.converter.fromString(textField.getText()));
-        });
+        textField.setOnAction(evt -> commitEdit(this.converter.fromString(textField.getText())));
         textField.focusedProperty().addListener((obs, wasFocused, isNowFocused) -> {
             if (! isNowFocused) {
                 commitEdit(this.converter.fromString(textField.getText()));
@@ -66,6 +64,9 @@ public class EditCell<S, T> extends TableCell<S, T> {
                 } else if (event.getCode() == KeyCode.DOWN) {
                     commitEdit(this.converter.fromString(textField.getText()));
                     getTableView().getSelectionModel().selectBelowCell();
+                    event.consume();
+                } else if (event.getCode() == KeyCode.ENTER) {
+                    commitEdit(this.converter.fromString(textField.getText()));
                     event.consume();
                 }
             }

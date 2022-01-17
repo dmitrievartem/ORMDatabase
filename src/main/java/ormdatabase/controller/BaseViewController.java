@@ -129,7 +129,6 @@ public class BaseViewController extends InitRecordViewController {
 
 
     protected void saveObject(Record record) {
-        System.out.println("------------------");
         record.setName(name.getText());
         record.setCar(car.getText());
         record.setDate(date.getValue().format(formatter));

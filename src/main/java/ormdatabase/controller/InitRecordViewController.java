@@ -7,6 +7,10 @@ import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.DataFormat;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.TransferMode;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 import javafx.util.Duration;
@@ -288,6 +292,8 @@ public class InitRecordViewController {
     @FXML
     protected Button visualizationButton8;
 
+    protected static final DataFormat SERIALIZED_MIME_TYPE = new DataFormat("application/x-java-serialized-object");
+
     private VisualizationController visualizationController;
 
     protected void setVisualizationController(VisualizationController visualizationController) {
@@ -412,11 +418,71 @@ public class InitRecordViewController {
                                     shim.setDiameter("1");
                                 }
                                 break;
+                            case 2:
+                                if (Objects.nonNull(event.getNewValue())
+                                        && event.getNewValue().matches("^\\d+(?:[\\.]\\d+)?$")
+                                        && Float.parseFloat(event.getNewValue()) <= 50) {
+                                    shim.setThickness(event.getNewValue());
+                                } else {
+                                    shim.setThickness("1");
+                                }
+                                break;
                         }
                     }
             );
         }
+
+        getAllTables().forEach(tableView -> tableView.setRowFactory(tv -> {
+            TableRow<Shim> row = new TableRow<>();
+
+            row.setOnDragDetected(event -> {
+                if (! row.isEmpty()) {
+                    Integer index = row.getIndex();
+                    Dragboard db = row.startDragAndDrop(TransferMode.MOVE);
+                    db.setDragView(row.snapshot(null, null));
+                    ClipboardContent cc = new ClipboardContent();
+                    cc.put(SERIALIZED_MIME_TYPE, index);
+                    db.setContent(cc);
+                    event.consume();
+                }
+            });
+
+            row.setOnDragOver(event -> {
+                Dragboard db = event.getDragboard();
+                if (db.hasContent(SERIALIZED_MIME_TYPE)) {
+                    if (row.getIndex() != (Integer) db.getContent(SERIALIZED_MIME_TYPE)) {
+                        event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
+                        event.consume();
+                    }
+                }
+            });
+
+            row.setOnDragDropped(event -> {
+                Dragboard db = event.getDragboard();
+                if (db.hasContent(SERIALIZED_MIME_TYPE)) {
+                    int draggedIndex = (Integer) db.getContent(SERIALIZED_MIME_TYPE);
+                    Shim shim = tableView.getItems().remove(draggedIndex);
+
+                    int dropIndex ;
+
+                    if (row.isEmpty()) {
+                        dropIndex = tableView.getItems().size() ;
+                    } else {
+                        dropIndex = row.getIndex();
+                    }
+
+                    tableView.getItems().add(dropIndex, shim);
+
+                    event.setDropCompleted(true);
+                    tableView.getSelectionModel().select(dropIndex);
+                    event.consume();
+                }
+            });
+
+            return row ;
+        }));
     }
+
 
     @SuppressWarnings("unchecked")
     private void addTableRow(ActionEvent event) {
