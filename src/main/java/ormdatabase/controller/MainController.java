@@ -123,7 +123,13 @@ public class MainController {
         });
         print.setOnAction(event -> printPage());
         downloadBackup.setOnAction(event -> dataSource.backup(stage));
-        uploadBackup.setOnAction(event -> dataSource.recovery(stage));
+        uploadBackup.setOnAction(event -> {
+            dataSource.recovery(stage);
+            switchPage(searchNode, search);
+            searchController.searchButton.fire();
+            observableRecord = null;
+            editableRecord = null;
+        });
 
         searchController.setView(view);
         searchController.setDataSource(dataSource);
@@ -132,7 +138,6 @@ public class MainController {
         viewController.setVisualizationController(visualizationController);
 
         editController.setVisualizationController(visualizationController);
-        editController.setViewController(viewController);
         editController.setView(view);
         editController.setDataSource(dataSource);
 

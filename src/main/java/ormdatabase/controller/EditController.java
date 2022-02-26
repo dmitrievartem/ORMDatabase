@@ -10,8 +10,6 @@ import ormdatabase.entity.Record;
 
 public class EditController extends BaseViewController {
 
-    private ViewController viewController;
-
     private Button view;
 
     private DataSource dataSource;
@@ -40,10 +38,6 @@ public class EditController extends BaseViewController {
                 .hideAfter(Duration.seconds(3))
                 .show();
         view.fire();
-    }
-
-    public void setViewController(ViewController viewController) {
-        this.viewController = viewController;
     }
 
     public void setView(Button view) {
