@@ -411,8 +411,8 @@ public class InitRecordViewController {
                                 break;
                             case 1:
                                 if (Objects.nonNull(event.getNewValue())
-                                        && event.getNewValue().matches("^\\d+(?:[\\.]\\d+)?$")
-                                        && Float.parseFloat(event.getNewValue()) <= 50) {
+                                        && event.getNewValue().matches("^\\d+(?:([\\.]||[\\,])\\d+)?$")
+                                        && Float.parseFloat(event.getNewValue().replace(',', '.')) <= 50) {
                                     shim.setDiameter(event.getNewValue());
                                 } else {
                                     shim.setDiameter("1");
@@ -420,9 +420,9 @@ public class InitRecordViewController {
                                 break;
                             case 2:
                                 if (Objects.nonNull(event.getNewValue())
-                                        && event.getNewValue().matches("^\\d+(?:[\\.]\\d+)?$")
+                                        && event.getNewValue().matches("^\\d+(?:([\\.]||[\\,])\\d+)?$")
                                         && Float.parseFloat(event.getNewValue()) <= 50) {
-                                    shim.setThickness(event.getNewValue());
+                                    shim.setThickness(event.getNewValue().replace(',', '.'));
                                 } else {
                                     shim.setThickness("1");
                                 }
@@ -628,8 +628,10 @@ public class InitRecordViewController {
         }
 
         date.setDisable(false);
+        date.getEditor().setDisable(true);
         type.setDisable(false);
         versionDate.setDisable(false);
+        versionDate.getEditor().setDisable(true);
 
         deleteVersion.setDisable(false);
         addVersion.setDisable(false);

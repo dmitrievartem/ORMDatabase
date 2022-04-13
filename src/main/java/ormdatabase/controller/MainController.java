@@ -12,10 +12,13 @@ import javafx.print.PrinterJob;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 import ormdatabase.DataSource;
@@ -24,6 +27,7 @@ import ormdatabase.entity.Record;
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 public class MainController {
 
@@ -44,9 +48,6 @@ public class MainController {
 
     @FXML
     private Button visualization;
-
-    @FXML
-    private Button print;
 
     @FXML
     private Button downloadBackup;
@@ -121,7 +122,6 @@ public class MainController {
             switchPage(visualizationNode, visualization);
             visualizationController.refreshSelection();
         });
-        print.setOnAction(event -> printPage());
         downloadBackup.setOnAction(event -> dataSource.backup(stage));
         uploadBackup.setOnAction(event -> {
             dataSource.recovery(stage);
@@ -162,30 +162,6 @@ public class MainController {
         AnchorPane.setLeftAnchor(node, 0.0);
         setDisabledButton(button);
         currentPageButton = button;
-    }
-
-    private void printPage() {
-        Platform.setImplicitExit(false);
-        stage.hide();
-        stage.setHeight(850);
-        stage.setWidth(1480);
-        PrinterJob job = PrinterJob.createPrinterJob();
-        PageLayout pageLayout = job.getPrinter().createPageLayout(Paper.A3, PageOrientation.REVERSE_LANDSCAPE, 0, 0, 0, 0);
-        boolean result = job.printPage(pageLayout, anchorPane.getChildren().get(0));
-        job.endJob();
-        stage.setMaximized(false);
-        stage.setMaximized(true);
-        stage.show();
-        Platform.setImplicitExit(true);
-        if (result) {
-            Notifications.create()
-                    .owner(anchorPane.getScene().getWindow())
-                    .position(Pos.BOTTOM_RIGHT)
-                    .hideCloseButton()
-                    .text("Страница сохранена")
-                    .hideAfter(Duration.seconds(3))
-                    .show();
-        }
     }
 
     public void closeDB() {
@@ -234,6 +210,7 @@ public class MainController {
                 currentPageButton = search;
                 switchPage(searchNode, search);
                 searchController.searchButton.fire();
+                stage.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, this::closeWindowEvent);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -253,5 +230,23 @@ public class MainController {
     private void setDisabledButton(Button current) {
         List.of(search, view, edit, add, visualization).forEach(button -> button.setDisable(false));
         current.setDisable(true);
+    }
+
+    private void closeWindowEvent(WindowEvent event) {
+        Alert alert = new Alert(Alert.AlertType.NONE);
+        ButtonType okButton = new ButtonType("Да");
+        ButtonType cancelButton = new ButtonType("Нет, надо проверить");
+
+        alert.getButtonTypes().add(okButton);
+        alert.getButtonTypes().add(cancelButton);
+
+        alert.setTitle("Устал работать?");
+        alert.setContentText("Уверен что всё сохранил, инженер?");
+        Optional<ButtonType> res = alert.showAndWait();
+
+        if (res.isPresent()) {
+            if (res.get().equals(cancelButton))
+                event.consume();
+        }
     }
 }

@@ -47,11 +47,6 @@
                   </Button>
                   <VBox alignment="BOTTOM_CENTER" cache="false" cacheHint="QUALITY" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Button id="print" fx:id="print" alignment="CENTER" cache="false" cacheHint="QUALITY" contentDisplay="CENTER" mnemonicParsing="false" text="Печать страницы" wrapText="true">
-                           <cursor>
-                              <Cursor fx:constant="DEFAULT" />
-                           </cursor>
-                        </Button>
                         <Button id="backup" fx:id="downloadBackup" alignment="CENTER" cache="false" cacheHint="QUALITY" contentDisplay="CENTER" mnemonicParsing="false" text="Резервное копирование" wrapText="true">
                            <cursor>
                               <Cursor fx:constant="DEFAULT" />
