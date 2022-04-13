@@ -193,8 +193,8 @@ public class VisualizationController {
                                 break;
                             case 1:
                                 if (Objects.nonNull(event.getNewValue())
-                                        && event.getNewValue().matches("^\\d+(?:[.]\\d+)?$")
-                                        && Float.parseFloat(event.getNewValue()) <= 50) {
+                                        && event.getNewValue().matches("^\\d+(?:([\\.]||[\\,])\\d+)?$")
+                                        && Float.parseFloat(event.getNewValue().replace(',', '.')) <= 50) {
                                     shim.setDiameter(event.getNewValue());
                                 } else {
                                     shim.setDiameter("1");
@@ -202,8 +202,8 @@ public class VisualizationController {
                                 break;
                             case 2:
                                 if (Objects.nonNull(event.getNewValue())
-                                        && event.getNewValue().matches("^\\d+(?:[.]\\d+)?$")
-                                        && Float.parseFloat(event.getNewValue()) <= 50) {
+                                        && event.getNewValue().matches("^\\d+(?:([\\.]||[\\,])\\d+)?$")
+                                        && Float.parseFloat(event.getNewValue().replace(',', '.')) <= 50) {
                                     shim.setThickness(event.getNewValue());
                                 } else {
                                     shim.setThickness("1");
@@ -308,14 +308,29 @@ public class VisualizationController {
 
     protected void drawShimStack() {
         stackVisualizationVBox.getChildren().removeAll(stackVisualizationVBox.getChildren());
+
+        Rectangle reboundRectangle = new Rectangle(60, 25);
+        reboundRectangle.setFill(Color.web("#f0f2f5"));
+        reboundRectangle.setArcWidth(10);
+        reboundRectangle.setArcHeight(10);
+        reboundRectangle.setStroke(Color.web("#bbc4d1"));
+        stackVisualizationVBox.getChildren().add(reboundRectangle);
+
         addLines(reboundTable);
+
         Rectangle rectangle = new Rectangle(350, 75);
-        rectangle.setFill(Color.web("#ffffff"));
+        rectangle.setFill(Color.web("#f0f2f5"));
         rectangle.setArcWidth(10);
         rectangle.setArcHeight(10);
         rectangle.setStroke(Color.web("#bbc4d1"));
         stackVisualizationVBox.getChildren().add(rectangle);
+
         addLines(compressionTable);
+
+        Rectangle compressionRectangle = new Rectangle(180, 15);
+        compressionRectangle.setFill(Color.web("#f0f2f5"));
+        compressionRectangle.setStroke(Color.web("#bbc4d1"));
+        stackVisualizationVBox.getChildren().add(compressionRectangle);
     }
 
     private void addLines(TableView<Shim> tableView) {
@@ -325,7 +340,7 @@ public class VisualizationController {
             vBox.setAlignment(Pos.CENTER);
             for (int i = 0; i < Integer.parseInt(shim.getNumber()); i++) {
                 vBox.getChildren().add(
-                        new Line(0, 0, Float.parseFloat(shim.getDiameter()) * 8, 0)
+                        new Line(0, 0, Float.parseFloat(shim.getDiameter().replace(',', '.')) * Float.parseFloat(shim.getDiameter().replace(',', '.')) / 4.8, 0)
                 );
             }
             stackVisualizationVBox.getChildren().add(vBox);
